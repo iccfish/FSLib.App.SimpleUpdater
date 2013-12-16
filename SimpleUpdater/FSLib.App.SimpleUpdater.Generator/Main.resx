@@ -1,0 +1,1734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>应用程序名</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>427, 14</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>当前版本</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 41</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>发布地址</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 68</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>新程序目录</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="txtAppName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 11</value>
+  </data>
+  <data name="txtAppName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>332, 21</value>
+  </data>
+  <data name="txtAppName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtAppName.Name" xml:space="preserve">
+    <value>txtAppName</value>
+  </data>
+  <data name="&gt;&gt;txtAppName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAppName.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtAppName.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>361, 17</value>
+  </data>
+  <data name="txtPublishUrl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 38</value>
+  </data>
+  <data name="txtPublishUrl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>643, 21</value>
+  </data>
+  <data name="txtPublishUrl.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="txtPublishUrl.ToolTip" xml:space="preserve">
+    <value>供用户点击查看更详细信息的网页地址, 留空则禁止这个链接显示</value>
+  </data>
+  <data name="&gt;&gt;txtPublishUrl.Name" xml:space="preserve">
+    <value>txtPublishUrl</value>
+  </data>
+  <data name="&gt;&gt;txtPublishUrl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPublishUrl.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtPublishUrl.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="pbProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pbProgress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 432</value>
+  </data>
+  <data name="pbProgress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>746, 15</value>
+  </data>
+  <data name="pbProgress.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="pbProgress.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pbProgress.Name" xml:space="preserve">
+    <value>pbProgress</value>
+  </data>
+  <data name="&gt;&gt;pbProgress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pbProgress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pbProgress.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnCreate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCreate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>522, 453</value>
+  </data>
+  <data name="btnCreate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 30</value>
+  </data>
+  <data name="btnCreate.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnCreate.Text" xml:space="preserve">
+    <value>创建升级包</value>
+  </data>
+  <data name="&gt;&gt;btnCreate.Name" xml:space="preserve">
+    <value>btnCreate</value>
+  </data>
+  <data name="&gt;&gt;btnCreate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCreate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCreate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 97</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>升级包路径</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lblStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 415</value>
+  </data>
+  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 12</value>
+  </data>
+  <data name="lblStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lblStatus.Name" xml:space="preserve">
+    <value>lblStatus</value>
+  </data>
+  <data name="&gt;&gt;lblStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblStatus.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblStatus.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 123</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>更新前执行</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 147</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>更新后执行</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="txtAfterExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 141</value>
+  </data>
+  <data name="txtAfterExecuteArgs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 21</value>
+  </data>
+  <data name="txtAfterExecuteArgs.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="txtAfterExecuteArgs.ToolTip" xml:space="preserve">
+    <value>命令行参数</value>
+  </data>
+  <data name="&gt;&gt;txtAfterExecuteArgs.Name" xml:space="preserve">
+    <value>txtAfterExecuteArgs</value>
+  </data>
+  <data name="&gt;&gt;txtAfterExecuteArgs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAfterExecuteArgs.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtAfterExecuteArgs.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtPreExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 118</value>
+  </data>
+  <data name="txtPreExecuteArgs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 21</value>
+  </data>
+  <data name="txtPreExecuteArgs.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="txtPreExecuteArgs.ToolTip" xml:space="preserve">
+    <value>命令行参数</value>
+  </data>
+  <data name="&gt;&gt;txtPreExecuteArgs.Name" xml:space="preserve">
+    <value>txtPreExecuteArgs</value>
+  </data>
+  <data name="&gt;&gt;txtPreExecuteArgs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPreExecuteArgs.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtPreExecuteArgs.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="txtAppVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>490, 11</value>
+  </data>
+  <data name="txtAppVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 21</value>
+  </data>
+  <data name="txtAppVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="txtAppVersion.ToolTip" xml:space="preserve">
+    <value>格式: 1.2.3.4</value>
+  </data>
+  <data name="&gt;&gt;txtAppVersion.Name" xml:space="preserve">
+    <value>txtAppVersion</value>
+  </data>
+  <data name="&gt;&gt;txtAppVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAppVersion.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtAppVersion.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="txtTimeout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 170</value>
+  </data>
+  <data name="txtTimeout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="txtTimeout.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="txtTimeout.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;txtTimeout.Name" xml:space="preserve">
+    <value>txtTimeout</value>
+  </data>
+  <data name="&gt;&gt;txtTimeout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtTimeout.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtTimeout.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="txtNewSoftDir.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 65</value>
+  </data>
+  <data name="txtNewSoftDir.Size" type="System.Drawing.Size, System.Drawing">
+    <value>571, 21</value>
+  </data>
+  <data name="txtNewSoftDir.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="txtNewSoftDir.ToolTip" xml:space="preserve">
+    <value>请选择最新版程序的目录</value>
+  </data>
+  <data name="&gt;&gt;txtNewSoftDir.Name" xml:space="preserve">
+    <value>txtNewSoftDir</value>
+  </data>
+  <data name="&gt;&gt;txtNewSoftDir.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtNewSoftDir.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtNewSoftDir.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtPackagePath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 92</value>
+  </data>
+  <data name="txtPackagePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>572, 21</value>
+  </data>
+  <data name="txtPackagePath.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="txtPackagePath.ToolTip" xml:space="preserve">
+    <value>请选择保存升级文件的目录</value>
+  </data>
+  <data name="&gt;&gt;txtPackagePath.Name" xml:space="preserve">
+    <value>txtPackagePath</value>
+  </data>
+  <data name="&gt;&gt;txtPackagePath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPackagePath.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtPackagePath.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="epp.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>146, 17</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>770, 489</value>
+  </data>
+  <data name="btnOpenProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOpenProject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 453</value>
+  </data>
+  <data name="btnOpenProject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 30</value>
+  </data>
+  <data name="btnOpenProject.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnOpenProject.Text" xml:space="preserve">
+    <value>打开升级项目</value>
+  </data>
+  <data name="&gt;&gt;btnOpenProject.Name" xml:space="preserve">
+    <value>btnOpenProject</value>
+  </data>
+  <data name="&gt;&gt;btnOpenProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenProject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOpenProject.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnSaveProject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 453</value>
+  </data>
+  <data name="btnSaveProject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 30</value>
+  </data>
+  <data name="btnSaveProject.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnSaveProject.Text" xml:space="preserve">
+    <value>保存升级项目</value>
+  </data>
+  <data name="&gt;&gt;btnSaveProject.Name" xml:space="preserve">
+    <value>btnSaveProject</value>
+  </data>
+  <data name="&gt;&gt;btnSaveProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSaveProject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSaveProject.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Name" xml:space="preserve">
+    <value>chkHideAfter</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Name" xml:space="preserve">
+    <value>chkHideBefore</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Name" xml:space="preserve">
+    <value>browseFile</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;browseFile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Name" xml:space="preserve">
+    <value>btnBrowseFolder</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Name" xml:space="preserve">
+    <value>fileAfterExecute</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Name" xml:space="preserve">
+    <value>filePreExecute</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnEditRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnEditRtf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>670, 293</value>
+  </data>
+  <data name="btnEditRtf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 23</value>
+  </data>
+  <data name="btnEditRtf.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnEditRtf.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="&gt;&gt;btnEditRtf.Name" xml:space="preserve">
+    <value>btnEditRtf</value>
+  </data>
+  <data name="&gt;&gt;btnEditRtf.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEditRtf.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;btnEditRtf.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnBrowserRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnBrowserRtf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>607, 293</value>
+  </data>
+  <data name="btnBrowserRtf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 23</value>
+  </data>
+  <data name="btnBrowserRtf.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnBrowserRtf.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="&gt;&gt;btnBrowserRtf.Name" xml:space="preserve">
+    <value>btnBrowserRtf</value>
+  </data>
+  <data name="&gt;&gt;btnBrowserRtf.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowserRtf.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;btnBrowserRtf.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rtfPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 294</value>
+  </data>
+  <data name="rtfPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>486, 21</value>
+  </data>
+  <data name="rtfPath.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="rtfPath.ToolTip" xml:space="preserve">
+    <value>您可以拖放一个RTF文件到这里</value>
+  </data>
+  <data name="&gt;&gt;rtfPath.Name" xml:space="preserve">
+    <value>rtfPath</value>
+  </data>
+  <data name="&gt;&gt;rtfPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rtfPath.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;rtfPath.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtUrl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 267</value>
+  </data>
+  <data name="txtUrl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>617, 21</value>
+  </data>
+  <data name="txtUrl.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;txtUrl.Name" xml:space="preserve">
+    <value>txtUrl</value>
+  </data>
+  <data name="&gt;&gt;txtUrl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtUrl.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;txtUrl.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 299</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>RTF格式说明文件</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 270</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>更新说明网址</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>726, 69</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>在2.2.0.0版本之后的库中，同时支持纯文字、内嵌网页以及RTF样式的更新说明。默认情况下，内嵌网页如果填写，则优先显示内嵌网页；否则优先显示RTF格式文本，最后再显示纯文字版。
+
+考虑到之前版本的兼容性，如果您有发布过使用老版本升级库的应用程序，建议始终填写纯文字版，在此基础上再填写网页链接或选择RTF文件。注意，RTF文件可能导致最终的说明文件体积很大，请尽量使用压缩版XML信息文件。</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 93</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>纯文字版</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtDesc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 108</value>
+  </data>
+  <data name="txtDesc.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDesc.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtDesc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>724, 142</value>
+  </data>
+  <data name="txtDesc.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtDesc.Name" xml:space="preserve">
+    <value>txtDesc</value>
+  </data>
+  <data name="&gt;&gt;txtDesc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDesc.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;txtDesc.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage6.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>更新说明</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;options.Name" xml:space="preserve">
+    <value>options</value>
+  </data>
+  <data name="&gt;&gt;options.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;options.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;options.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>更新选项</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;fileConfig.Name" xml:space="preserve">
+    <value>fileConfig</value>
+  </data>
+  <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;fileConfig.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>文件配置</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;argumentGenerator1.Name" xml:space="preserve">
+    <value>argumentGenerator1</value>
+  </data>
+  <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;argumentGenerator1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>命令行生成</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Name" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;aboutPanel1.Name" xml:space="preserve">
+    <value>aboutPanel1</value>
+  </data>
+  <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;aboutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>关于...</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>746, 399</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnOpen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>643, 453</value>
+  </data>
+  <data name="btnOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 30</value>
+  </data>
+  <data name="btnOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnOpen.Text" xml:space="preserve">
+    <value>打开升级包</value>
+  </data>
+  <data name="&gt;&gt;btnOpen.Name" xml:space="preserve">
+    <value>btnOpen</value>
+  </data>
+  <data name="&gt;&gt;btnOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOpen.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAMAMDAAAAEAIACoJQAANgAAACAgAAABACAAqBAAAN4lAAAQEAAAAQAgAGgEAACGNgAAKAAAADAA
+        AABgAAAAAQAgAAAAAACAJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBAEBAgUBAgMGAgIDCAIDBAkCAwUJAwAAAgQAAAIEAAACBAAA
+        AgUAAAIFAAACBQAAAgUAAAIGAAACBgAAAgYAAAIGAAACBgAAAgcAAAIGAAACBgAAAgYAAAIGAAACBQAA
+        AgUAAAIFAAACBQAAAgQAAAIEAAADBAMFCQMDBQoCAwQJAgIDBwICAgYBAQEFAQAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAACAgAAAwYAAAMKAAEEDgAAAxEAAAMUAAACFgAAAxgAAAMaAAADGwAA
+        Ah0AAAMfAAACIAAAAyEAAAMiAAACIwAAAyMAAAMkAAACJAAAAyUAAAMlAAACJQAAAyUAAAMlAAACJQAA
+        AyQAAAMkAAACIwAAAyMAAAMiAAADIQAAAiAAAAMfAAADHQAAAhsAAAMaAAADGAAAAhYAAAMUAAADEQEC
+        Bg4AAQQKAAADBgAAAwIAAAAAAAAAAAAAAAAAAAMBAAACBgAAAxMAAAMfAAACKAAAAy0AAAMyAAACNQAA
+        AzcAAAM5AAADOwAAAjwAAAM+AAACPwAAA0AAAANBAAACQQAAA0IAAANCAAACQgAAA0IAAANDAAACQwAA
+        A0MAAANDAAACQgAAA0IAAANCAAACQgAAA0EAAANBAAADQAAAAj8AAAM+AAADPAAAAjsAAAM5AAADNwAA
+        AjUAAAMyAAADLQAAAigAAAMfAAADEwICBQYAAAMBAAAAAAAAAAAAAAAAAgIGBQAAAg8AAAIZAAACIQAA
+        AiYdJjRYM0lkpDVNbMM1TWzHNU1sxzVNa8c1TWzINU1ryDVNbMg1TWzINU1ryDVNbMk1TWzJNU1ryTVN
+        bMk1TWzJJFOMyRNZqskdVpjJNE1tyTVNbMk1TWzJNU1ryDVNbMk1TWzINU1syDVNa8g1TWzINU1syDVN
+        a8c1TWzHNU1sxjVMabYqOk5/DhEXMAAAAiEAAAIZAAADDwsOFQUAAAAAAAAAAAAAAAAAAAAAAAAAABYf
+        KwITHCgEHyg1DEVefJpEZo/7RWeP/kZnj/9GZ4//RmeP/0Vnj/5GZ4//RWeP/kZnj/9GZ4//RWeP/kZn
+        j/9GZ4//RWeP/kVnkP8rcb7/E3ro/hR55/8Ueej/LHG9/kZnj/9GZ4//RWeP/kZnj/9GZ4//RmeP/0Vn
+        j/5GZ4//RmeP/0Vnj/5GZ4//RmeP/0Vnj/5FZo//SWiP3Sk3SjUXIjAEHio6AgAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAqPFIBVG2NfUZokf5HaZH/RmiR/kdpkf9HaZH/R2mR/0Zokf5HaZH/RmiR/kdp
+        kf9HaZH/RmiR/kdpkf9HaZH/RmmR/it0v/8Tfef/E33o/hN96P8Tfej/FH3m/j5sn/9HaZH/RmiR/kdp
+        kf9HaZH/R2mR/0Zokf5HaZH/R2mR/0Zokf5HaZH/R2mR/0Zokf5HaZH/RmmR/01ulNlJXXYZAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIYX8cTG6V60hqk/5IapP+SGqT/khqk/5IapP+SGqT/khq
+        k/5IapP+SGqT/khqk/5IapP+SGqT/khqk/5IapP+LXa+/hKB6f4Sgej+EoHo/hKB6P4Sgej+EoHo/iF6
+        0f5Ha5T+SGqT/khqk/5IapP+SGqT/khqk/5IapP+SGqT/khqk/5IapP+SGqT/khqk/5IapP+SGqT/kdq
+        kv5ad5h8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABVdZpUSGuT/klslP9JbJT/SWyU/kls
+        lP9JbJT/SWyU/0lslP5JbJT/SWyU/klslP9JbJT/SWyU/klslf8secH/EoTq/hKE6v8ShOr/EoTp/hKE
+        6v8ShOr/EoTp/hKE6v80drT/SWyU/klslP9JbJT/SWyU/0lslP5JbJT/SWyU/0lslP5JbJT/SWyU/0ls
+        lP5JbJT/SWyU/0lslP5PcZjGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQc5lzSW2V/kpu
+        lv9Kbpb/Sm6V/kpulv9Kbpb/Sm6W/0pulf5Kbpb/Sm6V/kpulv9Kbpb/Sm6W/ix8wv8SiOr/EYjq/hGI
+        6v8RiOr/EYjq/hGI6v8RiOr/EYjq/hGI6v8XheL/RXCd/kpulv9Kbpb/Sm6W/0pulf5Kbpb/Sm6W/0pu
+        lf5Kbpb/Sm6W/0pulf5Kbpb/Sm6W/0pulf5OcZfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABQdJp0S2+X/ktwl/9LcJf/S3CX/ktwl/9LcJf/S3CX/0twl/5LcJf/S3CX/ktwl/9LcJf/Ln7A/hCL
+        7P8Qi+v/EIvr/hCL6/8Qi+v/EIvr/hCL6/8Qi+v/EIvr/hCL6/8Qi+v/J4HK/kxwlv9LcJf/S3CX/0pv
+        lv5Pc5n/VXid/1V4nf5VeJ3/VXid/1V4nf5VeJ3/VXid/1V4nf5RdJrYAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABRdZt0THGY/k1xmP5NcZj+TXGY/k1xmP5NcZj+TXGY/k1xmP5NcZj+TXGY/kxx
+        mf4tgcP+D4/s/g+P7P4Pj+z+D4/s/g+P7P4Pj+z+D47s/g+P7P4Pj+z+D4/s/g+P7P4Pj+z+D4/s/j15
+        rP5NcZj+S3GY/pyxxv7w8vT+9/f4/vf3+P739/j+9/f4/vf3+P739/j+9/f4/vHz9v5igqTYAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSd5x0TXOa/k50mv9OdJr/TnOa/k50mv9OdJr/TnSa/05z
+        mv5OdJr/TnOa/i2ExP8Okuz/DpLt/g6T7f8Ok+3/DpLt/g6T7f8Ok+3/IKHv/hOW7v8Ok+3/DpLt/g6T
+        7f8Ok+3/DpLt/hmN3v9KdZ7/XoCj//r7/P7DxMX/rK2v/6ytr/6sra//rK2v/6ytr/6sra//sLGy/9bY
+        2/5mhqfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABTeJ10TnSb/k91m/5PdZv+T3Wb/k91
+        m/5PdZv+T3Wb/k91m/5PdZv+NYK7/g2W7v4Nlu3+DZbt/g2W7f4Nlu3+DZbt/g2V7f4hpvH+LZrc/iam
+        7v4Nlu7+DZbt/g2W7f4Nlu3+DZbt/g2W7v4shsb+b42t/v7+/v5zdXf+PD9D/jw/Q/48P0P+PD9D/jw/
+        Q/47PkL+n6Ch/vT2+P5piKjYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUep90UHac/lB3
+        nf9Qd53/UHed/lB3nf9Qd53/UHed/1B3nf5Qd5z/LJbW/g+c7/8Mmu//DJru/gya7/8Mmu//C5nu/iCp
+        8v8yl9P/T3ed/jyIvP8cpfD/DJnu/gya7/8Mmu//DJru/gya7v8Nmez/XpjD//7+/v6ys7T/lJaY/5SV
+        mP6Ulpj/lJaY/5SVmP6UlZf/y8vM//T2+f5ri6vYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABWfKF0UXie/lF5n/9ReZ//UXme/lF5n/9ReZ//UXmf/1F5nv5SeZ7/QIS0/imv8f8PoPD/C53v/gud
+        7/8Lne//H6vy/jGa1f9PeqH/UXme/lB5n/8vntr/EaHw/gud7/8Lne//C53v/gud7/8Lne//I6Ps/+74
+        /f64ubv/np+h/56fof6en6H/np+h/56fof6dn6D/z8/Q//T2+f5sjazYAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABXfqJ0Unqg/lN6oP5TeqD+U3qg/lN6oP5TeqD+U3qg/lN6oP5TeqD+U3qf/j2J
+        u/4osfH+DaPw/gig8P4erfP+L57Z/lF7of5TeqD+U3qg/lN6oP5Jgaz+Jazu/gmg8P4KofD+CqHw/gqh
+        8P4KofD+CaDw/mLD9f7Exsn+srO0/rKztP6ys7T+srO0/rKztP6xsrP+2dna/vT3+f5tjq7YAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYgKN0U3yh/lR8of9UfKH/VHyh/lR8of9UfKH/VHyh/1R8
+        of5UfKH/VHyh/lR8of8+irv/LLXx/i269v8woNj/Un2j/lR8of9UfKH/VHyh/lR8of9UfKH/O5DC/hqv
+        9P8IpPH/CKXx/gml8f8JpfH/CaXx/wmm8v4zep7/YmNm/2JkZ/5iZGf/YmRn/2JkZ/5hY2b/srK0//T3
+        +f5vkK/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABZgaV0VH6i/lV+o/9VfqP/VX6j/lV+
+        o/9VfqP/VX6j/1V+o/5VfqP/VX6j/lV+o/9VfqP/SoSu/kOHtf9Tf6X/V4Ck/lR+o/9VfqP/VX6j/lV+
+        o/9UfqP/XISn/j2x5v8PrPP/B6jy/gio8v8IqPL/CKjy/weo8v4Qq/L/lMbd/8PDxf7DxMX/w8TF/8PD
+        xf7Cw8X/4eLi//T3+f5vkrDYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABag6Z0VYCk/laA
+        pP5WgKT+VoCk/laApP5WgKT+VoCk/laApP5WgKT+VoCk/laApP5WgKT+VoCk/laApP5XgKX+h6fA/nKX
+        tP5hiar+VoCk/lV/pP5vlLL+l7TJ/oy30f4suPL+CKzz/gas8v4GrPL+Bqzy/gas8v4GrPL+Dqns/nuc
+        qf6nqKn+p6ip/qeoqf6mp6n+09TU/vT3+f5xk7LYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABbhah0V4Gl/leCpv9Xgqb/V4Km/leCpv9Xgqb/V4Km/1eCpv5Xgqb/V4Km/leCpv9Xgqb/V4Km/leC
+        pv9Ygqb/kK/F/p+7zv+duc3/aI+v/mKLrP+bt8z/nrrO/p+7zv9Unsf/ILn0/gSv8/8Fr/P/Ba/z/wWv
+        8/4Fr/P/Ba/z/xSw7/54nKz/i42O/4uNjv6KjI7/xsbI//T3+f5xlbPYAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABdhql0WIOn/lmDp/9Zg6f/WIOn/lmDp/9Zg6f/WYOn/1iDp/5Zg6f/WIOn/lmD
+        p/9Zg6f/WIOn/lmDp/9ZhKj/kLDH/p+7z/+fu8//iarD/o2txP+fu8//n7vP/p+8z/9pkbH/N5/P/hq7
+        9v8Es/T/BLP0/wSz9P4Es/T/BLP0/wSz9P4or+L/r7Cx/6+wsv6vsLH/2NjZ//T3+f5ylrTYAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABeiKt0WYWo/lqFqf5ahan+WoWp/lqFqf5ahan+WoWp/lqF
+        qf5ahan+WoWp/lqFqf5ahan+WoWp/lqFqf5bhan+kbHI/p+80P6fvND+n7zQ/p+80P6fvND+n7zQ/qC9
+        0P5qkrL+WYWp/i2t4P4VvPb+A7b1/gO29f4DtvX+BLf1/iPA9v40oMX+aGls/mhqbf5oaWz+tLS1/vP2
+        +P5zl7XYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABfiqx0Woeq/luHqv9bh6r/W4eq/luI
+        rP9biKz/W4ir/1uHqv5bh6r/W4eq/luHqv9bh6r/W4eq/luHqv9ciKv/krPJ/qG+0f+hvtH/oL7R/qG+
+        0f+hvtH/oL7R/qG/0f9rlLP/W4eq/laJrv8rtOX/GMD3/wS69v4Vvvb/KsHz/1Sy0v6cpKj/pKWn/6Ol
+        pv6jpab/qKmr/9PW2f50mbbYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgjK10W4ir/lyJ
+        rP9ciav/TXCN/jtPZv87T2X/QFhw/0hmgv5RdZT/V4Gi/luHqv9ciaz/XIms/lyJrP9diaz/k7TK/qG/
+        0v+hv9L/ob/S/qG/0v+hv9L/ob/S/qK/0/9tlrX/XIir/lyJq/9UjrP/LLbm/y3H+P47vuj/oc3b/8jI
+        yf7IyMn/yMjJ/8jIyf7HyMn/4uPj//T2+f51mrfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABhja90XYqt/l2Lrf5Qc5H+P1Zt/luHqf5ciav+V4Gh/k9xj/5HZH7+P1Zu/jtQZv46TmT+QFdv/ktr
+        h/5Xf5/+k7TK/qTE1v6jwdT+osDT/qLA0/6iwNP+osDT/qPA0/5umLb+XYut/l2Lrf5di63+dp+8/tL0
+        /v6JkJP+ZWdq/mVnav5lZ2r+ZWdq/mVnav5kZmn+s7S1/vX4+v52nLjYAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABij7B0Xoyu/l+OsP8+U2r/XIeo/l+NsP9fjbD/X4yv/16Mr/5fjK//X42v/mCO
+        sf9ejK//WYOj/k5vjP9DXXX/U2N0/lVjcv9fb3//bH+O/oGZqv+gvtD/o8HU/qTC1f9vmbj/Xoyv/l+M
+        r/9fjK//e6G9//7+/v7S0tP/wMHC/8DBwv7AwcL/wMHC/8DBwv7AwcL/4OHh//X4+v53nrrYAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjj7B0X46w/l+OsP87T2X/X42v/kBXbv9IZX//VHuZ/16M
+        rf5diar/X4yu/mCOsP9gjrD/YI6w/mCOsP9hj7H/lrjO/qLB0/+bucv/jqi5/nWLm/9WZHT/nbvN/qTD
+        1v9wm7n/X46w/mCOsP9gjrD/fKO+//7+/v6QkZT/Zmhr/2Zoa/5maGv/Zmhr/2Zoa/5lZ2r/s7S2//X4
+        +v54n7vYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjj7B0YJCx/l2Jqf5AV27+X42u/kFZ
+        cP49Umj+P1Zs/k5wi/5GYXr+RF52/lqDov5fjK3+Vn6c/mGQsf5hj7D+mLvQ/qXE1/6kw9b+pMPW/qXE
+        1v6IorL+boGR/qXF1/5xnLr+YZCx/mGQsf5hkLH+faS//v7+/v7d3t7+0NHS/tDR0v7Q0dL+0NHS/tDR
+        0v7Q0dL+6Ojp/vX4+v55oLzYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjj690YpGz/lZ8
+        mv9KZ4H/VXyZ/j9Ua/9Qco3/PVNp/zlLX/5EX3f/P1Vr/kJacv9Td5P/Qlpx/l+Mrf9CWnH/a4OW/nWK
+        mv+Ytcb/fpam/pu6yv+dvc3/Xm59/qfI2f9ynrz/YpGz/mKRs/9ikbP/faXB//7+/v7X19j/x8jJ/8fI
+        yf7HyMn/x8jJ/8fIyf7HyMn/2Nna/+zv8f56ob7YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABjj650Y5O0/k1tiP9Vepf/Y5O0/lyGpf9fjKz/W4Wk/1Fzj/5KZ4D/P1Vr/kFZcP9DXHT/R2N8/kBX
+        bf9DXHP/T11t/kpVZP9ldob/fJOj/llod/+UscL/a3+O/qfI2f9zoL3/Y5O0/mOUtf9jlLX/api4//H1
+        +P7Oz9D/u72+/7u9vv67vb7/u72+/7u9vv67vb7/u72+/9rd3/55or7YAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABjj610ZJW2/kVfdv9diaj/ZJW2/mSVtv9klbb/ZJa3/2WXuP5klrf/YZCw/lyI
+        pv9ahKL/SWZ//lF0jv9JZ4D/X3B//mt9jf9gcYD/ka2+/oKcq/+Bm6r/fZWl/qfJ2v90ob//ZJW2/mSV
+        tv9klbb/ZJW2/4asxv7N3ej/2ubu/9rm7v7a5u7/2ubu/9rm7v7a5u7/2ubu/9Th6/51ob7YAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjjqx0Zpi5/j9Va/5jk7P+ZZe3/mWXt/5ll7f+Xomn/lJ1
+        kP5ikrH+WYKf/l6KqP5gjq3+ZJS0/maYuf5nmbr+m8HU/p6+zv6TsMH+ZHaF/pq5yf5ugZH+lLHB/qjL
+        2/51o8D+ZZe3/mWXt/5ll7f+ZZe3/mWXt/5jlbb+YpS2/mKUtv5ilLb+YpS2/mKUtv5ilLb+YpS2/mKV
+        tv5qmbnYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjj6x0Z5q6/j5Uaf9nmbn/Zpm5/meZ
+        uf9nmbn/U3eS/0FYbv5Ve5b/RF1z/kNdc/9BWG3/SGV8/k9xiv9HY3r/iKa4/qjL2/+pzNz/qczc/qrO
+        3v9fb37/osPU/qnM3P92pcL/Zpm5/meZuf9nmbn/Z5m5/2aZuf5nmbn/Z5m5/2aZuf5nmbn/Z5m5/2aZ
+        uf5nmbn/Z5m5/2aZuf5pm7rYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlka50ZZa1/kJZ
+        b/9om7v/aJu7/mibu/9om7v/Smd//0dief5Obof/S2mB/kVedf88T2P/S2mB/kllff9Obof/lLfK/qnM
+        3P+pzNz/qczc/qnM3P9ZaHf/qs3d/qrN3f94psP/aJu7/mibu/9om7v/aJu7/2ibu/5om7v/aJu7/2ib
+        u/5om7v/aJu7/2ibu/5om7v/aJu7/2ibu/5pm7vYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AABolbJ0aZy8/j5TZ/5pnLv+aZy8/mmcvP5pnLz+aZ28/mSVs/5gjan+TWyE/lmCnf5CWm/+U3eS/kFY
+        bv5QcIr+mb3P/qnN3f6pzd3+qc3d/qDB0f5hc4L+q8/f/qrO3v55qMX+aZy8/mmcvP5pnLz+aZy8/mmc
+        vP5pnLz+aZy8/mmcvP5pnLz+aZy8/mmcvP5pnLz+aZy8/mmcvP5pnLzYAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABrmbZ0a5++/lV4kf9GYHb/Xoml/maXtv9pnbz/a5++/2ufvv5rnr3/a56+/mqe
+        vf9qnbz/aJu5/mKQrf9agZ3/m8HU/qrP3/+qz9//qs7e/pCuvf9ziZj/q8/f/qvP3/96qcX/ap69/mue
+        vf9rnr3/a569/2qevf5rnr3/a569/2qevf5rnr3/a569/2qevf5rnr3/ap69/26gv/5rnr3YAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABunbt0bKC//nenxP9fjKj/TW2F/kVedP9AVmr/QVht/0pm
+        ff5Yf5r/ZZSy/mugv/9tosL/bKC//mygv/9soL//nsbZ/qvQ4P+r0OD/q9Df/nuUo/+LprX/q9Df/qzQ
+        4P97q8f/a6C//mygv/9soL//bKC//2ugv/5soL//bKC//2ugv/5soL//bKC//2ugv/5soL//baG//3am
+        w/5soL/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxor9xbKHA/oCtyP5ypML+baHA/m2i
+        wf5upMT+bKG//mORrv5We5T+SWV8/kFYbP5BWG3+RmB2/lBxif5bg57+k7fK/qrO3v6u0+L+osTU/lVj
+        cv6nytr+rNHg/q3S4f58rcj+baHA/m2hwP5tocD+baHA/m2hwP5tocD+baHA/m2hwP5tocD+baHA/m2h
+        wP5tosD+fazH/nOmw/5tosDYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB7q8dNbaPC/nip
+        xv+Dr8r/d6jF/m+kwv9upML/bqTC/26kwv5upML/b6TD/m6kw/9tocD/aJq3/mCMp/9UeJH/YneI/lpq
+        ef9ZaXf/XW59/p2+zf+t0+L/rdLi/q7T4v9+r8r/bqTC/m6kwv9upML/bqTC/26kwv5upML/bqTC/26k
+        wv5upML/b6TC/3Kmw/5/rcj/gq/J/26kwv50p8XAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAB8rMgXdKjF5nClw/9+rcj/hrHK/oSwyv+Brsn/ga7J/4Guyf6Brsn/ga7J/oGuyf+Brsn/ga7J/oGu
+        yf+Brsn/sNPk/r3d6/+62+j/vN3q/rvb6f+72+n/u9vp/rzc6f+PudD/ga7J/oGuyf+Brsn/ga7J/4Gu
+        yf6Brsn/ga7J/4Guyf6Brsn/gq/J/4Wwyv6EsMr/dKjF/2+kw/6CscxxAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAhLPNZXCnxv1xp8f+eavI/oGvyv6Dr8r+hK/K/oSvyv6Er8r+hK/K/oSv
+        yv6Er8r+hK/K/oSvyv6EsMv+sdTj/r3d6v693er+vd3q/r3d6v693er+vd3q/r7d6v6RutL+hK/K/oSv
+        yv6Er8r+hK/K/oSvyv6Er8r+hK/K/oSvyv6EsMr+g6/K/n2tyf5zqMf+cKfH/nisycqFs80PAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAe6zJAn+xzXVzqcnscajI/nKpyP9zqcj/c6nI/3Op
+        yP5zqcj/c6nI/nOpyP9zqcj/c6nI/nOpyP9zqcn/o8zf/rDW5f+w1uX/sNbl/rDW5f+w1uX/sNbl/rDW
+        5v+BtM//c6nI/nOpyP9zqcj/c6nI/3OpyP5zqcj/c6nI/3OpyP5zqcj/cqnI/3GoyP5yqcj6eq7Lv3yt
+        yh4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8rsske6/MbXWr
+        yZh1q8qYdqvKmHaryph2q8qYdqvKmHaryph2q8qYdqzKmHquzJh+ss6YoMndmKvS45iu1eSYsdfmmLLX
+        5pix1+aYrtTkmKvS4piKutOYfbHNmHmuzJh2q8qYdqvKmHaryph2q8qYdqvKmHaryph2q8qYdavKmHit
+        yod7rstHfrDMBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAP///////wAA////////AAD8AAAAAD8AAMAAAAAAAwAAgAAAAAABAADAAAAAAAMAAOAA
+        AAAABwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAP
+        AADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAA
+        AAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAP
+        AADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPAA
+        AAAADwAA8AAAAAAPAADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAA8AAPgAAAAADwAA+AAAAAAf
+        AAD+AAAAAD8AAP///////wAA////////AAD///////8AACgAAAAgAAAAQAAAAAEAIAAAAAAAgBAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEFAQECBgECAwcCAAADAgAA
+        AwMAAAMDAAADBAAAAwQAAAMEAAADBAAAAwQAAAMEAAADBAAAAwQAAAMEAAADBAAAAwMAAAMDAAADAgID
+        BwICAwcBAQIGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwIAAAMLAAADFAAAAxoAAAMeAAADIgAA
+        AyQAAAMmAAADKAAAAyoAAAMrAAADLAAAAy0AAAMtAAADLgAAAy4AAAMtAAADLQAAAywAAAMrAAADKgAA
+        AygAAAMmAAADJAAAAyIAAAMeAAADGgEBBRQAAAMLAAADAgAAAAAAAAAAAQEEBAAAAxQAAAMjBQYLMB4q
+        PHUjM0mXIzNJmiMzSZsjM0mcIzNJnCMzSZ0jM0mdIzNJnSMzSZ0bNleeDTtxnh81UJ0jM0mdIzNJnSMz
+        SZ0jM0mcIzNJnCMzSZsjM0maIzNJmCMxRYYNERk9AAADIwAAAxQHCg8EAAAAAAAAAAAAAAAAGSMxASs3
+        SBdFY4fQRmeQ/0ZnkP9GZ5D/RmeQ/0ZnkP9GZ5D/RmeQ/0ZnkP9GZ5D/Omyj/xZ65P8Ueuf/H3bU/0Zn
+        kP9GZ5D/RmeQ/0ZnkP9GZ5D/RmeQ/0ZnkP9GZ5D/RmeQ/0dokO8xQlhDIC0+AQAAAAAAAAAAAAAAAAAA
+        AAAAAAAAS2mMnEhqk/9IapP/SGqT/0hqk/9IapP/SGqT/0hqk/9IapP/R2qT/ztvpv8Vf+X/E4Do/xOA
+        6P8SgOn/MnO0/0dqkv9IapP/SGqT/0hqk/9IapP/SGqT/0hqk/9IapP/SGqT/1BxmONBWXUGAAAAAAAA
+        AAAAAAAAAAAAAAAAAABPcZfoSW2U/0ltlP9JbZT/SW2U/0ltlP9JbZT/SW2U/0ltlP89cqf/FITm/xKF
+        6v8Sher/EoXq/xKF6v8VhOX/RW+b/0ltlP9JbZT/SW2U/0ltlP9JbZT/SW2U/0ltlP9JbZT/SWyU/1h4
+        mzMAAAAAAAAAAAAAAAAAAAAAAAAAAE5xmPdLcJf/S3CX/0twl/9LcJf/S3CX/0twl/9LcJf/Pnap/xOJ
+        5/8Ri+v/EYvr/xGL6/8Ri+v/EYvr/xGL6/8lgc3/S2+W/0twl/9Kb5b/UXWa/1J1m/9SdZv/UnWb/1J1
+        m/9Qc5n/Z4SlOwAAAAAAAAAAAAAAAAAAAAAAAAAAT3Sa901ymf9Ncpn/TXKZ/01ymf9Ncpn/TXKZ/z95
+        q/8Sjuj/D5Ds/w+Q7P8PkOz/D4/s/w+P7P8PkOz/D5Ds/w+Q7P88eq7/TnOZ/8nU3v/f4OH/4OHh/+Dh
+        4f/g4eH/4ODh/77K1v96lK87AAAAAAAAAAAAAAAAAAAAAAAAAABRdpz3T3Wb/091m/9PdZv/T3Wb/091
+        m/9Deqn/EJTq/w2V7f8Nle3/DZXt/w+W7v8rpOj/G57u/w2V7f8Nle3/DZXt/xWR4/9ghan/6erq/15g
+        Y/9gYmX/YGJl/2BiZf+NjpD/wMzY/5ClvDsAAAAAAAAAAAAAAAAAAAAAAAAAAFN5n/dRd53/UXed/1F3
+        nf9Rd53/UXed/zqKv/8UoPD/DJvv/wyb7/8Nm+//KqXm/0p6pf86j8X/EJ7v/wyb7/8Mm+//C5vu/zuc
+        2f/y8vP/oKGj/6GipP+hoqT/oaKk/8HBwv/I1OD/nK/DOwAAAAAAAAAAAAAAAAAAAAAAAAAAVXyh91J6
+        oP9SeqD/Unqg/1J6oP9SeqD/UXqg/zCd2P8SpfH/C6Hw/yqo6P9Lfqf/Unqg/1F6oP8no+P/CqDw/wqg
+        8P8KoPD/CqDw/6TV7v+goaP/oqOk/6KjpP+io6T/wcHC/8jV4f+gs8c7AAAAAAAAAAAAAAAAAAAAAAAA
+        AABWf6P3VH2i/1R9ov9UfaL/VH2i/1R9ov9UfaL/U32j/zWe1P8wqeH/TIGq/1R9ov9UfaL/VH2i/0mF
+        sP8XrPH/CKbx/wim8f8IpvH/DqTr/2+Ilf+RkpX/kZKV/5GSlf+2trj/ydbh/6K2yTsAAAAAAAAAAAAA
+        AAAAAAAAAAAAAFiBpfdWgKT/VoCk/1aApP9WgKT/VoCk/1aApP9WgKT/Vn+j/1Z/o/9tkrH/Y4qr/1qD
+        pv9XgaT/gKG7/2G23v8NrvP/B6vy/wer8v8Hq/L/Gajm/46epP+io6X/oqOl/8HBw//J1+L/o7jKOwAA
+        AAAAAAAAAAAAAAAAAAAAAAAAWoSo91iCpv9Ygqb/WIKm/1iCpv9Ygqb/WIKm/1iCpv9Ygqb/WIKm/36g
+        vP+eus7/f6G8/3ufuv+eus7/k7LI/yyq3/8HsfP/BbDz/wWw8/8FsPP/IbDo/4WQlf+Nj5H/s7S2/8rX
+        4/+ht8k7AAAAAAAAAAAAAAAAAAAAAAAAAABchqr3WoWo/1qFqP9ahaj/WoWo/1qFqP9ahaj/WoWo/1qF
+        qP9ahaj/f6O9/5+80P+dus7/nrvP/5+80P+VtMn/Uoet/yS27P8EtvX/A7b1/wS29f8Xu/b/dY6Y/4qL
+        jv+xsbP/ytfj/6G3yTsAAAAAAAAAAAAAAAAAAAAAAAAAAF2JrPdbiKv/W4ir/1R7m/9YgqT/XIms/1uI
+        q/9biKv/W4ir/1uIq/+Bpb//ob7R/6G+0f+hvtH/ob7R/5a2y/9ah6r/T4+2/yO+8v8awPf/N8Ty/4e1
+        xf+ur7D/rq+w/7a3uP+8ytX/objKOwAAAAAAAAAAAAAAAAAAAAAAAAAAX4yu912Krf9DXXb/TW+M/0pp
+        hP9GYXv/RmJ8/0ZhfP9JZ4L/U3iX/4Glv/+jwtX/osDT/6LA0/+iwNP/l7jN/1yJrP9diq3/Xpq8/43X
+        7P99hYn/iImM/4iJjP+IiYz/r7Cy/8za5f+iuco7AAAAAAAAAAAAAAAAAAAAAAAAAABhjrD3WIGg/05w
+        jf9YgqL/X42w/1+Nr/9fja//X46w/1yIqv9SdpT/YHmO/2+Dk/9vg5P/coaX/6G/0v+Zuc//Xoyv/1+N
+        r/9ym7n/8PHx/5OUlv+UlZj/lJWY/5SVmP+4ubr/zNvl/6a9zzsAAAAAAAAAAAAAAAAAAAAAAAAAAGOR
+        svdOb4v/WoOj/zpNYv9DXHT/UXWS/0xsh/9diqr/W4am/2CPsf+FrMX/pMTW/6XE1/+evM7/b4OT/5q8
+        0P9gj7H/YZCx/3Oduv/29vb/uru8/7u8vf+7vL3/u7y9/9LS0//N2+b/pr3OOwAAAAAAAAAAAAAAAAAA
+        AAAAAAAAZZS190lngP9dian/SGR9/0xrhf9FX3f/O05j/0tpg/9DXHT/S2qD/2B6kP9xhpb/eY+f/5Cs
+        vP9xhZX/nL/S/2KRs/9jkrT/cp27//b29v+6u73/vL2+/7y9vv+8vb7/w8TF/8HQ2/+eucw7AAAAAAAA
+        AAAAAAAAAAAAAAAAAABmlrf3SmmC/2SVtv9klbb/ZJW2/2KRsf9YgJ3/U3iU/0ppgv9HYnr/UWZ5/2t+
+        jv95kKD/h6Gx/3GGlf+cwdT/Y5S1/2SVtv9jlLb/tMvb/9ff5f/Y4Ob/2ODm/9jg5v/X4Ob/us7c/46w
+        xzsAAAAAAAAAAAAAAAAAAAAAAAAAAGmauvdLaYL/Zpe4/2aXuP9ei6n/WICc/1h/nP9WfJj/UnWQ/2GP
+        rv+Js8v/pMXV/4Gaqv+fvs//d46d/57C1f9ll7f/Zpe4/2aXuP9ll7j/ZJa3/2SWt/9klrf/ZJa3/2SW
+        t/9klrf/fabBOwAAAAAAAAAAAAAAAAAAAAAAAAAAaJq5905uh/9omrr/aJq6/1V7lv9KZ3//Qlpw/0Ve
+        df9KaID/RmB3/3SSpv+pzNz/qczc/5Guvv+MqLj/n8TX/2eauv9omrr/aJq6/2iauv9omrr/aJq6/2ia
+        uv9omrr/aJq6/2iauv9wn747AAAAAAAAAAAAAAAAAAAAAAAAAABsnr33Smd+/2qevv9pnbz/ap28/2eY
+        t/9ZgZ3/WYGc/1d9mP9KZ3//f6G2/6rO3v+qzt7/epKh/6TG1v+gxtn/aZy8/2qdvP9qnbz/ap28/2qd
+        vP9qnbz/ap28/2qdvP9pnbz/ap28/2qdvDsAAAAAAAAAAAAAAAAAAAAAAAAAAG6hv/dok6//Tm6G/05u
+        h/9Pb4f/V32Y/2WUsv9soL//bKC//2ygv/+OutH/q9Df/6vQ3/9zipn/rdHh/6HI2/9rn77/a5++/2uf
+        vv9rn77/a5++/2ufvv9rn77/a5++/2ygv/9xo8H/baG/OwAAAAAAAAAAAAAAAAAAAAAAAAAAcKTC8H6s
+        x/9vo8H/bqPC/22iwf9klLH/V32X/1Bxif9Pb4j/T3CI/2eEl/+Nqrn/h6Ox/3uUo/+s0eH/o8rc/2yi
+        wP9tosH/baLB/22iwf9tosH/baLB/22iwf9tosH/fKvH/3Ckwv9xpcI5AAAAAAAAAAAAAAAAAAAAAAAA
+        AAB4qse3dajF/4Swyv99rMj/e6vH/3urx/97q8f/e6vH/3urx/98rMn/mL/U/5+6yP+ivs3/t9nn/7fZ
+        5/+u0eL/eqrG/3urx/97q8f/e6vH/3urx/97q8f/fKvH/4Kvyf98rMf/cKbE9HysyA8AAAAAAAAAAAAA
+        AAAAAAAAAAAAAH6vyi5zqcjwdanI/32tyf9+rcr/fq3K/36tyv9+rcr/fq3K/36tyv+dxdr/udvo/7nb
+        6P+52+j/udvo/7DU4/9+rcn/fq3K/36tyv9+rcr/fq3K/36tyv9+rcn/eKvI/3Cnx/5/sMxuAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAHyuyyJ4rMqRdKrJunSqybp1qsq6darKunWqyrp1q8q6eK3LupTC
+        2Lqt1OS6sNbmurHX5rqv1eW6pM3gunmuzLp2rMq6darJunWqyrp1qsq6dKrKunSqybp3rMqmfa/MRQAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////gAAB+AAAABgAAAAcAAAAPgAAAD4AAAA+AA
+        AAPgAAAD4AAAA+AAAAPgAAAD4AAAA+AAAAPgAAAD4AAAA+AAAAPgAAAD4AAAA+AAAAPgAAAD4AAAA+AA
+        AAPgAAAD4AAAA+AAAAPgAAAD4AAAA+AAAAfwAAAP//////////8oAAAAEAAAACAAAAABACAAAAAAAEAE
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwEAAAMBAAADAgAAAwIAAAMCAAADAgAA
+        AwEAAAMBAAAAAAAAAAAAAAAAAAAAAAAAAwEAAAMVCQwTNxEZJl4RGSZhERkmZBEZJmUPGilmCxwyZhEZ
+        JmURGSZkERkmYREZJl4MEBk/AAADFQICBgEAAAAAMUNaLUZnj/NHaZH/R2mR/0dpkf9Eapb/HnnV/xZ8
+        4/9Ba5r/R2mR/0dpkf9HaZH/R2mR+zlOaUsAAAAAAAAAAE5xl3hKbpX/Sm6V/0pulf9HcJr/HYPY/xGI
+        6v8RiOr/JH/O/0pulf9Mb5b/TnGX/05xl/9Wd5ubAAAAAAAAAABQdJt7TnOa/05zmv9LdZ3/HIza/w6S
+        7f8Wluv/EZXt/w6S7f9AgbX/vL/D/6Cho/+rrK7/orTGnQAAAAAAAAAAU3qfe1F5nv9ReZ7/TH2n/xif
+        6v8ToO3/RIa0/zCSzv8Lne//F53q/7XCyv+ho6T/sbKz/7PD0p0AAAAAAAAAAFZ/pHtVfqP/VX6j/1V+
+        o/9Nh7D/UI+4/1mCpf9diaz/I63t/weo8v8noNb/lJmc/6qrrf+2xtadAAAAAAAAAABahKh7WYOn/1mD
+        p/9Zg6f/WYOn/2uSsv+WtMr/lrTK/2qmx/8Ns/L/BLP0/02iw/+foKL/tcfWnQAAAAAAAAAAXoqse1Z+
+        nv9RdZT/UXWU/1F2lf9skrD/or/S/6G/0v95n7z/S5zE/1e41/+RnaP/p6ip/7PF1J0AAAAAAAAAAGGP
+        sHtTeZf/TW6K/1d/nv9diar/Zoqm/4qjtf+IobL/fKS//2mVtf/Nzc7/qKmq/7a3uP+5zNqdAAAAAAAA
+        AABjkbF7VXuY/1d+nP9Ob4r/S2mD/1Frgv90iZn/fpam/3+pxP9nlrb/z9fd/8rO0v/L0NP/qsLTnQAA
+        AAAAAAAAZJOxe1qCn/9gjqz/T3CK/05uh/9pjab/nr7O/42puP+Crsf/Z5m5/2aYuf9mmLn/Zpi5/26d
+        vJ0AAAAAAAAAAGqbuXtagZz/XIai/1+Lp/9ij63/cZmx/6rP3/+Qrbz/hbLL/2qevf9qnr3/ap69/2ue
+        vf9tn76dAAAAAAAAAABzpsNqearG/3WnxP9smrX/ZY6n/3KYr/+VscD/pcbU/4660f90psT/dKbE/3Sm
+        xP96qsb/c6fEjwAAAAAAAAAAe63JC3eryah5rMnceazK3HmsytyKuNLctNjm3LTY59yTv9bceqzK3Hms
+        ytx5rMncd6vJunqtyRsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAPAAAAAAAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIAB
+        AACAAQAAgAEAAIABAACAAQAAgAEAAP//AAA=
+</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>升级包创建工具 - BY iFish, Version 2.2.1.0 Build 20120904</value>
+  </data>
+  <data name="&gt;&gt;epp.Name" xml:space="preserve">
+    <value>epp</value>
+  </data>
+  <data name="&gt;&gt;epp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fbd.Name" xml:space="preserve">
+    <value>fbd</value>
+  </data>
+  <data name="&gt;&gt;fbd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tip.Name" xml:space="preserve">
+    <value>tip</value>
+  </data>
+  <data name="&gt;&gt;tip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 173</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>执行时间限制</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 173</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>（秒,0为不限制）</value>
+  </data>
+  <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 144</value>
+  </data>
+  <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideAfter.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideAfter.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
+  </data>
+  <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 122</value>
+  </data>
+  <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideBefore.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideBefore.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideBefore.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
+  </data>
+  <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="browseFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 92</value>
+  </data>
+  <data name="browseFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="browseFile.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="browseFile.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="browseFile.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnBrowseFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 65</value>
+  </data>
+  <data name="btnBrowseFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="btnBrowseFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnBrowseFolder.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="btnBrowseFolder.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 142</value>
+  </data>
+  <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 20</value>
+  </data>
+  <data name="fileAfterExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 119</value>
+  </data>
+  <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 20</value>
+  </data>
+  <data name="filePreExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="options.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="options.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="options.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="options.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="fileConfig.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="fileConfig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="fileConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="fileConfig.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="argumentGenerator1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="argumentGenerator1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="argumentGenerator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="argumentGenerator1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="aboutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="aboutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="aboutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="aboutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="fbd.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>220, 17</value>
+  </data>
+</root>

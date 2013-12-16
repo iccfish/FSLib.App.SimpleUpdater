@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj", "{21A701D7-063B-48E9-AE2F-5586A954B830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.Generator", "FSLib.App.SimpleUpdater.Generator\FSLib.App.SimpleUpdater.Generator.csproj", "{8B5CD550-1566-417C-8180-AA0F57AFE979}"
+	ProjectSection(ProjectDependencies) = postProject
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1} = {57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.Utilities", "FSLib.App.Utilities\FSLib.App.Utilities.csproj", "{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DF50C946-AEEF-423A-AD8A-D2A4F342CEBF}"
+	ProjectSection(SolutionItems) = preProject
+		_Tools\FSLib.App.Utilities.exe = _Tools\FSLib.App.Utilities.exe
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.DLL", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.DLL.csproj", "{FAF40031-DAA1-4990-8B13-297F1242F9BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{21A701D7-063B-48E9-AE2F-5586A954B830}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Debug|Any CPU.Build.0 = Debug|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Any CPU.ActiveCfg = Release|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Any CPU.Build.0 = Release|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8B5CD550-1566-417C-8180-AA0F57AFE979}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

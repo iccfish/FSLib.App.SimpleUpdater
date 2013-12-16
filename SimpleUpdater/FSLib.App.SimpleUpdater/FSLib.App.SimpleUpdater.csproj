@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21A701D7-063B-48E9-AE2F-5586A954B830}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
+    <AssemblyName>SimpleUpdater</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <SignManifests>false</SignManifests>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MuYu.snk</AssemblyOriginatorKeyFile>
+    <StartupObject>FSLib.App.SimpleUpdater.Program</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\_Bin.Debug.35\Exe\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;STANDALONE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\_Bin.Debug.35\Exe\SimpleUpdater.XML</DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\_Bin.Release.35\Exe\</OutputPath>
+    <DefineConstants>TRACE;STANDALONE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\_Bin.Release.35\Exe\SimpleUpdater.XML</DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dialogs\CloseApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CloseApp.Designer.cs">
+      <DependentUpon>CloseApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeletePreviousProgramMethod.cs" />
+    <Compile Include="Dialogs\MinmumVersionRequired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MinmumVersionRequired.Designer.cs">
+      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelfUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelfUpdate.Designer.cs">
+      <DependentUpon>SelfUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HiddenUiUpdateProxy.cs" />
+    <Compile Include="PackageEventArgs.cs" />
+    <Compile Include="PackageDownloadException.cs" />
+    <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
+    <Compile Include="PackageInfo.cs" />
+    <Compile Include="FileVerificationLevel.cs" />
+    <Compile Include="ICCEmbedded\Checksums\Adler32.cs" />
+    <Compile Include="ICCEmbedded\Checksums\CRC32.cs" />
+    <Compile Include="ICCEmbedded\Checksums\IChecksum.cs" />
+    <Compile Include="ICCEmbedded\Core\FileSystemScanner.cs" />
+    <Compile Include="ICCEmbedded\Core\INameTransform.cs" />
+    <Compile Include="ICCEmbedded\Core\IScanFilter.cs" />
+    <Compile Include="ICCEmbedded\Core\NameFilter.cs" />
+    <Compile Include="ICCEmbedded\Core\PathFilter.cs" />
+    <Compile Include="ICCEmbedded\Core\StreamUtils.cs" />
+    <Compile Include="ICCEmbedded\Encryption\PkzipClassic.cs" />
+    <Compile Include="ICCEmbedded\SharpZipBaseException.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Inflater.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="ICCEmbedded\Zip\Compression\Deflater.cs" />
+    <Compile Include="ICCEmbedded\Zip\FastZip.cs" />
+    <Compile Include="ICCEmbedded\Zip\IEntryFactory.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipConstants.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipEntry.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipEntryFactory.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipException.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipExtraData.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipFile.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipHelperStream.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipNameTransform.cs" />
+    <Compile Include="ICCEmbedded\Zip\ZipOutputStream.cs" />
+    <Compile Include="FileInstaller.cs" />
+    <Compile Include="Dialogs\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Dialogs\ProgramExecuteTimeout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProgramExecuteTimeout.Designer.cs">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryCloseApplicationEventArgs.cs" />
+    <Compile Include="RunExternalProcessEventArgs.cs" />
+    <Compile Include="SR.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SR.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Updatable2Attribute.cs" />
+    <Compile Include="UpdateContext.cs" />
+    <Compile Include="Wrapper\BackgroundWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Wrapper\ExtensionMethod.cs" />
+    <Compile Include="Wrapper\FunctionalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wrapper\RunworkEventArgs.cs" />
+    <Compile Include="Wrapper\SlideComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
+    <Compile Include="Wrapper\XMLSerializeHelper.cs" />
+    <EmbeddedResource Include="Dialogs\CloseApp.en-US.resx">
+      <DependentUpon>CloseApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CloseApp.resx">
+      <DependentUpon>CloseApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MinmumVersionRequired.en.resx">
+      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
+      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelfUpdate.en.resx">
+      <DependentUpon>SelfUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelfUpdate.resx">
+      <DependentUpon>SelfUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SR.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SR.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
+      <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\NoUpdateFound.resx">
+      <DependentUpon>NoUpdateFound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\RunUpdate.resx">
+      <DependentUpon>RunUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateError.resx">
+      <DependentUpon>UpdateError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
+      <DependentUpon>UpdateFinished.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UpdateFound.en-US.resx">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UpdateFound.resx">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="appconfig" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateableAttribute.cs" />
+    <Compile Include="UpdateControl\ControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\DownloadingInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\DownloadingInfo.Designer.cs">
+      <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateControl\NoUpdateFound.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\NoUpdateFound.Designer.cs">
+      <DependentUpon>NoUpdateFound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateControl\RunUpdate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\RunUpdate.Designer.cs">
+      <DependentUpon>RunUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateControl\UpdateError.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\UpdateError.Designer.cs">
+      <DependentUpon>UpdateError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateControl\UpdateFinished.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateControl\UpdateFinished.Designer.cs">
+      <DependentUpon>UpdateFinished.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UpdateFound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UpdateFound.Designer.cs">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.cs" />
+    <Compile Include="UpdateInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\05043139.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FSLib.App.Utilities.exe.gz" />
+    <None Include="Resources\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="更新说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\key\muyu.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

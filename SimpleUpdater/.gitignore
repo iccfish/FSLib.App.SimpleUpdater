@@ -1,0 +1,17 @@
+bin/
+obj/
+*.vs10x
+*.user
+*.suo
+_ReSharper.*
+*.vspscc
+TestResults/
+*.dotCover
+*.docStates
+*.vssscc
+_Bin.*
+*.pidb
+*.pdsync
+*.pdsyncu
+*.pdsyncu
+*.ini
