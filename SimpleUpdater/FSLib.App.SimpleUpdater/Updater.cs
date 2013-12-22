@@ -1088,6 +1088,25 @@ namespace FSLib.App.SimpleUpdater
 			var evt = new AutoResetEvent(false);
 			var hasError = false;
 
+			//download redirect
+			if (!string.IsNullOrEmpty(Context.UpdateInfo.PackageUrlTemplate))
+			{
+				Trace.TraceInformation("已经重定向下载包地址到 {0}", Context.UpdateInfo.PackageUrlTemplate);
+				Context.UpdateDownloadUrl = Context.UpdateInfo.PackageUrlTemplate;
+			}
+
+			//Ping
+			if (!string.IsNullOrEmpty(Context.UpdateInfo.UpdatePingUrl))
+			{
+				try
+				{
+					Context.CreateWebClient().UploadData(new Uri(Context.UpdateInfo.UpdatePingUrl), new byte[0]);
+				}
+				catch (Exception)
+				{
+				}
+			}
+
 			//生成下载队列
 			Trace.TraceInformation("正在初始化 {0} 个WebClient", workerCount);
 			for (var i = 0; i < workerCount; i++)

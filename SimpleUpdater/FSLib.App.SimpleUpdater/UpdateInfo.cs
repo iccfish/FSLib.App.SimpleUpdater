@@ -198,14 +198,15 @@ namespace FSLib.App.SimpleUpdater
 		#endregion
 
 		/// <summary>
-		/// 获得或设置在检查更新前发送ping的地址
-		/// </summary>
-		public string UpdateCheckPingUrl { get; set; }
-
-		/// <summary>
 		/// 获得或设置在进行更新前发送响应的地址
 		/// </summary>
 		public string UpdatePingUrl { get; set; }
+
+		/// <summary>
+		/// 
+		///  获得用于下载文件包的模板URL。为空则使用默认的
+		/// </summary>
+		public string PackageUrlTemplate { get; set; }
 	}
 
 	/// <summary> 更新模式 </summary>
