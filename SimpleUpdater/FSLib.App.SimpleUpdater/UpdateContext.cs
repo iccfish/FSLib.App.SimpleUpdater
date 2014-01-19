@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
+using System.Net.Cache;
 using System.Reflection;
 using System.Text;
 
@@ -306,6 +307,10 @@ namespace FSLib.App.SimpleUpdater
 		{
 			var client = new WebClient();
 			client.Headers.Add(HttpRequestHeader.UserAgent, "Fish SimpleUpdater v" + Updater.Version);
+			client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
+			client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+			client.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
+
 			if (!string.IsNullOrEmpty(ProxyAddress))
 			{
 				client.Proxy = new WebProxy(ProxyAddress);
