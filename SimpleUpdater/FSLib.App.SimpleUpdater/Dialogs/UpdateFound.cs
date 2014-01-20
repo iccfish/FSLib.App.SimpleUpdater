@@ -32,7 +32,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 				controlContainer.Controls.Add(wb);
 				wb.Navigate(ui.WebUpdateNote);
 			}
-			else if (!string.IsNullOrEmpty(ui.RtfUpdateNote))
+			else
 			{
 				var rtf = new RichTextBox()
 				{
@@ -42,20 +42,15 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 					BackColor = System.Drawing.SystemColors.Window,
 					BorderStyle = BorderStyle.None
 				};
-				rtf.Rtf = System.Text.Encoding.UTF8.GetString(Wrapper.ExtensionMethod.Decompress(Convert.FromBase64String(ui.RtfUpdateNote)));
-				controlContainer.Controls.Add(rtf);
-			}
-			else
-			{
-				var txt = new TextBox
+				if (!string.IsNullOrEmpty(ui.RtfUpdateNote))
 				{
-					Multiline = true,
-					Dock = DockStyle.Fill,
-					ScrollBars = ScrollBars.Vertical,
-					ReadOnly = true,
-					Text = ui.Desc
-				};
-				controlContainer.Controls.Add(txt);
+					rtf.Rtf = System.Text.Encoding.UTF8.GetString(Wrapper.ExtensionMethod.Decompress(Convert.FromBase64String(ui.RtfUpdateNote)));
+				}
+				else
+				{
+					rtf.Text = ui.Desc;
+				}
+				controlContainer.Controls.Add(rtf);
 			}
 
 			var pkgSize = ExtensionMethod.Sum(Updater.Instance.PackagesToUpdate, s => s.PackageSize);

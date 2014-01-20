@@ -126,7 +126,7 @@
     <value>宋体, 9pt, style=Bold</value>
   </data>
   <data name="lblFound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 9</value>
+    <value>17, 13</value>
   </data>
   <data name="lblFound.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 12</value>
@@ -144,13 +144,17 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblFound.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel1</value>
   </data>
   <data name="&gt;&gt;lblFound.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="btnUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 243</value>
+    <value>375, 326</value>
   </data>
   <data name="btnUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 30</value>
@@ -173,8 +177,11 @@
   <data name="&gt;&gt;btnUpdate.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 243</value>
+    <value>460, 326</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 30</value>
@@ -197,11 +204,14 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="lnkSoft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="lnkSoft.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lnkSoft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 261</value>
+    <value>12, 344</value>
   </data>
   <data name="lnkSoft.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -224,11 +234,14 @@
   <data name="&gt;&gt;lnkSoft.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="lblSize.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="lblSize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 243</value>
+    <value>12, 326</value>
   </data>
   <data name="lblSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 12</value>
@@ -251,20 +264,20 @@
   <data name="&gt;&gt;lblSize.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lblVersion.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="lblVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 33</value>
+    <value>315, 16</value>
   </data>
   <data name="lblVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
+    <value>224, 12</value>
   </data>
   <data name="lblVersion.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="lblVersion.Text" xml:space="preserve">
     <value>发现新版本：</value>
+  </data>
+  <data name="lblVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;lblVersion.Name" xml:space="preserve">
     <value>lblVersion</value>
@@ -273,16 +286,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblVersion.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel1</value>
   </data>
   <data name="&gt;&gt;lblVersion.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="controlContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="controlContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 48</value>
+    <value>14, 44</value>
   </data>
   <data name="controlContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 189</value>
+    <value>525, 276</value>
   </data>
   <data name="controlContainer.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -297,6 +313,54 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;controlContainer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 35</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>551, 3</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>551, 38</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -306,7 +370,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>451, 280</value>
+    <value>551, 363</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -887,7 +951,6 @@
         AADgBwAA4AMAAOADAADgBwAAgAEAAIABAACAAQAA4AcAAOADAADgAwAA4AcAAPw/AAD//wAA
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>

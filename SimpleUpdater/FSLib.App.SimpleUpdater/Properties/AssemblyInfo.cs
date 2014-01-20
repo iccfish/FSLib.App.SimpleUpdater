@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("鱼的后花园")]
 [assembly: AssemblyProduct("应用程序自动升级客户端工具")]
-[assembly: AssemblyCopyright("Copyright © 鱼的后花园 2010-2011")]
+[assembly: AssemblyCopyright("Copyright © 鱼的后花园 2010-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.3.4.5")]
-[assembly: AssemblyFileVersion("2.3.4.5")]
+[assembly: AssemblyVersion("2.3.4.7")]
+[assembly: AssemblyFileVersion("2.3.4.7")]

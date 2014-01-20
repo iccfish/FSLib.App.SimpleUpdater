@@ -36,6 +36,9 @@
 			this.lblSize = new System.Windows.Forms.Label();
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.controlContainer = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblFound
@@ -52,8 +55,8 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			resources.ApplyResources(this.btnCancel, "btnCancel");
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -79,22 +82,39 @@
 			resources.ApplyResources(this.controlContainer, "controlContainer");
 			this.controlContainer.Name = "controlContainer";
 			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.panel1.Controls.Add(this.groupBox1);
+			this.panel1.Controls.Add(this.lblVersion);
+			this.panel1.Controls.Add(this.lblFound);
+			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.panel1.Name = "panel1";
+			// 
+			// groupBox1
+			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
 			// UpdateFound
 			// 
 			this.AcceptButton = this.btnUpdate;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.controlContainer);
-			this.Controls.Add(this.lblVersion);
 			this.Controls.Add(this.lblSize);
 			this.Controls.Add(this.lnkSoft);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnUpdate);
-			this.Controls.Add(this.lblFound);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
 			this.Name = "UpdateFound";
 			this.Load += new System.EventHandler(this.UpdateFound_Load);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -109,5 +129,7 @@
 		private System.Windows.Forms.Label lblSize;
 		private System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.Panel controlContainer;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }
