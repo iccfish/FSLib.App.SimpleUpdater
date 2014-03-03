@@ -4,8 +4,14 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater.Dialogs
 {
+	/// <summary>
+	/// 内置的找到更新对话框，表示找到了更新
+	/// </summary>
 	public partial class UpdateFound : Form
 	{
+		/// <summary>
+		///   构造函数
+		/// </summary>
 		public UpdateFound()
 		{
 			InitializeComponent();
@@ -73,7 +79,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			Close();
 		}
 
-		private void btnCancel_Click(object sender, EventArgs e)
+		private void lnkCance_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Updater.Instance.OnUpdateCancelled();
 			Close();

@@ -305,6 +305,8 @@
     <None Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\cou_32_refresh.png" />
+    <None Include="Resources\block_16.png" />
     <Content Include="更新说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -332,7 +334,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
+      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

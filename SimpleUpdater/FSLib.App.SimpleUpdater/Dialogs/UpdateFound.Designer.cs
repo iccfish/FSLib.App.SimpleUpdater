@@ -31,35 +31,29 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateFound));
 			this.lblFound = new System.Windows.Forms.Label();
 			this.btnUpdate = new System.Windows.Forms.Button();
-			this.btnCancel = new System.Windows.Forms.Button();
 			this.lnkSoft = new System.Windows.Forms.LinkLabel();
 			this.lblSize = new System.Windows.Forms.Label();
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.controlContainer = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lnkCance = new System.Windows.Forms.LinkLabel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblFound
 			// 
 			resources.ApplyResources(this.lblFound, "lblFound");
+			this.lblFound.ForeColor = System.Drawing.Color.White;
 			this.lblFound.Name = "lblFound";
 			// 
 			// btnUpdate
 			// 
 			resources.ApplyResources(this.btnUpdate, "btnUpdate");
+			this.btnUpdate.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.cou_32_refresh;
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.UseVisualStyleBackColor = true;
 			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-			// 
-			// btnCancel
-			// 
-			resources.ApplyResources(this.btnCancel, "btnCancel");
-			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.UseVisualStyleBackColor = true;
-			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// lnkSoft
 			// 
@@ -74,6 +68,7 @@
 			// 
 			// lblVersion
 			// 
+			this.lblVersion.ForeColor = System.Drawing.Color.White;
 			resources.ApplyResources(this.lblVersion, "lblVersion");
 			this.lblVersion.Name = "lblVersion";
 			// 
@@ -84,7 +79,7 @@
 			// 
 			// panel1
 			// 
-			this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(99)))), ((int)(((byte)(163)))));
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.lblVersion);
 			this.panel1.Controls.Add(this.lblFound);
@@ -98,19 +93,27 @@
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
+			// lnkCance
+			// 
+			this.lnkCance.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.block_16;
+			resources.ApplyResources(this.lnkCance, "lnkCance");
+			this.lnkCance.Name = "lnkCance";
+			this.lnkCance.TabStop = true;
+			this.lnkCance.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCance_LinkClicked);
+			// 
 			// UpdateFound
 			// 
 			this.AcceptButton = this.btnUpdate;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.btnCancel;
+			this.Controls.Add(this.lnkCance);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.controlContainer);
 			this.Controls.Add(this.lblSize);
 			this.Controls.Add(this.lnkSoft);
-			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnUpdate);
 			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "UpdateFound";
 			this.Load += new System.EventHandler(this.UpdateFound_Load);
 			this.panel1.ResumeLayout(false);
@@ -124,12 +127,12 @@
 
 		private System.Windows.Forms.Label lblFound;
 		private System.Windows.Forms.Button btnUpdate;
-		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.LinkLabel lnkSoft;
 		private System.Windows.Forms.Label lblSize;
 		private System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.Panel controlContainer;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.LinkLabel lnkCance;
 	}
 }
