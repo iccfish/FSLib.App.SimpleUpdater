@@ -18,6 +18,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			InitWorker();
 			InitDropSupport();
 			InitEvents();
+			InitProjectProcess();
 
 			this.btnOpen.Click += btnOpen_Click;
 			fileConfig.NewVersionFolder = "";
@@ -257,7 +258,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		#endregion
 
-
 		#region 主要创建流程
 
 		T Invoke<T>(Func<T> predicate)
@@ -471,7 +471,21 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		#region 升级项目
 
-		AuProject _auProject;
+		AuProject _project;
+		public AuProject Project
+		{
+			get { return _project; }
+			set
+			{
+				if (_project == value)
+					return;
+
+				if (_project != null)
+				{
+
+				}
+			}
+		}
 		string _auProjectPath;
 
 		SaveFileDialog _auProjSaveDlg = new SaveFileDialog()
@@ -485,6 +499,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 			Filter = "升级项目文件(*.auproj)|*.auproj",
 			Title = "保存升级项目..."
 		};
+
+		void InitProjectProcess()
+		{
+			_auProject = new AuProject();
+		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)
 		{

@@ -126,6 +126,7 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdatePackageBuilder.cs" />
     <EmbeddedResource Include="Controls\AboutPanel.resx">

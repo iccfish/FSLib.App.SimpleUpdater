@@ -5,11 +5,19 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using System.ComponentModel;
+
+	using Annotations;
+
 	/// <summary>
 	/// 自动升级项目
 	/// </summary>
-	public class AuProject
+	public class AuProject : INotifyPropertyChanged
 	{
+		bool _createCompatiblePackage;
+		bool _compressPackage;
+		bool _enableIncreaseUpdate;
+
 		/// <summary>
 		/// 应用程序路径
 		/// </summary>
@@ -40,6 +48,55 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// </summary>
 		public string UpdateRtfNotePath { get; set; }
 
+		#region 新属性
+
+		/// <summary>
+		/// 获得或设置是否创建兼容的程序包
+		/// </summary>
+		public bool CreateCompatiblePackage
+		{
+			get { return _createCompatiblePackage; }
+			set
+			{
+				if (value.Equals(_createCompatiblePackage))
+					return;
+				_createCompatiblePackage = value;
+				OnPropertyChanged("CreateCompatiblePackage");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置是否创建压缩版程序包
+		/// </summary>
+		public bool CompressPackage
+		{
+			get { return _compressPackage; }
+			set
+			{
+				if (value.Equals(_compressPackage))
+					return;
+				_compressPackage = value;
+				OnPropertyChanged("CompressPackage");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置是否启用增量更新
+		/// </summary>
+		public bool EnableIncreaseUpdate
+		{
+			get { return _enableIncreaseUpdate; }
+			set
+			{
+				if (value.Equals(_enableIncreaseUpdate))
+					return;
+				_enableIncreaseUpdate = value;
+				OnPropertyChanged("EnableIncreaseUpdate");
+			}
+		}
+
+		#endregion
+
 		/// <summary>
 		/// 从指定的文件中加载项目
 		/// </summary>
@@ -47,9 +104,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <returns></returns>
 		public static AuProject LoadFile(string path)
 		{
-			using (var fs=new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read))
+			using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read))
 			{
-				var xso = new System.Xml.Serialization.XmlSerializer(typeof (AuProject));
+				var xso = new System.Xml.Serialization.XmlSerializer(typeof(AuProject));
 				return xso.Deserialize(fs) as AuProject;
 			}
 		}
@@ -66,6 +123,16 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var xso = new System.Xml.Serialization.XmlSerializer(typeof(AuProject));
 				xso.Serialize(fs, this);
 			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+				handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
