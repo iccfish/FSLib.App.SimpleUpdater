@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FSLib.App.SimpleUpdater.Generator
+﻿namespace FSLib.App.SimpleUpdater.Generator.Defination
 {
 	using System.ComponentModel;
+	using System.Linq;
 
 	using Annotations;
 
@@ -96,6 +92,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 		}
 
 		#endregion
+
+		public string VersionUpdateSrc { get; set; }
+
+		public string UpdateContentSrc { get; set; }
+
+		public string UpdateRtfSrc { get; set; }
+
 
 		/// <summary>
 		/// 从指定的文件中加载项目

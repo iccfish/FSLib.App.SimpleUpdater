@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuProject.cs" />
+    <Compile Include="Defination\AuProject.cs" />
     <Compile Include="Controls\AboutPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +106,7 @@
       <DependentUpon>OptionTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RootNode.cs" />
+    <Compile Include="Defination\ServerNode.cs" />
     <Compile Include="Dialogs\PackageGenerateResult.cs">
       <SubType>Form</SubType>
     </Compile>

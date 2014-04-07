@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using SimpleUpdater.Defination;
+
 	public class FileListView : System.Windows.Forms.ListView
 	{
 		private Dictionary<string, FileInfo> _files;

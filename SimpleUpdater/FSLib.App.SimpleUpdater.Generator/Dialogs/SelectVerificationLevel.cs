@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 {
+	using SimpleUpdater.Defination;
+
 	public partial class SelectVerificationLevel : Form
 	{
 		public SelectVerificationLevel()
@@ -24,17 +26,17 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			get
 			{
 				var m = FileVerificationLevel.None;
-				if (chkContent.Checked) m |= SimpleUpdater.FileVerificationLevel.Hash;
-				if (chkSize.Checked) m |= SimpleUpdater.FileVerificationLevel.Size;
-				if (chkVersion.Checked) m |= SimpleUpdater.FileVerificationLevel.Version;
+				if (chkContent.Checked) m |= FileVerificationLevel.Hash;
+				if (chkSize.Checked) m |= FileVerificationLevel.Size;
+				if (chkVersion.Checked) m |= FileVerificationLevel.Version;
 
 				return m;
 			}
 			set
 			{
-				chkContent.Checked = (value & SimpleUpdater.FileVerificationLevel.Hash) != SimpleUpdater.FileVerificationLevel.None;
-				chkSize.Checked = (value & SimpleUpdater.FileVerificationLevel.Size) != SimpleUpdater.FileVerificationLevel.None;
-				chkVersion.Checked = (value & SimpleUpdater.FileVerificationLevel.Version) != SimpleUpdater.FileVerificationLevel.None;
+				chkContent.Checked = (value & FileVerificationLevel.Hash) != FileVerificationLevel.None;
+				chkSize.Checked = (value & FileVerificationLevel.Size) != FileVerificationLevel.None;
+				chkVersion.Checked = (value & FileVerificationLevel.Version) != FileVerificationLevel.None;
 			}
 		}
 	}

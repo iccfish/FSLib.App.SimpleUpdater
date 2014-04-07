@@ -10,13 +10,15 @@ using FSLib;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using SimpleUpdater.Defination;
+
 	public partial class OptionTab : UserControl
 	{
 		/// <summary>
 		/// 根据配置更新界面
 		/// </summary>
 		/// <param name="info"></param>
-		public void UpdateInterface(FSLib.App.SimpleUpdater.UpdateInfo info)
+		public void UpdateInterface(UpdateInfo info)
 		{
 			this.deletePreviousFileMode.SelectedIndex = (int)info.DeleteMethod;
 			this.deleteRules.Text = info.DeleteFileLimits.IsEmpty() ? "" : string.Join(Environment.NewLine, info.DeleteFileLimits);
@@ -28,7 +30,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		/// 保存设置到配置中
 		/// </summary>
 		/// <param name="info"></param>
-		public void SaveSetting(FSLib.App.SimpleUpdater.UpdateInfo info)
+		public void SaveSetting(UpdateInfo info)
 		{
 			info.DeleteFileLimits = this.deleteRules.Lines;
 			info.DeleteMethod = (FSLib.App.SimpleUpdater.DeletePreviousProgramMethod)this.deletePreviousFileMode.SelectedIndex;

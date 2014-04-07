@@ -2,6 +2,8 @@ using System;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using Defination;
+
 	/// <summary> 表示包文件操作事件数据 </summary>
 	/// <remarks></remarks>
 	public class PackageEventArgs : EventArgs

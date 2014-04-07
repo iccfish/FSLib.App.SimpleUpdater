@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 {
+	using SimpleUpdater.Defination;
+
 	public partial class PackageGenerateResult : Form
 	{
 		public PackageGenerateResult()

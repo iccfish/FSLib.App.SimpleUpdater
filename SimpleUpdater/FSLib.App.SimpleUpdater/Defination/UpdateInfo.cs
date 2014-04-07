@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using FSLib.App.SimpleUpdater.Wrapper;
-using SimpleUpdater.Attributes;
-
-namespace FSLib.App.SimpleUpdater
+﻿namespace FSLib.App.SimpleUpdater.Defination
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Text.RegularExpressions;
+
+	using global::SimpleUpdater.Attributes;
+
+	using Wrapper;
+
 	/// <summary>
 	/// 升级信息的具体包装
 	/// </summary>
@@ -180,47 +181,42 @@ namespace FSLib.App.SimpleUpdater
 		/// 获得或设置RTF格式的升级说明
 		/// </summary>
 		public string RtfUpdateNote { get; set; }
+
 		#endregion
 
 		#region new property in 2.3.0.0
+
+		/// <summary>
+		/// 获得或设置节点选择策略
+		/// </summary>
+		public ServerNodeSelectMethod ServerNodeSelectMethod { get; set; }
 
 		/// <summary>
 		/// 获得或设置是否必须进行升级,否则拒绝运行
 		/// </summary>
 		public bool MustUpdate { get; set; }
 
+		/// <summary>
+		/// 不提示更新就进行操作
+		/// </summary>
+		public bool NoUpdatePrompt { get; set; }
+
 
 		/// <summary>
 		/// 获得可用于更新的服务器集群列表
 		/// </summary>
 		public string[] ServerCluster { get; set; }
-
-		#endregion
-
 		/// <summary>
 		/// 获得或设置在进行更新前发送响应的地址
 		/// </summary>
 		public string UpdatePingUrl { get; set; }
 
 		/// <summary>
-		/// 
 		///  获得用于下载文件包的模板URL。为空则使用默认的
 		/// </summary>
 		public string PackageUrlTemplate { get; set; }
-	}
 
-	/// <summary> 更新模式 </summary>
-	/// <remarks></remarks>
-	public enum UpdateMethod
-	{
-		/// <summary> 总是更新 </summary>
-		/// <remarks></remarks>
-		Always = 0,
-		/// <summary> 版本控制 </summary>
-		/// <remarks></remarks>
-		VersionCompare = 1,
-		/// <summary> 如果不存在则更新 </summary>
-		/// <remarks></remarks>
-		SkipIfExists = 2
+		#endregion
+
 	}
 }

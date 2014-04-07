@@ -1,5 +1,7 @@
 ﻿namespace FSLib.App.SimpleUpdater
 {
+	using Defination;
+
 	/// <summary> 表示包文件下载进度 </summary>
 	/// <remarks></remarks>
 	public class PackageDownloadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs

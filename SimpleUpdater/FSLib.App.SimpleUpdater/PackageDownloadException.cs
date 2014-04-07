@@ -2,6 +2,8 @@ using System;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using Defination;
+
 	/// <summary>
 	///     更新包下载错误异常
 	/// </summary>

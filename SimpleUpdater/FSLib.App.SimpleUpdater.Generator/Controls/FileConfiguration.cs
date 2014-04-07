@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using SimpleUpdater.Defination;
+
 	public partial class FileConfiguration : UserControl
 	{
 		private string _newVersionFolder;
@@ -32,7 +34,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		/// <summary> 获得或设置当前的应用程序信息 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public FSLib.App.SimpleUpdater.UpdateInfo UpdateInfo
+		public UpdateInfo UpdateInfo
 		{
 			get { return _updateInfo; }
 			set { _updateInfo = value; filelist.UpdateInfo = value; }

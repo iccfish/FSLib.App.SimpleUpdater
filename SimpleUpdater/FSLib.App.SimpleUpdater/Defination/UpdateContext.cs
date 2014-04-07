@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Cache;
-using System.Reflection;
-using System.Text;
-
-namespace FSLib.App.SimpleUpdater
+﻿namespace FSLib.App.SimpleUpdater.Defination
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using System.Net;
+	using System.Net.Cache;
+	using System.Reflection;
+
 	/// <summary> 表示当前更新的上下文环境 </summary>
 	/// <remarks></remarks>
 	public class UpdateContext

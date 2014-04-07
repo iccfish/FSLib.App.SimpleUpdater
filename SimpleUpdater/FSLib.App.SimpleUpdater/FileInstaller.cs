@@ -6,6 +6,8 @@ using System.Diagnostics;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using Defination;
+
 	public class FileInstaller
 	{
 		/// <summary>

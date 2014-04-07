@@ -12,6 +12,8 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using Defination;
+
 	/// <summary>
 	/// 自动更新操作类
 	/// </summary>

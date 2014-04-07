@@ -7,6 +7,8 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using SimpleUpdater.Defination;
+
 	class UpdatePackageBuilder
 	{
 		/// <summary>
@@ -222,7 +224,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var vm = GetVerificationLevelHandler(file.Key);
 				var ver = GetVersionHandler(file.Key, file.Value.FullName);
 				//var pkgFileName = file.Key.Replace("\\", "_").Replace(".", "_") + ".zip";
-				var pkgFileName = GetPackageName(file.Key)+ ".zip";
+				var pkgFileName = GetPackageName(file.Key) + ".zip";
 
 				var pkg = Path.Combine(PackagePath, pkgFileName);
 				CreateZip("正在生成增量包 " + file.Key + ", 正在压缩....", pkg, e, new[] { file });

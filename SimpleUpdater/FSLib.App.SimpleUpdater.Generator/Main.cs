@@ -10,6 +10,10 @@ using System.Security.Cryptography;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using Defination;
+
+	using SimpleUpdater.Defination;
+
 	public partial class Main : Form
 	{
 		public Main()
