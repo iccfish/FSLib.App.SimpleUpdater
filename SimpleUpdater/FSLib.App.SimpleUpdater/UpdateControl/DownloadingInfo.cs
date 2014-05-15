@@ -8,11 +8,12 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.UpdateControl
 {
-	public partial class DownloadingInfo : FSLib.App.SimpleUpdater.UpdateControl.ControlBase
+	public partial class DownloadingInfo : ControlBase
 	{
 		public DownloadingInfo()
 		{
 			InitializeComponent();
+			SetProgress(0);
 
 			if (Program.IsRunning)
 			{
@@ -20,7 +21,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				ui.DownloadUpdateInfo += Instance_DownloadUpdateInfo;
 				ui.GatheringPackages += (s, e) =>
 				{
-					lblDesc.Text = "正在计算要下载的文件信息……";
+					StepTitle = "正在计算要下载的文件信息……";
 				};
 			}
 		}

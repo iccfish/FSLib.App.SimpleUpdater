@@ -227,6 +227,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\ControlBase.resx">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
       <DependentUpon>DownloadingInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FSLib.App.Utilities.exe.gz" />
-    <None Include="Resources\Info.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Warning.png" />
@@ -312,6 +314,8 @@
   <ItemGroup>
     <None Include="Resources\cou_32_refresh.png" />
     <None Include="Resources\block_16.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\cou_16_warning.png" />
     <Content Include="更新说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -339,7 +343,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
+      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

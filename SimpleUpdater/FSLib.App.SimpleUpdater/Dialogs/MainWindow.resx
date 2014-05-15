@@ -117,156 +117,301 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="slideComponent1.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt, style=Bold</value>
   </data>
-  <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>自动更新</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 26</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="downloadingInfo1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="downloadingInfo1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAPAAAACCCAMAAABPYbVqAAAABGdBTUEAALGPC/xhBQAAAQ5QTFRFdLEZ
-        9/vxy+qavuOGkMRC2/S28/nqnctY0e6lxu6Ksdxx/f771/Gvx+iUl8hN+/34zeyfxeeQ////uOB83vW5
-        lMZI0++p2vOznMtWyemXz+2i9frty+uc+PvzdLMYw+aN/P36n8xamclRveOE3/W7lsdLyeqZ3fW51fCr
-        2fOxz+2h0u6n2/O1x+eT+/35td52zeud+fz1////weWLk8VG9vrv0e2jw+aP9Pnrn81YyOmV3fW3zeuf
-        9/vz1fGry+qbs911z+2fmMhOyeuZ+f3z9/vv2fGvw+eNoc1alcZK0++n2/Ozm8lQ0e2llsdMk8VEk8dG
-        1fGtx+iV8/nrweWN1e+pmslSn8tYkcREveOFL1o6gwAAAAlwSFlzAAALEAAACxABrSO9dQAAAB50RVh0
-        U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAAp9JREFUeF7tlktP20AURgf6AFS7EGoI
-        JLFSgxCJgyJXRomUTRA7WGTRRdX//0t6H3ZSJCy28efvZB733hkvjseWE046BoXRoTA6Lhw6gav6mHQA
-        CqPTKJyFrIqUt5lT1d5b2mOahLOQeJrJe55JLJmGNZkkiUwSVhtbwrvCrmFeZhPuJb2XYYdssEl79kWw
-        tAW8K7wzCw92wnrefpz1nTg6skmzo+l02h7jBmG3kbn2svJ/N+JS1q6k686rKOr3+9XKvvOR8Fa1blW/
-        0UErujqbibFt3H8ahGtcLPwxN9cz6tCsn4vjyRTlkb7W+Gago7eqX2yjJMSH+SWM8MaUnrWirSbcemyr
-        y9/Fa9Ry4Zr6GHfNevh8K0fsWRLK3uFx9FBdse98dMLbg/wu/cUK4enp6cejzPWv7K1xhPVdtcC7bNFR
-        g10re6PWC9eE5XIZx+Zl3QebtZKEvy48a7ew/6VSLsbjcRxvwt1dCJuNFF5efOHu+lmS8PjpMVz0emev
-        7RZOost8teo5q7dIpSzLOB7l+XqlYSk7Fi3/DifTyWK9rgxHQp4XNVW1KBaLxWgUK0Uxi9r9WUr60exs
-        7cqjwWBmDBz1VzyTTes8zyeTh1Y+0p3AVX0833KapsPhV+Pg4FRJD4zhll2WprJeXbj3NAifz+dppTif
-        z7XwU/jlpEoV280Q7KI20CQshmJqePqtGd/QEpqFQaEwOhRGh8LoUBgdCqNDYXQojA6F0aEwOhRGh8Lo
-        UBgdCqNDYXQojA6F0aEwOhRGh8LoUBgdCqNDYXQojA6F0aEwOhRGh8LoUBgdCqNDYXQojA6F0aEwOhRG
-        h8LoUBgdCqNDYXQojA6F0aEwOhRGh8LoUBgdCqNDYXS6LdwJXNXGDkFhdCiMzcnJP+Ky8z9tnWokAAAA
-        AElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
+        GBrg////GLhioZxu8gTOj4l9PDNK5ilxYFMDwlgBNoVVixTip2y1/te6Tvd/XDf/zvzZCgLY1GEF2BTW
+        LFGKn7Pb49/F1+X/+3dY/g9t4T6bNU1eEV0dVtC7RUGia6Osfc9mJfvOjUr2TasU7OuXKbXP2eXx79qL
+        mn9HniX/m33Y9V9wI9/DlAmyegQNrF7G+WTSdtX/fVuV/3dvVvnXsUHlf8talf9rToT8u/Ks8v/O6wH/
+        DzyK/7f8bMD/wHqBj3E9Ml54Daxbwfvv8cfe/xdfpoPwv4sv0v+fe57y//TjxH/H7sX933HN///GS17/
+        9tyL/L/hasS/sBbxbyFN4qkJvYqMUCNQAcjAl59n/rv2PBWOLz1N+nfqQcy/g7dD/wEN/Lfxkue/dRfc
+        /+28HfZvx524fzFdcn/8akUboEaggubVwiAD/19/kfYfauB/oIH/oQZCXQg28D/I0D33o/7vvBv/361U
+        4C/UCFTQskaEaAPBLrwb9x/owr84XQgy8NGH7n/Q8ANjYBj+O/04CRSGUC97/dt9L/LfxmuR4DAMahBL
+        i+qQwR6GNcu5nk3Ypvy/Z4vS/65NSv/a1yv9b16j/H/1iWCUWF5xLvB/YIPAx5hOKW+8sdy+XlKseY2Y
+        TcsaSZvGVZI21UskbWqWyLfC0+HT5H9zDrv9C27ie5TYJ004HSIrgOHqRYrQnFLxf+JO6/+hzdzn0yfL
+        KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
+        AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>240, 130</value>
-  </data>
   <data name="downloadingInfo1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+    <value>0, 0</value>
   </data>
   <data name="downloadingInfo1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+    <value>238, 102</value>
   </data>
   <data name="downloadingInfo1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;downloadingInfo1.Name" xml:space="preserve">
     <value>downloadingInfo1</value>
   </data>
   <data name="&gt;&gt;downloadingInfo1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;downloadingInfo1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panMain</value>
   </data>
   <data name="&gt;&gt;downloadingInfo1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="runUpdate1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="runUpdate1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
+        GBrg////GLhioZxu8gTOj4l9PDNK5ilxYFMDwlgBNoVVixTip2y1/te6Tvd/XDf/zvzZCgLY1GEF2BTW
+        LFGKn7Pb49/F1+X/+3dY/g9t4T6bNU1eEV0dVtC7RUGia6Osfc9mJfvOjUr2TasU7OuXKbXP2eXx79qL
+        mn9HniX/m33Y9V9wI9/DlAmyegQNrF7G+WTSdtX/fVuV/3dvVvnXsUHlf8talf9rToT8u/Ks8v/O6wH/
+        DzyK/7f8bMD/wHqBj3E9Ml54Daxbwfvv8cfe/xdfpoPwv4sv0v+fe57y//TjxH/H7sX933HN///GS17/
+        9tyL/L/hasS/sBbxbyFN4qkJvYqMUCNQAcjAl59n/rv2PBWOLz1N+nfqQcy/g7dD/wEN/Lfxkue/dRfc
+        /+28HfZvx524fzFdcn/8akUboEaggubVwiAD/19/kfYfauB/oIH/oQZCXQg28D/I0D33o/7vvBv/361U
+        4C/UCFTQskaEaAPBLrwb9x/owr84XQgy8NGH7n/Q8ANjYBj+O/04CRSGUC97/dt9L/LfxmuR4DAMahBL
+        i+qQwR6GNcu5nk3Ypvy/Z4vS/65NSv/a1yv9b16j/H/1iWCUWF5xLvB/YIPAx5hOKW+8sdy+XlKseY2Y
+        TcsaSZvGVZI21UskbWqWyLfC0+HT5H9zDrv9C27ie5TYJ004HSIrgOHqRYrQnFLxf+JO6/+hzdzn0yfL
+        KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
+        AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="runUpdate1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+    <value>0, 0</value>
   </data>
   <data name="runUpdate1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+    <value>238, 102</value>
   </data>
   <data name="runUpdate1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;runUpdate1.Name" xml:space="preserve">
     <value>runUpdate1</value>
   </data>
   <data name="&gt;&gt;runUpdate1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.UpdateControl.RunUpdate, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.UpdateControl.RunUpdate, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;runUpdate1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panMain</value>
   </data>
   <data name="&gt;&gt;runUpdate1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="updateFinished1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="updateFinished1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
+        GBrg////GLhioZxu8gTOj4l9PDNK5ilxYFMDwlgBNoVVixTip2y1/te6Tvd/XDf/zvzZCgLY1GEF2BTW
+        LFGKn7Pb49/F1+X/+3dY/g9t4T6bNU1eEV0dVtC7RUGia6Osfc9mJfvOjUr2TasU7OuXKbXP2eXx79qL
+        mn9HniX/m33Y9V9wI9/DlAmyegQNrF7G+WTSdtX/fVuV/3dvVvnXsUHlf8talf9rToT8u/Ks8v/O6wH/
+        DzyK/7f8bMD/wHqBj3E9Ml54Daxbwfvv8cfe/xdfpoPwv4sv0v+fe57y//TjxH/H7sX933HN///GS17/
+        9tyL/L/hasS/sBbxbyFN4qkJvYqMUCNQAcjAl59n/rv2PBWOLz1N+nfqQcy/g7dD/wEN/Lfxkue/dRfc
+        /+28HfZvx524fzFdcn/8akUboEaggubVwiAD/19/kfYfauB/oIH/oQZCXQg28D/I0D33o/7vvBv/361U
+        4C/UCFTQskaEaAPBLrwb9x/owr84XQgy8NGH7n/Q8ANjYBj+O/04CRSGUC97/dt9L/LfxmuR4DAMahBL
+        i+qQwR6GNcu5nk3Ypvy/Z4vS/65NSv/a1yv9b16j/H/1iWCUWF5xLvB/YIPAx5hOKW+8sdy+XlKseY2Y
+        TcsaSZvGVZI21UskbWqWyLfC0+HT5H9zDrv9C27ie5TYJ004HSIrgOHqRYrQnFLxf+JO6/+hzdzn0yfL
+        KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
+        AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="updateFinished1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+    <value>0, 0</value>
   </data>
   <data name="updateFinished1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+    <value>238, 102</value>
   </data>
   <data name="updateFinished1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;updateFinished1.Name" xml:space="preserve">
     <value>updateFinished1</value>
   </data>
   <data name="&gt;&gt;updateFinished1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.UpdateControl.UpdateFinished, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.UpdateControl.UpdateFinished, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;updateFinished1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panMain</value>
   </data>
   <data name="&gt;&gt;updateFinished1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="updateError1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="updateError1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAK
+        8AAACvABQqw0mAAAABh0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzT7MfTgAAAi1JREFUOE+l0M9r
+        knEcB/Bv/pjT/DV9VGZrbQYx6C/o1qVbdOhQ0CGIYp3auV2CbbmgOSoqWoyEYdZSqE1KglzMdbBoxaJz
+        RF3C34/66GOWvvt8dXvU5qkOL/1+vu/P9314GID/0vNSfs2s1YTnVPXtoRlyrZo4eFaOa9y9dnddyOtD
+        E/KbUVGOD6LySkMY5LgL8sbIT3njwOzf+11DJbZvthJzoxzVQIowVDdPQH4/jtJTRncqVGIusn+5841y
+        kJ47jkpRFy1rUHqmRmlFD9RlNOpAIThMM6NMBSnqgPTCdX5XQWnFsVYM70XxST+Ky30ohgxoVJNo/ALE
+        gIdmVSsL6anM8bUQZHuUAjFgNhQeWyUxYID4kAT0EJfUqJe+oF6WkVu0QwzqlKzwyEKsnnbBkjCU95uQ
+        f2BU5BYYfuc/kzSyt/XI+w3t3M+ZjygFuUXBnLtnrhLsyN5kqH1/idq3D8jMq6jQpGRN9wfGlAIuc8u6
+        SaDw0XdYPYli5BzSc33t+5ZU9u6gtqsg7bOfTs/ZaJlctxILGjWJIiA9P0qzqZVxPtuVnXdKAZfyCuGk
+        V0DKa0dyyghp3YtyYgHJaRvdcTwT3v2YHFP3LODyV513MlNOcKlJHVKXtXR2NOfcjDOMyOH+zv3mj5ox
+        MxlmjHmIa/qY+czaBXto65Lj46cJ51Z8XFi9cdxykTI3GeG7/E1ngZYYiYUWBoieIhX9a7nts45nfGd7
+        t/sj/huwP+Q0gvvTLetlAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="updateError1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+    <value>0, 0</value>
   </data>
   <data name="updateError1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+    <value>238, 102</value>
   </data>
   <data name="updateError1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;updateError1.Name" xml:space="preserve">
     <value>updateError1</value>
   </data>
   <data name="&gt;&gt;updateError1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.UpdateControl.UpdateError, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.UpdateControl.UpdateError, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;updateError1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panMain</value>
   </data>
   <data name="&gt;&gt;updateError1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="noUpdateFound1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="noUpdateFound1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
+        GBrg////GLhioZxu8gTOj4l9PDNK5ilxYFMDwlgBNoVVixTip2y1/te6Tvd/XDf/zvzZCgLY1GEF2BTW
+        LFGKn7Pb49/F1+X/+3dY/g9t4T6bNU1eEV0dVtC7RUGia6Osfc9mJfvOjUr2TasU7OuXKbXP2eXx79qL
+        mn9HniX/m33Y9V9wI9/DlAmyegQNrF7G+WTSdtX/fVuV/3dvVvnXsUHlf8talf9rToT8u/Ks8v/O6wH/
+        DzyK/7f8bMD/wHqBj3E9Ml54Daxbwfvv8cfe/xdfpoPwv4sv0v+fe57y//TjxH/H7sX933HN///GS17/
+        9tyL/L/hasS/sBbxbyFN4qkJvYqMUCNQAcjAl59n/rv2PBWOLz1N+nfqQcy/g7dD/wEN/Lfxkue/dRfc
+        /+28HfZvx524fzFdcn/8akUboEaggubVwiAD/19/kfYfauB/oIH/oQZCXQg28D/I0D33o/7vvBv/361U
+        4C/UCFTQskaEaAPBLrwb9x/owr84XQgy8NGH7n/Q8ANjYBj+O/04CRSGUC97/dt9L/LfxmuR4DAMahBL
+        i+qQwR6GNcu5nk3Ypvy/Z4vS/65NSv/a1yv9b16j/H/1iWCUWF5xLvB/YIPAx5hOKW+8sdy+XlKseY2Y
+        TcsaSZvGVZI21UskbWqWyLfC0+HT5H9zDrv9C27ie5TYJ004HSIrgOHqRYrQnFLxf+JO6/+hzdzn0yfL
+        KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
+        AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="noUpdateFound1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+    <value>0, 0</value>
   </data>
   <data name="noUpdateFound1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+    <value>238, 102</value>
   </data>
   <data name="noUpdateFound1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;noUpdateFound1.Name" xml:space="preserve">
     <value>noUpdateFound1</value>
   </data>
   <data name="&gt;&gt;noUpdateFound1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.UpdateControl.NoUpdateFound, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.UpdateControl.NoUpdateFound, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;noUpdateFound1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panMain</value>
   </data>
   <data name="&gt;&gt;noUpdateFound1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="updateFound1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
+  <data name="panMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="updateFound1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 88</value>
+  <data name="panMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 26</value>
   </data>
-  <data name="updateFound1.TabIndex" type="System.Int32, mscorlib">
+  <data name="panMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 104</value>
+  </data>
+  <data name="panMain.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panMain.Name" xml:space="preserve">
+    <value>panMain</value>
+  </data>
+  <data name="&gt;&gt;panMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panMain.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <metadata name="slideComponent1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>240, 130</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>自动更新</value>
@@ -275,7 +420,7 @@
     <value>slideComponent1</value>
   </data>
   <data name="&gt;&gt;slideComponent1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Wrapper.SlideComponent, SimpleUpdater, Version=1.5.5.0, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
+    <value>FSLib.App.SimpleUpdater.Wrapper.SlideComponent, SimpleUpdater, Version=2.3.4.17, Culture=neutral, PublicKeyToken=8bf54bd6729f490c</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>

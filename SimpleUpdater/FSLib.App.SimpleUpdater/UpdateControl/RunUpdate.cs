@@ -34,7 +34,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 						HideControls();
 						Show();
 					}
-					lblDesc.Text = "正在下载升级包……";
+					StepTitle = "正在下载升级包……";
 				};
 				u.DownloadProgressChanged += (s, e) =>
 				{
@@ -44,71 +44,59 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 					var totalSize = ExtensionMethod.Sum(u.PackagesToUpdate, m => m.PackageSize);
 					var downloadedSize = ExtensionMethod.Sum(u.PackagesToUpdate, m => m.DownloadedSize);
 
-					pbProgress.Style = totalSize > 0 ? ProgressBarStyle.Continuous : ProgressBarStyle.Marquee;
-					if (totalSize > 0)
-					{
-						pbProgress.Value = Math.Min((int)(downloadedSize * 1.0 / totalSize * 100), 100);
-					}
-					lblProgressDesc.Text = string.Format("下载中...{0}/{1} ({2}/{3})", count, downloaded, ExtensionMethod.ToSizeDescription(downloadedSize), ExtensionMethod.ToSizeDescription(totalSize));
+					SetProgress((int)downloadedSize, (int)totalSize);
+					StepDesc = string.Format("下载中...{0}/{1} ({2}/{3})", count, downloaded, ExtensionMethod.ToSizeDescription(downloadedSize), ExtensionMethod.ToSizeDescription(totalSize));
 
 				};
 				u.PackageExtractionBegin += (s, e) =>
 				{
-					pbProgress.Style = ProgressBarStyle.Marquee;
+					SetProgress(0);
 
-					lblDesc.Text = "正在解压缩升级包……";
+					StepTitle = "正在解压缩升级包……";
 					if (e.Package != null)
 					{
-						lblProgressDesc.Text = e.Package.PackageName;
+						StepDesc = e.Package.PackageName;
 					}
 				};
 				u.QueryCloseApplication += (s, e) =>
 				{
-					pbProgress.Style = ProgressBarStyle.Marquee;
-					lblDesc.Text = "正在请求关闭应用程序...";
-					lblProgressDesc.Text = string.Empty;
+					SetProgress(0);
+					StepTitle = "正在请求关闭应用程序...";
+					StepDesc = string.Empty;
 				};
 				u.InstallUpdates += (s, e) =>
 				{
-					pbProgress.Style = ProgressBarStyle.Marquee;
-					lblDesc.Text = "正在安装升级包...";
-					lblProgressDesc.Text = string.Empty;
+					SetProgress(0);
+					StepTitle = "正在安装升级包...";
+					StepDesc = string.Empty;
 				};
 				u.FileInstaller.DeleteFileStart += (s, e) =>
 				{
-					pbProgress.Style = ProgressBarStyle.Marquee;
-					lblDesc.Text = "正在删除原始文件...";
-					lblProgressDesc.Text = string.Empty;
+					SetProgress(0);
+					StepTitle = "正在删除原始文件...";
+					StepDesc = string.Empty;
 				};
 				u.FileInstaller.InstallFileStart += (s, e) =>
 				{
-					pbProgress.Style = ProgressBarStyle.Marquee;
-					lblDesc.Text = "正在安装新文件...";
-					lblProgressDesc.Text = string.Empty;
+					SetProgress(0);
+					StepTitle = "正在安装新文件...";
+					StepDesc = string.Empty;
 				};
 				u.FileInstaller.DeleteFile += (s, e) =>
 				{
-					lblProgressDesc.Text = e.Source;
-					pbProgress.Style = e.TotalCount > 0 ? ProgressBarStyle.Continuous : ProgressBarStyle.Marquee;
-					if (e.TotalCount > 0)
-					{
-						pbProgress.Value = (int)(e.CurrentCount * 1.0 / e.TotalCount * 100);
-					}
+					StepDesc = e.Source;
+					SetProgress(e.TotalCount > 0 ? Math.Min((int)(e.CurrentCount * 1.0 / e.TotalCount * 100), 100) : 0, 100);
 				};
 				u.FileInstaller.InstallFile += (s, e) =>
 				{
-					lblProgressDesc.Text = e.Source;
-					pbProgress.Style = e.TotalCount > 0 ? ProgressBarStyle.Continuous : ProgressBarStyle.Marquee;
-					if (e.TotalCount > 0)
-					{
-						pbProgress.Value = (int)(e.CurrentCount * 1.0 / e.TotalCount * 100);
-					}
+					StepDesc = e.Source;
+					SetProgress(e.CurrentCount, e.TotalCount);
 				};
 				u.RunExternalProcess += (s, e) =>
 				{
-					lblDesc.Text = "正在执行外部进程.....";
-					pbProgress.Style = ProgressBarStyle.Marquee;
-					lblProgressDesc.Text = System.IO.Path.GetFileName(e.ProcessStartInfo.FileName);
+					StepTitle = "正在执行外部进程.....";
+					SetProgress(0);
+					StepDesc = System.IO.Path.GetFileName(e.ProcessStartInfo.FileName);
 				};
 			}
 		}

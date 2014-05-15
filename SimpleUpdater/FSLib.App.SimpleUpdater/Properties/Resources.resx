@@ -136,4 +136,7 @@
   <data name="cou_32_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cou_32_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cou_16_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cou_16_warning.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

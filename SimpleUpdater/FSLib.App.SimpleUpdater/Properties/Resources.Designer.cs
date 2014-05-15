@@ -83,6 +83,16 @@ namespace FSLib.App.SimpleUpdater.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap cou_16_warning {
+            get {
+                object obj = ResourceManager.GetObject("cou_16_warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap cou_32_refresh {
             get {
                 object obj = ResourceManager.GetObject("cou_32_refresh", resourceCulture);

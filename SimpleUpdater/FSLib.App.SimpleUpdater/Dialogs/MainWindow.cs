@@ -61,7 +61,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		/// </summary>
 		internal void HideAllControls()
 		{
-			foreach (Control item in this.Controls)
+			foreach (Control item in panMain.Controls)
 			{
 				if (item is UpdateControl.ControlBase) item.Visible = false;
 			}

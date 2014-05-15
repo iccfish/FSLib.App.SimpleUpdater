@@ -294,6 +294,18 @@
   <data name="&gt;&gt;controlContainer.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 48</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>551, 3</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -330,35 +342,11 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 48</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>551, 3</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="lnkCance.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="lnkCance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>345, 353</value>
+    <value>466, 355</value>
   </data>
   <data name="lnkCance.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>18, 0, 0, 0</value>

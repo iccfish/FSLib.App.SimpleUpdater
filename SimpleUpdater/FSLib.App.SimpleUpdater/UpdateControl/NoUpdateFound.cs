@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.UpdateControl
 {
-	public partial class NoUpdateFound : FSLib.App.SimpleUpdater.UpdateControl.ControlBase
+	public partial class NoUpdateFound : ControlBase
 	{
 		public NoUpdateFound()
 		{
@@ -23,12 +23,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 		void Instance_NoUpdatesFound(object sender, EventArgs e)
 		{
 			HideControls();
-			this.Show();
-		}
-
-		private void btnClose_Click(object sender, EventArgs e)
-		{
-			this.FindForm().Close();
+			Show();
 		}
 	}
 }

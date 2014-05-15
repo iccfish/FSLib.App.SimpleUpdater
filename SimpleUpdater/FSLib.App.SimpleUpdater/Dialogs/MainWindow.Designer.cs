@@ -29,13 +29,92 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-			this.slideComponent1 = new FSLib.App.SimpleUpdater.Wrapper.SlideComponent();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.panMain = new System.Windows.Forms.Panel();
+			this.downloadingInfo1 = new FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo();
 			this.runUpdate1 = new FSLib.App.SimpleUpdater.UpdateControl.RunUpdate();
 			this.updateFinished1 = new FSLib.App.SimpleUpdater.UpdateControl.UpdateFinished();
 			this.updateError1 = new FSLib.App.SimpleUpdater.UpdateControl.UpdateError();
 			this.noUpdateFound1 = new FSLib.App.SimpleUpdater.UpdateControl.NoUpdateFound();
-			this.downloadingInfo1 = new FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo();
+			this.slideComponent1 = new FSLib.App.SimpleUpdater.Wrapper.SlideComponent();
+			this.panel1.SuspendLayout();
+			this.panMain.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(203)))));
+			this.panel1.Controls.Add(this.label1);
+			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.Name = "panel1";
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Name = "label1";
+			// 
+			// panMain
+			// 
+			this.panMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panMain.Controls.Add(this.downloadingInfo1);
+			this.panMain.Controls.Add(this.runUpdate1);
+			this.panMain.Controls.Add(this.updateFinished1);
+			this.panMain.Controls.Add(this.updateError1);
+			this.panMain.Controls.Add(this.noUpdateFound1);
+			resources.ApplyResources(this.panMain, "panMain");
+			this.panMain.Name = "panMain";
+			// 
+			// downloadingInfo1
+			// 
+			resources.ApplyResources(this.downloadingInfo1, "downloadingInfo1");
+			this.downloadingInfo1.Image = ((System.Drawing.Image)(resources.GetObject("downloadingInfo1.Image")));
+			this.downloadingInfo1.Name = "downloadingInfo1";
+			this.downloadingInfo1.ShowCloseButton = false;
+			this.downloadingInfo1.ShowProgress = true;
+			this.downloadingInfo1.StepDesc = "";
+			this.downloadingInfo1.StepTitle = "正在获得更新信息，请稍等...";
+			// 
+			// runUpdate1
+			// 
+			resources.ApplyResources(this.runUpdate1, "runUpdate1");
+			this.runUpdate1.Image = ((System.Drawing.Image)(resources.GetObject("runUpdate1.Image")));
+			this.runUpdate1.Name = "runUpdate1";
+			this.runUpdate1.ShowCloseButton = false;
+			this.runUpdate1.ShowProgress = true;
+			this.runUpdate1.StepDesc = "";
+			this.runUpdate1.StepTitle = "";
+			// 
+			// updateFinished1
+			// 
+			resources.ApplyResources(this.updateFinished1, "updateFinished1");
+			this.updateFinished1.Image = ((System.Drawing.Image)(resources.GetObject("updateFinished1.Image")));
+			this.updateFinished1.Name = "updateFinished1";
+			this.updateFinished1.ShowCloseButton = true;
+			this.updateFinished1.ShowProgress = false;
+			this.updateFinished1.StepDesc = "赞哦，您已经成功升级到了最新版！";
+			this.updateFinished1.StepTitle = "自动更新已经成功完成";
+			// 
+			// updateError1
+			// 
+			resources.ApplyResources(this.updateError1, "updateError1");
+			this.updateError1.Image = ((System.Drawing.Image)(resources.GetObject("updateError1.Image")));
+			this.updateError1.Name = "updateError1";
+			this.updateError1.ShowCloseButton = true;
+			this.updateError1.ShowProgress = false;
+			this.updateError1.StepDesc = "";
+			this.updateError1.StepTitle = "更新发生错误，请稍后重试";
+			// 
+			// noUpdateFound1
+			// 
+			resources.ApplyResources(this.noUpdateFound1, "noUpdateFound1");
+			this.noUpdateFound1.Image = ((System.Drawing.Image)(resources.GetObject("noUpdateFound1.Image")));
+			this.noUpdateFound1.Name = "noUpdateFound1";
+			this.noUpdateFound1.ShowCloseButton = true;
+			this.noUpdateFound1.ShowProgress = false;
+			this.noUpdateFound1.StepDesc = "赞哦，您正在使用最新版。如果对此有任何疑问，请联系我们。";
+			this.noUpdateFound1.StepTitle = "木有找到更新";
 			// 
 			// slideComponent1
 			// 
@@ -45,55 +124,34 @@
 			this.slideComponent1.MoveSpeedX = 0;
 			this.slideComponent1.MoveSpeedY = 8;
 			// 
-			// runUpdate1
-			// 
-			resources.ApplyResources(this.runUpdate1, "runUpdate1");
-			this.runUpdate1.Name = "runUpdate1";
-			// 
-			// updateFinished1
-			// 
-			resources.ApplyResources(this.updateFinished1, "updateFinished1");
-			this.updateFinished1.Name = "updateFinished1";
-			// 
-			// updateError1
-			// 
-			resources.ApplyResources(this.updateError1, "updateError1");
-			this.updateError1.Name = "updateError1";
-			// 
-			// noUpdateFound1
-			// 
-			resources.ApplyResources(this.noUpdateFound1, "noUpdateFound1");
-			this.noUpdateFound1.Name = "noUpdateFound1";
-			// 
-			// downloadingInfo1
-			// 
-			resources.ApplyResources(this.downloadingInfo1, "downloadingInfo1");
-			this.downloadingInfo1.Name = "downloadingInfo1";
-			// 
 			// MainWindow
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.downloadingInfo1);
-			this.Controls.Add(this.runUpdate1);
-			this.Controls.Add(this.updateFinished1);
-			this.Controls.Add(this.updateError1);
-			this.Controls.Add(this.noUpdateFound1);
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(233)))), ((int)(((byte)(249)))));
+			this.Controls.Add(this.panMain);
+			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "MainWindow";
 			this.ShowInTaskbar = false;
 			this.TopMost = true;
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.panMain.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private FSLib.App.SimpleUpdater.Wrapper.SlideComponent slideComponent1;
-		private FSLib.App.SimpleUpdater.UpdateControl.UpdateFinished updateFinished1;
-		private FSLib.App.SimpleUpdater.UpdateControl.UpdateError updateError1;
-		private FSLib.App.SimpleUpdater.UpdateControl.NoUpdateFound noUpdateFound1;
-		private FSLib.App.SimpleUpdater.UpdateControl.RunUpdate runUpdate1;
-		private FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo downloadingInfo1;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panMain;
+		private System.Windows.Forms.Label label1;
+		private UpdateControl.DownloadingInfo downloadingInfo1;
+		private UpdateControl.RunUpdate runUpdate1;
+		private UpdateControl.UpdateFinished updateFinished1;
+		private UpdateControl.UpdateError updateError1;
+		private UpdateControl.NoUpdateFound noUpdateFound1;
+		private Wrapper.SlideComponent slideComponent1;
 	}
 }

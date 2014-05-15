@@ -24,17 +24,12 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 		{
 			HideControls();
 			this.Visible = true;
-			lblDesc.Text = Updater.Instance.Context.Exception.Message;
+			StepDesc = Updater.Instance.Context.Exception.Message;
 			System.Diagnostics.Trace.TraceWarning(Updater.Instance.Context.Exception.ToString());
 
 #if DEBUG
 			System.Windows.Forms.MessageBox.Show(Updater.Instance.Context.Exception.ToString());
 #endif
-		}
-
-		private void btnClose_Click(object sender, EventArgs e)
-		{
-			this.FindForm().Close();
 		}
 	}
 }
