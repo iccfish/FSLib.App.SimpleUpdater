@@ -35,7 +35,7 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 
 ###生成工具
 
-####3.0.0.0 [2014年7月5日]
+####2.3.8.21 [2014年7月5日]
 
 * 完全重构
 * 支持命令行模式，支持命令行打开项目
