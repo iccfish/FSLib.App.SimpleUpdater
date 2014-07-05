@@ -419,6 +419,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			var upb = UpdatePackageBuilder.Instance;
 			upb.ProjectClosed += upb_ProjectClosed;
 			upb.ProjectLoaded += upb_ProjectLoaded;
+			if (upb.AuProject != null)
+				upb_ProjectLoaded(null, new PackageEventArgs(upb.AuProject));
 
 			txtTimeout.TextChanged += (s, e) =>
 			{

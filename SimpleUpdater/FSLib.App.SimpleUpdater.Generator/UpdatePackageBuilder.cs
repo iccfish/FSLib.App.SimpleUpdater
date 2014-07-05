@@ -49,7 +49,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// </summary>
 		public AuProject AuProject
 		{
-			get { return _auProject ?? (AuProject = new AuProject()); }
+			get
+			{
+				return _auProject ?? (AuProject = new AuProject());
+			}
 			set
 			{
 				if (_auProject != null)
