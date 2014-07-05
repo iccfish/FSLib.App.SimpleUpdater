@@ -345,7 +345,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
+      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
