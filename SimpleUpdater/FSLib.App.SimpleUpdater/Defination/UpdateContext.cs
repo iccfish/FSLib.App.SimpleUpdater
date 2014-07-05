@@ -416,7 +416,7 @@
 			if (String.IsNullOrEmpty(url))
 				throw new ArgumentException("url is null or empty.", "url");
 
-			if (!AppendRandomTagInDownloadUrl)
+			if (!AppendRandomTagInDownloadUrl || url.IndexOf('/') == -1)
 				return url;
 
 			if (url.IndexOf('?') == -1)

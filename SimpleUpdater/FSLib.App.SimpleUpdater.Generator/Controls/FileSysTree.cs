@@ -5,6 +5,8 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using Defination;
+
 	public class FileSysTree : System.Windows.Forms.TreeView
 	{
 		private System.Windows.Forms.ImageList imgList;
@@ -31,7 +33,17 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.LineColor = System.Drawing.Color.Black;
 			this.SelectedImageIndex = 0;
 			this.ResumeLayout(false);
+		}
 
+		void BindProject(AuProject project)
+		{
+			Root = project.ParseFullPath(project.DestinationDirectory);
+			project.PropertyChanged += (s, ee) =>
+			{
+				if (ee.PropertyName == "ApplicationDirectory")
+					Root = project.ParseFullPath(project.ApplicationDirectory);
+			};
+			Root = project.ParseFullPath(project.ApplicationDirectory);
 		}
 
 		public FileSysTree()
@@ -40,6 +52,14 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			{
 				InitializeComponent();
 				HideSelection = false;
+
+				//绑定
+				UpdatePackageBuilder.Instance.ProjectLoaded += (s, e) =>
+				{
+					BindProject(e.AuProject);
+				};
+				if (UpdatePackageBuilder.Instance.AuProject != null)
+					BindProject(UpdatePackageBuilder.Instance.AuProject);
 			}
 		}
 
@@ -60,7 +80,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 				{
 					Nodes.Clear();
 					SelectedNode = Nodes.Add("none", "请选择程序文件夹...");
-				
+
 				}
 				else
 				{

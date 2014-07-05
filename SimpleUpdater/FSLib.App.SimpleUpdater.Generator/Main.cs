@@ -10,12 +10,24 @@ using System.Security.Cryptography;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using System.IO;
+
 	using Defination;
 
 	using SimpleUpdater.Defination;
 
 	public partial class Main : Form
 	{
+		/// <summary>
+		/// 获得或设置加载时要打开的项目
+		/// </summary>
+		public string PreloadFile { get; set; }
+
+		/// <summary>
+		/// 是否在打开项目后自动构建
+		/// </summary>
+		public bool AutoBuild { get; set; }
+
 		public Main()
 		{
 			InitializeComponent();
@@ -25,8 +37,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 			InitProjectProcess();
 
 			this.btnOpen.Click += btnOpen_Click;
-			fileConfig.NewVersionFolder = "";
+			this.Load += Main_Load;
 		}
+
+
 
 		#region 拖放支持
 
@@ -57,8 +71,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var file = (e.Data as DataObject).GetFileDropList()[0];
 				if (string.Compare(System.IO.Path.GetExtension(file), ".auproj", true) == 0)
 					OpenProject(file);
-				else
-					OpenXML(file);
+				else if (file.EndsWith("update.xml", StringComparison.OrdinalIgnoreCase) || file.EndsWith("update_c.xml", StringComparison.OrdinalIgnoreCase))
+				{
+					//打开xml
+					var project = AuProject.LoadFromOldProject(file);
+					if (project == null)
+						Information("无法打开文件 " + file + " !");
+					else
+						UpdatePackageBuilder.Instance.AuProject = project;
+				}
 			};
 			//升级包
 			this.txtNewSoftDir.DragEnter += (s, e) =>
@@ -93,11 +114,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 			this.txtNewSoftDir.DragDrop += (s, e) =>
 			{
-				this.SelectedNewSoftDirPath = (e.Data as DataObject).GetFileDropList()[0];
+				UpdatePackageBuilder.Instance.AuProject.ApplicationDirectory = (e.Data as DataObject).GetFileDropList()[0];
 			};
 			this.txtPackagePath.DragDrop += (s, e) =>
 			{
-				this.SelectedPackagePath = (e.Data as DataObject).GetFileDropList()[0];
+				var project = UpdatePackageBuilder.Instance.AuProject;
+				project.DestinationDirectory = (e.Data as DataObject).GetFileDropList()[0];
 			};
 
 			//RTF
@@ -121,7 +143,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			rtfPath.DragDrop += (s, e) =>
 			{
 				var file = (e.Data as DataObject).GetFileDropList()[0];
-				rtfPath.Text = file;
+				UpdatePackageBuilder.Instance.AuProject.UpdateRtfNotePath = file;
 			};
 
 		}
@@ -129,6 +151,32 @@ namespace FSLib.App.SimpleUpdater.Generator
 		#endregion
 
 		#region 界面响应函数
+		void Main_Load(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrEmpty(PreloadFile))
+			{
+				OpenProject(PreloadFile);
+				PreloadFile = null;
+
+				if (UpdatePackageBuilder.Instance.AuProject != null)
+				{
+					Create();
+				}
+			}
+		}
+
+
+		OpenFileDialog _bindVersionFileDialog = new OpenFileDialog()
+		{
+			Filter = "带有版本信息的文件(*.exe;*.dll)|*.exe;*.dll",
+			Title = "绑定版本信息到文件"
+		};
+		OpenFileDialog _bindDescFile = new OpenFileDialog()
+		{
+			Filter = "更新说明文件(*.txt)|*.txt",
+			Title = "绑定更新说明到文件"
+		};
+
 
 		/// <summary>
 		/// 初始化界面函数
@@ -157,7 +205,16 @@ namespace FSLib.App.SimpleUpdater.Generator
 					Information("无法打开相关的应用程序 - " + ex.Message);
 				}
 			};
-
+			btnBind.Click += (s, e) =>
+			{
+				if (_bindVersionFileDialog.ShowDialog() == DialogResult.OK)
+					UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc = _bindVersionFileDialog.FileName;
+			};
+			lnkBindDescToFile.Click += (s, e) =>
+			{
+				if (_bindDescFile.ShowDialog() == DialogResult.OK)
+					UpdatePackageBuilder.Instance.AuProject.UpdateContentSrc = _bindDescFile.FileName;
+			};
 		}
 
 		void Information(string message)
@@ -178,32 +235,20 @@ namespace FSLib.App.SimpleUpdater.Generator
 				Filter = "XML信息文件(*.xml)|*.xml"
 			};
 			if (open.ShowDialog() != DialogResult.OK) return;
-			OpenXML(open.FileName);
-		}
+			var file = open.FileName;
 
-		/// <summary>
-		/// 打开配置文件
-		/// </summary>
-		/// <param name="path"></param>
-		void OpenXML(string path)
-		{
-			UpdateInfo ui;
-			if (!ExtensionMethods.IsCompressedXmlFile(path))
+			var project = AuProject.LoadFromOldProject(file);
+
+			if (project != null)
 			{
-				ui = typeof(UpdateInfo).XmlDeserializeFile(path) as UpdateInfo;
+				UpdatePackageBuilder.Instance.AuProject = project;
 			}
 			else
 			{
-				ui = ExtensionMethods.DecompressFile(path).XmlDeserializeFromStream<UpdateInfo>();
-			}
-
-			if (ui == null) Information("无法加载信息文件，请确认选择正确的文件");
-			else
-			{
-				this.SelectedPackagePath = System.IO.Path.GetDirectoryName(path);
-				CurrentUpdateInfo = ui;
+				Information("无法打开指定的文件 " + file + " ！");
 			}
 		}
+
 
 		/// <summary>
 		/// 创建升级包
@@ -214,13 +259,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 		{
 			epp.Clear();
 
+			var project = UpdatePackageBuilder.Instance.AuProject;
+
 			//检查增量更新
-			if (fileConfig.HasIncreaseUpdateFile && !options.EnableIncreaseUpdate)
+			if (project.Files.Any(s => s.UpdateMethod != UpdateMethod.Always || s.UpdateMethod != UpdateMethod.Ignore) && !project.EnableIncreaseUpdate)
 			{
 				if (MessageBox.Show("您已经设置部分文件为条件更新，这需要开启增量更新，但是当前尚未打开。这将会导致这些文件的设置失效，是否确定继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
 			}
 			//检查文件存在
-			if (System.IO.Directory.GetFiles(SelectedPackagePath).Length > 0 || System.IO.Directory.GetDirectories(SelectedPackagePath).Length > 0)
+			if (System.IO.Directory.GetFiles(project.ParseFullPath(project.DestinationDirectory), "*.*", SearchOption.AllDirectories).Length > 0)
 			{
 				if (MessageBox.Show("自动更新程序将会生成一个或多个文件（包括xml、zip文件等），而您当前选择的升级包保存文件夹不是空的，这可能会导致同名的文件被覆盖。确定继续吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
 			}
@@ -235,25 +282,20 @@ namespace FSLib.App.SimpleUpdater.Generator
 				epp.SetError(this.txtAppVersion, "请输入版本号");
 				return;
 			}
-			if (!System.IO.Directory.Exists(this.SelectedNewSoftDirPath)) { epp.SetError(this.txtNewSoftDir, "请选择新程序的目录"); return; }
-			if (string.IsNullOrEmpty(this.SelectedPackagePath)) { epp.SetError(this.txtPackagePath, "请选择打包后的组件和升级信息文件所在路径"); return; }
-			if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(this.SelectedPackagePath))) { epp.SetError(this.txtPackagePath, "文件包所在目录不存在"); return; }
-
-			//删除原始包的文件
-			if (CurrentUpdateInfo != null)
+			if (!System.IO.Directory.Exists(project.ParseFullPath(project.ApplicationDirectory)))
 			{
-				var root = txtPackagePath.Text;
-				var mainPkgPath = System.IO.Path.Combine(root, CurrentUpdateInfo.Package);
-				if (System.IO.File.Exists(mainPkgPath)) System.IO.File.Delete(mainPkgPath);
-
-				if (CurrentUpdateInfo.Packages != null)
-				{
-					CurrentUpdateInfo.Packages.ForEach(s =>
-						{
-							var path = System.IO.Path.Combine(root, s.PackageName);
-							if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
-						});
-				}
+				epp.SetError(this.txtNewSoftDir, "请选择新程序的目录");
+				return;
+			}
+			if (string.IsNullOrEmpty(project.DestinationDirectory))
+			{
+				epp.SetError(this.txtPackagePath, "请选择打包后的组件和升级信息文件所在路径");
+				return;
+			}
+			if (!System.IO.Directory.Exists(project.ParseFullPath(project.DestinationDirectory)))
+			{
+				epp.SetError(this.txtPackagePath, "文件包所在目录不存在");
+				return;
 			}
 
 			Create();
@@ -294,6 +336,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				btnCreate.Enabled = true;
 				this.pbProgress.Visible = false;
+				lblStatus.Text = "生成失败：" + e.Exception.Message;
 				Information("出现错误：" + e.Exception.ToString());
 			};
 			bgw.DoWork += CreatePackage;
@@ -306,57 +349,18 @@ namespace FSLib.App.SimpleUpdater.Generator
 		//创建信息的具体操作函数
 		void CreatePackage(object sender, Wrapper.RunworkEventArgs e)
 		{
-			var info = new UpdateInfo()
-			{
-				AppName = Invoke(() => this.txtAppName.Text),
-				AppVersion = Invoke(() => this.txtAppVersion.Text),
-				Desc = Invoke(() => this.txtDesc.Text),
-				ExecuteArgumentAfter = Invoke(() => this.txtAfterExecuteArgs.Text),
-				ExecuteArgumentBefore = Invoke(() => this.txtPreExecuteArgs.Text),
-				PublishUrl = Invoke(() => this.txtPublishUrl.Text),
-				FileExecuteAfter = Invoke(() => this.fileAfterExecute.SelectedFileName),
-				FileExecuteBefore = Invoke(() => this.filePreExecute.SelectedFileName),
-				MD5 = "",
-				Package = System.IO.Path.GetFileName(Invoke(() => this.txtPackagePath.Text)),
-				ExecuteTimeout = Invoke(() => txtTimeout.Text.ToInt32()),
-				PackageSize = 0,
-				RequiredMinVersion = "",
-				HideAfterExecuteWindow = Invoke(() => chkHideAfter.Checked),
-				HideBeforeExecuteWindow = Invoke(() => chkHideBefore.Checked),
-				WebUpdateNote = Invoke(() => txtUrl.Text)
-			};
-			var fileRtf = Invoke(() => rtfPath.Text);
-			if (System.IO.File.Exists(fileRtf))
-			{
-				info.RtfUpdateNote = Convert.ToBase64String(ExtensionMethods.CompressBuffer(System.IO.File.ReadAllBytes(fileRtf)));
-			}
-
-			Invoke(() => this.options.SaveSetting(info));
-
 			//创建主要信息文件
-			var builder = new UpdatePackageBuilder()
-			{
-				UpdateInfo = info,
-				CompressXmlFile = Invoke(() => options.CompressXmlFile),
-				EnableIncreaseUpdate = Invoke(() => options.EnableIncreaseUpdate && fileConfig.HasIncreaseUpdateFile),
-				CreateCompatiblePackage = Invoke(() => options.CreateCompatiblePackage),
-				GetVersionHandler = fileConfig.GetFileVersion,
-				GetUpdateMethodHandler = fileConfig.GetFileUpdateMethod,
-				GetVerificationLevelHandler = fileConfig.GetFileVerificationLevel,
-				AllFiles = Invoke(() => fileConfig.AllFiles),
-				PackagePath = SelectedPackagePath
-			};
+			var builder = UpdatePackageBuilder.Instance;
 			builder.Build(e);
 
 			e.ReportProgress(0, 0, "生成成功！");
 
 			Invoke(() =>
 			{
-				CurrentUpdateInfo = info;
 				new Dialogs.PackageGenerateResult()
 				{
 					PackageResult = builder.Result,
-					UpdateInfo = info
+					UpdateInfo = builder.BuiltUpdateInfo
 				}.ShowDialog();
 			});
 		}
@@ -375,80 +379,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		#endregion
 
-		#region 界面属性
-
-		/// <summary>
-		/// 获得或设置文件包路径
-		/// </summary>
-		public string SelectedPackagePath
-		{
-			get { return this.txtPackagePath.Text; }
-			set
-			{
-				this.txtPackagePath.Text = value;
-				TryLoadXml(value);
-			}
-		}
-
-		/// <summary>
-		/// 获得或设置选定的新软件目录
-		/// </summary>
-		public string SelectedNewSoftDirPath
-		{
-			get { return this.txtNewSoftDir.Text; }
-			set
-			{
-				this.txtNewSoftDir.Text = value;
-				Environment.CurrentDirectory = value;
-				filePreExecute.RootPath = fileAfterExecute.RootPath = value;
-				fileConfig.NewVersionFolder = value;
-			}
-		}
-
-		UpdateInfo _currentUpdateInfo;
-
-
-		/// <summary>
-		/// 获得或设置当前的升级信息
-		/// </summary>
-		public UpdateInfo CurrentUpdateInfo
-		{
-			get { return _currentUpdateInfo; }
-			set
-			{
-				if (_currentUpdateInfo == value) return;
-
-				_currentUpdateInfo = value;
-				options.UpdateInterface(value);
-				fileConfig.CurrentUpdateInfo = value;
-
-				if (value != null)
-				{
-					txtAfterExecuteArgs.Text = value.ExecuteArgumentAfter;
-					txtAppName.Text = value.AppName;
-					txtAppVersion.Text = value.AppVersion;
-					txtDesc.Text = value.Desc;
-					txtPreExecuteArgs.Text = value.ExecuteArgumentBefore;
-					txtPublishUrl.Text = value.PublishUrl;
-					txtTimeout.Text = value.ExecuteTimeout.ToString();
-					chkHideBefore.Checked = value.HideBeforeExecuteWindow;
-					chkHideAfter.Checked = value.HideAfterExecuteWindow;
-					fileAfterExecute.PreferFileName = value.FileExecuteAfter;
-					filePreExecute.PreferFileName = value.FileExecuteBefore;
-					txtUrl.Text = value.WebUpdateNote;
-				}
-			}
-		}
-
-		#endregion
-
 		#region 界面响应函数
+
 		private void btnBrowseFolder_Click(object sender, EventArgs e)
 		{
 			fbd.Description = "请选择包含最新版软件的目录";
 			if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
-			SelectedNewSoftDirPath = fbd.SelectedPath;
+			var project = UpdatePackageBuilder.Instance.AuProject;
+			project.ApplicationDirectory = fbd.SelectedPath;
 		}
 
 		private void browseFile_Click(object sender, EventArgs e)
@@ -456,41 +395,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			fbd.Description = "请选择要放置升级包的目录。建议选择空目录";
 			if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
-			SelectedPackagePath = fbd.SelectedPath;
-		}
-
-		private void txtNewSoftDir_TextChanged(object sender, EventArgs e)
-		{
-			if (System.IO.Directory.Exists(txtNewSoftDir.Text))
-			{
-				filePreExecute.RootPath = fileAfterExecute.RootPath = this.SelectedNewSoftDirPath;
-			}
-		}
-
-		private void txtPackagePath_TextChanged(object sender, EventArgs e)
-		{
-			TryLoadXml(txtPackagePath.Text);
+			var project = UpdatePackageBuilder.Instance.AuProject;
+			project.DestinationDirectory = fbd.SelectedPath;
 		}
 		#endregion
 
 		#region 升级项目
-
-		AuProject _project;
-		public AuProject Project
-		{
-			get { return _project; }
-			set
-			{
-				if (_project == value)
-					return;
-
-				if (_project != null)
-				{
-
-				}
-			}
-		}
-		string _auProjectPath;
 
 		SaveFileDialog _auProjSaveDlg = new SaveFileDialog()
 		{
@@ -506,22 +416,104 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		void InitProjectProcess()
 		{
-			_auProject = new AuProject();
+			var upb = UpdatePackageBuilder.Instance;
+			upb.ProjectClosed += upb_ProjectClosed;
+			upb.ProjectLoaded += upb_ProjectLoaded;
+
+			txtTimeout.TextChanged += (s, e) =>
+			{
+				var project = UpdatePackageBuilder.Instance.AuProject;
+				if (project != null)
+					project.UpdateInfo.ExecuteTimeout = txtTimeout.Text.ToInt32();
+			};
+		}
+
+		void upb_ProjectLoaded(object sender, PackageEventArgs e)
+		{
+			var project = e.AuProject;
+			txtNewSoftDir.AddDataBinding(project, s => s.Text, s => s.ApplicationDirectory);
+			txtPackagePath.AddDataBinding(project, s => s.Text, s => s.DestinationDirectory);
+			rtfPath.AddDataBinding(project, s => s.Text, s => s.UpdateRtfNotePath);
+
+			fileAfterExecute.AddDataBinding(project, s => s.RootPath, s => s.ApplicationDirectory);
+			filePreExecute.AddDataBinding(project, s => s.RootPath, s => s.ApplicationDirectory);
+			btnBind.Text = string.IsNullOrEmpty(project.VersionUpdateSrc) ? "绑定" : "取消绑定";
+			txtAppVersion.Enabled = string.IsNullOrEmpty(project.VersionUpdateSrc);
+			lnkBindDescToFile.Text = string.IsNullOrEmpty(project.UpdateContentSrc) ? "绑定到文件" : "取消绑定";
+			txtDesc.Enabled = string.IsNullOrEmpty(project.UpdateContentSrc);
+
+			var ui = UpdatePackageBuilder.Instance.AuProject.UpdateInfo;
+			txtAfterExecuteArgs.AddDataBinding(ui, s => s.Text, s => s.ExecuteArgumentAfter);
+			txtAppName.AddDataBinding(ui, s => s.Text, s => s.AppName);
+			txtAppVersion.AddDataBinding(ui, s => s.Text, s => s.AppVersion);
+			txtDesc.AddDataBinding(ui, s => s.Text, s => s.Desc);
+			txtPreExecuteArgs.AddDataBinding(ui, s => s.Text, s => s.ExecuteArgumentBefore);
+			txtPublishUrl.AddDataBinding(ui, s => s.Text, s => s.PublishUrl);
+			txtTimeout.AddDataBinding(ui, s => s.Text, s => s.ExecuteTimeout.ToString());
+			chkHideBefore.AddDataBinding(ui, s => s.Checked, s => s.HideBeforeExecuteWindow);
+			chkHideAfter.AddDataBinding(ui, s => s.Checked, s => s.HideAfterExecuteWindow);
+			fileAfterExecute.AddDataBinding(ui, s => s.SelectedFileName, s => s.FileExecuteAfter);
+			filePreExecute.AddDataBinding(ui, s => s.SelectedFileName, s => s.FileExecuteBefore);
+			txtUrl.AddDataBinding(ui, s => s.Text, s => s.WebUpdateNote);
+			txtPing.AddDataBinding(ui, s => s.Text, s => s.UpdatePingUrl);
+
+			project.PropertyChanged += (ss, ee) =>
+			{
+				var p = ss as AuProject;
+				if (ee.PropertyName == "VersionUpdateSrc")
+				{
+					btnBind.Text = string.IsNullOrEmpty(p.VersionUpdateSrc) ? "绑定" : "取消绑定";
+					txtAppVersion.Enabled = string.IsNullOrEmpty(p.VersionUpdateSrc);
+				}
+				else if (ee.PropertyName == "UpdateContentSrc")
+				{
+					lnkBindDescToFile.Text = string.IsNullOrEmpty(p.UpdateContentSrc) ? "绑定到文件" : "取消绑定";
+					txtDesc.Enabled = string.IsNullOrEmpty(p.UpdateContentSrc);
+				}
+
+			};
+			ui.PropertyChanged += (ss, se) =>
+			{
+				var u = (ss as UpdateInfo);
+				if (se.PropertyName == "ExecuteTimeout")
+					txtTimeout.Text = u.ExecuteTimeout.ToString();
+			};
+			txtTimeout.Text = ui.ExecuteTimeout.ToString();
+		}
+
+
+		void upb_ProjectClosed(object sender, PackageEventArgs e)
+		{
+			var project = e.AuProject;
+
+			txtNewSoftDir.DataBindings.Clear();
+			txtPackagePath.DataBindings.Clear();
+			rtfPath.DataBindings.Clear();
+
+			txtAfterExecuteArgs.DataBindings.Clear();
+			txtAppName.DataBindings.Clear();
+			txtAppVersion.DataBindings.Clear();
+			txtDesc.DataBindings.Clear();
+			txtPreExecuteArgs.DataBindings.Clear();
+			txtPublishUrl.DataBindings.Clear();
+			txtTimeout.DataBindings.Clear();
+			chkHideBefore.DataBindings.Clear();
+			chkHideAfter.DataBindings.Clear();
+			fileAfterExecute.DataBindings.Clear();
+			filePreExecute.DataBindings.Clear();
+			txtUrl.DataBindings.Clear();
+			txtPing.DataBindings.Clear();
 		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)
 		{
-			_auProject = _auProject ?? new AuProject();
-			_auProject.ApplicationDirectory = txtNewSoftDir.Text;
-			_auProject.DestinationDirectory = txtPackagePath.Text;
-			_auProject.UpdateRtfNotePath = rtfPath.Text;
-
-			if (string.IsNullOrEmpty(_auProjectPath))
+			var projectPath = UpdatePackageBuilder.Instance.AuProject.ProjectFilePath;
+			if (string.IsNullOrEmpty(projectPath))
 			{
 				if (_auProjSaveDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-				_auProjectPath = _auProjSaveDlg.FileName;
+				projectPath = _auProjSaveDlg.FileName;
 			}
-			_auProject.Save(_auProjectPath);
+			UpdatePackageBuilder.Instance.AuProject.Save(projectPath);
 			Information("项目已经保存");
 		}
 
@@ -534,44 +526,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		void OpenProject(string path)
 		{
-			_auProjectPath = path;
-			_auProject = AuProject.LoadFile(_auProjectPath);
+			var project = AuProject.LoadFile(path);
 
-			if (_auProjectPath == null)
+			if (project == null)
 			{
 				Information("打开项目时出错!");
 				return;
 			}
 
-			SelectedNewSoftDirPath = _auProject.ApplicationDirectory;
-			txtPackagePath.Text = _auProject.DestinationDirectory;
-			rtfPath.Text = _auProject.UpdateRtfNotePath;
-
-			TryLoadXml(_auProject.DestinationDirectory);
-		}
-
-
-		string _lastLoadPath;
-
-		/// <summary>
-		/// 尝试自动打开升级信息
-		/// </summary>
-		/// <param name="directory"></param>
-		void TryLoadXml(string directory)
-		{
-			if (directory == _lastLoadPath || string.IsNullOrEmpty(directory) || !System.IO.Directory.Exists(directory)) return;
-			_lastLoadPath = directory;
-
-			var fileNames = new[] { "update_c.xml", "update.xml" };
-			foreach (var fn in fileNames)
-			{
-				var updateFile = System.IO.Path.Combine(directory, fn);
-				if (System.IO.File.Exists(updateFile))
-				{
-					OpenXML(updateFile);
-					break;
-				}
-			}
+			UpdatePackageBuilder.Instance.AuProject = project;
 		}
 
 		#endregion

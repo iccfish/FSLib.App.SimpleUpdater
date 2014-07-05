@@ -95,6 +95,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>CD /D "$(SolutionDir)"
+COPY "$(TargetPath)" "$(SolutionDir)\_Tools\" /Y
 "$(SolutionDir)\_Tools\FSLib.App.Utilities.exe" zipfile "$(TargetPath)"
 
 COPY "$(TargetPath).gz" .\FSLib.App.SimpleUpdater\Resources\ /Y

@@ -12,6 +12,10 @@
 		VersionCompare = 1,
 		/// <summary> 如果不存在则更新 </summary>
 		/// <remarks></remarks>
-		SkipIfExists = 2
+		SkipIfExists = 2,
+		/// <summary>
+		/// 忽略
+		/// </summary>
+		Ignore = 3
 	}
 }

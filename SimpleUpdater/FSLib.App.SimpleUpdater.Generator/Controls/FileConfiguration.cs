@@ -22,23 +22,19 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 			folderTree.NodeMouseClick += (s, e) =>
 			{
-				if (e.Node == _selectedNode) return;
+				if (e.Node == _selectedNode || !(e.Node is FolderNode)) return;
 				_selectedNode = e.Node as FolderNode;
 				filelist.Files = _selectedNode.Files;
 			};
+
+			Load += FileConfiguration_Load;
+		}
+
+		void FileConfiguration_Load(object sender, EventArgs e)
+		{
 		}
 
 		FolderNode _selectedNode;
-		private UpdateInfo _updateInfo;
-
-		/// <summary> 获得或设置当前的应用程序信息 </summary>
-		/// <value></value>
-		/// <remarks></remarks>
-		public UpdateInfo UpdateInfo
-		{
-			get { return _updateInfo; }
-			set { _updateInfo = value; filelist.UpdateInfo = value; }
-		}
 
 		/// <summary> 获得或设置最新版应用软件的目录 </summary>
 		/// <value></value>
@@ -98,23 +94,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		public bool HasIncreaseUpdateFile
 		{
 			get { return filelist.HasIncreaseUpdateFile; }
-		}
-
-		UpdateInfo _currentUpdateInfo;
-
-		/// <summary>
-		/// 获得或设置当前的升级信息
-		/// </summary>
-		public UpdateInfo CurrentUpdateInfo
-		{
-			get { return _currentUpdateInfo; }
-			set
-			{
-				if (_currentUpdateInfo == value) return;
-
-				_currentUpdateInfo = value;
-				filelist.CurrentUpdateInfo = value;
-			}
 		}
 
 	}

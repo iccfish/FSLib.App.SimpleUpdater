@@ -7,13 +7,16 @@ using System.Text.RegularExpressions;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
-	public class FileComboBox : ComboBox
+	using SimpleUpdater.Annotations;
+
+	public class FileComboBox : ComboBox, INotifyPropertyChanged
 	{
 		public FileComboBox()
 		{
 			this.DropDownStyle = ComboBoxStyle.DropDownList;
 
 			this.SizeChanged += (object sender, EventArgs e) => this.Size = new Size(this.Width, 20);
+			SelectedIndexChanged += (s, e) => OnPropertyChanged("SelectedFileName");
 		}
 
 		/// <summary>
@@ -53,8 +56,10 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			get { return _rootPath; }
 			set
 			{
-				if (_rootPath == value) return;
-				_rootPath = value.EnsureEndWith(@"\"); LoadFiles();
+				if (_rootPath == value || string.IsNullOrEmpty(value)) return;
+				_rootPath = value.EnsureEndWith(@"\");
+				LoadFiles();
+				OnPropertyChanged("RootPath");
 			}
 		}
 
@@ -87,6 +92,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		}
 
 		Regex _fileCheckReg;
+		string _fullpath;
 
 		/// <summary>
 		/// 加载文件列表
@@ -96,12 +102,16 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.Items.Clear();
 			if (ShowEmptyEntry) this.Items.Add("<未选择>");
 
-			if (!System.IO.Directory.Exists(RootPath))
+			if (string.IsNullOrEmpty(RootPath))
+				return;
+
+			_fullpath = UpdatePackageBuilder.Instance.AuProject.ParseFullPath(RootPath);
+			if (!System.IO.Directory.Exists(_fullpath))
 			{
 				return;
 			}
 
-			var files = System.IO.Directory.GetFiles(RootPath, "*.*", System.IO.SearchOption.AllDirectories).AsEnumerable();
+			var files = System.IO.Directory.GetFiles(_fullpath, "*.*", System.IO.SearchOption.AllDirectories).AsEnumerable();
 			var selectedIndex = 0;
 
 			if (_fileCheckReg == null && _filetypefilter != null) _fileCheckReg = new Regex(@"^.*\.(" + string.Join("|", _filetypefilter) + ")$", RegexOptions.IgnoreCase);
@@ -109,7 +119,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 			files.ForEach(s =>
 			{
-				var path = s.Remove(0, RootPath.Length);
+				var path = s.Remove(0, _fullpath.Length);
 				Items.Add(path);
 				if (string.Compare(path, PreferFileName, true) == 0) selectedIndex = Items.Count - 1;
 			});
@@ -153,6 +163,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 						break;
 					}
 				}
+				PreferFileName = value;
+				OnPropertyChanged("SelectedFileName");
 			}
 		}
 
@@ -205,6 +217,16 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		public new ObjectCollection Items
 		{
 			get { return base.Items; }
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+				handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

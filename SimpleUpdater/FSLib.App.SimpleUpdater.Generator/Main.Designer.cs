@@ -56,6 +56,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpen = new System.Windows.Forms.Button();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.btnBind = new System.Windows.Forms.Button();
 			this.chkHideAfter = new System.Windows.Forms.CheckBox();
 			this.chkHideBefore = new System.Windows.Forms.CheckBox();
 			this.browseFile = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
 			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.lnkBindDescToFile = new System.Windows.Forms.LinkLabel();
 			this.btnEditRtf = new System.Windows.Forms.Button();
 			this.btnBrowserRtf = new System.Windows.Forms.Button();
 			this.rtfPath = new System.Windows.Forms.TextBox();
@@ -72,6 +74,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.label11 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.txtDesc = new System.Windows.Forms.TextBox();
+			this.tabPage7 = new System.Windows.Forms.TabPage();
+			this.gpUpdatePing = new System.Windows.Forms.GroupBox();
+			this.txtPing = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -88,6 +94,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage6.SuspendLayout();
+			this.tabPage7.SuspendLayout();
+			this.gpUpdatePing.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
@@ -185,14 +193,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.txtNewSoftDir, "txtNewSoftDir");
 			this.txtNewSoftDir.Name = "txtNewSoftDir";
 			this.tip.SetToolTip(this.txtNewSoftDir, resources.GetString("txtNewSoftDir.ToolTip"));
-			this.txtNewSoftDir.TextChanged += new System.EventHandler(this.txtNewSoftDir_TextChanged);
 			// 
 			// txtPackagePath
 			// 
 			resources.ApplyResources(this.txtPackagePath, "txtPackagePath");
 			this.txtPackagePath.Name = "txtPackagePath";
 			this.tip.SetToolTip(this.txtPackagePath, resources.GetString("txtPackagePath.ToolTip"));
-			this.txtPackagePath.TextChanged += new System.EventHandler(this.txtPackagePath_TextChanged);
 			// 
 			// epp
 			// 
@@ -218,6 +224,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage6);
+			this.tabControl1.Controls.Add(this.tabPage7);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage5);
@@ -228,6 +235,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.btnBind);
 			this.tabPage1.Controls.Add(this.chkHideAfter);
 			this.tabPage1.Controls.Add(this.chkHideBefore);
 			this.tabPage1.Controls.Add(this.browseFile);
@@ -254,6 +262,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.tabPage1, "tabPage1");
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// btnBind
+			// 
+			resources.ApplyResources(this.btnBind, "btnBind");
+			this.btnBind.Name = "btnBind";
+			this.tip.SetToolTip(this.btnBind, resources.GetString("btnBind.ToolTip"));
+			this.btnBind.UseVisualStyleBackColor = true;
 			// 
 			// chkHideAfter
 			// 
@@ -310,6 +325,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// 
 			// tabPage6
 			// 
+			this.tabPage6.Controls.Add(this.lnkBindDescToFile);
 			this.tabPage6.Controls.Add(this.btnEditRtf);
 			this.tabPage6.Controls.Add(this.btnBrowserRtf);
 			this.tabPage6.Controls.Add(this.rtfPath);
@@ -322,6 +338,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.tabPage6, "tabPage6");
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// lnkBindDescToFile
+			// 
+			resources.ApplyResources(this.lnkBindDescToFile, "lnkBindDescToFile");
+			this.lnkBindDescToFile.Name = "lnkBindDescToFile";
+			this.lnkBindDescToFile.TabStop = true;
+			this.tip.SetToolTip(this.lnkBindDescToFile, resources.GetString("lnkBindDescToFile.ToolTip"));
 			// 
 			// btnEditRtf
 			// 
@@ -372,6 +395,31 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.txtDesc, "txtDesc");
 			this.txtDesc.Name = "txtDesc";
 			// 
+			// tabPage7
+			// 
+			this.tabPage7.Controls.Add(this.gpUpdatePing);
+			resources.ApplyResources(this.tabPage7, "tabPage7");
+			this.tabPage7.Name = "tabPage7";
+			this.tabPage7.UseVisualStyleBackColor = true;
+			// 
+			// gpUpdatePing
+			// 
+			this.gpUpdatePing.Controls.Add(this.txtPing);
+			this.gpUpdatePing.Controls.Add(this.label14);
+			resources.ApplyResources(this.gpUpdatePing, "gpUpdatePing");
+			this.gpUpdatePing.Name = "gpUpdatePing";
+			this.gpUpdatePing.TabStop = false;
+			// 
+			// txtPing
+			// 
+			resources.ApplyResources(this.txtPing, "txtPing");
+			this.txtPing.Name = "txtPing";
+			// 
+			// label14
+			// 
+			resources.ApplyResources(this.label14, "label14");
+			this.label14.Name = "label14";
+			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.options);
@@ -381,10 +429,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// 
 			// options
 			// 
-			this.options.CompressXmlFile = true;
-			this.options.CreateCompatiblePackage = true;
 			resources.ApplyResources(this.options, "options");
-			this.options.EnableIncreaseUpdate = true;
 			this.options.Name = "options";
 			// 
 			// tabPage3
@@ -396,11 +441,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// 
 			// fileConfig
 			// 
-			this.fileConfig.CurrentUpdateInfo = null;
 			resources.ApplyResources(this.fileConfig, "fileConfig");
 			this.fileConfig.Name = "fileConfig";
 			this.fileConfig.NewVersionFolder = null;
-			this.fileConfig.UpdateInfo = null;
 			// 
 			// tabPage5
 			// 
@@ -469,6 +512,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage1.PerformLayout();
 			this.tabPage6.ResumeLayout(false);
 			this.tabPage6.PerformLayout();
+			this.tabPage7.ResumeLayout(false);
+			this.gpUpdatePing.ResumeLayout(false);
+			this.gpUpdatePing.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage5.ResumeLayout(false);
@@ -532,5 +578,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.Button btnBrowserRtf;
 		private System.Windows.Forms.Button btnOpenProject;
 		private System.Windows.Forms.Button btnSaveProject;
+		private System.Windows.Forms.TabPage tabPage7;
+		private System.Windows.Forms.GroupBox gpUpdatePing;
+		private System.Windows.Forms.TextBox txtPing;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Button btnBind;
+		private System.Windows.Forms.LinkLabel lnkBindDescToFile;
 	}
 }

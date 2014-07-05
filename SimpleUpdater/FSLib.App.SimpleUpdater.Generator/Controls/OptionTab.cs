@@ -10,34 +10,12 @@ using FSLib;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using Defination;
+
 	using SimpleUpdater.Defination;
 
 	public partial class OptionTab : UserControl
 	{
-		/// <summary>
-		/// 根据配置更新界面
-		/// </summary>
-		/// <param name="info"></param>
-		public void UpdateInterface(UpdateInfo info)
-		{
-			this.deletePreviousFileMode.SelectedIndex = (int)info.DeleteMethod;
-			this.deleteRules.Text = info.DeleteFileLimits.IsEmpty() ? "" : string.Join(Environment.NewLine, info.DeleteFileLimits);
-			this.requiredMinVersion.Text = info.RequiredMinVersion;
-			this.txtPackagePassword.Text = info.PackagePassword ?? "";
-		}
-
-		/// <summary>
-		/// 保存设置到配置中
-		/// </summary>
-		/// <param name="info"></param>
-		public void SaveSetting(UpdateInfo info)
-		{
-			info.DeleteFileLimits = this.deleteRules.Lines;
-			info.DeleteMethod = (FSLib.App.SimpleUpdater.DeletePreviousProgramMethod)this.deletePreviousFileMode.SelectedIndex;
-			info.RequiredMinVersion = this.requiredMinVersion.Text;
-			info.PackagePassword = this.txtPackagePassword.Text;
-		}
-
 		public OptionTab()
 		{
 			InitializeComponent();
@@ -46,37 +24,59 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			{
 				this.gpSetDeleteSyntax.Visible = this.deletePreviousFileMode.SelectedIndex > 0;
 				this.gpSetDeleteSyntax.Text = this.deletePreviousFileMode.SelectedIndex == 1 ? "要保留的文件或路径" : "要删除的文件或文件夹";
+
+				if (UpdatePackageBuilder.Instance.AuProject != null)
+					UpdatePackageBuilder.Instance.AuProject.UpdateInfo.DeleteMethod = (DeletePreviousProgramMethod)this.deletePreviousFileMode.SelectedIndex;
 			};
 			this.deletePreviousFileMode.SelectedIndex = 0;
 			this.txtPackagePassword.Text = "";
+			deleteRules.TextChanged += (s, e) =>
+			{
+				UpdatePackageBuilder.Instance.AuProject.UpdateInfo.DeleteFileLimits = deleteRules.Lines;
+			};
+
+			Load += OptionTab_Load;
 		}
 
-		/// <summary>
-		/// 获得或设置是否使用增量更新
-		/// </summary>
-		public bool EnableIncreaseUpdate
+		void OptionTab_Load(object sender, EventArgs e)
 		{
-			get { return chkUseIncreaseUpdate.Checked; }
-			set { chkUseIncreaseUpdate.Checked = value; }
+			var upb = UpdatePackageBuilder.Instance;
+			upb.ProjectLoaded += upb_ProjectLoaded;
+			upb.ProjectClosed += upb_ProjectClosed;
+
+			if (upb.AuProject != null)
+				BindProject(upb.AuProject);
 		}
 
-
-		/// <summary>
-		/// 获得或设置是否创建兼容的升级包选项
-		/// </summary>
-		public bool CreateCompatiblePackage
+		void upb_ProjectClosed(object sender, PackageEventArgs e)
 		{
-			get { return chkCreateCompatiblePackage.Checked; }
-			set { chkCreateCompatiblePackage.Checked = value; }
+			chkUseIncreaseUpdate.DataBindings.Clear();
+			chkCreateCompatiblePackage.DataBindings.Clear();
+			chkCompressUpdateInfo.DataBindings.Clear();
+			txtPackagePassword.DataBindings.Clear();
+			requiredMinVersion.DataBindings.Clear();
 		}
 
-		/// <summary>
-		/// 获得或设置是否压缩XML文件选项
-		/// </summary>
-		public bool CompressXmlFile
+		void upb_ProjectLoaded(object sender, PackageEventArgs e)
 		{
-			get { return chkCompressUpdateInfo.Checked; }
-			set { chkCompressUpdateInfo.Checked = value; }
+			BindProject(e.AuProject);
 		}
+
+		void BindProject(AuProject project)
+		{
+			var ui = project.UpdateInfo;
+
+			chkUseIncreaseUpdate.AddDataBinding(project, s => s.Checked, s => s.EnableIncreaseUpdate);
+			chkCompressUpdateInfo.AddDataBinding(project, s => s.Checked, s => s.CompressPackage);
+			chkCreateCompatiblePackage.AddDataBinding(project, s => s.Checked, s => s.CreateCompatiblePackage);
+
+			this.deletePreviousFileMode.SelectedIndex = (int)ui.DeleteMethod;
+			this.deleteRules.Text = ui.DeleteFileLimits.IsEmpty() ? "" : string.Join(Environment.NewLine, ui.DeleteFileLimits);
+
+			txtPackagePassword.AddDataBinding(ui, s => s.Text, s => s.PackagePassword);
+			requiredMinVersion.AddDataBinding(ui, s => s.Text, s => s.RequiredMinVersion);
+
+		}
+
 	}
 }

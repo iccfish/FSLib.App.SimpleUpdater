@@ -148,7 +148,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -178,7 +178,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -208,7 +208,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -238,7 +238,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="txtAppName.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 11</value>
@@ -259,10 +259,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppName.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>361, 17</value>
+    <value>21</value>
   </data>
   <data name="txtPublishUrl.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 38</value>
@@ -273,6 +270,9 @@
   <data name="txtPublishUrl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <metadata name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>361, 17</value>
+  </metadata>
   <data name="txtPublishUrl.ToolTip" xml:space="preserve">
     <value>供用户点击查看更详细信息的网页地址, 留空则禁止这个链接显示</value>
   </data>
@@ -286,7 +286,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPublishUrl.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="pbProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -319,7 +319,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCreate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>522, 453</value>
+    <value>639, 453</value>
   </data>
   <data name="btnCreate.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 30</value>
@@ -370,7 +370,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="lblStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,7 +427,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -457,7 +457,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="txtAfterExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
     <value>363, 141</value>
@@ -481,7 +481,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAfterExecuteArgs.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="txtPreExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
     <value>363, 118</value>
@@ -505,13 +505,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPreExecuteArgs.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="txtAppVersion.Location" type="System.Drawing.Point, System.Drawing">
     <value>490, 11</value>
   </data>
   <data name="txtAppVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 21</value>
+    <value>170, 21</value>
   </data>
   <data name="txtAppVersion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -529,7 +529,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppVersion.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="txtTimeout.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 170</value>
@@ -553,7 +553,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtTimeout.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="txtNewSoftDir.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 65</value>
@@ -577,7 +577,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtNewSoftDir.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="txtPackagePath.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 92</value>
@@ -601,14 +601,14 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPackagePath.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
-  <data name="epp.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="epp.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>146, 17</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>
   </data>
@@ -642,6 +642,9 @@
   <data name="&gt;&gt;btnOpenProject.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnSaveProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnSaveProject.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 453</value>
   </data>
@@ -666,6 +669,54 @@
   <data name="&gt;&gt;btnSaveProject.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnBind.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 9</value>
+  </data>
+  <data name="btnBind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="btnBind.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnBind.Text" xml:space="preserve">
+    <value>绑定</value>
+  </data>
+  <data name="btnBind.ToolTip" xml:space="preserve">
+    <value>将版本信息绑定到指定的文件上，将不必手动输入，每次构建的时候将会自动读取</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Name" xml:space="preserve">
+    <value>btnBind</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;btnBind.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 144</value>
+  </data>
+  <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideAfter.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideAfter.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
+  </data>
   <data name="&gt;&gt;chkHideAfter.Name" xml:space="preserve">
     <value>chkHideAfter</value>
   </data>
@@ -676,7 +727,28 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkHideAfter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 122</value>
+  </data>
+  <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideBefore.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideBefore.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideBefore.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.Name" xml:space="preserve">
     <value>chkHideBefore</value>
@@ -688,7 +760,25 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="browseFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 92</value>
+  </data>
+  <data name="browseFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="browseFile.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="browseFile.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="browseFile.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;browseFile.Name" xml:space="preserve">
     <value>browseFile</value>
@@ -700,7 +790,25 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;browseFile.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
+  </data>
+  <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnBrowseFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 65</value>
+  </data>
+  <data name="btnBrowseFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="btnBrowseFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnBrowseFolder.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="btnBrowseFolder.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.Name" xml:space="preserve">
     <value>btnBrowseFolder</value>
@@ -712,7 +820,25 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 173</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>（秒,0为不限制）</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
@@ -724,31 +850,67 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 142</value>
+  </data>
+  <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 20</value>
+  </data>
+  <data name="fileAfterExecute.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Name" xml:space="preserve">
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
+  </data>
+  <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 119</value>
+  </data>
+  <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 20</value>
+  </data>
+  <data name="filePreExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Name" xml:space="preserve">
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 173</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>执行时间限制</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -760,7 +922,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -789,6 +951,36 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="lnkBindDescToFile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lnkBindDescToFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>79, 93</value>
+  </data>
+  <data name="lnkBindDescToFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="lnkBindDescToFile.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lnkBindDescToFile.Text" xml:space="preserve">
+    <value>绑定到文件...</value>
+  </data>
+  <data name="lnkBindDescToFile.ToolTip" xml:space="preserve">
+    <value>将更新说明绑定到文件，每次构建更新的时候将会自动读取。</value>
+  </data>
+  <data name="&gt;&gt;lnkBindDescToFile.Name" xml:space="preserve">
+    <value>lnkBindDescToFile</value>
+  </data>
+  <data name="&gt;&gt;lnkBindDescToFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lnkBindDescToFile.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;lnkBindDescToFile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnEditRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -814,7 +1006,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;btnEditRtf.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnBrowserRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -841,7 +1033,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;btnBrowserRtf.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="rtfPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 294</value>
@@ -865,7 +1057,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;rtfPath.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="txtUrl.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 267</value>
@@ -886,7 +1078,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;txtUrl.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -916,7 +1108,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -946,7 +1138,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -975,7 +1167,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1005,7 +1197,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="txtDesc.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 108</value>
@@ -1032,7 +1224,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;txtDesc.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1061,11 +1253,125 @@
   <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="txtPing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="txtPing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 21</value>
+  </data>
+  <data name="txtPing.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Name" xml:space="preserve">
+    <value>txtPing</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Parent" xml:space="preserve">
+    <value>gpUpdatePing</value>
+  </data>
+  <data name="&gt;&gt;txtPing.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 23</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>通知地址</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>gpUpdatePing</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gpUpdatePing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="gpUpdatePing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>338, 53</value>
+  </data>
+  <data name="gpUpdatePing.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="gpUpdatePing.Text" xml:space="preserve">
+    <value>更新Ping：每次正式更新前都通知指定网址</value>
+  </data>
+  <data name="&gt;&gt;gpUpdatePing.Name" xml:space="preserve">
+    <value>gpUpdatePing</value>
+  </data>
+  <data name="&gt;&gt;gpUpdatePing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gpUpdatePing.Parent" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;gpUpdatePing.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>服务器选项</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
+    <value>tabPage7</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="options.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="options.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="options.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="options.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;options.Name" xml:space="preserve">
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1098,13 +1404,25 @@
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
+  </data>
+  <data name="fileConfig.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="fileConfig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="fileConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="fileConfig.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;fileConfig.Name" xml:space="preserve">
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -1137,13 +1455,25 @@
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="argumentGenerator1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="argumentGenerator1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="argumentGenerator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 373</value>
+  </data>
+  <data name="argumentGenerator1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Name" xml:space="preserve">
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -1173,13 +1503,25 @@
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
+  </data>
+  <data name="aboutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="aboutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="aboutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 367</value>
+  </data>
+  <data name="aboutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Name" xml:space="preserve">
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -1212,7 +1554,7 @@
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -1239,7 +1581,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnOpen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>643, 453</value>
+    <value>518, 453</value>
   </data>
   <data name="btnOpen.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 30</value>
@@ -1249,6 +1591,9 @@
   </data>
   <data name="btnOpen.Text" xml:space="preserve">
     <value>打开升级包</value>
+  </data>
+  <data name="btnOpen.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnOpen.Name" xml:space="preserve">
     <value>btnOpen</value>
@@ -1522,7 +1867,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>升级包创建工具 - BY iFish, Version 2.2.1.0 Build 20120904</value>
+    <value>升级包创建工具 - BY iFish, Version 3.0.0.0 Build 20140705</value>
   </data>
   <data name="&gt;&gt;epp.Name" xml:space="preserve">
     <value>epp</value>
@@ -1548,187 +1893,7 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 173</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>执行时间限制</value>
-  </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 173</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 12</value>
-  </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>（秒,0为不限制）</value>
-  </data>
-  <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkHideAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 144</value>
-  </data>
-  <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="chkHideAfter.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="chkHideAfter.Text" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="chkHideAfter.ToolTip" xml:space="preserve">
-    <value>隐藏进程执行的窗口</value>
-  </data>
-  <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkHideBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 122</value>
-  </data>
-  <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="chkHideBefore.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="chkHideBefore.Text" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="chkHideBefore.ToolTip" xml:space="preserve">
-    <value>隐藏进程执行的窗口</value>
-  </data>
-  <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="browseFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 92</value>
-  </data>
-  <data name="browseFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="browseFile.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="browseFile.Text" xml:space="preserve">
-    <value>浏览</value>
-  </data>
-  <data name="browseFile.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnBrowseFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 65</value>
-  </data>
-  <data name="btnBrowseFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="btnBrowseFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btnBrowseFolder.Text" xml:space="preserve">
-    <value>浏览</value>
-  </data>
-  <data name="btnBrowseFolder.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 142</value>
-  </data>
-  <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 20</value>
-  </data>
-  <data name="fileAfterExecute.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 119</value>
-  </data>
-  <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 20</value>
-  </data>
-  <data name="filePreExecute.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="options.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="options.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="options.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
-  </data>
-  <data name="options.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="fileConfig.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="fileConfig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="fileConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
-  </data>
-  <data name="fileConfig.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="argumentGenerator1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="argumentGenerator1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="argumentGenerator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
-  </data>
-  <data name="argumentGenerator1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="aboutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="aboutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="aboutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
-  </data>
-  <data name="aboutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="fbd.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="fbd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>220, 17</value>
-  </data>
+  </metadata>
 </root>

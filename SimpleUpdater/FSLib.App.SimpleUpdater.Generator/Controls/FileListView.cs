@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using FSLib.App.SimpleUpdater.Generator.Defination;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
@@ -28,6 +29,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		private ToolStripMenuItem tsUpdateMethodAlways;
 		private ToolStripMenuItem tsUpdateMethodCompare;
 		private ToolStripMenuItem tsUpdateMethodOnlyNotExist;
+		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripMenuItem tsUpdateMethodIgnore;
 		private UpdateInfo _updateInfo;
 
 		public FileListView()
@@ -36,8 +39,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 			InitializeComponent();
 			_versions = new Dictionary<string, Version>(StringComparer.OrdinalIgnoreCase);
-			_verifyLevels = new Dictionary<string, FileVerificationLevel>();
-			_updateMethods = new Dictionary<string, UpdateMethod>();
+			_verifyLevels = new Dictionary<string, FileVerificationLevel>(StringComparer.OrdinalIgnoreCase);
+			_updateMethods = new Dictionary<string, UpdateMethod>(StringComparer.OrdinalIgnoreCase);
 
 			var sorter = new FileListViewSorter()
 			{
@@ -68,7 +71,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 				};
 
 				//取同一个组
-				tsUpdateMethodAlways.Checked = tsUpdateMethodCompare.Checked = tsUpdateMethodOnlyNotExist.Checked = false;
+				tsUpdateMethodIgnore.Checked = tsUpdateMethodAlways.Checked = tsUpdateMethodCompare.Checked = tsUpdateMethodOnlyNotExist.Checked = false;
 
 				var groups = SelectedItems.Cast<ListViewItem>().Select(m => m.Group).Distinct().ToArray();
 				if (groups.Length > 1)
@@ -76,12 +79,20 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 					var group = groups[0];
 					if (group == Groups[0]) tsUpdateMethodAlways.Checked = true;
 					else if (group == Groups[1]) tsUpdateMethodCompare.Checked = true;
-					else tsUpdateMethodOnlyNotExist.Checked = true;
+					else if (group == Groups[2]) tsUpdateMethodCompare.Checked = true;
+					else tsUpdateMethodIgnore.Checked = true;
 				}
 			};
 			tsUpdateMethodOnlyNotExist.Click += (s, e) => SetSelectedItemUpdateMethod(UpdateMethod.SkipIfExists);
 			tsUpdateMethodCompare.Click += (s, e) => SetSelectedItemUpdateMethod(UpdateMethod.VersionCompare);
 			tsUpdateMethodAlways.Click += (s, e) => SetSelectedItemUpdateMethod(UpdateMethod.Always);
+			tsUpdateMethodIgnore.Click += (s, e) => SetSelectedItemUpdateMethod(UpdateMethod.Ignore);
+
+			UpdatePackageBuilder.Instance.ProjectLoaded += (s, e) =>
+			{
+				RefreshUpdateInfo();
+			};
+			RefreshUpdateInfo();
 		}
 
 		/// <summary> 获得或设置当前的文件列表 </summary>
@@ -145,6 +156,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("始终更新的文件", System.Windows.Forms.HorizontalAlignment.Left);
 			System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("依赖于对比检测的文件", System.Windows.Forms.HorizontalAlignment.Left);
 			System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("不存在时才更新", System.Windows.Forms.HorizontalAlignment.Left);
+			System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("忽略更新", System.Windows.Forms.HorizontalAlignment.Left);
 			this.colIndex = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -156,6 +168,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.tsUpdateMethodAlways = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsUpdateMethodCompare = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsUpdateMethodOnlyNotExist = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsUpdateMethodIgnore = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemCtxMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -193,11 +207,13 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			// itemCtxMenu
 			// 
 			this.itemCtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsUpdateMethodAlways,
-            this.tsUpdateMethodCompare,
-            this.tsUpdateMethodOnlyNotExist});
+			this.tsUpdateMethodAlways,
+			this.tsUpdateMethodCompare,
+			this.tsUpdateMethodOnlyNotExist,
+			this.toolStripSeparator1,
+			this.tsUpdateMethodIgnore});
 			this.itemCtxMenu.Name = "itemCtxMenu";
-			this.itemCtxMenu.Size = new System.Drawing.Size(185, 70);
+			this.itemCtxMenu.Size = new System.Drawing.Size(185, 98);
 			// 
 			// tsUpdateMethodAlways
 			// 
@@ -217,15 +233,26 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.tsUpdateMethodOnlyNotExist.Size = new System.Drawing.Size(184, 22);
 			this.tsUpdateMethodOnlyNotExist.Text = "仅当不存在时才更新";
 			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
+			// 
+			// tsUpdateMethodIgnore
+			// 
+			this.tsUpdateMethodIgnore.Name = "tsUpdateMethodIgnore";
+			this.tsUpdateMethodIgnore.Size = new System.Drawing.Size(184, 22);
+			this.tsUpdateMethodIgnore.Text = "忽略更新(&I)";
+			// 
 			// FileListView
 			// 
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colIndex,
-            this.colPath,
-            this.colExt,
-            this.colDetectMethod,
-            this.colSize,
-            this.colVersion});
+			this.colIndex,
+			this.colPath,
+			this.colExt,
+			this.colDetectMethod,
+			this.colSize,
+			this.colVersion});
 			this.ContextMenuStrip = this.itemCtxMenu;
 			this.FullRowSelect = true;
 			listViewGroup1.Header = "始终更新的文件";
@@ -234,10 +261,13 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			listViewGroup2.Name = "gpVersionCompare";
 			listViewGroup3.Header = "不存在时才更新";
 			listViewGroup3.Name = "gpExistAndSkip";
+			listViewGroup4.Header = "忽略更新";
+			listViewGroup4.Name = "gpIgnore";
 			this.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
+			listViewGroup1,
+			listViewGroup2,
+			listViewGroup3,
+			listViewGroup4});
 			this.HideSelection = false;
 			this.ShowItemToolTips = true;
 			this.SmallImageList = this.imgs;
@@ -271,9 +301,13 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 				var lv = new ListViewItem((++index).ToString(), isKey ? 0 : 1);
 				if (um == UpdateMethod.SkipIfExists)
 					lv.Group = Groups[2];
+				else if (um == UpdateMethod.Ignore)
+				{
+					lv.Group = Groups[3];
+				}
+				else if (um == UpdateMethod.VersionCompare) lv.Group = Groups[1];
 				else
 					lv.Group = Groups[0];
-				if (um == UpdateMethod.VersionCompare) lv.Group = Groups[1];
 
 				lv.SubItems.Add(item.Value.Name);
 				lv.SubItems.Add(ext);
@@ -297,6 +331,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			if (items.Length == 0) return;
 
 			var group = Groups[(int)method];
+			var project = UpdatePackageBuilder.Instance.AuProject;
+
 			var verifyLevel = FileVerificationLevel.Hash | FileVerificationLevel.Size | FileVerificationLevel.Version;
 			if (method == UpdateMethod.VersionCompare)
 			{
@@ -318,32 +354,45 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			foreach (var item in items)
 			{
 				var tag = (KeyValuePair<string, FileInfo>)item.Tag;
-				if (GetFileUpdateMethod(tag.Key) == method) continue;
+				var path = tag.Key;
+
+				if (GetFileUpdateMethod(path) == method) continue;
 
 				item.Group = group;
 
 				//处理更新方式
-				if (method != UpdateMethod.VersionCompare && _verifyLevels.ContainsKey(tag.Key))
+				if (method != UpdateMethod.VersionCompare && _verifyLevels.ContainsKey(path))
 				{
-					_verifyLevels.Remove(tag.Key);
+					_verifyLevels.Remove(path);
 				}
 				if (method == UpdateMethod.Always)
 				{
-					if (_updateMethods.ContainsKey(tag.Key)) _updateMethods.Remove(tag.Key);
+					if (_updateMethods.ContainsKey(path)) _updateMethods.Remove(path);
 				}
 				else
 				{
-					if (_updateMethods.ContainsKey(tag.Key)) _updateMethods[tag.Key] = method;
-					else _updateMethods.Add(tag.Key, method);
+					if (_updateMethods.ContainsKey(path)) _updateMethods[path] = method;
+					else _updateMethods.Add(path, method);
 				}
 
 				if (method == UpdateMethod.VersionCompare)
 				{
-					if (_verifyLevels.ContainsKey(tag.Key)) _verifyLevels[tag.Key] = verifyLevel;
-					else _verifyLevels.Add(tag.Key, verifyLevel);
+					if (_verifyLevels.ContainsKey(path)) _verifyLevels[path] = verifyLevel;
+					else _verifyLevels.Add(path, verifyLevel);
 				}
 
 				UpdateVerificationLevelDesc(item);
+
+				//处理包项目
+				var pi = project.Files.FirstOrDefault(s => string.Compare(s.Path, path, true) == 0);
+				if (pi == null)
+				{
+					pi = new ProjectItem();
+					pi.Path = path;
+					project.Files.Add(pi);
+				}
+				pi.UpdateMethod = method;
+				pi.FileVerificationLevel = verifyLevel;
 			}
 
 			AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -387,37 +436,28 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			get { return _updateMethods.Count > 0; }
 		}
 
-
-		UpdateInfo _currentUpdateInfo;
-
-		/// <summary>
-		/// 获得或设置当前的升级信息
-		/// </summary>
-		public UpdateInfo CurrentUpdateInfo
+		void RefreshUpdateInfo()
 		{
-			get { return _currentUpdateInfo; }
-			set
+			if (UpdatePackageBuilder.Instance.AuProject == null) return;
+
+			var files = UpdatePackageBuilder.Instance.AuProject.Files;
+
+			//从列表中刷新更新方式
+			_verifyLevels.Clear();
+			_updateMethods.Clear();
+
+			if (files != null)
 			{
-				_currentUpdateInfo = value;
-				if (value == null) return;
-
-				//从列表中刷新更新方式
-				_verifyLevels.Clear();
-				_updateMethods.Clear();
-
-				if (value.Packages != null)
-				{
-					value.Packages.Where(s => s.Method != UpdateMethod.Always)
-						.ForEach(s =>
-							{
-								_updateMethods.Add(s.FilePath, s.Method);
-								_verifyLevels.Add(s.FilePath, s.VerificationLevel);
-							});
-				}
-
-				//重新加载
-				LoadFilesIntoList();
+				files.Where(s => s.UpdateMethod != UpdateMethod.Always)
+					.ForEach(s =>
+					{
+						_updateMethods.Add(s.Path, s.UpdateMethod);
+						_verifyLevels.Add(s.Path, s.FileVerificationLevel);
+					});
 			}
+
+			//重新加载
+			LoadFilesIntoList();
 		}
 
 	}

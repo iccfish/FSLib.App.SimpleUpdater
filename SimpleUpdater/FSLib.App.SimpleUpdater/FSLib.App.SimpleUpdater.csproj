@@ -43,23 +43,23 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\_Bin.Debug.35\Exe\</OutputPath>
+    <OutputPath>bin\debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;STANDALONE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\_Bin.Debug.35\Exe\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\debug\SimpleUpdater.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\_Bin.Release.35\Exe\</OutputPath>
+    <OutputPath>bin\release\</OutputPath>
     <DefineConstants>TRACE;STANDALONE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\_Bin.Release.35\Exe\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\release\SimpleUpdater.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup />
@@ -75,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defination\FileVerificationLevel.cs" />
+    <Compile Include="Defination\PackageInfo.cs" />
+    <Compile Include="Defination\ServerNodeSelectMethod.cs" />
+    <Compile Include="Defination\UpdateContext.cs" />
+    <Compile Include="Defination\UpdateInfo.cs" />
+    <Compile Include="Defination\UpdateMethod.cs" />
     <Compile Include="Dialogs\CloseApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,11 +101,12 @@
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="HiddenUiUpdateProxy.cs" />
+    <Compile Include="Network\ServerPackageProvider.cs" />
+    <Compile Include="Network\ServerUpdateInfoProvider.cs" />
+    <Compile Include="Network\SpeedTest.cs" />
     <Compile Include="PackageEventArgs.cs" />
     <Compile Include="PackageDownloadException.cs" />
     <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
-    <Compile Include="PackageInfo.cs" />
-    <Compile Include="FileVerificationLevel.cs" />
     <Compile Include="ICCEmbedded\Checksums\Adler32.cs" />
     <Compile Include="ICCEmbedded\Checksums\CRC32.cs" />
     <Compile Include="ICCEmbedded\Checksums\IChecksum.cs" />
@@ -149,6 +156,7 @@
     <Compile Include="Dialogs\ProgramExecuteTimeout.Designer.cs">
       <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
     <Compile Include="RunExternalProcessEventArgs.cs" />
@@ -158,7 +166,6 @@
       <DependentUpon>SR.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Updatable2Attribute.cs" />
-    <Compile Include="UpdateContext.cs" />
     <Compile Include="Wrapper\BackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -237,6 +244,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="appconfig" />
+    <None Include="ifish.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -292,7 +300,6 @@
       <DependentUpon>UpdateFound.cs</DependentUpon>
     </Compile>
     <Compile Include="Updater.cs" />
-    <Compile Include="UpdateInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\05043139.gif" />
@@ -328,7 +335,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\..\key\muyu.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

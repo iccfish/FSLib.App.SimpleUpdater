@@ -7,6 +7,10 @@ using System.Xml.Serialization;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using System.Linq.Expressions;
+	using System.Reflection;
+	using System.Windows.Forms;
+
 	static class ExtensionMethods
 	{
 		/// <summary>
@@ -17,6 +21,32 @@ namespace FSLib.App.SimpleUpdater.Generator
 		public static bool IsNullOrEmpty(this string str)
 		{
 			return string.IsNullOrEmpty(str);
+		}
+
+		/// <summary>
+		/// 添加一个数据源绑定
+		/// </summary>
+		/// <typeparam name="TControl"></typeparam>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="control"></param>
+		/// <param name="source"></param>
+		/// <param name="controlExpression"></param>
+		/// <param name="propertyExpression"></param>
+		public static void AddDataBinding<TControl, TSource, TValue>(this TControl control, TSource source, Expression<Func<TControl, TValue>> controlExpression, Expression<Func<TSource, TValue>> propertyExpression) where TControl : Control
+		{
+			if (control == null || controlExpression == null || propertyExpression == null)
+				return;
+
+			if (controlExpression.Body.NodeType != ExpressionType.MemberAccess || !((controlExpression.Body as MemberExpression).Member is PropertyInfo))
+				return;
+			if (propertyExpression.Body.NodeType != ExpressionType.MemberAccess || !((propertyExpression.Body as MemberExpression).Member is PropertyInfo))
+				return;
+
+			var controlPropertyName = ((controlExpression.Body as MemberExpression).Member as PropertyInfo).Name;
+			var sourcePropertyName = ((propertyExpression.Body as MemberExpression).Member as PropertyInfo).Name;
+
+			control.DataBindings.Add(controlPropertyName, source, sourcePropertyName);
 		}
 
 

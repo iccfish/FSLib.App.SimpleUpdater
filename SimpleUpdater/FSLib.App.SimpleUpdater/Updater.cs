@@ -515,7 +515,6 @@ namespace FSLib.App.SimpleUpdater
 				{
 					throw new ApplicationException("服务器返回了不正确的更新结果");
 				}
-				Trace.TraceInformation("服务器返回信息--->\r\n" + Context.UpdateInfoTextContent);
 			}
 			if (Context.UpdateInfo == null)
 			{
