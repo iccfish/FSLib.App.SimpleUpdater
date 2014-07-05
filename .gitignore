@@ -15,3 +15,5 @@ _Bin.*
 *.pdsyncu
 *.pdsyncu
 *.ini
+_Tools/
+*.DotSettings
