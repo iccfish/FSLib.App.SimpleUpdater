@@ -370,7 +370,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var pkgInfo = new System.IO.FileInfo(pkg);
 				ui.Packages.Add(new PackageInfo()
 				{
-					Version = fdi.ProductVersion,
+					Version = string.IsNullOrEmpty(fdi.ProductVersion) ? "0.0.0.0" : fdi.ProductVersion,
 					VerificationLevel = config.FileVerificationLevel,
 					FilePath = file.Key,
 					FileSize = new FileInfo(file.Value.FullName).Length,
