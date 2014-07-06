@@ -662,7 +662,7 @@ namespace FSLib.App.SimpleUpdater
 					var isNewer = false;
 					if ((pkg.VerificationLevel & FileVerificationLevel.Version) == FileVerificationLevel.Version)
 					{
-						isNewer |= ExtensionMethod.CompareVersion(localPath, new Version(pkg.Version));
+						isNewer |= string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, new Version(pkg.Version));
 					}
 					if ((pkg.VerificationLevel & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
 					{
