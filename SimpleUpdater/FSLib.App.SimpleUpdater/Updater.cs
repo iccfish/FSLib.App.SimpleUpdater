@@ -46,7 +46,10 @@ namespace FSLib.App.SimpleUpdater
 		/// <remarks></remarks>
 		static UpdateFound FoundUpdateDialog
 		{
-			get { return _updateFoundDialog ?? (_updateFoundDialog = new UpdateFound()); }
+			get
+			{
+				return _updateFoundDialog ?? (_updateFoundDialog = new UpdateFound());
+			}
 		}
 
 		/// <summary>
@@ -139,6 +142,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		public Updater()
 		{
+			//ensure update dialog handler;
+			var mh = FoundUpdateDialog.Handle;
+
 			Trace.AutoFlush = true;
 			Context = new UpdateContext();
 			PackagesToUpdate = new List<PackageInfo>();
