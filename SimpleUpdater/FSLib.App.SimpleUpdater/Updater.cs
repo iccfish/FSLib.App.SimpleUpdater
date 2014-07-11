@@ -831,6 +831,8 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns></returns>
 		string ReplaceEnvVar(string v)
 		{
+			if (string.IsNullOrEmpty(v))
+				return v;
 			v = v.Replace("$appdir$", "\"" + Context.ApplicationDirectory + "\"");
 
 			return v;
