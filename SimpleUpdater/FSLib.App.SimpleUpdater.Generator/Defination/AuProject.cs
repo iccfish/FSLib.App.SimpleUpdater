@@ -105,7 +105,7 @@
 			if (string.IsNullOrEmpty(path) || Path.IsPathRooted(path) || string.IsNullOrEmpty(ProjectFolder))
 				return path;
 
-			return Path.Combine(ProjectFolder, path);
+			return Path.GetFullPath(Path.Combine(ProjectFolder, path));
 		}
 
 		/// <summary>
