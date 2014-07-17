@@ -158,7 +158,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				OpenProject(PreloadFile);
 				PreloadFile = null;
 
-				if (UpdatePackageBuilder.Instance.AuProject != null)
+				if (AutoBuild && UpdatePackageBuilder.Instance.AuProject != null)
 				{
 					Create();
 				}
