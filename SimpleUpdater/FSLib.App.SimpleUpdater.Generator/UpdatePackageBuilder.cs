@@ -193,12 +193,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 		}
 
 		/// <summary>
-		/// 创建指定包
+		/// 自动从绑定的信息中绑定信息
 		/// </summary>
-		/// <param name="e"></param>
-		public void Build(Wrapper.RunworkEventArgs e)
+		public void AutoLoadInformations()
 		{
-			e.ReportProgress(0, 0, "正在准备信息...");
+			if (AuProject == null)
+				return;
+
 			//自动取版本号
 			if (!string.IsNullOrEmpty(AuProject.VersionUpdateSrc))
 			{
@@ -209,6 +210,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					UpdateInfo.AppVersion = fdi.ProductVersion;
 				}
 			}
+
 			//自动读取更新记录
 			if (!string.IsNullOrEmpty(AuProject.UpdateContentSrc))
 			{
@@ -218,6 +220,24 @@ namespace FSLib.App.SimpleUpdater.Generator
 					UpdateInfo.Desc = File.ReadAllText(path);
 				}
 			}
+
+			//准备UpdateInfo
+			if (!string.IsNullOrEmpty(AuProject.UpdateRtfNotePath))
+			{
+				var path = AuProject.ParseFullPath(AuProject.UpdateRtfNotePath);
+				if (File.Exists(path))
+					UpdateInfo.RtfUpdateNote = Convert.ToBase64String(ExtensionMethods.CompressBuffer(System.IO.File.ReadAllBytes(path)));
+			}
+		}
+
+		/// <summary>
+		/// 创建指定包
+		/// </summary>
+		/// <param name="e"></param>
+		public void Build(Wrapper.RunworkEventArgs e)
+		{
+			e.ReportProgress(0, 0, "正在准备信息...");
+			AutoLoadInformations();
 
 			UpdateInfo ui = null;
 			using (var ms = new MemoryStream())
@@ -233,13 +253,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 			Result = new Dictionary<string, string>();
 			BuildPackages(e, ui);
 
-			//准备UpdateInfo
-			if (!string.IsNullOrEmpty(AuProject.UpdateRtfNotePath))
-			{
-				var path = AuProject.ParseFullPath(AuProject.UpdateRtfNotePath);
-				if (File.Exists(path))
-					ui.RtfUpdateNote = Convert.ToBase64String(ExtensionMethods.CompressBuffer(System.IO.File.ReadAllBytes(path)));
-			}
 
 			//保存信息文件
 			var xmlPath = GetXmlFilePath(false);

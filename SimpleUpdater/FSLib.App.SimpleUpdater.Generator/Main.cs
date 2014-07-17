@@ -481,6 +481,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					txtTimeout.Text = u.ExecuteTimeout.ToString();
 			};
 			txtTimeout.Text = ui.ExecuteTimeout.ToString();
+			UpdatePackageBuilder.Instance.AutoLoadInformations();
 		}
 
 
