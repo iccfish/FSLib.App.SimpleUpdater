@@ -207,13 +207,27 @@ namespace FSLib.App.SimpleUpdater.Generator
 			};
 			btnBind.Click += (s, e) =>
 			{
-				if (_bindVersionFileDialog.ShowDialog() == DialogResult.OK)
-					UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc = _bindVersionFileDialog.FileName;
+				if (string.IsNullOrEmpty(UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc))
+				{
+					if (_bindVersionFileDialog.ShowDialog() == DialogResult.OK)
+						UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc = _bindVersionFileDialog.FileName;
+				}
+				else
+				{
+					UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc = null;
+				}
 			};
 			lnkBindDescToFile.Click += (s, e) =>
 			{
-				if (_bindDescFile.ShowDialog() == DialogResult.OK)
-					UpdatePackageBuilder.Instance.AuProject.UpdateContentSrc = _bindDescFile.FileName;
+				if (string.IsNullOrEmpty(UpdatePackageBuilder.Instance.AuProject.UpdateContentSrc))
+				{
+					if (_bindDescFile.ShowDialog() == DialogResult.OK)
+						UpdatePackageBuilder.Instance.AuProject.UpdateContentSrc = _bindDescFile.FileName;
+				}
+				else
+				{
+					UpdatePackageBuilder.Instance.AuProject.UpdateContentSrc = null;
+				}
 			};
 		}
 
@@ -441,7 +455,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			filePreExecute.AddDataBinding(project, s => s.RootPath, s => s.ApplicationDirectory);
 			btnBind.Text = string.IsNullOrEmpty(project.VersionUpdateSrc) ? "绑定" : "取消绑定";
 			txtAppVersion.Enabled = string.IsNullOrEmpty(project.VersionUpdateSrc);
-			lnkBindDescToFile.Text = string.IsNullOrEmpty(project.UpdateContentSrc) ? "绑定到文件" : "取消绑定";
+			lnkBindDescToFile.Text = string.IsNullOrEmpty(project.UpdateContentSrc) ? "绑定到文件" : "已绑定（" + project.UpdateContentSrc + "），点击取消绑定";
 			txtDesc.Enabled = string.IsNullOrEmpty(project.UpdateContentSrc);
 
 			var ui = UpdatePackageBuilder.Instance.AuProject.UpdateInfo;
