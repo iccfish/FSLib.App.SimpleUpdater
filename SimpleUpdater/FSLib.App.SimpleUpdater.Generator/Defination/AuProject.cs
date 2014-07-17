@@ -166,7 +166,7 @@
 			if (startIndex == 0)
 				return path;
 
-			if (ps1.Length == startIndex)
+			if (ps1.Length == startIndex && ps2.Length <= startIndex)
 				return ".\\";
 
 			return string.Join(Path.DirectorySeparatorChar.ToString(), Enumerable.Repeat("..", ps1.Length - startIndex).Concat(ps2.Skip(startIndex)).ToArray());

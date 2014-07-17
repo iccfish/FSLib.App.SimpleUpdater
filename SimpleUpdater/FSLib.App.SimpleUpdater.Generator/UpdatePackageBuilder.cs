@@ -172,7 +172,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 					foreach (var f in fileGroups[s])
 					{
-						e.ReportProgress(e.Progress.TaskCount, e.Progress.TaskProgress + 1, string.Format(title, f.Key));
+						if (e != null)
+							e.ReportProgress(e.Progress.TaskCount, e.Progress.TaskProgress + 1, string.Format(title, f.Key));
 
 						var ent = entryFactory.MakeFileEntry(f.Key);
 						ent.DateTime = f.Value.LastWriteTime;
@@ -312,20 +313,21 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				throw new ApplicationException("无法扫描来源目录", ex);
 			}
-			e.Progress.TaskCount = allfiles.Length;
 
 			//生成映射，排除忽略列表
 			e.ReportProgress(0, 0, "正在准备文件列表...");
 			var projectItems = AuProject.Files.ToDictionary(s => s.Path, StringComparer.OrdinalIgnoreCase);
-			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore).ToArray();
+			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s))
+				.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore))
+				.ToArray();
 
 			//古典版的安装包？
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
 			{
-				e.ReportProgress(0, 0, "正在创建兼容模式升级包...");
 				var mainPkgId = GetPackageName("main") + ".zip";
-				Result.Add(mainPkgId, "兼容升级模式（或未开启增量更新时）的升级包文件");
 				var file = System.IO.Path.Combine(targetDir, mainPkgId);
+				Result.Add(mainPkgId, "兼容升级模式（或未开启增量更新时）的升级包文件");
+				e.Progress.TaskCount = targetfiles.Length;
 				CreateZip("正在生成兼容版升级包，正在压缩 {0}", file, ui.PackagePassword, e, targetfiles);
 
 				var fileInfo = new System.IO.FileInfo(file);
@@ -339,12 +341,14 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//生成主文件包
 			e.ReportProgress(targetfiles.Length, 0, "");
 			ui.Packages = new List<PackageInfo>();
-			var mainFiles = targetfiles.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod == UpdateMethod.Always) || projectItems[s.Key].UpdateMethod == UpdateMethod.Always).ToArray();
+			var mainFiles = targetfiles
+				.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod == UpdateMethod.Always) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod == UpdateMethod.Always))
+				.ToArray();
 			if (mainFiles.Length > 0)
 			{
 				var mainPkgId = GetPackageName("alwaysintall") + ".zip";
-
 				var pkgName = Path.Combine(targetDir, mainPkgId);
+				e.Progress.TaskCount = mainFiles.Length;
 				CreateZip("正在生成全局升级包，正在压缩 {0}", pkgName, ui.PackagePassword, e, mainFiles);
 				Result.Add(mainPkgId, "全局升级包，包含必须更新的文件");
 
@@ -366,11 +370,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 
 			//针对单个文件生成包
+			e.Progress.TaskCount = targetfiles.Length;
+			e.Progress.TaskProgress = 0;
 			foreach (var file in targetfiles)
 			{
-				if (projectItems[file.Key].UpdateMethod == UpdateMethod.Always)
-					continue;
-
 				ProjectItem config;
 				if (!projectItems.ContainsKey(file.Key))
 				{
@@ -387,15 +390,14 @@ namespace FSLib.App.SimpleUpdater.Generator
 					config = projectItems[file.Key];
 				}
 
-				if (!projectItems.ContainsKey(file.Key) || projectItems[file.Key].UpdateMethod == UpdateMethod.Always) continue;
-
 				//file info
 				var fdi = System.Diagnostics.FileVersionInfo.GetVersionInfo(file.Value.FullName);
 				//var pkgFileName = file.Key.Replace("\\", "_").Replace(".", "_") + ".zip";
 				var pkgFileName = GetPackageName(file.Key) + ".zip";
 
 				var pkg = Path.Combine(targetDir, pkgFileName);
-				CreateZip("正在生成增量包 " + file.Key + ", 正在压缩....", pkg, ui.PackagePassword, e, new[] { file });
+				e.ReportProgress(e.Progress.TaskCount, ++e.Progress.TaskProgress, "正在生成增量包 " + file.Key + ", 正在压缩....");
+				CreateZip(null, pkg, ui.PackagePassword, null, new[] { file });
 				Result.Add(pkgFileName, "文件【" + file.Key + "】的增量升级包");
 
 				var pkgInfo = new System.IO.FileInfo(pkg);

@@ -191,7 +191,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			btnBrowserRtf.Click += (s, e) =>
 			{
 				if (ofd.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-				rtfPath.Text = ofd.FileName;
+				UpdatePackageBuilder.Instance.AuProject.UpdateRtfNotePath = ofd.FileName;
 			};
 			btnEditRtf.Click += (s, e) =>
 			{
