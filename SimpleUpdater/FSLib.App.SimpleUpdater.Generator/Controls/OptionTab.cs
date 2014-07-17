@@ -12,6 +12,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
 	using Defination;
 
+	using Dialogs;
+
 	using SimpleUpdater.Defination;
 
 	public partial class OptionTab : UserControl
@@ -33,6 +35,34 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			deleteRules.TextChanged += (s, e) =>
 			{
 				UpdatePackageBuilder.Instance.AuProject.UpdateInfo.DeleteFileLimits = deleteRules.Lines;
+			};
+			rbAlways.CheckedChanged += (s, e) =>
+			{
+				if (rbAlways.Checked)
+					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.Always;
+			};
+			rbIgnore.CheckedChanged += (s, e) =>
+			{
+				if (rbIgnore.Checked)
+					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.Ignore;
+			};
+			rbOnlyNotExist.CheckedChanged += (s, e) =>
+			{
+				if (rbOnlyNotExist.Checked)
+					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.SkipIfExists;
+			};
+			rbVersionCheck.CheckedChanged += (s, e) =>
+			{
+				if (rbVersionCheck.Checked)
+				{
+					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.VersionCompare;
+
+					using (var dlg = new SelectVerificationLevel())
+					{
+						if (dlg.ShowDialog() == DialogResult.OK)
+							UpdatePackageBuilder.Instance.AuProject.DefaultFileVerificationLevel = dlg.FileVerificationLevel;
+					}
+				}
 			};
 
 			Load += OptionTab_Load;
@@ -75,7 +105,40 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 			txtPackagePassword.AddDataBinding(ui, s => s.Text, s => s.PackagePassword);
 			requiredMinVersion.AddDataBinding(ui, s => s.Text, s => s.RequiredMinVersion);
+			ui.PropertyChanged += (s, e) =>
+			{
+				if (e.PropertyName == "DefaultUpdateMethod" || e.PropertyName == "DefaultFileVerificationLevel")
+					RebindDefaultUpdateMethodInfo(s as AuProject);
+			};
 
+			RebindDefaultUpdateMethodInfo(project);
+		}
+
+		/// <summary>
+		/// 重新绑定数据
+		/// </summary>
+		/// <param name="project"></param>
+		void RebindDefaultUpdateMethodInfo(AuProject project)
+		{
+
+			switch (project.DefaultUpdateMethod)
+			{
+				case UpdateMethod.Always:
+					rbAlways.Checked = true;
+					break;
+				case UpdateMethod.VersionCompare:
+					rbVersionCheck.Checked = true;
+					break;
+				case UpdateMethod.SkipIfExists:
+					rbOnlyNotExist.Checked = true;
+					break;
+				case UpdateMethod.Ignore:
+					rbIgnore.Checked = true;
+					break;
+				default:
+					break;
+			}
+			lblCheckTypeDesc.Text = project.DefaultUpdateMethod == UpdateMethod.VersionCompare ? project.DefaultFileVerificationLevel.ToDisplayString() : "点击选项时选择比较类型";
 		}
 
 	}

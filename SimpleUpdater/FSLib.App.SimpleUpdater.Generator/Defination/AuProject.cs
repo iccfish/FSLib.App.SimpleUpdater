@@ -29,6 +29,8 @@
 			EnableIncreaseUpdate = true;
 			CreateCompatiblePackage = true;
 			CompressPackage = true;
+			DefaultFileVerificationLevel = FileVerificationLevel.Hash;
+			DefaultUpdateMethod = UpdateMethod.VersionCompare;
 		}
 
 		#region 事件区域
@@ -63,6 +65,36 @@
 					return;
 				_updateInfo = value;
 				OnPropertyChanged("UpdateInfo");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置默认的文件校验等级
+		/// </summary>
+		public FileVerificationLevel DefaultFileVerificationLevel
+		{
+			get { return _defaultFileVerificationLevel; }
+			set
+			{
+				if (value == _defaultFileVerificationLevel)
+					return;
+				_defaultFileVerificationLevel = value;
+				OnPropertyChanged("DefaultFileVerificationLevel");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置默认的更新模式
+		/// </summary>
+		public FSLib.App.SimpleUpdater.Defination.UpdateMethod DefaultUpdateMethod
+		{
+			get { return _defaultUpdateMethod; }
+			set
+			{
+				if (value == _defaultUpdateMethod)
+					return;
+				_defaultUpdateMethod = value;
+				OnPropertyChanged("DefaultUpdateMethod");
 			}
 		}
 
@@ -402,6 +434,8 @@
 		List<ProjectItem> _files;
 		string _pkgPwd;
 		string _updateContentSrc;
+		FileVerificationLevel _defaultFileVerificationLevel;
+		UpdateMethod _defaultUpdateMethod;
 
 		/// <summary>
 		/// 尝试加载升级包信息

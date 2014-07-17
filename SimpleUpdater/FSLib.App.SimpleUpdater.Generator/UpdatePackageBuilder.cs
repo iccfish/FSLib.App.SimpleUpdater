@@ -317,7 +317,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//生成映射，排除忽略列表
 			e.ReportProgress(0, 0, "正在准备文件列表...");
 			var projectItems = AuProject.Files.ToDictionary(s => s.Path, StringComparer.OrdinalIgnoreCase);
-			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => !projectItems.ContainsKey(s.Key) || projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore).ToArray();
+			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore).ToArray();
 
 			//古典版的安装包？
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
@@ -339,7 +339,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//生成主文件包
 			e.ReportProgress(targetfiles.Length, 0, "");
 			ui.Packages = new List<PackageInfo>();
-			var mainFiles = targetfiles.Where(s => !projectItems.ContainsKey(s.Key) || projectItems[s.Key].UpdateMethod == UpdateMethod.Always).ToArray();
+			var mainFiles = targetfiles.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod == UpdateMethod.Always) || projectItems[s.Key].UpdateMethod == UpdateMethod.Always).ToArray();
 			if (mainFiles.Length > 0)
 			{
 				var mainPkgId = GetPackageName("alwaysintall") + ".zip";
@@ -368,8 +368,26 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//针对单个文件生成包
 			foreach (var file in targetfiles)
 			{
+				if (projectItems[file.Key].UpdateMethod == UpdateMethod.Always)
+					continue;
+
+				ProjectItem config;
+				if (!projectItems.ContainsKey(file.Key))
+				{
+					if (AuProject.DefaultUpdateMethod == UpdateMethod.Always || AuProject.DefaultUpdateMethod == UpdateMethod.Ignore)
+						continue;
+					config = new ProjectItem()
+					{
+						UpdateMethod = AuProject.DefaultUpdateMethod,
+						FileVerificationLevel = AuProject.DefaultFileVerificationLevel
+					};
+				}
+				else
+				{
+					config = projectItems[file.Key];
+				}
+
 				if (!projectItems.ContainsKey(file.Key) || projectItems[file.Key].UpdateMethod == UpdateMethod.Always) continue;
-				var config = projectItems[file.Key];
 
 				//file info
 				var fdi = System.Diagnostics.FileVersionInfo.GetVersionInfo(file.Value.FullName);

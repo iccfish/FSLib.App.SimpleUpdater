@@ -42,15 +42,24 @@
 			this.chkUseIncreaseUpdate = new System.Windows.Forms.CheckBox();
 			this.chkCreateCompatiblePackage = new System.Windows.Forms.CheckBox();
 			this.chkCompressUpdateInfo = new System.Windows.Forms.CheckBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.lblCheckTypeDesc = new System.Windows.Forms.Label();
+			this.rbVersionCheck = new System.Windows.Forms.RadioButton();
+			this.rbOnlyNotExist = new System.Windows.Forms.RadioButton();
+			this.rbIgnore = new System.Windows.Forms.RadioButton();
+			this.rbAlways = new System.Windows.Forms.RadioButton();
 			this.gpSetDeleteSyntax.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label1.Location = new System.Drawing.Point(3, 173);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(113, 12);
+			this.label1.Size = new System.Drawing.Size(122, 12);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "更新时删除原始文件";
 			// 
@@ -62,7 +71,7 @@
             "仅覆盖, 不主动删除",
             "清空原程序目录",
             "仅删除指定文件和目录"});
-			this.deletePreviousFileMode.Location = new System.Drawing.Point(122, 169);
+			this.deletePreviousFileMode.Location = new System.Drawing.Point(150, 169);
 			this.deletePreviousFileMode.Name = "deletePreviousFileMode";
 			this.deletePreviousFileMode.Size = new System.Drawing.Size(218, 20);
 			this.deletePreviousFileMode.TabIndex = 1;
@@ -98,16 +107,17 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label8.Location = new System.Drawing.Point(5, 10);
+			this.label8.Location = new System.Drawing.Point(5, 14);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(113, 12);
+			this.label8.Size = new System.Drawing.Size(122, 12);
 			this.label8.TabIndex = 5;
 			this.label8.Text = "支持更新的最低版本";
 			// 
 			// requiredMinVersion
 			// 
-			this.requiredMinVersion.Location = new System.Drawing.Point(122, 7);
+			this.requiredMinVersion.Location = new System.Drawing.Point(133, 11);
 			this.requiredMinVersion.Name = "requiredMinVersion";
 			this.requiredMinVersion.Size = new System.Drawing.Size(117, 21);
 			this.requiredMinVersion.TabIndex = 6;
@@ -116,10 +126,11 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label3.Location = new System.Drawing.Point(251, 13);
+			this.label3.Location = new System.Drawing.Point(266, 14);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(89, 12);
+			this.label3.Size = new System.Drawing.Size(96, 12);
 			this.label3.TabIndex = 7;
 			this.label3.Text = "升级文件包密码";
 			// 
@@ -176,10 +187,85 @@
     "息包』，否则2.0.0.0之前的自动升级客户端将无法执行升级。";
 			this.chkCompressUpdateInfo.UseVisualStyleBackColor = true;
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label4.Location = new System.Drawing.Point(5, 125);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(135, 12);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "默认文件检测更新模式";
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.lblCheckTypeDesc);
+			this.panel1.Controls.Add(this.rbVersionCheck);
+			this.panel1.Controls.Add(this.rbOnlyNotExist);
+			this.panel1.Controls.Add(this.rbIgnore);
+			this.panel1.Controls.Add(this.rbAlways);
+			this.panel1.Location = new System.Drawing.Point(153, 113);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(552, 37);
+			this.panel1.TabIndex = 11;
+			// 
+			// lblCheckTypeDesc
+			// 
+			this.lblCheckTypeDesc.AutoSize = true;
+			this.lblCheckTypeDesc.Location = new System.Drawing.Point(378, 12);
+			this.lblCheckTypeDesc.Name = "lblCheckTypeDesc";
+			this.lblCheckTypeDesc.Size = new System.Drawing.Size(137, 12);
+			this.lblCheckTypeDesc.TabIndex = 1;
+			this.lblCheckTypeDesc.Text = "点击选项时选择比较类型";
+			// 
+			// rbVersionCheck
+			// 
+			this.rbVersionCheck.AutoSize = true;
+			this.rbVersionCheck.Checked = true;
+			this.rbVersionCheck.Location = new System.Drawing.Point(277, 10);
+			this.rbVersionCheck.Name = "rbVersionCheck";
+			this.rbVersionCheck.Size = new System.Drawing.Size(95, 16);
+			this.rbVersionCheck.TabIndex = 0;
+			this.rbVersionCheck.TabStop = true;
+			this.rbVersionCheck.Text = "比较版本更新";
+			this.rbVersionCheck.UseVisualStyleBackColor = true;
+			// 
+			// rbOnlyNotExist
+			// 
+			this.rbOnlyNotExist.AutoSize = true;
+			this.rbOnlyNotExist.Location = new System.Drawing.Point(169, 10);
+			this.rbOnlyNotExist.Name = "rbOnlyNotExist";
+			this.rbOnlyNotExist.Size = new System.Drawing.Size(95, 16);
+			this.rbOnlyNotExist.TabIndex = 0;
+			this.rbOnlyNotExist.Text = "不存在时更新";
+			this.rbOnlyNotExist.UseVisualStyleBackColor = true;
+			// 
+			// rbIgnore
+			// 
+			this.rbIgnore.AutoSize = true;
+			this.rbIgnore.Location = new System.Drawing.Point(15, 10);
+			this.rbIgnore.Name = "rbIgnore";
+			this.rbIgnore.Size = new System.Drawing.Size(71, 16);
+			this.rbIgnore.TabIndex = 0;
+			this.rbIgnore.Text = "忽略更新";
+			this.rbIgnore.UseVisualStyleBackColor = true;
+			// 
+			// rbAlways
+			// 
+			this.rbAlways.AutoSize = true;
+			this.rbAlways.Location = new System.Drawing.Point(92, 10);
+			this.rbAlways.Name = "rbAlways";
+			this.rbAlways.Size = new System.Drawing.Size(71, 16);
+			this.rbAlways.TabIndex = 0;
+			this.rbAlways.Text = "始终更新";
+			this.rbAlways.UseVisualStyleBackColor = true;
+			// 
 			// OptionTab
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.chkCreateCompatiblePackage);
 			this.Controls.Add(this.chkCompressUpdateInfo);
 			this.Controls.Add(this.chkUseIncreaseUpdate);
@@ -194,6 +280,8 @@
 			this.Size = new System.Drawing.Size(732, 367);
 			this.gpSetDeleteSyntax.ResumeLayout(false);
 			this.gpSetDeleteSyntax.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -214,5 +302,12 @@
 		private System.Windows.Forms.CheckBox chkUseIncreaseUpdate;
 		private System.Windows.Forms.CheckBox chkCreateCompatiblePackage;
 		private System.Windows.Forms.CheckBox chkCompressUpdateInfo;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label lblCheckTypeDesc;
+		private System.Windows.Forms.RadioButton rbVersionCheck;
+		private System.Windows.Forms.RadioButton rbOnlyNotExist;
+		private System.Windows.Forms.RadioButton rbAlways;
+		private System.Windows.Forms.RadioButton rbIgnore;
 	}
 }

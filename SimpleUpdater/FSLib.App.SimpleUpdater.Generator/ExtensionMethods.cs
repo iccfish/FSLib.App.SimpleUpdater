@@ -11,6 +11,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 	using System.Reflection;
 	using System.Windows.Forms;
 
+	using SimpleUpdater.Defination;
+
 	static class ExtensionMethods
 	{
 		/// <summary>
@@ -231,7 +233,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <returns></returns>
 		public static bool IsCompressedXmlFile(string fileName)
 		{
-			using (var fs=new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+			using (var fs = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
 			{
 				var buffer = new byte[4];
 				if (fs.Read(buffer, 0, buffer.Length) != buffer.Length) return false;
@@ -258,6 +260,31 @@ namespace FSLib.App.SimpleUpdater.Generator
 		public static Stream DecompressFile(string fileName)
 		{
 			return new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read).Decompress();
+		}
+
+		/// <summary>
+		/// 获得显示的字符串
+		/// </summary>
+		/// <param name="fv"></param>
+		/// <returns></returns>
+		public static string ToDisplayString(this FileVerificationLevel fv)
+		{
+			var fvd = new List<string>();
+
+			if ((fv & FileVerificationLevel.Version) == FileVerificationLevel.Version)
+			{
+				fvd.Add("版本");
+			}
+			if ((fv & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
+			{
+				fvd.Add("MD5");
+			}
+			if ((fv & FileVerificationLevel.Size) == FileVerificationLevel.Size)
+			{
+				fvd.Add("大小");
+			}
+
+			return string.Join(";", fvd.ToArray());
 		}
 	}
 }

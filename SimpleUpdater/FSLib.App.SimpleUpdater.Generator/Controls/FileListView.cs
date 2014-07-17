@@ -138,7 +138,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		public UpdateMethod GetFileUpdateMethod(string path)
 		{
 			if (_updateMethods.ContainsKey(path)) return _updateMethods[path];
-			return UpdateMethod.Always;
+			return UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod;
 		}
 
 		/// <summary> 获得指定路径的文件更新类型 </summary>
@@ -146,7 +146,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		/// <returns></returns>
 		public FileVerificationLevel GetFileVerificationLevel(string path)
 		{
-			return _verifyLevels.ContainsKey(path) ? _verifyLevels[path] : FileVerificationLevel.Size & FileVerificationLevel.Hash & FileVerificationLevel.Version;
+			return _verifyLevels.ContainsKey(path) ? _verifyLevels[path] : UpdatePackageBuilder.Instance.AuProject.DefaultFileVerificationLevel;
 		}
 
 		private void InitializeComponent()
@@ -410,20 +410,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			}
 
 			var fv = GetFileVerificationLevel(item.Key);
-			var fvd = "";
-
-			if ((fv & FileVerificationLevel.Version) == FileVerificationLevel.Version)
-			{
-				fvd = "版本";
-			}
-			if ((fv & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
-			{
-				fvd += ", MD5";
-			}
-			if ((fv & FileVerificationLevel.Size) == FileVerificationLevel.Size)
-			{
-				fvd += ", 大小";
-			}
+			var fvd = fv.ToDisplayString();
 
 			lvitem.SubItems[3].Text = fvd.Trim(new char[] { ',', ' ' });
 		}
