@@ -287,14 +287,18 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 
 			if (string.IsNullOrEmpty(this.txtAppName.Text)) { epp.SetError(this.txtAppName, "请输入应用程序名"); return; }
-			try
+
+			if (string.IsNullOrEmpty(project.VersionUpdateSrc))
 			{
-				new Version(this.txtAppVersion.Text);
-			}
-			catch (Exception)
-			{
-				epp.SetError(this.txtAppVersion, "请输入版本号");
-				return;
+				try
+				{
+					new Version(this.txtAppVersion.Text);
+				}
+				catch (Exception)
+				{
+					epp.SetError(this.txtAppVersion, "请输入版本号");
+					return;
+				}
 			}
 			if (!System.IO.Directory.Exists(project.ParseFullPath(project.ApplicationDirectory)))
 			{
