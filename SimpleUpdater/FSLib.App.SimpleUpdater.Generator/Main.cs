@@ -153,6 +153,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 		#region 界面响应函数
 		void Main_Load(object sender, EventArgs e)
 		{
+			Text += System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
+
 			if (!string.IsNullOrEmpty(PreloadFile))
 			{
 				OpenProject(PreloadFile);

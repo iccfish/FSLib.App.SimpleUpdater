@@ -868,7 +868,7 @@
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -889,7 +889,7 @@
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -1377,7 +1377,7 @@
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1428,7 +1428,7 @@
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -1479,7 +1479,7 @@
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -1527,7 +1527,7 @@
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.3.9.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.3.5320.39040, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -1873,7 +1873,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>升级包创建工具 - BY iFish, Version 2.3.9.0 Build 20140718</value>
+    <value>升级包创建工具 - BY iFish, Version </value>
   </data>
   <data name="&gt;&gt;epp.Name" xml:space="preserve">
     <value>epp</value>
