@@ -12,6 +12,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 	using SimpleUpdater.Defination;
 
+	using Wrapper;
+
 	class UpdatePackageBuilder
 	{
 		/// <summary>
@@ -207,8 +209,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var path = AuProject.ParseFullPath(AuProject.VersionUpdateSrc);
 				if (File.Exists(path))
 				{
-					var fdi = System.Diagnostics.FileVersionInfo.GetVersionInfo(path);
-					UpdateInfo.AppVersion = fdi.ProductVersion;
+					UpdateInfo.AppVersion = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(path)).ToString();
 				}
 			}
 
@@ -403,7 +404,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var pkgInfo = new System.IO.FileInfo(pkg);
 				ui.Packages.Add(new PackageInfo()
 				{
-					Version = string.IsNullOrEmpty(fdi.ProductVersion) ? "0.0.0.0" :  Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
+					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" :  Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
 					VerificationLevel = config.FileVerificationLevel,
 					FilePath = file.Key,
 					FileSize = new FileInfo(file.Value.FullName).Length,
