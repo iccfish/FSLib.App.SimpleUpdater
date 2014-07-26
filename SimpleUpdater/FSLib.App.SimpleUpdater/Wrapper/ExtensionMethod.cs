@@ -258,12 +258,12 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="filePath" type="string"></param>
 		/// <param name="version" type="System.Version"></param>
 		/// <returns> bool </returns>
-		public static bool CompareVersion(string filePath, Version version)
+		public static bool CompareVersion(string filePath, string version)
 		{
 			var fv = System.Diagnostics.FileVersionInfo.GetVersionInfo(filePath);
 			if (fv == null) throw new ApplicationException("无法获得文件 " + filePath + " 的版本信息");
 
-			return version > ConvertVersionInfo(fv);
+			return version != ConvertVersionInfo(fv).ToString();
 		}
 
 

@@ -29,8 +29,7 @@ namespace FSLib.App.SimpleUpdater
 		static Updater()
 		{
 			var ass = System.Reflection.Assembly.GetExecutingAssembly();
-			var fileversion = System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location);
-			Version = fileversion.ProductVersion;
+			Version = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
 		}
 
 		static Updater _instance;
@@ -668,7 +667,7 @@ namespace FSLib.App.SimpleUpdater
 					var isNewer = false;
 					if ((pkg.VerificationLevel & FileVerificationLevel.Version) == FileVerificationLevel.Version)
 					{
-						isNewer |= string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, new Version(pkg.Version));
+						isNewer |= string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version);
 					}
 					if ((pkg.VerificationLevel & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
 					{
