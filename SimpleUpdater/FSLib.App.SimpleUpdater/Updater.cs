@@ -29,8 +29,7 @@ namespace FSLib.App.SimpleUpdater
 		static Updater()
 		{
 			var ass = System.Reflection.Assembly.GetExecutingAssembly();
-			var fileversion = System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location);
-			Version = fileversion.ProductVersion;
+			Version = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
 		}
 
 		static Updater _instance;
