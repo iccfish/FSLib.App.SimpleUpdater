@@ -389,6 +389,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 				else
 				{
 					config = projectItems[file.Key];
+					//fix always pack issue
+					if (config.UpdateMethod != UpdateMethod.VersionCompare && config.UpdateMethod != UpdateMethod.SkipIfExists)
+						continue;
 				}
 
 				//file info
@@ -404,7 +407,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var pkgInfo = new System.IO.FileInfo(pkg);
 				ui.Packages.Add(new PackageInfo()
 				{
-					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" :  Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
+					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
 					VerificationLevel = config.FileVerificationLevel,
 					FilePath = file.Key,
 					FileSize = new FileInfo(file.Value.FullName).Length,
