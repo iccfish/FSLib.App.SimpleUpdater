@@ -530,7 +530,6 @@ namespace FSLib.App.SimpleUpdater
 					throw new ApplicationException("服务器返回了不正确的更新结果");
 				}
 			}
-
 			if (Context.UpdateInfo == null)
 			{
 				if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
@@ -540,11 +539,18 @@ namespace FSLib.App.SimpleUpdater
 				}
 				Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent);
 			}
-
 			if (Context.UpdateInfo == null)
 			{
 				throw new ApplicationException("未能成功加载升级信息");
 			}
+			//设置必须的属性
+			if (Context.UpdateInfo.MustUpdate)
+			{
+				Context.AutoKillProcesses = true;
+				Context.AutoEndProcessesWithinAppDir = true;
+				Context.ForceUpdate = true;
+			}
+
 			//判断升级
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.RequiredMinVersion) && Context.CurrentVersion < new Version(Context.UpdateInfo.RequiredMinVersion))
 			{
@@ -554,15 +560,39 @@ namespace FSLib.App.SimpleUpdater
 			{
 				Context.HasUpdate = new Version(Context.UpdateInfo.AppVersion) > Context.CurrentVersion;
 			}
-			//设置必须的属性
-			if (Context.UpdateInfo.MustUpdate)
-			{
-				Context.AutoKillProcesses = true;
-				Context.AutoEndProcessesWithinAppDir = true;
-				Context.ForceUpdate = true;
-			}
-		}
 
+			if (Context.HasUpdate)
+			{
+
+				//判断要升级的包
+				if (PackagesToUpdate == null || PackagesToUpdate.Count == 0)
+				{
+					var pkgList = Context.UpdatePackageListPath;
+					Trace.TraceInformation("外部升级包列表：{0}", pkgList);
+
+					if (System.IO.File.Exists(pkgList))
+					{
+						PackagesToUpdate = XMLSerializeHelper.XmlDeserializeFromString<List<PackageInfo>>(System.IO.File.ReadAllText(pkgList));
+						PackagesToUpdate.ForEach(s => s.Context = Context);
+					}
+					else
+					{
+						GatheringDownloadPackages(e);
+					}
+
+					var preserveFileList = Context.PreserveFileListPath;
+					Trace.TraceInformation("外部文件保留列表：{0}", preserveFileList);
+					if (System.IO.File.Exists(preserveFileList))
+					{
+						var list = XMLSerializeHelper.XmlDeserializeFromString<List<string>>(System.IO.File.ReadAllText(preserveFileList));
+						list.ForEach(s => FileInstaller.PreservedFiles.Add(s, null));
+					}
+				}
+			}
+
+			//如果没有要升级的包？虽然很奇怪，但依然当作不需要升级
+			Context.HasUpdate &= PackagesToUpdate.Count > 0;
+		}
 		#region 确定要下载的包
 
 		/// <summary> 确定需要下载的包 </summary>
@@ -590,8 +620,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary> 生成下载列表 </summary>
 		void GatheringDownloadPackages(RunworkEventArgs rt)
 		{
-			PackagesToUpdate.Clear();
-			FileInstaller.PreservedFiles.Clear();
+			if (PackagesToUpdate.Count > 0) return;
 
 			Trace.TraceInformation("正在确定需要下载的升级包");
 			rt.PostEvent(OnGatheringPackages);
@@ -1304,13 +1333,6 @@ namespace FSLib.App.SimpleUpdater
 		{
 			DownloadUpdateInfoInternal(sender, e);
 
-			if (!Context.HasUpdate)
-				return;
-
-
-			//判断要升级的包
-			GatheringDownloadPackages(e);
-
 			//下载升级包。下载完成的时候校验也就完成了
 			if (!DownloadPackages(e)) return;
 
@@ -1449,7 +1471,10 @@ namespace FSLib.App.SimpleUpdater
 			var updateinfoFile = Context.UpdateInfoFilePath;
 			System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(updateinfoFile));
 			System.IO.File.WriteAllText(updateinfoFile, Context.UpdateInfoTextContent, System.Text.Encoding.UTF8);
-	
+			//写入包列表
+			XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate, Context.UpdatePackageListPath);
+			XMLSerializeHelper.XmlSerilizeToFile(ExtensionMethod.ToList(FileInstaller.PreservedFiles.Keys), Context.PreserveFileListPath);
+
 			//启动外部程序
 			var runningAssembly = System.Reflection.Assembly.GetExecutingAssembly();
 			var file = runningAssembly.Location;

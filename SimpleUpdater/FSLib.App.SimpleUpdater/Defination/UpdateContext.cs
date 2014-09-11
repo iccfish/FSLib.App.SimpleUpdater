@@ -223,6 +223,28 @@
 			get { return _updateInfoFilePath ?? (_updateInfoFilePath = System.IO.Path.Combine(UpdateTempRoot, "update.xml")); }
 		}
 
+
+		string _updatePackageListPath;
+
+		/// <summary> 获得当前要下载的包文件信息保存的路径 </summary>
+		/// <value></value>
+		/// <remarks></remarks>
+		public string UpdatePackageListPath
+		{
+			get { return _updatePackageListPath ?? (_updatePackageListPath = System.IO.Path.Combine(UpdateTempRoot, "packages.xml")); }
+		}
+
+		string _preserveFileListPath;
+
+		/// <summary> 获得当前要保留的文件信息保存的路径 </summary>
+		/// <value></value>
+		/// <remarks></remarks>
+		public string PreserveFileListPath
+		{
+			get { return _preserveFileListPath ?? (_preserveFileListPath = System.IO.Path.Combine(UpdateTempRoot, "reservefile.xml")); }
+		}
+
+
 		string _updatePackagePath;
 
 		/// <summary> 获得当前下载的包文件目录 </summary>
