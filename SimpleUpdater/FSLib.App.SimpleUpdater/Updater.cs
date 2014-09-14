@@ -479,56 +479,53 @@ namespace FSLib.App.SimpleUpdater
 		/// <exception cref="System.ApplicationException">服务器返回了不正确的更新结果</exception>
 		void DownloadUpdateInfoInternal(object sender, RunworkEventArgs e)
 		{
-			if (!Context.IsUpdateInfoDownloaded)
+			//下载更新信息
+			e.PostEvent(OnDownloadUpdateInfo);
+
+			//下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
+			Exception ex = null;
+			byte[] data = null;
+			var url = Context.RandomUrl(Context.UpdateInfoFileUrl);
+
+			var client = Context.CreateWebClient();
+			client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
+
+			//远程下载。为了支持进度显示，这里必须使用异步下载
+			using (var wHandler = new AutoResetEvent(false))
 			{
-				//下载更新信息
-				e.PostEvent(OnDownloadUpdateInfo);
-
-				//下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
-				Exception ex = null;
-				byte[] data = null;
-				var url = Context.RandomUrl(Context.UpdateInfoFileUrl);
-
-				var client = Context.CreateWebClient();
-				client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
-
-				//远程下载。为了支持进度显示，这里必须使用异步下载
-				using (var wHandler = new AutoResetEvent(false))
-				{
-					client.DownloadDataCompleted += (x, y) =>
-						{
-							ex = y.Error;
-							if (ex == null)
-							{
-								data = y.Result;
-							}
-							wHandler.Set();
-						};
-					Trace.TraceInformation("正在从 " + url + " 下载升级信息");
-					client.DownloadDataAsync(new Uri(url));
-					//等待下载完成
-					wHandler.WaitOne();
-				}
-				Trace.TraceInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
-				if (data != null && data.Length > 0x10)
-				{
-					//不是<xml标记，则执行解压缩
-					if (BitConverter.ToInt32(data, 0) != 0x6D783F3C)
+				client.DownloadDataCompleted += (x, y) =>
 					{
-						Trace.TraceInformation("数据非正常数据, 正在执行解压缩");
-						data = ExtensionMethod.Decompress(data);
-					}
-					Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
-				}
-
-				if (ex != null) throw ex;
-				e.PostEvent(OnDownloadUpdateInfoFinished);
-
-				//是否返回了正确的结果?
-				if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
+						ex = y.Error;
+						if (ex == null)
+						{
+							data = y.Result;
+						}
+						wHandler.Set();
+					};
+				Trace.TraceInformation("正在从 " + url + " 下载升级信息");
+				client.DownloadDataAsync(new Uri(url));
+				//等待下载完成
+				wHandler.WaitOne();
+			}
+			Trace.TraceInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
+			if (data != null && data.Length > 0x10)
+			{
+				//不是<xml标记，则执行解压缩
+				if (BitConverter.ToInt32(data, 0) != 0x6D783F3C)
 				{
-					throw new ApplicationException("服务器返回了不正确的更新结果");
+					Trace.TraceInformation("数据非正常数据, 正在执行解压缩");
+					data = ExtensionMethod.Decompress(data);
 				}
+				Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
+			}
+
+			if (ex != null) throw ex;
+			e.PostEvent(OnDownloadUpdateInfoFinished);
+
+			//是否返回了正确的结果?
+			if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
+			{
+				throw new ApplicationException("服务器返回了不正确的更新结果");
 			}
 			if (Context.UpdateInfo == null)
 			{
