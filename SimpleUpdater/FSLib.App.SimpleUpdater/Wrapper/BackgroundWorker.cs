@@ -32,13 +32,6 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			this.WorkerSupportReportProgress = true;
 			this.WokerSupportCancellation = true;
 			this.WorkerPriority = ThreadPriority.Normal;
-
-			//Init delegates
-			this.callWorkCompleted = (s) => WorkCompleted(this, s as RunworkEventArgs);
-			this.callWorkerProgressChanged = (s) => WorkerProgressChanged(this, s as RunworkEventArgs);
-			this.callWorkerThreadAborted = s => WorkerThreadAborted(this, s as RunworkEventArgs);
-			this.callWorkFailed = s => WorkFailed(this, s as RunworkEventArgs);
-			this.callWorkCancelled = s => WorkCancelled(this, s as RunworkEventArgs);
 		}
 		#endregion
 
@@ -72,7 +65,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		{
 			get
 			{
-				return _runworkEventArgs != null && _runworkEventArgs.Thread != null && _runworkEventArgs.Thread.IsAlive;
+				return _operation != null && _runworkEventArgs != null && _runworkEventArgs.Thread != null && _runworkEventArgs.Thread.IsAlive;
 			}
 		}
 
@@ -139,7 +132,6 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// 当工作线程的进度发生变化时触发
 		/// </summary>
 		public event EventHandler<RunworkEventArgs> WorkerProgressChanged;
-		SendOrPostCallback callWorkerProgressChanged;
 
 		/// <summary>
 		/// 引发 <see cref="WorkerProgressChanged"/> 事件
@@ -147,17 +139,20 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected virtual void OnWorkerProgressChanged(RunworkEventArgs e)
 		{
-			if (WorkerProgressChanged == null) return;
+			if (!IsBusy)
+				return;
 
-			if (_operation == null) WorkerProgressChanged(this, e);
-			else _operation.Post(callWorkerProgressChanged, e);
+			var handler = WorkerProgressChanged;
+			if (handler == null)
+				return;
+
+			_operation.Post(_ => handler(this, e), null);
 		}
 
 		/// <summary>
 		/// 当工作线程被强行终止时触发
 		/// </summary>
 		public event EventHandler<RunworkEventArgs> WorkerThreadAborted;
-		SendOrPostCallback callWorkerThreadAborted;
 
 		/// <summary>
 		/// 引发 <see cref="WorkerThreadAborted"/> 事件
@@ -165,17 +160,20 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected virtual void OnWorkerThreadAborted(RunworkEventArgs e)
 		{
-			if (WorkerThreadAborted == null) return;
+			if (!IsBusy)
+				return;
 
-			if (_operation == null) WorkerThreadAborted(this, e);
-			else _operation.Post(callWorkerThreadAborted, e);
+			var handler = WorkerThreadAborted;
+			if (handler == null)
+				return;
+
+			_operation.Post(_ => handler(this, e), null);
 		}
 
 		/// <summary>
 		/// 当工作线程失败时触发
 		/// </summary>
 		public event EventHandler<RunworkEventArgs> WorkFailed;
-		SendOrPostCallback callWorkFailed;
 
 		/// <summary>
 		/// 引发 <see cref="WorkFailed"/> 事件
@@ -183,17 +181,21 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected virtual void OnWorkFailed(RunworkEventArgs e)
 		{
-			if (this.WorkFailed == null) return;
+			if (!IsBusy)
+				return;
 
-			if (this._operation == null) WorkFailed(this, e);
-			else this._operation.PostOperationCompleted(callWorkFailed, e);
+			var handler = WorkFailed;
+			if (handler == null)
+				return;
+
+			_operation.PostOperationCompleted(_ => handler(this, e), null);
+			_operation = null;
 		}
 
 		/// <summary>
 		/// 当工作线程完成时触发
 		/// </summary>
 		public event EventHandler<RunworkEventArgs> WorkCompleted;
-		SendOrPostCallback callWorkCompleted;
 
 		/// <summary>
 		/// 引发 <see cref="WorkCompleted"/> 事件
@@ -201,17 +203,21 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected void OnWorkCompleted(RunworkEventArgs e)
 		{
-			if (this.WorkCompleted == null) return;
+			if (!IsBusy)
+				return;
 
-			if (this._operation == null) WorkCompleted(this, e);
-			else this._operation.PostOperationCompleted(callWorkCompleted, e);
+			var handler = WorkCompleted;
+			if (handler == null)
+				return;
+
+			_operation.PostOperationCompleted(_ => handler(this, e), null);
+			_operation = null;
 		}
 
 		/// <summary>
 		/// 当工作任务取消时触发
 		/// </summary>
 		public event EventHandler<RunworkEventArgs> WorkCancelled;
-		SendOrPostCallback callWorkCancelled;
 
 		/// <summary>
 		/// 引发 <see cref="WorkCancelled"/> 事件
@@ -219,10 +225,15 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected void OnWorkCancelled(RunworkEventArgs e)
 		{
-			if (this.WorkCancelled == null) return;
+			if (!IsBusy)
+				return;
 
-			if (this._operation == null) WorkCancelled(this, e);
-			else this._operation.PostOperationCompleted(callWorkCancelled, e);
+			var handler = WorkCancelled;
+			if (handler == null)
+				return;
+
+			_operation.PostOperationCompleted(_ => handler(this, e), null);
+			_operation = null;
 		}
 
 		/// <summary>
@@ -236,9 +247,10 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="e">类型为 <see cref="RunworkEventArgs"/> 的事件参数</param>
 		protected virtual void OnDoWork(RunworkEventArgs e)
 		{
-			if (this.DoWork == null) return;
+			var handler = DoWork;
 
-			DoWork(this, e);
+			if (handler != null)
+				handler(this, e);
 		}
 
 		/// <summary>
@@ -265,6 +277,9 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="arguments"></param>
 		public void RunWorkASync(object arguments)
 		{
+			if (IsBusy || _operation != null)
+				return;
+
 			_operation = AsyncOperationManager.CreateOperation(null);
 			var ts = new Thread(RunWorkAsyncInternal)
 			{
@@ -353,8 +368,10 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="action"></param>
 		public void PostEvent(Action action)
 		{
-			if (!this.IsBusy) return;
-			_operation.Post(new SendOrPostCallback(_ => action()), null);
+			if (!IsBusy)
+				return;
+
+			_operation.Post(_ => action(), null);
 		}
 
 		/// <summary>
@@ -373,7 +390,9 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="target">指向引发事件的源对象</param>
 		public void PostEvent(EventHandler handler, object target)
 		{
-			if (!this.IsBusy || handler == null) return;
+			if (!IsBusy || handler == null)
+				return;
+
 			PostEvent(_ => handler(target, EventArgs.Empty), null);
 		}
 
@@ -386,7 +405,9 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <typeparam name="T">事件数据类型</typeparam>
 		public void PostEvent<T>(EventHandler<T> handler, object target, T eventArg) where T : EventArgs
 		{
-			if (!IsBusy || handler == null) return;
+			if (!IsBusy || handler == null)
+				return;
+
 			PostEvent(_ => handler(target, eventArg), null);
 		}
 
@@ -397,7 +418,9 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		/// <param name="arg">参数</param>
 		public void PostEvent(SendOrPostCallback callback, object arg)
 		{
-			if (!this.IsBusy || callback == null) return;
+			if (!IsBusy || callback == null)
+				return;
+
 			_operation.Post(callback, arg);
 		}
 	}
