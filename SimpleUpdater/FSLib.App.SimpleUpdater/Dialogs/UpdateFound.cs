@@ -4,6 +4,8 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater.Dialogs
 {
+	using System.Diagnostics;
+
 	/// <summary>
 	/// 内置的找到更新对话框，表示找到了更新
 	/// </summary>
@@ -57,12 +59,29 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 					rtf.Text = ui.Desc;
 				}
 				controlContainer.Controls.Add(rtf);
+				rtf.LinkClicked += rtf_LinkClicked;
 			}
 
 			var pkgSize = ExtensionMethod.Sum(Updater.Instance.PackagesToUpdate, s => s.PackageSize);
 			lblSize.Text = string.Format(FSLib.App.SimpleUpdater.SR.UpdateFound_EstimateDownloadSize, (pkgSize == 0 ? "<未知>" : ExtensionMethod.ToSizeDescription(pkgSize)));
 
 			this.lnkSoft.Visible = !string.IsNullOrEmpty(ui.PublishUrl);
+		}
+
+		void rtf_LinkClicked(object sender, LinkClickedEventArgs e)
+		{
+			try
+			{
+				Process.Start(e.LinkText);
+			}
+			catch (Exception ex)
+			{
+				
+			}
+			finally
+			{
+				
+			}
 		}
 
 		protected override void OnShown(EventArgs e)
