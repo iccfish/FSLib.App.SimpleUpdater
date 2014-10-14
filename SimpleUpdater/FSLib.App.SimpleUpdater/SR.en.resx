@@ -117,4 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DonotRunMeDirectly" xml:space="preserve">
+    <value>Oops..I'm using to update, don't run me directly.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MinmumVersionRequired_Desc" xml:space="preserve">
+    <value>To perform a update the minimum version requires {0}, and you have version {1} installed. Please update to latest manually.</value>
+    <comment>MinmumVersionRequired_Desc description</comment>
+  </data>
+  <data name="UpdateFound_EstimateDownloadSize" xml:space="preserve">
+    <value>Established Download Size: {0}</value>
+    <comment>UpdateFound_DownloadSize description</comment>
+  </data>
+  <data name="Updater_AssemblyNotMarkedAsUpdateable" xml:space="preserve">
+    <value>The main assembly not marked as updatable, unable to determine update url.</value>
+  </data>
+  <data name="Updater_ExtractingFile" xml:space="preserve">
+    <value>Decompressing {0}</value>
+    <comment>Updater_ExtractingFile description</comment>
+  </data>
+  <data name="Updater_InstallFileError" xml:space="preserve">
+    <value>Failed to intstall file '{0}' to '{1}', error: {2}</value>
+  </data>
+  <data name="Updater_UnableToCheckUpdate" xml:space="preserve">
+    <value>Unable to check for update, error: {0}</value>
+  </data>
+  <data name="Updater_UpdateCanceledByCloseApp" xml:space="preserve">
+    <value>Update aborted due to unable to close running applications.</value>
+  </data>
+  <data name="UpdatesFound_Tip" xml:space="preserve">
+    <value>Your application version of '{1}' can now upgrade to '{0}', upgrade now?</value>
+    <comment>UpdatesFound_Top description</comment>
+  </data>
 </root>

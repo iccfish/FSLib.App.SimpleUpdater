@@ -68,6 +68,15 @@ namespace FSLib.App.SimpleUpdater
 					Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
 					Delegate.RemoveAll(s.Error, ueEventHandler);
 					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
+
+					if (ui.InvokeRequired)
+					{
+						ui.Invoke(new Action(ui.Close));
+					}
+					else
+					{
+						ui.Close();
+					}
 				});
 				noupdateFoundHandler = (s, e) =>
 				{
@@ -98,15 +107,17 @@ namespace FSLib.App.SimpleUpdater
 
 					if (errorHandler != null)
 					{
-						errorHandler(new Exception("您的客户端版本过低，请手动下载最新版！"));
+						errorHandler(new Exception(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion)));
 					}
 					else
 					{
-						MessageBox.Show("您的客户端版本过低，请手动下载最新版！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
 				};
 				ueEventHandler = (s, e) =>
 				{
+					unscribeAllEvents(s as Updater);
+
 					var err = (s as Updater).Context.Exception;
 					if (errorHandler != null)
 					{
@@ -114,7 +125,7 @@ namespace FSLib.App.SimpleUpdater
 					}
 					else
 					{
-						MessageBox.Show(String.Format("无法检查更新：{0}，请重试。", err.Message), "错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
 				};
 				instance.UpdatesFound += updateFound;

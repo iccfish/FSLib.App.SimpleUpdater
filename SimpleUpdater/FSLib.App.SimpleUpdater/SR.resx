@@ -146,4 +146,10 @@
   <data name="DonotRunMeDirectly" xml:space="preserve">
     <value>我是用来自动更新的，不要直接拿鼠标戳我嘛 -.-</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Updater_UnableToCheckUpdate" xml:space="preserve">
+    <value>无法检查更新，错误：{0}</value>
+  </data>
 </root>
