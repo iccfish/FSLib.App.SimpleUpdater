@@ -84,6 +84,12 @@
     <Compile Include="Dialogs\CloseApp.Designer.cs">
       <DependentUpon>CloseApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\EnsureUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EnsureUpdate.Designer.cs">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,11 +170,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
     <Compile Include="RunExternalProcessEventArgs.cs" />
-    <Compile Include="SR.en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SR.en-US.resx</DependentUpon>
-    </Compile>
     <Compile Include="Updatable2Attribute.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
@@ -185,11 +186,17 @@
     </Compile>
     <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
     <Compile Include="Wrapper\XMLSerializeHelper.cs" />
-    <EmbeddedResource Include="Dialogs\CloseApp.en-US.resx">
+    <EmbeddedResource Include="Dialogs\CloseApp.en.resx">
       <DependentUpon>CloseApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CloseApp.resx">
       <DependentUpon>CloseApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EnsureUpdate.en.resx">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EnsureUpdate.resx">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -209,7 +216,7 @@
     <EmbeddedResource Include="Dialogs\SelfUpdate.resx">
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UpdateFound.en-US.resx">
+    <EmbeddedResource Include="Dialogs\UpdateFound.en.resx">
       <DependentUpon>UpdateFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UpdateFound.resx">
@@ -220,9 +227,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SR.en-US.resx">
+    <EmbeddedResource Include="SR.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SR.en-US.Designer.cs</LastGenOutput>
+      <LastGenOutput>SR.en.Designer.cs</LastGenOutput>
+      <DependentUpon>SR.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -318,6 +326,7 @@
     <None Include="Resources\block_16.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\cou_16_warning.png" />
+    <None Include="Resources\16px_loading_1.gif" />
     <Content Include="更新说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -345,7 +354,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
+      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

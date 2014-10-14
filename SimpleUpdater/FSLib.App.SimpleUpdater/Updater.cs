@@ -6,6 +6,7 @@ using System.Threading;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
+using FSLib.App.SimpleUpdater.Annotations;
 using FSLib.App.SimpleUpdater.Dialogs;
 using FSLib.App.SimpleUpdater.Wrapper;
 
@@ -23,6 +24,110 @@ namespace FSLib.App.SimpleUpdater
 		/// <value></value>
 		/// <remarks></remarks>
 		public UpdateContext Context { get; private set; }
+
+		#region 确认没有更新才启动
+
+		/// <summary>
+		/// 确认是否有更新，再继续后面的操作。
+		/// </summary>
+		/// <typeparam name="T">要显示的UI界面</typeparam>
+		/// <param name="continueAction">没有更新，要求继续处理的委托</param>
+		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
+		/// <param name="errorHandler">检查更新发生错误的委托</param>
+		public static void EnsureNoUpdate(Action continueAction, Func<bool?> updateFoundAction, Action<Exception> errorHandler)
+		{
+			EnsureNoUpdate<EnsureUpdate>(continueAction, updateFoundAction, errorHandler, null);
+		}
+
+		/// <summary>
+		/// 确认是否有更新，再继续后面的操作。
+		/// </summary>
+		/// <typeparam name="T">要显示的UI界面</typeparam>
+		/// <param name="continueAction">没有更新，要求继续处理的委托</param>
+		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
+		/// <param name="errorHandler">检查更新发生错误的委托</param>
+		/// <param name="updateUi">用于显示状态的UI界面</param>
+		public static void EnsureNoUpdate<T>([NotNull]Action continueAction, Func<bool?> updateFoundAction, Action<Exception> errorHandler, T updateUi) where T : Form
+		{
+			if (continueAction == null)
+				throw new ArgumentNullException("continueAction", "conuinueAction can not be null.");
+
+			var ui = (Form)updateUi ?? new EnsureUpdate();
+
+			var instance = Instance;
+			instance.Context.EnableEmbedDialog = false;
+
+			using (ui)
+			{
+				ui.Shown += (s, e) => instance.BeginCheckUpdateInProcess();
+				EventHandler updateFound = null, versionErrorHandler = null, ueEventHandler = null, noupdateFoundHandler = null;
+
+				var unscribeAllEvents = new Action<Updater>(s =>
+				{
+					Delegate.RemoveAll(s.UpdatesFound, updateFound);
+					Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
+					Delegate.RemoveAll(s.Error, ueEventHandler);
+					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
+				});
+				noupdateFoundHandler = (s, e) =>
+				{
+					unscribeAllEvents(s as Updater);
+					continueAction();
+				};
+				updateFound = (s, e) =>
+				{
+					unscribeAllEvents(s as Updater);
+					var result = updateFoundAction == null ? null : updateFoundAction();
+					if (result == null)
+					{
+						(s as Updater).Context.EnableEmbedDialog = true;
+						Instance_UpdatesFound(s, e);
+					}
+					else if (result == true)
+					{
+						(s as Updater).StartExternalUpdater();
+					}
+					else
+					{
+						continueAction();
+					}
+				};
+				versionErrorHandler = (s, e) =>
+				{
+					unscribeAllEvents(s as Updater);
+
+					if (errorHandler != null)
+					{
+						errorHandler(new Exception("您的客户端版本过低，请手动下载最新版！"));
+					}
+					else
+					{
+						MessageBox.Show("您的客户端版本过低，请手动下载最新版！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					}
+				};
+				ueEventHandler = (s, e) =>
+				{
+					var err = (s as Updater).Context.Exception;
+					if (errorHandler != null)
+					{
+						errorHandler(err);
+					}
+					else
+					{
+						MessageBox.Show(String.Format("无法检查更新：{0}，请重试。", err.Message), "错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					}
+				};
+				instance.UpdatesFound += updateFound;
+				instance.Error += ueEventHandler;
+				instance.MinmumVersionRequired += versionErrorHandler;
+				instance.NoUpdatesFound += noupdateFoundHandler;
+
+				ui.ShowDialog();
+			}
+		}
+
+
+		#endregion
 
 		#region 静态对象
 
@@ -763,7 +868,28 @@ namespace FSLib.App.SimpleUpdater
 				//是否强制关闭进程？
 				if (Context.AutoKillProcesses)
 				{
-					closeApplication.ForEach(s => s.Kill());
+					Trace.TraceInformation("已开启自动结束所有进程。正在结束进程。");
+					foreach (var s in closeApplication)
+					{
+						if (s.HasExited)
+						{
+							Trace.TraceInformation("进程【" + s.ProcessName + "】已经提前退出。");
+						}
+						else
+						{
+							try
+							{
+								s.Kill();
+								Trace.TraceInformation("进程【" + s.ProcessName + "】已经成功结束。");
+							}
+							catch (Exception ex)
+							{
+								Trace.TraceError("进程【" + s.ProcessName + "】结束失败：" + ex.Message);
+
+								return false;
+							}
+						}
+					}
 					return true;
 				}
 
