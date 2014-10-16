@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
 using System.Reflection;
+using System.Web.UI;
 using System.Windows.Forms;
 using System.Diagnostics;
 using FSLib.App.SimpleUpdater.Annotations;
@@ -30,32 +32,32 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 确认是否有更新，再继续后面的操作。
 		/// </summary>
-		/// <typeparam name="T">要显示的UI界面</typeparam>
-		/// <param name="continueAction">没有更新，要求继续处理的委托</param>
 		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
-		public static void EnsureNoUpdate(Action continueAction, Func<bool?> updateFoundAction, Action<Exception> errorHandler)
+		public static void EnsureNoUpdate(string updateUrl, string xmlFileName, Func<bool?> updateFoundAction, Action<Exception> errorHandler)
 		{
-			EnsureNoUpdate<EnsureUpdate>(continueAction, updateFoundAction, errorHandler, null);
+			EnsureNoUpdate<EnsureUpdate>(updateUrl, xmlFileName, updateFoundAction, errorHandler, null);
 		}
 
 		/// <summary>
 		/// 确认是否有更新，再继续后面的操作。
 		/// </summary>
 		/// <typeparam name="T">要显示的UI界面</typeparam>
-		/// <param name="continueAction">没有更新，要求继续处理的委托</param>
 		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
 		/// <param name="updateUi">用于显示状态的UI界面</param>
-		public static void EnsureNoUpdate<T>([NotNull]Action continueAction, Func<bool?> updateFoundAction, Action<Exception> errorHandler, T updateUi) where T : Form
+		public static void EnsureNoUpdate<T>(string updateUrl, string xmlFileName, Func<bool?> updateFoundAction, Action<Exception> errorHandler, T updateUi) where T : Form
 		{
-			if (continueAction == null)
-				throw new ArgumentNullException("continueAction", "conuinueAction can not be null.");
-
 			var ui = (Form)updateUi ?? new EnsureUpdate();
 
 			var instance = Instance;
+			var continueProcess = false;
 			instance.Context.EnableEmbedDialog = false;
+
+			if (!string.IsNullOrEmpty(updateUrl))
+				instance.Context.UpdateDownloadUrl = updateUrl;
+			if (!string.IsNullOrEmpty(xmlFileName))
+				instance.Context.UpdateInfoFileName = xmlFileName;
 
 			using (ui)
 			{
@@ -69,23 +71,15 @@ namespace FSLib.App.SimpleUpdater
 					Delegate.RemoveAll(s.Error, ueEventHandler);
 					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
 
-					if (ui.InvokeRequired)
-					{
-						ui.Invoke(new Action(ui.Close));
-					}
-					else
-					{
-						ui.Close();
-					}
+					continueProcess = false;
 				});
 				noupdateFoundHandler = (s, e) =>
 				{
+					continueProcess = true;
 					unscribeAllEvents(s as Updater);
-					continueAction();
 				};
 				updateFound = (s, e) =>
 				{
-					unscribeAllEvents(s as Updater);
 					var result = updateFoundAction == null ? null : updateFoundAction();
 					if (result == null)
 					{
@@ -98,13 +92,12 @@ namespace FSLib.App.SimpleUpdater
 					}
 					else
 					{
-						continueAction();
+						continueProcess = true;
 					}
+					unscribeAllEvents(s as Updater);
 				};
 				versionErrorHandler = (s, e) =>
 				{
-					unscribeAllEvents(s as Updater);
-
 					if (errorHandler != null)
 					{
 						errorHandler(new Exception(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion)));
@@ -113,11 +106,10 @@ namespace FSLib.App.SimpleUpdater
 					{
 						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
+					unscribeAllEvents(s as Updater);
 				};
 				ueEventHandler = (s, e) =>
 				{
-					unscribeAllEvents(s as Updater);
-
 					var err = (s as Updater).Context.Exception;
 					if (errorHandler != null)
 					{
@@ -127,6 +119,7 @@ namespace FSLib.App.SimpleUpdater
 					{
 						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
+					unscribeAllEvents(s as Updater);
 				};
 				instance.UpdatesFound += updateFound;
 				instance.Error += ueEventHandler;
@@ -134,6 +127,11 @@ namespace FSLib.App.SimpleUpdater
 				instance.NoUpdatesFound += noupdateFoundHandler;
 
 				ui.ShowDialog();
+			}
+
+			if (!continueProcess)
+			{
+				Environment.Exit(0);
 			}
 		}
 
@@ -145,15 +143,15 @@ namespace FSLib.App.SimpleUpdater
 		static Updater()
 		{
 			var ass = System.Reflection.Assembly.GetExecutingAssembly();
-			Version = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
+			UpdaterClientVersion = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
 		}
 
 		static Updater _instance;
 
 		/// <summary>
-		/// 获得当前的版本
+		/// 获得当前的更新客户端版本
 		/// </summary>
-		public static string Version { get; private set; }
+		public static string UpdaterClientVersion { get; private set; }
 
 		/// <summary>
 		/// 当前的第一个更新实例。如果初始化了多个更新客户端，则这个属性只能访问到最开始创建的。
@@ -215,38 +213,38 @@ namespace FSLib.App.SimpleUpdater
 			var updater = sender as Updater;
 			if (!updater.Context.EnableEmbedDialog) return;
 
-			if (updater.Context.UpdateInfo.ForceUpdate)
+			if (updater.Context.MustUpdate)
 			{
-				//强制更新
+				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
+					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipForce,
+												updater.Context.UpdateInfo.AppName,
+												updater.Context.CurrentVersion,
+												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				updater.StartExternalUpdater();
-				return;
 			}
-			var ctl = FindUiControl();
-			if (ctl == null)
-				new UpdateFound().ShowDialog();
+			else if (updater.Context.ForceUpdate)
+			{
+				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
+					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipNotForce,
+												updater.Context.UpdateInfo.AppName,
+												updater.Context.CurrentVersion,
+												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				updater.StartExternalUpdater();
+			}
 			else
 			{
-				ctl.BeginInvoke(new Action(new UpdateFound().Show));
-			}
-		}
-
-		/// <summary>
-		/// 查找当前活动的UI控件，没有则返回null
-		/// </summary>
-		/// <returns></returns>
-		static Control FindUiControl()
-		{
-			for (int i = 0; i < Application.OpenForms.Count - 1; i++)
-			{
-				var form = Application.OpenForms[i];
-				if (!form.IsDisposed && !form.Disposing)
+				if (Application.MessageLoop)
 				{
-					return form;
+					new UpdateFound().Show();
+				}
+				else
+				{
+					new UpdateFound().ShowDialog();
 				}
 			}
-
-			return null;
+			updater.EnsureUpdateStarted();
 		}
+
 
 		#endregion
 
@@ -257,7 +255,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		/// <param name="appVersion">指定的应用程序版本</param>
 		/// <param name="appDirectory">指定的应用程序路径</param>
-		public Updater(Version appVersion, string appDirectory)
+		protected Updater(Version appVersion, string appDirectory)
 			: this()
 		{
 			Context.CurrentVersion = appVersion;
@@ -267,7 +265,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 使用指定的信息类来提供应用程序需要的信息
 		/// </summary>
-		public Updater()
+		protected Updater()
 		{
 			Trace.AutoFlush = true;
 			Context = new UpdateContext();
@@ -315,8 +313,6 @@ namespace FSLib.App.SimpleUpdater
 		}
 
 		#endregion
-
-
 
 		#endregion
 
@@ -386,6 +382,9 @@ namespace FSLib.App.SimpleUpdater
 			var handler = Error;
 			if (handler != null)
 				handler(this, EventArgs.Empty);
+
+			if (!Context.IsInUpdateMode && Context.MustUpdate && Context.TreatErrorAsNotUpdated)
+				TerminateProcess(this);
 		}
 
 
@@ -403,7 +402,12 @@ namespace FSLib.App.SimpleUpdater
 				return;
 
 			MinmumVersionRequired(this, EventArgs.Empty);
+
+			if (Context.MustUpdate && Context.TreatErrorAsNotUpdated)
+				TerminateProcess(this);
 		}
+
+
 
 		#endregion
 
@@ -520,6 +524,7 @@ namespace FSLib.App.SimpleUpdater
 				return;
 
 			UpdatesFound(this, EventArgs.Empty);
+			EnsureUpdateStarted();
 		}
 
 		/// <summary>
@@ -921,25 +926,6 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns></returns>
 		void NotifyUserToCloseApp(QueryCloseApplicationEventArgs e)
 		{
-			//强制结束进程
-			if (Context.UpdateInfo.ForceKillProcesses)
-			{
-				foreach (var p in e.Processes)
-				{
-					try
-					{
-						p.Kill();
-					}
-					catch (Exception ex)
-					{
-						Context.Exception = ex;
-						e.IsCancelled = true;
-					}
-				}
-				e.IsCancelled = false;
-				return;
-			}
-
 			using (var ca = new CloseApp())
 			{
 				ca.AttachProcessList(e.Processes);
@@ -1564,7 +1550,51 @@ namespace FSLib.App.SimpleUpdater
 
 		#region 启动外部更新进程
 
+		/// <summary>
+		/// 确保更新已经启动
+		/// </summary>
+		internal void EnsureUpdateStarted()
+		{
+			if (Context.IsUpdaterSuccessfullyStarted == true)
+			{
+				//启动成功，而且指定了自动解除当前进程时，则自动退出
+				if (Context.AutoExitCurrentProcess)
+					TerminateProcess(this);
+			}
+			else if (Context.IsUpdaterSuccessfullyStarted == false && Context.MustUpdate)
+			{
+				//启动失败，但是要求强行更新时，则退出
+				TerminateProcess(this);
+			}
+		}
 
+		/// <summary>
+		/// 强行中止当前进程
+		/// </summary>
+		internal static void TerminateProcess(object sender, int exitCode = 0)
+		{
+			var e = new CancelableEventArgs();
+			if (e.IsCancelled)
+				return;
+
+			Environment.Exit(exitCode);
+		}
+
+		/// <summary>
+		/// 正在中止当前进程
+		/// </summary>
+		public static event EventHandler<CancelableEventArgs> RequireTerminateProcess;
+
+		/// <summary>
+		/// 引发 <see cref="RequireTerminateProcess" /> 事件
+		/// </summary>
+		/// <param name="ea">包含此事件的参数</param>
+		internal static void OnRequireTerminateProcess(object sender, CancelableEventArgs ea)
+		{
+			var handler = RequireTerminateProcess;
+			if (handler != null)
+				handler(sender, ea);
+		}
 
 		/// <summary>
 		/// 即将启动外部启动更新进程
@@ -1599,7 +1629,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 复制更新程序到临时目录并启动
 		/// </summary>
-		void CopyAndStartUpdater(string[] ownerProcessList)
+		bool CopyAndStartUpdater(string[] ownerProcessList)
 		{
 			//写入更新文件
 			var updateinfoFile = Context.UpdateInfoFilePath;
@@ -1684,7 +1714,10 @@ namespace FSLib.App.SimpleUpdater
 			{
 				UseShellExecute = true
 			};
-			if (Environment.OSVersion.Version.Major > 5) psi.Verb = "runas";
+			//检测是否要管理员权限
+			if (Environment.OSVersion.Version.Major > 5 && (Context.UpdateInfo.RequreAdminstrorPrivilege || !EnsureAdminPrivilege()))
+				psi.Verb = "runas";
+
 			OnExternalUpdateStart();
 
 			Trace.TraceInformation("启动外部更新进程, 路径=" + psi.FileName + ", 参数=" + psi.Arguments);
@@ -1697,6 +1730,34 @@ namespace FSLib.App.SimpleUpdater
 			{
 				Context.Exception = ex;
 				OnUpdateCancelled();
+
+				return false;
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// 确认当前用户对当前目录是否具有操作权限
+		/// </summary>
+		/// <returns></returns>
+		bool EnsureAdminPrivilege()
+		{
+			var root = Context.ApplicationDirectory;
+			var tempfile = Path.Combine(root, DateTime.Now.Ticks + ".tmp");
+			Trace.TraceInformation("check if current process can write to application directory directly without admin privilege.");
+			try
+			{
+				File.Create(tempfile).Close();
+				File.Delete(tempfile);
+				Trace.TraceInformation("permission check complete. no admin privilege required.");
+
+				return true;
+			}
+			catch (Exception)
+			{
+				Trace.TraceInformation("permission denied. admin privilege required to perform operation. using /runas to perform update.");
+				return false;
 			}
 		}
 
@@ -1743,17 +1804,21 @@ namespace FSLib.App.SimpleUpdater
 		/// 启动进程外更新程序
 		/// </summary>
 		/// <param name="ownerProcess">主进程列表</param>
-		public void StartExternalUpdater(string[] ownerProcess)
+		public bool StartExternalUpdater(string[] ownerProcess)
 		{
-			CopyAndStartUpdater(ownerProcess);
+			var result = CopyAndStartUpdater(ownerProcess);
+			Context.IsUpdaterSuccessfullyStarted = result;
+
+			return result;
+
 		}
 
 		/// <summary>
 		/// 启动进程外更新程序
 		/// </summary>
-		public void StartExternalUpdater()
+		public bool StartExternalUpdater()
 		{
-			StartExternalUpdater(null);
+			return StartExternalUpdater(null);
 		}
 		#endregion
 

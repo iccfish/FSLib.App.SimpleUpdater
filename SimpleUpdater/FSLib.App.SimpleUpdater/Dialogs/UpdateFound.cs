@@ -11,6 +11,8 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 	/// </summary>
 	public partial class UpdateFound : Form
 	{
+		bool _autoUpdateStarted;
+
 		/// <summary>
 		///   构造函数
 		/// </summary>
@@ -19,13 +21,32 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			InitializeComponent();
 
 			this.lnkSoft.Click += (s, e) => System.Diagnostics.Process.Start(Updater.Instance.Context.UpdateInfo.PublishUrl);
+			FormClosing += UpdateFound_FormClosing;
+		}
+
+		void UpdateFound_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			var updater = Updater.Instance;
+
+			if (updater.Context.IsUpdaterSuccessfullyStarted == null && updater.Context.MustUpdate)
+			{
+				var dlgResult = MessageBox.Show(FSLib.App.SimpleUpdater.SR.UpdatesFound_CriticalUpdateWarning, SR.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+				if (dlgResult == DialogResult.No)
+				{
+					e.Cancel = true;
+					return;
+				}
+			}
+
+			updater.EnsureUpdateStarted();
 		}
 
 		private void UpdateFound_Load(object sender, EventArgs e)
 		{
 			if (Updater.Instance == null) return;
 
-			var ui = Updater.Instance.Context.UpdateInfo;
+			var ctx = Updater.Instance.Context;
+			var ui = ctx.UpdateInfo;
 
 			lblFound.Text = ui.AppName;
 			lblVersion.Text += ui.AppVersion;
@@ -63,9 +84,15 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			}
 
 			var pkgSize = ExtensionMethod.Sum(Updater.Instance.PackagesToUpdate, s => s.PackageSize);
-			lblSize.Text = string.Format(FSLib.App.SimpleUpdater.SR.UpdateFound_EstimateDownloadSize, (pkgSize == 0 ? "<未知>" : ExtensionMethod.ToSizeDescription(pkgSize)));
+			lblSize.Text = string.Format(FSLib.App.SimpleUpdater.SR.UpdateFound_EstimateDownloadSize, (pkgSize == 0 ? SR.Unknown : ExtensionMethod.ToSizeDescription(pkgSize)));
 
-			this.lnkSoft.Visible = !string.IsNullOrEmpty(ui.PublishUrl);
+			lnkSoft.Visible = !string.IsNullOrEmpty(ui.PublishUrl);
+
+			if (ctx.MustUpdate)
+			{
+				//必须升级
+				lnkCance.Visible = false;
+			}
 		}
 
 		void rtf_LinkClicked(object sender, LinkClickedEventArgs e)
@@ -76,11 +103,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			}
 			catch (Exception ex)
 			{
-				
-			}
-			finally
-			{
-				
+
 			}
 		}
 
@@ -93,10 +116,13 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 
 		private void btnUpdate_Click(object sender, EventArgs e)
 		{
-			if (Updater.Instance == null) return;
-			Updater.Instance.StartExternalUpdater();
+			var updater = Updater.Instance;
+			if (updater == null) return;
+
+			updater.StartExternalUpdater();
 			Close();
 		}
+
 
 		private void lnkCance_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{

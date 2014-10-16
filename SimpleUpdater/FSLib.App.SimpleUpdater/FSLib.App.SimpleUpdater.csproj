@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defination\CancelableEventArgs.cs" />
     <Compile Include="Defination\FileVerificationLevel.cs" />
     <Compile Include="Defination\PackageInfo.cs" />
     <Compile Include="Defination\ServerNodeSelectMethod.cs" />

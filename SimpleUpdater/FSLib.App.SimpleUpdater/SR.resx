@@ -152,4 +152,22 @@
   <data name="Updater_UnableToCheckUpdate" xml:space="preserve">
     <value>无法检查更新，错误：{0}</value>
   </data>
+  <data name="UpdatesFound_CriticalUpdateWarning" xml:space="preserve">
+    <value>当前更新是关键更新，如果不安装此更新，软件将无法继续运行。
+
+确定要关闭此更新吗？</value>
+    <comment>UpdatesFound_CriticalUpdateWarning description</comment>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="Updater_AutomaticUpgradeTipForce" xml:space="preserve">
+    <value>将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。\n\n如果无法升级，软件将无法使用。</value>
+  </data>
+  <data name="Updater_AutomaticUpgradeTipNotForce" xml:space="preserve">
+    <value>将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。</value>
+  </data>
 </root>

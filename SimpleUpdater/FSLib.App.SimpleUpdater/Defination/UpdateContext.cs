@@ -48,6 +48,16 @@
 				}
 			}
 			AppendRandomTagInDownloadUrl = true;
+			PromptUserBeforeAutomaticUpgrade = true;
+		}
+
+		/// <summary>
+		/// 获得或设置是否在正式进行更新前先通知用户
+		/// </summary>
+		public bool PromptUserBeforeAutomaticUpgrade
+		{
+			get { return _promptUserBeforeAutomaticUpgrade || (UpdateInfo != null && UpdateInfo.PromptUserBeforeAutomaticUpgrade); }
+			set { _promptUserBeforeAutomaticUpgrade = value; }
 		}
 
 		/// <summary> 获得或设置是否正在更新模式中 </summary>
@@ -59,7 +69,11 @@
 		/// <summary>
 		/// 获得或设置一个值，指示着当自动更新的时候是否将应用程序目录中的所有进程都作为主进程请求结束
 		/// </summary>
-		public bool AutoEndProcessesWithinAppDir { get; set; }
+		public bool AutoEndProcessesWithinAppDir
+		{
+			get { return _autoEndProcessesWithinAppDir || (UpdateInfo != null && UpdateInfo.AutoEndProcessesWithinAppDir); }
+			set { _autoEndProcessesWithinAppDir = value; }
+		}
 
 		/// <summary>
 		/// 外部要结束的进程ID列表
@@ -182,7 +196,7 @@
 		/// <summary> 获得或设置最后的版本 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public Version LatestVersion { get; internal set; }
+		public Version LatestVersion { get { return UpdateInfo == null ? null : new Version(UpdateInfo.AppVersion); } }
 
 		/// <summary> 获得或设置是否启用内置的提示对话框 </summary>
 		/// <value></value>
@@ -270,6 +284,7 @@
 		private string _updateInfoFileName;
 		private string _updateDownloadUrl;
 		private string _logFile;
+		bool _autoExitCurrentProcess;
 
 		/// <summary> 获得当前更新过程中备份文件的路径 </summary>
 		/// <value></value>
@@ -305,7 +320,7 @@
 		public WebClient CreateWebClient()
 		{
 			var client = new WebClient();
-			client.Headers.Add(HttpRequestHeader.UserAgent, "Fish SimpleUpdater v" + Updater.Version);
+			client.Headers.Add(HttpRequestHeader.UserAgent, "Fish SimpleUpdater v" + Updater.UpdaterClientVersion);
 			client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
 			client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
 			client.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
@@ -371,12 +386,39 @@
 		/// <summary>
 		/// 获得或设置是否不经提示便自动更新
 		/// </summary>
-		public bool ForceUpdate { get; set; }
+		public bool ForceUpdate
+		{
+			get { return _forceUpdate || (UpdateInfo != null && UpdateInfo.ForceUpdate); }
+			set { _forceUpdate = value; }
+		}
+
+		/// <summary>
+		/// 获得或设置是否强制更新，否则退出
+		/// </summary>
+		public bool MustUpdate
+		{
+			get { return _mustUpdate || (UpdateInfo != null && UpdateInfo.MustUpdate); }
+			set { _mustUpdate = value; }
+		}
 
 		/// <summary>
 		/// 获得或设置是否在更新时自动结束进程
 		/// </summary>
-		public bool AutoKillProcesses { get; set; }
+		public bool AutoKillProcesses
+		{
+			get { return _autoKillProcesses || (UpdateInfo != null && UpdateInfo.AutoKillProcesses); }
+			set { _autoKillProcesses = value; }
+		}
+
+		/// <summary>
+		/// 获得或设置是否自动退出当前进程
+		/// </summary>
+		public bool AutoExitCurrentProcess
+		{
+			get { return _autoExitCurrentProcess || (UpdateInfo != null && UpdateInfo.AutoExitCurrentProcess); }
+			set { _autoExitCurrentProcess = value; }
+		}
+
 
 		/// <summary>
 		/// 是否隐藏所有对话框显示
@@ -398,8 +440,12 @@
 		TextWriterTraceListener _logger;
 		private string _applicationDirectory;
 		bool _hiddenUI;
-
-		#region 2.3.0.0 新增属性
+		bool _forceUpdate;
+		bool _autoKillProcesses;
+		bool _mustUpdate;
+		bool _treatErrorAsNotUpdated;
+		bool _autoEndProcessesWithinAppDir;
+		bool _promptUserBeforeAutomaticUpgrade;
 
 		/// <summary>
 		/// 获得或设置是否在下载地址中附加随机码以避免缓存。默认值：true
@@ -425,7 +471,21 @@
 			return url + "&" + new Random().NextDouble().ToString();
 		}
 
-		#endregion
+		/// <summary>
+		/// 获得更新程序是否已经成功启动了
+		/// </summary>
+		public bool? IsUpdaterSuccessfullyStarted { get; internal set; }
+
+		/// <summary>
+		/// 设置当出现错误的时候，是否按照有更新但是未更新处理。
+		/// 这个选项影响设置必须强制更新的选项。
+		/// 如果检测更新遇到错误，此选项设置为false时，则按照“未找到更新”处理；如果此选项设置为true，则按照“有更新但是没有更新”处理，会强制退出软件。
+		/// </summary>
+		public bool TreatErrorAsNotUpdated
+		{
+			get { return _treatErrorAsNotUpdated; }
+			set { _treatErrorAsNotUpdated = value; }
+		}
 	}
 }
 

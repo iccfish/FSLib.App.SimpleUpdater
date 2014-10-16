@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defination\CancelableEventArgs.cs" />
     <Compile Include="Defination\ServerNodeSelectMethod.cs" />
     <Compile Include="DeletePreviousProgramMethod.cs" />
     <Compile Include="Dialogs\CloseApp.cs">
@@ -359,7 +360,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
+      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

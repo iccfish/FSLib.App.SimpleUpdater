@@ -79,12 +79,30 @@ namespace FSLib.App.SimpleUpdater {
         }
         
         /// <summary>
+        ///   查找类似 信息 的本地化字符串。
+        /// </summary>
+        internal static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 升级要求最低版本：{0}
         ///您当前已安装版本：{1} 的本地化字符串。
         /// </summary>
         internal static string MinmumVersionRequired_Desc {
             get {
                 return ResourceManager.GetString("MinmumVersionRequired_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未知 的本地化字符串。
+        /// </summary>
+        internal static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         
@@ -103,6 +121,24 @@ namespace FSLib.App.SimpleUpdater {
         internal static string Updater_AssemblyNotMarkedAsUpdateable {
             get {
                 return ResourceManager.GetString("Updater_AssemblyNotMarkedAsUpdateable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。\n\n如果无法升级，软件将无法使用。 的本地化字符串。
+        /// </summary>
+        internal static string Updater_AutomaticUpgradeTipForce {
+            get {
+                return ResourceManager.GetString("Updater_AutomaticUpgradeTipForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。 的本地化字符串。
+        /// </summary>
+        internal static string Updater_AutomaticUpgradeTipNotForce {
+            get {
+                return ResourceManager.GetString("Updater_AutomaticUpgradeTipNotForce", resourceCulture);
             }
         }
         
@@ -139,6 +175,17 @@ namespace FSLib.App.SimpleUpdater {
         internal static string Updater_UpdateCanceledByCloseApp {
             get {
                 return ResourceManager.GetString("Updater_UpdateCanceledByCloseApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 当前更新是关键更新，如果不安装此更新，软件将无法继续运行。
+        ///
+        ///确定要关闭此更新吗？ 的本地化字符串。
+        /// </summary>
+        internal static string UpdatesFound_CriticalUpdateWarning {
+            get {
+                return ResourceManager.GetString("UpdatesFound_CriticalUpdateWarning", resourceCulture);
             }
         }
         

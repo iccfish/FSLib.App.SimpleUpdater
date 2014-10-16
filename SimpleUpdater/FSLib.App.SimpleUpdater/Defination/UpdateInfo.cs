@@ -19,6 +19,14 @@
 	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings]	//防止SmartAssembly处理
 	public class UpdateInfo : INotifyPropertyChanged
 	{
+		public UpdateInfo()
+		{
+			AutoKillProcesses = false;
+			AutoEndProcessesWithinAppDir = true;
+			ForceUpdate = false;
+			MustUpdate = false;
+		}
+
 		/// <summary>
 		/// 应用程序名
 		/// </summary>
@@ -163,10 +171,46 @@
 		string _webUpdateNote;
 		string _rtfUpdateNote;
 		bool _mustUpdate;
-		bool _noUpdatePrompt;
 		string _updatePingUrl;
 		string _packageUrlTemplate;
 		string[] _serverCluster;
+		bool _autoExitCurrentProcess;
+		bool _autoKillProcesses;
+		bool _autoEndProcessesWithinAppDir;
+		bool _treatErrorAsNotUpdated;
+		bool _promptUserBeforeAutomaticUpgrade;
+		bool _requreAdminstrorPrivilege;
+
+
+		/// <summary>
+		/// 设置当出现错误的时候，是否按照有更新但是未更新处理。
+		/// 这个选项影响设置必须强制更新的选项。
+		/// 如果检测更新遇到错误，此选项设置为false时，则按照“未找到更新”处理；如果此选项设置为true，则按照“有更新但是没有更新”处理，会强制退出软件。
+		/// </summary>
+		public bool TreatErrorAsNotUpdated
+		{
+			get { return _treatErrorAsNotUpdated; }
+			set
+			{
+				if (value.Equals(_treatErrorAsNotUpdated)) return;
+				_treatErrorAsNotUpdated = value;
+				OnPropertyChanged("TreatErrorAsNotUpdated");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置是否在正式进行更新前先通知用户
+		/// </summary>
+		public bool PromptUserBeforeAutomaticUpgrade
+		{
+			get { return _promptUserBeforeAutomaticUpgrade; }
+			set
+			{
+				if (value.Equals(_promptUserBeforeAutomaticUpgrade)) return;
+				_promptUserBeforeAutomaticUpgrade = value;
+				OnPropertyChanged("PromptUserBeforeAutomaticUpgrade");
+			}
+		}
 
 		/// <summary>
 		/// 更新描述
@@ -334,21 +378,6 @@
 			}
 		}
 
-		/// <summary> 是否不提示用户便强制结束进程 </summary>
-		/// <value></value>
-		/// <remarks></remarks>
-		public bool ForceKillProcesses
-		{
-			get { return _forceKillProcesses; }
-			set
-			{
-				if (value.Equals(_forceKillProcesses))
-					return;
-				_forceKillProcesses = value;
-				OnPropertyChanged("ForceKillProcesses");
-			}
-		}
-
 		/// <summary> 获得或设置更新包集合 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
@@ -447,17 +476,45 @@
 		}
 
 		/// <summary>
-		/// 不提示更新就进行操作
+		/// 获得或设置是否自动退出当前进程
 		/// </summary>
-		public bool NoUpdatePrompt
+		public bool AutoExitCurrentProcess
 		{
-			get { return _noUpdatePrompt; }
+			get { return _autoExitCurrentProcess; }
 			set
 			{
-				if (value.Equals(_noUpdatePrompt))
-					return;
-				_noUpdatePrompt = value;
-				OnPropertyChanged("NoUpdatePrompt");
+				if (value.Equals(_autoExitCurrentProcess)) return;
+				_autoExitCurrentProcess = value;
+				OnPropertyChanged("AutoExitCurrentProcess");
+			}
+		}
+
+		/// <summary>
+		/// 获得或设置一个值，指示着当自动更新的时候是否将应用程序目录中的所有进程都作为主进程请求结束
+		/// </summary>
+		public bool AutoEndProcessesWithinAppDir
+		{
+			get { return _autoEndProcessesWithinAppDir; }
+			set
+			{
+				if (value.Equals(_autoEndProcessesWithinAppDir)) return;
+				_autoEndProcessesWithinAppDir = value;
+				OnPropertyChanged("AutoEndProcessesWithinAppDir");
+			}
+		}
+
+
+		/// <summary>
+		/// 获得或设置是否在更新时自动结束进程
+		/// </summary>
+		public bool AutoKillProcesses
+		{
+			get { return _autoKillProcesses; }
+			set
+			{
+				if (value.Equals(_autoKillProcesses)) return;
+				_autoKillProcesses = value;
+				OnPropertyChanged("AutoKillProcesses");
 			}
 		}
 
@@ -504,6 +561,20 @@
 					return;
 				_packageUrlTemplate = value;
 				OnPropertyChanged("PackageUrlTemplate");
+			}
+		}
+
+		/// <summary>
+		/// 强行请求Administrator权限
+		/// </summary>
+		public bool RequreAdminstrorPrivilege
+		{
+			get { return _requreAdminstrorPrivilege; }
+			set
+			{
+				if (value.Equals(_requreAdminstrorPrivilege)) return;
+				_requreAdminstrorPrivilege = value;
+				OnPropertyChanged("RequreAdminstrorPrivilege");
 			}
 		}
 

@@ -40,8 +40,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.Load += Main_Load;
 		}
 
-
-
 		#region 拖放支持
 
 		void InitDropSupport()
@@ -479,6 +477,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 			txtUrl.AddDataBinding(ui, s => s.Text, s => s.WebUpdateNote);
 			txtPing.AddDataBinding(ui, s => s.Text, s => s.UpdatePingUrl);
 
+			chkOptAutoExitProcess.AddDataBinding(ui, s => s.Checked, s => s.AutoExitCurrentProcess);
+			chkOptAutoKillProcess.AddDataBinding(ui, s => s.Checked, s => s.AutoKillProcesses);
+			chkOptForceUpdate.AddDataBinding(ui, s => s.Checked, s => s.ForceUpdate);
+			chkOptMustUpdate.AddDataBinding(ui, s => s.Checked, s => s.MustUpdate);
+			chkAutoEndAppDirProcesses.AddDataBinding(ui, s => s.Checked, s => s.AutoEndProcessesWithinAppDir);
+			chkStillProptUserInfo.AddDataBinding(ui, s => s.Checked, s => s.PromptUserBeforeAutomaticUpgrade);
+			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
+			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
+
 			project.PropertyChanged += (ss, ee) =>
 			{
 				var p = ss as AuProject;
@@ -507,8 +514,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		void upb_ProjectClosed(object sender, PackageEventArgs e)
 		{
-			var project = e.AuProject;
-
 			txtNewSoftDir.DataBindings.Clear();
 			txtPackagePath.DataBindings.Clear();
 			rtfPath.DataBindings.Clear();
@@ -526,6 +531,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 			filePreExecute.DataBindings.Clear();
 			txtUrl.DataBindings.Clear();
 			txtPing.DataBindings.Clear();
+
+			chkOptAutoExitProcess.DataBindings.Clear();
+			chkOptAutoKillProcess.DataBindings.Clear();
+			chkOptForceUpdate.DataBindings.Clear();
+			chkOptMustUpdate.DataBindings.Clear();
+			chkAutoEndAppDirProcesses.DataBindings.Clear();
+			chkStillProptUserInfo.DataBindings.Clear();
+			chkOptError.DataBindings.Clear();
+			chkOptRequireAdminPrivilege.DataBindings.Clear();
 		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)

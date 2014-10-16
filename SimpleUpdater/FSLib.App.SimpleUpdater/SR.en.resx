@@ -123,9 +123,15 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="MinmumVersionRequired_Desc" xml:space="preserve">
     <value>To perform a update the minimum version requires {0}, and you have version {1} installed. Please update to latest manually.</value>
     <comment>MinmumVersionRequired_Desc description</comment>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
   <data name="UpdateFound_EstimateDownloadSize" xml:space="preserve">
     <value>Established Download Size: {0}</value>
@@ -133,6 +139,12 @@
   </data>
   <data name="Updater_AssemblyNotMarkedAsUpdateable" xml:space="preserve">
     <value>The main assembly not marked as updatable, unable to determine update url.</value>
+  </data>
+  <data name="Updater_AutomaticUpgradeTipForce" xml:space="preserve">
+    <value>{0} (Version {1}) will upgrade to version {2} automatically, please wait for upgrade complete.\n\nOld version no longer working.</value>
+  </data>
+  <data name="Updater_AutomaticUpgradeTipNotForce" xml:space="preserve">
+    <value> {0} (Version {1}) will upgrade to version {2} automatically, please wait for upgrade complete.</value>
   </data>
   <data name="Updater_ExtractingFile" xml:space="preserve">
     <value>Decompressing {0}</value>
@@ -146,6 +158,10 @@
   </data>
   <data name="Updater_UpdateCanceledByCloseApp" xml:space="preserve">
     <value>Update aborted due to unable to close running applications.</value>
+  </data>
+  <data name="UpdatesFound_CriticalUpdateWarning" xml:space="preserve">
+    <value>This update is critical update, cancel this update will cause application stops working. Sure to coninue?</value>
+    <comment>UpdatesFound_CriticalUpdateWarning description</comment>
   </data>
   <data name="UpdatesFound_Tip" xml:space="preserve">
     <value>Your application version of '{1}' can now upgrade to '{0}', upgrade now?</value>

@@ -80,6 +80,22 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.label14 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
+			this.tabPage8 = new System.Windows.Forms.TabPage();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.chkOptForceUpdate = new System.Windows.Forms.CheckBox();
+			this.chkOptRequireAdminPrivilege = new System.Windows.Forms.CheckBox();
+			this.chkStillProptUserInfo = new System.Windows.Forms.CheckBox();
+			this.chkOptError = new System.Windows.Forms.CheckBox();
+			this.chkOptAutoExitProcess = new System.Windows.Forms.CheckBox();
+			this.chkAutoEndAppDirProcesses = new System.Windows.Forms.CheckBox();
+			this.chkOptAutoKillProcess = new System.Windows.Forms.CheckBox();
+			this.chkOptMustUpdate = new System.Windows.Forms.CheckBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.fileConfig = new FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -97,6 +113,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage7.SuspendLayout();
 			this.gpUpdatePing.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.tabPage8.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.tabPage4.SuspendLayout();
@@ -226,6 +243,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabControl1.Controls.Add(this.tabPage6);
 			this.tabControl1.Controls.Add(this.tabPage7);
 			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage8);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage5);
 			this.tabControl1.Controls.Add(this.tabPage4);
@@ -432,6 +450,118 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.options, "options");
 			this.options.Name = "options";
 			// 
+			// tabPage8
+			// 
+			this.tabPage8.Controls.Add(this.label18);
+			this.tabPage8.Controls.Add(this.label20);
+			this.tabPage8.Controls.Add(this.label21);
+			this.tabPage8.Controls.Add(this.label19);
+			this.tabPage8.Controls.Add(this.label17);
+			this.tabPage8.Controls.Add(this.label16);
+			this.tabPage8.Controls.Add(this.label15);
+			this.tabPage8.Controls.Add(this.chkOptForceUpdate);
+			this.tabPage8.Controls.Add(this.chkOptRequireAdminPrivilege);
+			this.tabPage8.Controls.Add(this.chkStillProptUserInfo);
+			this.tabPage8.Controls.Add(this.chkOptError);
+			this.tabPage8.Controls.Add(this.chkOptAutoExitProcess);
+			this.tabPage8.Controls.Add(this.chkAutoEndAppDirProcesses);
+			this.tabPage8.Controls.Add(this.chkOptAutoKillProcess);
+			this.tabPage8.Controls.Add(this.chkOptMustUpdate);
+			resources.ApplyResources(this.tabPage8, "tabPage8");
+			this.tabPage8.Name = "tabPage8";
+			this.tabPage8.UseVisualStyleBackColor = true;
+			// 
+			// label18
+			// 
+			resources.ApplyResources(this.label18, "label18");
+			this.label18.Name = "label18";
+			// 
+			// label20
+			// 
+			resources.ApplyResources(this.label20, "label20");
+			this.label20.Name = "label20";
+			// 
+			// label21
+			// 
+			resources.ApplyResources(this.label21, "label21");
+			this.label21.Name = "label21";
+			// 
+			// label19
+			// 
+			resources.ApplyResources(this.label19, "label19");
+			this.label19.Name = "label19";
+			// 
+			// label17
+			// 
+			resources.ApplyResources(this.label17, "label17");
+			this.label17.Name = "label17";
+			// 
+			// label16
+			// 
+			resources.ApplyResources(this.label16, "label16");
+			this.label16.Name = "label16";
+			// 
+			// label15
+			// 
+			resources.ApplyResources(this.label15, "label15");
+			this.label15.Name = "label15";
+			// 
+			// chkOptForceUpdate
+			// 
+			resources.ApplyResources(this.chkOptForceUpdate, "chkOptForceUpdate");
+			this.chkOptForceUpdate.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptForceUpdate.Name = "chkOptForceUpdate";
+			this.chkOptForceUpdate.UseVisualStyleBackColor = true;
+			// 
+			// chkOptRequireAdminPrivilege
+			// 
+			resources.ApplyResources(this.chkOptRequireAdminPrivilege, "chkOptRequireAdminPrivilege");
+			this.chkOptRequireAdminPrivilege.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptRequireAdminPrivilege.Name = "chkOptRequireAdminPrivilege";
+			this.chkOptRequireAdminPrivilege.UseVisualStyleBackColor = true;
+			// 
+			// chkStillProptUserInfo
+			// 
+			resources.ApplyResources(this.chkStillProptUserInfo, "chkStillProptUserInfo");
+			this.chkStillProptUserInfo.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkStillProptUserInfo.Name = "chkStillProptUserInfo";
+			this.chkStillProptUserInfo.UseVisualStyleBackColor = true;
+			// 
+			// chkOptError
+			// 
+			resources.ApplyResources(this.chkOptError, "chkOptError");
+			this.chkOptError.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptError.Name = "chkOptError";
+			this.chkOptError.UseVisualStyleBackColor = true;
+			// 
+			// chkOptAutoExitProcess
+			// 
+			resources.ApplyResources(this.chkOptAutoExitProcess, "chkOptAutoExitProcess");
+			this.chkOptAutoExitProcess.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptAutoExitProcess.Name = "chkOptAutoExitProcess";
+			this.chkOptAutoExitProcess.UseVisualStyleBackColor = true;
+			// 
+			// chkAutoEndAppDirProcesses
+			// 
+			resources.ApplyResources(this.chkAutoEndAppDirProcesses, "chkAutoEndAppDirProcesses");
+			this.chkAutoEndAppDirProcesses.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkAutoEndAppDirProcesses.Name = "chkAutoEndAppDirProcesses";
+			this.chkAutoEndAppDirProcesses.UseVisualStyleBackColor = true;
+			// 
+			// chkOptAutoKillProcess
+			// 
+			resources.ApplyResources(this.chkOptAutoKillProcess, "chkOptAutoKillProcess");
+			this.chkOptAutoKillProcess.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptAutoKillProcess.Name = "chkOptAutoKillProcess";
+			this.chkOptAutoKillProcess.UseVisualStyleBackColor = true;
+			// 
+			// chkOptMustUpdate
+			// 
+			resources.ApplyResources(this.chkOptMustUpdate, "chkOptMustUpdate");
+			this.chkOptMustUpdate.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkOptMustUpdate.Name = "chkOptMustUpdate";
+			this.chkOptMustUpdate.UseVisualStyleBackColor = true;
+			// 
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.fileConfig);
@@ -516,6 +646,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.gpUpdatePing.ResumeLayout(false);
 			this.gpUpdatePing.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage8.ResumeLayout(false);
+			this.tabPage8.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
@@ -584,5 +716,21 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Button btnBind;
 		private System.Windows.Forms.LinkLabel lnkBindDescToFile;
+		private System.Windows.Forms.TabPage tabPage8;
+		private System.Windows.Forms.CheckBox chkOptForceUpdate;
+		private System.Windows.Forms.CheckBox chkOptError;
+		private System.Windows.Forms.CheckBox chkOptAutoExitProcess;
+		private System.Windows.Forms.CheckBox chkAutoEndAppDirProcesses;
+		private System.Windows.Forms.CheckBox chkOptAutoKillProcess;
+		private System.Windows.Forms.CheckBox chkOptMustUpdate;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.CheckBox chkStillProptUserInfo;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.CheckBox chkOptRequireAdminPrivilege;
 	}
 }

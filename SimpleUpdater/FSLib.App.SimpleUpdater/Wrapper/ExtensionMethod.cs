@@ -28,7 +28,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 
 
 		readonly static string[] SizeDefinitions = new[] {
-		"字节",
+		"Bytes",
 		"KB",
 		"MB",
 		"GB",
