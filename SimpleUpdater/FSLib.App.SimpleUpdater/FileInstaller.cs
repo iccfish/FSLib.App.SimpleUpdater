@@ -392,20 +392,33 @@ namespace FSLib.App.SimpleUpdater
 					)
 				{
 					e.PostEvent(() => OnDeleteFile(new InstallFileEventArgs(file, dPath, allOldFiles.Length, ++index)));
-					try
+
+					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dPath));
+					Trace.TraceInformation("备份并删除文件: {0}  ->  {1}", file, dPath);
+					System.IO.File.Copy(file, dPath);
+
+					var tryCount = 0;
+					while (true)
 					{
-						System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dPath));
-						Trace.TraceInformation("备份并删除文件: {0}  ->  {1}", file, dPath);
-						System.IO.File.Copy(file, dPath);
-						System.IO.File.Delete(file);
-						bakList.Add(rPath);
+						++tryCount;
+
+						try
+						{
+							System.IO.File.Delete(file);
+							break;
+						}
+						catch (Exception ex)
+						{
+							this.Exception = ex;
+							Trace.TraceWarning("第[" + tryCount + "]次删除失败：" + ex.Message);
+						}
+						//如果删除失败，则等待1秒后重试
+						if (tryCount < 10)
+							Thread.Sleep(1000);
+						else return false;
+
 					}
-					catch (Exception ex)
-					{
-						this.Exception = ex;
-						Trace.TraceWarning("删除失败：" + ex.Message);
-						return false;
-					}
+					bakList.Add(rPath);
 				}
 			}
 			e.PostEvent(OnDeleteFileFinished);
@@ -426,6 +439,7 @@ namespace FSLib.App.SimpleUpdater
 			string OriginalPath, newVersionFile, backupPath;
 			OriginalPath = newVersionFile = "";
 
+			var tryCount = 0;
 			try
 			{
 				var index = 0;
@@ -440,12 +454,72 @@ namespace FSLib.App.SimpleUpdater
 					if (System.IO.File.Exists(OriginalPath))
 					{
 						System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(backupPath));
-						System.IO.File.Move(OriginalPath, backupPath);
-						Trace.TraceInformation("备份文件: " + OriginalPath + "  ->  " + backupPath);
+						tryCount = 0;
+
+						while (true)
+						{
+							++tryCount;
+							try
+							{
+								Trace.TraceInformation("第[" + tryCount + "]次尝试备份文件: " + OriginalPath + "  ->  " + backupPath);
+								System.IO.File.Move(OriginalPath, backupPath);
+								Trace.TraceInformation("备份成功。");
+								break;
+							}
+							catch (Exception ex)
+							{
+								Trace.TraceWarning("第[" + tryCount + "]次尝试失败： " + ex.Message);
+
+								if (index < 10)
+									Thread.Sleep(1000);
+								else throw ex;
+							}
+						}
 						bakList.Add(file);
 					}
-					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(OriginalPath));
-					System.IO.File.Move(newVersionFile, OriginalPath);
+					tryCount = 0;
+					while (true)
+					{
+						++tryCount;
+						try
+						{
+							Trace.TraceInformation("正在复制新版本文件: " + newVersionFile + "  ->  " + OriginalPath);
+							System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(OriginalPath));
+							System.IO.File.Copy(newVersionFile, OriginalPath);
+							Trace.TraceInformation("安装成功");
+							break;
+						}
+						catch (Exception ex)
+						{
+							Trace.TraceWarning("第[" + tryCount + "]次尝试失败： " + ex.Message);
+
+							if (index < 10)
+								Thread.Sleep(1000);
+							else throw ex;
+						}
+					}
+					//尝试删除已安装文件
+					tryCount = 0;
+					while (true)
+					{
+						++tryCount;
+						try
+						{
+							Trace.TraceInformation("正在尝试删除已安装文件: " + newVersionFile);
+							System.IO.File.Delete(newVersionFile);
+							Trace.TraceInformation("删除成功");
+							break;
+						}
+						catch (Exception ex)
+						{
+							Trace.TraceWarning("第[" + tryCount + "]次尝试失败： " + ex.Message);
+
+							if (index < 10)
+								Thread.Sleep(1000);
+							else break;
+						}
+
+					}
 					installedFile.Add(file);
 					Trace.TraceInformation("安装文件: " + newVersionFile + "  ->  " + OriginalPath);
 				}

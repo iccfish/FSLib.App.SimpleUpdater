@@ -78,10 +78,10 @@
     <Compile Include="Defination\CancelableEventArgs.cs" />
     <Compile Include="Defination\FileVerificationLevel.cs" />
     <Compile Include="Defination\PackageInfo.cs" />
-    <Compile Include="Defination\ServerNodeSelectMethod.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateInfo.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
+    <Compile Include="Defination\UpdateServerInfo.cs" />
     <Compile Include="Dialogs\CloseApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,9 +106,7 @@
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="HiddenUiUpdateProxy.cs" />
-    <Compile Include="Network\ServerPackageProvider.cs" />
-    <Compile Include="Network\ServerUpdateInfoProvider.cs" />
-    <Compile Include="Network\SpeedTest.cs" />
+    <Compile Include="MultiServerUpdater.cs" />
     <Compile Include="PackageEventArgs.cs" />
     <Compile Include="PackageDownloadException.cs" />
     <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />

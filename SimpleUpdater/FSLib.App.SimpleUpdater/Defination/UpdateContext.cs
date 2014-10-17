@@ -20,6 +20,7 @@
 			ExternalProcessName = new List<string>();
 			MultipleDownloadCount = 3;
 			MaxiumRetryDownloadCount = 3;
+			EnableEmbedDialog = true;
 
 			//如果当前启动路径位于TEMP目录下，则处于临时路径模式
 			var temppath = System.IO.Path.GetTempPath();
@@ -48,7 +49,6 @@
 				}
 			}
 			AppendRandomTagInDownloadUrl = true;
-			PromptUserBeforeAutomaticUpgrade = true;
 		}
 
 		/// <summary>
@@ -338,6 +338,10 @@
 			{
 				client.UseDefaultCredentials = false;
 				client.Credentials = NetworkCredential;
+			}
+			else
+			{
+				client.UseDefaultCredentials = true;
 			}
 
 			return client;

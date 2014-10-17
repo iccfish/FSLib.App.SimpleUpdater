@@ -89,7 +89,10 @@ namespace FSLib.App.SimpleUpdater {
         
         /// <summary>
         ///   查找类似 升级要求最低版本：{0}
-        ///您当前已安装版本：{1} 的本地化字符串。
+        ///您当前已安装版本：{1}
+        ///
+        ///您已安装版本过低无法继续运行，请手动下载最新版并重新安装。
+        ///软件将会自动退出。 的本地化字符串。
         /// </summary>
         internal static string MinmumVersionRequired_Desc {
             get {
@@ -125,7 +128,9 @@ namespace FSLib.App.SimpleUpdater {
         }
         
         /// <summary>
-        ///   查找类似 将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。\n\n如果无法升级，软件将无法使用。 的本地化字符串。
+        ///   查找类似 将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。
+        ///
+        ///如果无法升级，软件将无法使用。 的本地化字符串。
         /// </summary>
         internal static string Updater_AutomaticUpgradeTipForce {
             get {

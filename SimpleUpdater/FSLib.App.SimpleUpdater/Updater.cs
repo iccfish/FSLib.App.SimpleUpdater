@@ -32,11 +32,12 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 确认是否有更新，再继续后面的操作。
 		/// </summary>
+		/// <typeparam name="T">要显示的UI界面</typeparam>
 		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
-		public static void EnsureNoUpdate(string updateUrl, string xmlFileName, Func<bool?> updateFoundAction, Action<Exception> errorHandler)
+		public void EnsureNoUpdate(Func<bool?> updateFoundAction = null, Action<Exception> errorHandler = null)
 		{
-			EnsureNoUpdate<EnsureUpdate>(updateUrl, xmlFileName, updateFoundAction, errorHandler, null);
+			EnsureNoUpdate<Form>(null,null,null);
 		}
 
 		/// <summary>
@@ -46,55 +47,68 @@ namespace FSLib.App.SimpleUpdater
 		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
 		/// <param name="updateUi">用于显示状态的UI界面</param>
-		public static void EnsureNoUpdate<T>(string updateUrl, string xmlFileName, Func<bool?> updateFoundAction, Action<Exception> errorHandler, T updateUi) where T : Form
+		public void EnsureNoUpdate<T>(Func<bool?> updateFoundAction = null, Action<Exception> errorHandler = null, T updateUi = null) where T : Form
 		{
+			Application.EnableVisualStyles();
 			var ui = (Form)updateUi ?? new EnsureUpdate();
 
-			var instance = Instance;
 			var continueProcess = false;
-			instance.Context.EnableEmbedDialog = false;
-
-			if (!string.IsNullOrEmpty(updateUrl))
-				instance.Context.UpdateDownloadUrl = updateUrl;
-			if (!string.IsNullOrEmpty(xmlFileName))
-				instance.Context.UpdateInfoFileName = xmlFileName;
+			Context.EnableEmbedDialog = false;
 
 			using (ui)
 			{
-				ui.Shown += (s, e) => instance.BeginCheckUpdateInProcess();
+				ui.Shown += (s, e) => BeginCheckUpdateInProcess();
 				EventHandler updateFound = null, versionErrorHandler = null, ueEventHandler = null, noupdateFoundHandler = null;
 
-				var unscribeAllEvents = new Action<Updater>(s =>
+				var unscribeAllEvents = new Action<Updater, bool, bool>((s, cont, close) =>
 				{
 					Delegate.RemoveAll(s.UpdatesFound, updateFound);
 					Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
 					Delegate.RemoveAll(s.Error, ueEventHandler);
 					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
 
-					continueProcess = false;
+					continueProcess = cont;
+					if (close)
+						ui.Close();
 				});
 				noupdateFoundHandler = (s, e) =>
 				{
 					continueProcess = true;
-					unscribeAllEvents(s as Updater);
+					unscribeAllEvents(s as Updater, false, true);
 				};
 				updateFound = (s, e) =>
 				{
-					var result = updateFoundAction == null ? null : updateFoundAction();
-					if (result == null)
+					var client = s as Updater;
+					var context = client.Context;
+
+					if (context.MustUpdate||context.MustUpdate)
 					{
-						(s as Updater).Context.EnableEmbedDialog = true;
 						Instance_UpdatesFound(s, e);
-					}
-					else if (result == true)
-					{
-						(s as Updater).StartExternalUpdater();
+						unscribeAllEvents(client, false, true);
 					}
 					else
 					{
-						continueProcess = true;
+						if (updateFoundAction != null)
+						{
+							var result = updateFoundAction();
+							if (result == true)
+							{
+								client.StartExternalUpdater();
+								unscribeAllEvents(s as Updater, true, true);
+
+								return;
+							}
+							if (result == false)
+							{
+								unscribeAllEvents(s as Updater, true, true);
+
+								return;
+							}
+						}
+						context.EnableEmbedDialog = true;
+						Instance_UpdatesFound(s, e);
+						unscribeAllEvents(s as Updater, true, true);
 					}
-					unscribeAllEvents(s as Updater);
 				};
 				versionErrorHandler = (s, e) =>
 				{
@@ -104,9 +118,9 @@ namespace FSLib.App.SimpleUpdater
 					}
 					else
 					{
-						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion, (s as Updater).Context.CurrentVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
-					unscribeAllEvents(s as Updater);
+					unscribeAllEvents(s as Updater, false, true);
 				};
 				ueEventHandler = (s, e) =>
 				{
@@ -119,12 +133,12 @@ namespace FSLib.App.SimpleUpdater
 					{
 						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
-					unscribeAllEvents(s as Updater);
+					unscribeAllEvents(s as Updater, false, true);
 				};
-				instance.UpdatesFound += updateFound;
-				instance.Error += ueEventHandler;
-				instance.MinmumVersionRequired += versionErrorHandler;
-				instance.NoUpdatesFound += noupdateFoundHandler;
+				UpdatesFound += updateFound;
+				Error += ueEventHandler;
+				MinmumVersionRequired += versionErrorHandler;
+				NoUpdatesFound += noupdateFoundHandler;
 
 				ui.ShowDialog();
 			}
@@ -149,16 +163,74 @@ namespace FSLib.App.SimpleUpdater
 		static Updater _instance;
 
 		/// <summary>
+		/// 确认没有重复调用
+		/// </summary>
+		static void CheckInitialized()
+		{
+			if (_instance == null)
+				return;
+
+			throw new InvalidOperationException("Updater 已经被初始化。此方法调用之前，不可先调用任何可能会导致Updater被初始化的操作。");
+		}
+
+		/// <summary>
 		/// 获得当前的更新客户端版本
 		/// </summary>
 		public static string UpdaterClientVersion { get; private set; }
 
 		/// <summary>
-		/// 当前的第一个更新实例。如果初始化了多个更新客户端，则这个属性只能访问到最开始创建的。
+		/// 当前的更新实例。直接访问本属性将会获得默认创建的Updater实例。要使用更多信息创建，请使用 <see cref="CreateUpdaterInstance"/> 方法，请确保在使用本属性之前创建。
 		/// </summary>
 		public static Updater Instance
 		{
-			get { return _instance ?? (_instance = new Updater()); }
+			get { return _instance ?? (_instance = CreateUpdaterInstance((Version)null, null)); }
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(string templateUrl, string xmlFileName)
+		{
+			return CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+		}
+
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <param name="servers"></param>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(params UpdateServerInfo[] servers)
+		{
+			return CreateUpdaterInstance(null, null, servers);
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <param name="appVersion">应用程序版本，留空将会使用自动判断</param>
+		/// <param name="appDirectory">应用程序目录，留空将会使用自动判断</param>
+		/// <param name="servers">升级服务器地址</param>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(Version appVersion, string appDirectory, params UpdateServerInfo[] servers)
+		{
+			CheckInitialized();
+
+			if (servers == null || servers.Length < 2)
+			{
+				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
+					_instance = new Updater();
+				else _instance = new Updater(appVersion, appDirectory);
+			}
+			else
+			{
+				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
+					_instance = new MultiServerUpdater(servers);
+				else _instance = new MultiServerUpdater(appVersion, appDirectory, servers);
+			}
+
+			return _instance;
 		}
 
 		/// <summary>
@@ -167,7 +239,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns>返回是否开始检查操作</returns>
 		public static bool CheckUpdateSimple()
 		{
-			return CheckUpdateSimple(null);
+			return CheckUpdateSimple(string.Empty);
 		}
 
 		/// <summary>
@@ -177,8 +249,9 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns>返回是否开始检查操作</returns>
 		public static bool CheckUpdateSimple(string updateUrl)
 		{
-			if (!string.IsNullOrEmpty(updateUrl)) Instance.Context.UpdateDownloadUrl = updateUrl;
-			Instance.Context.EnableEmbedDialog = true;
+			if (_instance == null)
+				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(updateUrl, null) });
+			_instance.Context.EnableEmbedDialog = true;
 
 			return Instance.BeginCheckUpdateInProcess();
 		}
@@ -191,9 +264,9 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns>返回是否开始检查操作</returns>
 		public static bool CheckUpdateSimple(string templateUrl, string xmlFileName)
 		{
-			if (!string.IsNullOrEmpty(templateUrl)) Instance.Context.UpdateDownloadUrl = templateUrl;
-			if (!string.IsNullOrEmpty(xmlFileName)) Instance.Context.UpdateInfoFileName = xmlFileName;
-			Instance.Context.EnableEmbedDialog = true;
+			if (_instance == null)
+				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+			_instance.Context.EnableEmbedDialog = true;
 
 			return Instance.BeginCheckUpdateInProcess();
 		}
@@ -211,7 +284,6 @@ namespace FSLib.App.SimpleUpdater
 		static void Instance_UpdatesFound(object sender, EventArgs e)
 		{
 			var updater = sender as Updater;
-			if (!updater.Context.EnableEmbedDialog) return;
 
 			if (updater.Context.MustUpdate)
 			{
@@ -233,6 +305,8 @@ namespace FSLib.App.SimpleUpdater
 			}
 			else
 			{
+				if (!updater.Context.EnableEmbedDialog) return;
+
 				if (Application.MessageLoop)
 				{
 					new UpdateFound().Show();

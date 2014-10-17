@@ -10,6 +10,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 	public delegate TR Func<TR>();
 	public delegate TR Func<TS, TR>(TS ele);
 	public delegate void Action<T1, T2>(T1 t1, T2 t2);
+	public delegate void Action<T1, T2, T3>(T1 t1, T2 t2, T3 t3);
 #endif
 
 	public static class ExtensionMethod

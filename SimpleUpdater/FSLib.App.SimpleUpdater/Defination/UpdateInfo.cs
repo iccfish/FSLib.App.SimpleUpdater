@@ -25,6 +25,7 @@
 			AutoEndProcessesWithinAppDir = true;
 			ForceUpdate = false;
 			MustUpdate = false;
+			PromptUserBeforeAutomaticUpgrade = true;
 		}
 
 		/// <summary>
@@ -454,11 +455,6 @@
 		#endregion
 
 		#region new property in 2.3.0.0
-
-		/// <summary>
-		/// 获得或设置节点选择策略
-		/// </summary>
-		public ServerNodeSelectMethod ServerNodeSelectMethod { get; set; }
 
 		/// <summary>
 		/// 获得或设置是否必须进行升级,否则拒绝运行
