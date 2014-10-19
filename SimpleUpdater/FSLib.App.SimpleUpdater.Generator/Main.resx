@@ -889,7 +889,7 @@
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -910,7 +910,7 @@
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -1401,7 +1401,7 @@
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1503,7 +1503,7 @@
     <value>25</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
-    <value>更新程序通常会自动检测是否有权限对当前目录操作并申请管理员权限。如果勾选此选项，则当开启UAC时，升级程序会全部请求管理有权限。</value>
+    <value>更新程序通常会自动检测是否有权限对当前目录操作并申请管理员权限。如果勾选此选项，则当开启UAC时，升级程序会全部请求管理员权限。</value>
   </data>
   <data name="&gt;&gt;label21.Name" xml:space="preserve">
     <value>label21</value>
@@ -1947,7 +1947,7 @@
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -1998,7 +1998,7 @@
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2046,7 +2046,7 @@
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=2.3.5402.34299, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.0.5405.37035, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
