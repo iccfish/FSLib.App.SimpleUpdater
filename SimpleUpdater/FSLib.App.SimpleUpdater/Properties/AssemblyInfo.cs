@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
+using FSLib.App.SimpleUpdater;
+
 [assembly: AssemblyTitle("应用程序自动升级客户端工具")]
 [assembly: AssemblyDescription("鱼·后花园 软件辅助工具")]
 [assembly: AssemblyConfiguration("")]
@@ -21,6 +23,7 @@ using System.Runtime.InteropServices;
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("97b91aed-c715-4721-abec-8d7b9506b9d9")]
+[assembly: Updatable2("http://www.fishlee.net/service/update2/33/24/{0}", "update_c.xml")]
 
 // 程序集的版本信息由下面四个值组成:
 //

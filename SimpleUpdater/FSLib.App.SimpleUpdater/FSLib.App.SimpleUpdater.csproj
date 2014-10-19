@@ -12,8 +12,7 @@
     <AssemblyName>SimpleUpdater</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>updater.ico</ApplicationIcon>
     <SignManifests>false</SignManifests>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MuYu.snk</AssemblyOriginatorKeyFile>
@@ -43,23 +42,23 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\debug\</OutputPath>
+    <OutputPath>bin\exe\debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;STANDALONE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\debug\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\exe\debug\SimpleUpdater.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\release\</OutputPath>
+    <OutputPath>bin\exe\release\</OutputPath>
     <DefineConstants>TRACE;STANDALONE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\release\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\exe\release\SimpleUpdater.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup />
@@ -319,7 +318,7 @@
     <Content Include="Resources\block_16.png" />
     <Content Include="Resources\cou_16_warning.png" />
     <Content Include="Resources\cou_32_refresh.png" />
-    <Content Include="更新说明.txt" />
+    <Content Include="updater.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
