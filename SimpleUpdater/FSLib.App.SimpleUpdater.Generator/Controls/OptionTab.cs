@@ -105,7 +105,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 			txtPackagePassword.AddDataBinding(ui, s => s.Text, s => s.PackagePassword);
 			requiredMinVersion.AddDataBinding(ui, s => s.Text, s => s.RequiredMinVersion);
-			ui.PropertyChanged += (s, e) =>
+			project.PropertyChanged += (s, e) =>
 			{
 				if (e.PropertyName == "DefaultUpdateMethod" || e.PropertyName == "DefaultFileVerificationLevel")
 					RebindDefaultUpdateMethodInfo(s as AuProject);
