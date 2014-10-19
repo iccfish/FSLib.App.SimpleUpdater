@@ -37,7 +37,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
 		public void EnsureNoUpdate(Func<bool?> updateFoundAction = null, Action<Exception> errorHandler = null)
 		{
-			EnsureNoUpdate<Form>(null,null,null);
+			EnsureNoUpdate<Form>(null, null, null);
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace FSLib.App.SimpleUpdater
 					var client = s as Updater;
 					var context = client.Context;
 
-					if (context.MustUpdate||context.MustUpdate)
+					if (context.MustUpdate || context.MustUpdate)
 					{
 						Instance_UpdatesFound(s, e);
 						unscribeAllEvents(client, false, true);
@@ -222,6 +222,12 @@ namespace FSLib.App.SimpleUpdater
 				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
 					_instance = new Updater();
 				else _instance = new Updater(appVersion, appDirectory);
+
+				if (servers.Length > 0)
+				{
+					_instance.Context.UpdateDownloadUrl = servers[0].Url;
+					_instance.Context.UpdateInfoFileName = servers[0].InfoFileName;
+				}
 			}
 			else
 			{
@@ -247,6 +253,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		/// <param name="updateUrl">更新URL. 如果不传递或传递空的地址, 请使用 <see cref="T:FSLib.App.SimpleUpdater.UpdateableAttribute"/> 属性来标记更新地址</param>
 		/// <returns>返回是否开始检查操作</returns>
+		[Obsolete("这是一个不被推荐的检测更新方式")]
 		public static bool CheckUpdateSimple(string updateUrl)
 		{
 			if (_instance == null)
