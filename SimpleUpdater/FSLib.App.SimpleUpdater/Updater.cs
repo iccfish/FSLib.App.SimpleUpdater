@@ -71,11 +71,7 @@ namespace FSLib.App.SimpleUpdater
 					if (close)
 						ui.Close();
 				});
-				noupdateFoundHandler = (s, e) =>
-				{
-					continueProcess = true;
-					unscribeAllEvents(s as Updater, false, true);
-				};
+				noupdateFoundHandler = (s, e) => unscribeAllEvents(s as Updater, true, true);
 				updateFound = (s, e) =>
 				{
 					var client = s as Updater;
@@ -94,7 +90,7 @@ namespace FSLib.App.SimpleUpdater
 							if (result == true)
 							{
 								client.StartExternalUpdater();
-								unscribeAllEvents(s as Updater, true, true);
+								unscribeAllEvents(s as Updater, false, true);
 
 								return;
 							}
@@ -133,7 +129,7 @@ namespace FSLib.App.SimpleUpdater
 					{
 						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
-					unscribeAllEvents(s as Updater, false, true);
+					unscribeAllEvents(s as Updater, Context.TreatErrorAsNotUpdated, true);
 				};
 				UpdatesFound += updateFound;
 				Error += ueEventHandler;
