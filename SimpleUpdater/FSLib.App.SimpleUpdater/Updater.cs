@@ -258,6 +258,11 @@ namespace FSLib.App.SimpleUpdater
 		{
 			if (_instance == null)
 				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(updateUrl, null) });
+			else if (!string.IsNullOrEmpty(updateUrl))
+			{
+				_instance.Context.UpdateDownloadUrl = updateUrl;
+				_instance.Context.UpdateInfoFileName = null;
+			}
 			_instance.Context.EnableEmbedDialog = true;
 
 			return Instance.BeginCheckUpdateInProcess();
@@ -273,6 +278,11 @@ namespace FSLib.App.SimpleUpdater
 		{
 			if (_instance == null)
 				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+			else if (!string.IsNullOrEmpty(templateUrl))
+			{
+				_instance.Context.UpdateDownloadUrl = templateUrl;
+				_instance.Context.UpdateInfoFileName = xmlFileName;
+			}
 			_instance.Context.EnableEmbedDialog = true;
 
 			return Instance.BeginCheckUpdateInProcess();
