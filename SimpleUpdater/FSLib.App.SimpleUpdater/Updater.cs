@@ -1655,6 +1655,7 @@ namespace FSLib.App.SimpleUpdater
 		internal static void TerminateProcess(object sender, int exitCode = 0)
 		{
 			var e = new CancelableEventArgs();
+			OnRequireTerminateProcess(sender, e);
 			if (e.IsCancelled)
 				return;
 
