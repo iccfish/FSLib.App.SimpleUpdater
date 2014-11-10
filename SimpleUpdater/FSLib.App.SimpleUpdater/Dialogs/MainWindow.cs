@@ -22,6 +22,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 				upd.QueryCloseApplication += (_s, _e) => _e.CallDefaultBeihavior();
 				upd.UpdateCancelled += (_, __) => Environment.Exit(0);
 				upd.UpdatesFound += upd_UpdatesFound;
+				upd.Context.EnableEmbedDialog = false;
 
 				if (upd.Context.IsUpdateInfoDownloaded) { upd.BeginUpdate(); }
 				else upd.BeginCheckUpdateInProcess();
