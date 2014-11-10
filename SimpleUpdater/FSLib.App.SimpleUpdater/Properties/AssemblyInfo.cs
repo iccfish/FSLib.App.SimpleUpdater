@@ -23,7 +23,6 @@ using FSLib.App.SimpleUpdater;
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("97b91aed-c715-4721-abec-8d7b9506b9d9")]
-[assembly: Updatable2("http://www.fishlee.net/service/update2/33/24/{0}", "update_c.xml")]
 
 // 程序集的版本信息由下面四个值组成:
 //
