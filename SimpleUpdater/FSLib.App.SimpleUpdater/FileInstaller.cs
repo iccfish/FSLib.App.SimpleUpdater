@@ -514,7 +514,7 @@ namespace FSLib.App.SimpleUpdater
 						{
 							Trace.TraceWarning("第[" + tryCount + "]次尝试失败： " + ex.Message);
 
-							if (index < 10)
+							if (tryCount < 10)
 								Thread.Sleep(1000);
 							else break;
 						}
