@@ -77,7 +77,7 @@ namespace FSLib.App.SimpleUpdater
 					var client = s as Updater;
 					var context = client.Context;
 
-					if (context.MustUpdate || context.MustUpdate)
+					if (context.MustUpdate || context.ForceUpdate)
 					{
 						Instance_UpdatesFound(s, e);
 						unscribeAllEvents(client, false, true);
