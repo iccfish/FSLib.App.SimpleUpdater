@@ -719,7 +719,7 @@ namespace FSLib.App.SimpleUpdater
 			if (data != null && data.Length > 0x10)
 			{
 				//不是<xml标记，则执行解压缩
-				if (BitConverter.ToInt32(data, 0) != 0x6D783F3C)
+				if (BitConverter.ToInt32(data, 0) != 0x6D783F3C && BitConverter.ToInt32(data, 0) != 0x3CBFBBEF)
 				{
 					Trace.TraceInformation("数据非正常数据, 正在执行解压缩");
 					data = ExtensionMethod.Decompress(data);
@@ -854,7 +854,7 @@ namespace FSLib.App.SimpleUpdater
 				foreach (var pkg in Context.UpdateInfo.Packages)
 				{
 					rt.ReportProgress(++index, Context.UpdateInfo.Packages.Count);
-					var localPath = System.IO.Path.Combine(Context.ApplicationDirectory, pkg.FilePath); //对比本地路径
+					var localPath = System.IO.Path.Combine(Context.ApplicationDirectory, pkg.FilePath);	//对比本地路径
 					pkg.Context = Context;
 
 					if (pkg.Method == UpdateMethod.Always)
