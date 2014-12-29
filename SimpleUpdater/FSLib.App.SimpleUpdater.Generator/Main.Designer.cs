@@ -61,6 +61,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.chkHideBefore = new System.Windows.Forms.CheckBox();
 			this.browseFile = new System.Windows.Forms.Button();
 			this.btnBrowseFolder = new System.Windows.Forms.Button();
+			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
+			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
 			this.lnkBindDescToFile = new System.Windows.Forms.LinkLabel();
 			this.btnEditRtf = new System.Windows.Forms.Button();
@@ -77,6 +79,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.txtPing = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
 			this.tabPage8 = new System.Windows.Forms.TabPage();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
@@ -94,18 +97,18 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.chkOptAutoKillProcess = new System.Windows.Forms.CheckBox();
 			this.chkOptMustUpdate = new System.Windows.Forms.CheckBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.fileConfig = new FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.argumentGenerator1 = new FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.aboutPanel1 = new FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel();
 			this.fbd = new System.Windows.Forms.FolderBrowserDialog();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.btnSaveProject = new System.Windows.Forms.Button();
 			this.btnOpenProject = new System.Windows.Forms.Button();
-			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
-			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
-			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
-			this.fileConfig = new FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration();
-			this.argumentGenerator1 = new FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator();
-			this.aboutPanel1 = new FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel();
+			this.label22 = new System.Windows.Forms.Label();
+			this.txtPackageExtension = new System.Windows.Forms.TextBox();
+			this.label23 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.epp)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -262,8 +265,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage1.Controls.Add(this.txtNewSoftDir);
 			this.tabPage1.Controls.Add(this.label1);
 			this.tabPage1.Controls.Add(this.label2);
+			this.tabPage1.Controls.Add(this.label23);
 			this.tabPage1.Controls.Add(this.label10);
 			this.tabPage1.Controls.Add(this.label3);
+			this.tabPage1.Controls.Add(this.txtPackageExtension);
 			this.tabPage1.Controls.Add(this.txtTimeout);
 			this.tabPage1.Controls.Add(this.label4);
 			this.tabPage1.Controls.Add(this.txtAfterExecuteArgs);
@@ -273,6 +278,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage1.Controls.Add(this.fileAfterExecute);
 			this.tabPage1.Controls.Add(this.label7);
 			this.tabPage1.Controls.Add(this.filePreExecute);
+			this.tabPage1.Controls.Add(this.label22);
 			this.tabPage1.Controls.Add(this.label9);
 			this.tabPage1.Controls.Add(this.txtAppName);
 			this.tabPage1.Controls.Add(this.txtPublishUrl);
@@ -315,6 +321,31 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnBrowseFolder.Name = "btnBrowseFolder";
 			this.btnBrowseFolder.UseVisualStyleBackColor = true;
 			this.btnBrowseFolder.Click += new System.EventHandler(this.btnBrowseFolder_Click);
+			// 
+			// fileAfterExecute
+			// 
+			this.fileAfterExecute.AllowDrop = true;
+			this.fileAfterExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.fileAfterExecute.FileTypeFilter = "cmd,exe,bat,com";
+			resources.ApplyResources(this.fileAfterExecute, "fileAfterExecute");
+			this.fileAfterExecute.Name = "fileAfterExecute";
+			this.fileAfterExecute.PreferFileName = null;
+			this.fileAfterExecute.RootPath = null;
+			this.fileAfterExecute.SelectedFileName = "";
+			this.fileAfterExecute.ShowEmptyEntry = true;
+			// 
+			// filePreExecute
+			// 
+			this.filePreExecute.AllowDrop = true;
+			this.filePreExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.filePreExecute.FileTypeFilter = "cmd,exe,bat,com";
+			this.filePreExecute.FormattingEnabled = true;
+			resources.ApplyResources(this.filePreExecute, "filePreExecute");
+			this.filePreExecute.Name = "filePreExecute";
+			this.filePreExecute.PreferFileName = null;
+			this.filePreExecute.RootPath = null;
+			this.filePreExecute.SelectedFileName = "";
+			this.filePreExecute.ShowEmptyEntry = true;
 			// 
 			// tabPage6
 			// 
@@ -419,6 +450,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 			resources.ApplyResources(this.tabPage2, "tabPage2");
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// options
+			// 
+			resources.ApplyResources(this.options, "options");
+			this.options.Name = "options";
 			// 
 			// tabPage8
 			// 
@@ -539,6 +575,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
+			// fileConfig
+			// 
+			resources.ApplyResources(this.fileConfig, "fileConfig");
+			this.fileConfig.Name = "fileConfig";
+			this.fileConfig.NewVersionFolder = null;
+			// 
 			// tabPage5
 			// 
 			this.tabPage5.Controls.Add(this.argumentGenerator1);
@@ -546,12 +588,22 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.UseVisualStyleBackColor = true;
 			// 
+			// argumentGenerator1
+			// 
+			resources.ApplyResources(this.argumentGenerator1, "argumentGenerator1");
+			this.argumentGenerator1.Name = "argumentGenerator1";
+			// 
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.aboutPanel1);
 			resources.ApplyResources(this.tabPage4, "tabPage4");
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// aboutPanel1
+			// 
+			resources.ApplyResources(this.aboutPanel1, "aboutPanel1");
+			this.aboutPanel1.Name = "aboutPanel1";
 			// 
 			// tip
 			// 
@@ -576,51 +628,20 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpenProject.UseVisualStyleBackColor = true;
 			this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
 			// 
-			// fileAfterExecute
+			// label22
 			// 
-			this.fileAfterExecute.AllowDrop = true;
-			this.fileAfterExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.fileAfterExecute.FileTypeFilter = "cmd,exe,bat,com";
-			resources.ApplyResources(this.fileAfterExecute, "fileAfterExecute");
-			this.fileAfterExecute.Name = "fileAfterExecute";
-			this.fileAfterExecute.PreferFileName = null;
-			this.fileAfterExecute.RootPath = null;
-			this.fileAfterExecute.SelectedFileName = "";
-			this.fileAfterExecute.ShowEmptyEntry = true;
+			resources.ApplyResources(this.label22, "label22");
+			this.label22.Name = "label22";
 			// 
-			// filePreExecute
+			// txtPackageExtension
 			// 
-			this.filePreExecute.AllowDrop = true;
-			this.filePreExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.filePreExecute.FileTypeFilter = "cmd,exe,bat,com";
-			this.filePreExecute.FormattingEnabled = true;
-			resources.ApplyResources(this.filePreExecute, "filePreExecute");
-			this.filePreExecute.Name = "filePreExecute";
-			this.filePreExecute.PreferFileName = null;
-			this.filePreExecute.RootPath = null;
-			this.filePreExecute.SelectedFileName = "";
-			this.filePreExecute.ShowEmptyEntry = true;
+			resources.ApplyResources(this.txtPackageExtension, "txtPackageExtension");
+			this.txtPackageExtension.Name = "txtPackageExtension";
 			// 
-			// options
+			// label23
 			// 
-			resources.ApplyResources(this.options, "options");
-			this.options.Name = "options";
-			// 
-			// fileConfig
-			// 
-			resources.ApplyResources(this.fileConfig, "fileConfig");
-			this.fileConfig.Name = "fileConfig";
-			this.fileConfig.NewVersionFolder = null;
-			// 
-			// argumentGenerator1
-			// 
-			resources.ApplyResources(this.argumentGenerator1, "argumentGenerator1");
-			this.argumentGenerator1.Name = "argumentGenerator1";
-			// 
-			// aboutPanel1
-			// 
-			resources.ApplyResources(this.aboutPanel1, "aboutPanel1");
-			this.aboutPanel1.Name = "aboutPanel1";
+			resources.ApplyResources(this.label23, "label23");
+			this.label23.Name = "label23";
 			// 
 			// Main
 			// 
@@ -732,5 +753,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.CheckBox chkStillProptUserInfo;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.CheckBox chkOptRequireAdminPrivilege;
+		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.TextBox txtPackageExtension;
+		private System.Windows.Forms.Label label22;
 	}
 }

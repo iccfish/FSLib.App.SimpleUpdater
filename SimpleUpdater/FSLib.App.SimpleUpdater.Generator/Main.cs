@@ -469,7 +469,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			txtDesc.AddDataBinding(ui, s => s.Text, s => s.Desc);
 			txtPreExecuteArgs.AddDataBinding(ui, s => s.Text, s => s.ExecuteArgumentBefore);
 			txtPublishUrl.AddDataBinding(ui, s => s.Text, s => s.PublishUrl);
-			txtTimeout.AddDataBinding(ui, s => s.Text, s => s.ExecuteTimeout.ToString());
+			txtTimeout.Text = ui.ExecuteTimeout.ToString();
 			chkHideBefore.AddDataBinding(ui, s => s.Checked, s => s.HideBeforeExecuteWindow);
 			chkHideAfter.AddDataBinding(ui, s => s.Checked, s => s.HideAfterExecuteWindow);
 			fileAfterExecute.AddDataBinding(ui, s => s.SelectedFileName, s => s.FileExecuteAfter);
@@ -485,6 +485,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			chkStillProptUserInfo.AddDataBinding(ui, s => s.Checked, s => s.PromptUserBeforeAutomaticUpgrade);
 			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
 			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
+			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
 
 			project.PropertyChanged += (ss, ee) =>
 			{
@@ -540,6 +541,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			chkStillProptUserInfo.DataBindings.Clear();
 			chkOptError.DataBindings.Clear();
 			chkOptRequireAdminPrivilege.DataBindings.Clear();
+			txtPackageExtension.DataBindings.Clear();
 		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)

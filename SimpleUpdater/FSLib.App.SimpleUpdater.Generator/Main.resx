@@ -217,7 +217,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -250,7 +250,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="txtAppName.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 11</value>
@@ -271,7 +271,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppName.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>24</value>
   </data>
   <data name="txtPublishUrl.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 38</value>
@@ -298,7 +298,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPublishUrl.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>25</value>
   </data>
   <data name="pbProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -385,7 +385,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="lblStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,7 +445,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -478,7 +478,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="txtAfterExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
     <value>363, 146</value>
@@ -502,7 +502,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAfterExecuteArgs.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="txtPreExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
     <value>363, 118</value>
@@ -526,7 +526,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPreExecuteArgs.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="txtAppVersion.Location" type="System.Drawing.Point, System.Drawing">
     <value>490, 11</value>
@@ -550,7 +550,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppVersion.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>26</value>
   </data>
   <data name="txtTimeout.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 175</value>
@@ -574,7 +574,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtTimeout.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="txtNewSoftDir.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 65</value>
@@ -846,6 +846,33 @@
   <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 208</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>459, 29</value>
+  </data>
+  <data name="label23.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>(默认为zip，但是个别ISP喜欢拦截这种扩展名并重定向。设置后，务必确认此文件类型可以在服务器中正确下载)</value>
+  </data>
+  <data name="&gt;&gt;label23.Name" xml:space="preserve">
+    <value>label23</value>
+  </data>
+  <data name="&gt;&gt;label23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -874,7 +901,31 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
+  </data>
+  <data name="txtPackageExtension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 205</value>
+  </data>
+  <data name="txtPackageExtension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="txtPackageExtension.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="txtPackageExtension.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Name" xml:space="preserve">
+    <value>txtPackageExtension</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
   <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 147</value>
@@ -889,13 +940,13 @@
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 119</value>
@@ -910,13 +961,46 @@
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
+  </data>
+  <data name="label22.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 208</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>文件包扩展名</value>
+  </data>
+  <data name="&gt;&gt;label22.Name" xml:space="preserve">
+    <value>label22</value>
+  </data>
+  <data name="&gt;&gt;label22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
+    <value>22</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -949,7 +1033,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>23</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1401,7 +1485,7 @@
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1947,7 +2031,7 @@
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -1998,7 +2082,7 @@
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2046,7 +2130,7 @@
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.0.5406.34604, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -2387,9 +2471,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAPAAAAAAAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIAB
         AACAAQAAgAEAAIABAACAAQAAgAEAAP//AAA=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

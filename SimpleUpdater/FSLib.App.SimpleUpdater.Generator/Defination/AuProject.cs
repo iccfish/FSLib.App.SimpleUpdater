@@ -352,6 +352,26 @@
 		}
 
 		/// <summary>
+		/// 获得或设置升级文件的扩展名
+		/// </summary>
+		public string PackageExtension
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(_packageExtension))
+					return "zip";
+				return _packageExtension;
+			}
+			set
+			{
+				if (value == _packageExtension)
+					return;
+				_packageExtension = value;
+				OnPropertyChanged("PackageExtension");
+			}
+		}
+
+		/// <summary>
 		/// 从指定的文件中加载项目
 		/// </summary>
 		/// <param name="path"></param>
@@ -436,6 +456,7 @@
 		string _updateContentSrc;
 		FileVerificationLevel _defaultFileVerificationLevel;
 		UpdateMethod _defaultUpdateMethod;
+		string _packageExtension;
 
 		/// <summary>
 		/// 尝试加载升级包信息

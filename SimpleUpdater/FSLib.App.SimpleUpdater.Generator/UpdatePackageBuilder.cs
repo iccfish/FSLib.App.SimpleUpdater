@@ -325,7 +325,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//古典版的安装包？
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
 			{
-				var mainPkgId = GetPackageName("main") + ".zip";
+				var mainPkgId = GetPackageName("main") + "."+AuProject.PackageExtension;
 				var file = System.IO.Path.Combine(targetDir, mainPkgId);
 				Result.Add(mainPkgId, "兼容升级模式（或未开启增量更新时）的升级包文件");
 				e.Progress.TaskCount = targetfiles.Length;
@@ -347,7 +347,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				.ToArray();
 			if (mainFiles.Length > 0)
 			{
-				var mainPkgId = GetPackageName("alwaysintall") + ".zip";
+				var mainPkgId = GetPackageName("alwaysintall") + "." + AuProject.PackageExtension;
 				var pkgName = Path.Combine(targetDir, mainPkgId);
 				e.Progress.TaskCount = mainFiles.Length;
 				CreateZip("正在生成全局升级包，正在压缩 {0}", pkgName, ui.PackagePassword, e, mainFiles);
@@ -397,7 +397,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				//file info
 				var fdi = System.Diagnostics.FileVersionInfo.GetVersionInfo(file.Value.FullName);
 				//var pkgFileName = file.Key.Replace("\\", "_").Replace(".", "_") + ".zip";
-				var pkgFileName = GetPackageName(file.Key) + ".zip";
+				var pkgFileName = GetPackageName(file.Key) + "." + AuProject.PackageExtension;
 
 				var pkg = Path.Combine(targetDir, pkgFileName);
 				e.ReportProgress(e.Progress.TaskCount, ++e.Progress.TaskProgress, "正在生成增量包 " + file.Key + ", 正在压缩....");
