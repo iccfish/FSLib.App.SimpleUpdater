@@ -34,7 +34,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 						HideControls();
 						Show();
 					}
-					StepTitle = "正在下载升级包……";
+					StepTitle = FSLib.App.SimpleUpdater.SR.DownloadPackage;
 				};
 				u.DownloadProgressChanged += (s, e) =>
 				{
@@ -45,14 +45,14 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 					var downloadedSize = ExtensionMethod.Sum(u.PackagesToUpdate, m => m.DownloadedSize);
 
 					SetProgress((int)downloadedSize, (int)totalSize);
-					StepDesc = string.Format("下载中...{0}/{1} ({2}/{3})", count, downloaded, ExtensionMethod.ToSizeDescription(downloadedSize), ExtensionMethod.ToSizeDescription(totalSize));
+					StepDesc = string.Format(FSLib.App.SimpleUpdater.SR.DownloadProgress, count, downloaded, ExtensionMethod.ToSizeDescription(downloadedSize), ExtensionMethod.ToSizeDescription(totalSize));
 
 				};
 				u.PackageExtractionBegin += (s, e) =>
 				{
 					SetProgress(0);
 
-					StepTitle = "正在解压缩升级包……";
+					StepTitle = FSLib.App.SimpleUpdater.SR.ExtractPackage;
 					if (e.Package != null)
 					{
 						StepDesc = e.Package.PackageName;
@@ -61,25 +61,25 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				u.QueryCloseApplication += (s, e) =>
 				{
 					SetProgress(0);
-					StepTitle = "正在请求关闭应用程序...";
+					StepTitle = FSLib.App.SimpleUpdater.SR.ClosingApplications;
 					StepDesc = string.Empty;
 				};
 				u.InstallUpdates += (s, e) =>
 				{
 					SetProgress(0);
-					StepTitle = "正在安装升级包...";
+					StepTitle = FSLib.App.SimpleUpdater.SR.InstallPackages;
 					StepDesc = string.Empty;
 				};
 				u.FileInstaller.DeleteFileStart += (s, e) =>
 				{
 					SetProgress(0);
-					StepTitle = "正在删除原始文件...";
+					StepTitle = FSLib.App.SimpleUpdater.SR.DeleteOriginalFiles;
 					StepDesc = string.Empty;
 				};
 				u.FileInstaller.InstallFileStart += (s, e) =>
 				{
 					SetProgress(0);
-					StepTitle = "正在安装新文件...";
+					StepTitle = FSLib.App.SimpleUpdater.SR.InstallNewFiles;
 					StepDesc = string.Empty;
 				};
 				u.FileInstaller.DeleteFile += (s, e) =>
@@ -94,7 +94,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				};
 				u.RunExternalProcess += (s, e) =>
 				{
-					StepTitle = "正在执行外部进程.....";
+					StepTitle = FSLib.App.SimpleUpdater.SR.ExecuteExternal;
 					SetProgress(0);
 					StepDesc = System.IO.Path.GetFileName(e.ProcessStartInfo.FileName);
 				};

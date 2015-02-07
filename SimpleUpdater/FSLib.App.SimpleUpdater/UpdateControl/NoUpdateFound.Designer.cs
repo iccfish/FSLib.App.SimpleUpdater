@@ -28,15 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoUpdateFound));
 			this.SuspendLayout();
 			// 
 			// NoUpdateFound
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Name = "NoUpdateFound";
 			this.ShowCloseButton = true;
 			this.ShowProgress = false;
-			this.StepDesc = "赞哦，您正在使用最新版。如果对此有任何疑问，请联系我们。";
-			this.StepTitle = "木有找到更新";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

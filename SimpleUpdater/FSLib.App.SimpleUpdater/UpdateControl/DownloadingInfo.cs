@@ -21,7 +21,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				ui.DownloadUpdateInfo += Instance_DownloadUpdateInfo;
 				ui.GatheringPackages += (s, e) =>
 				{
-					StepTitle = "正在计算要下载的文件信息……";
+					StepTitle = FSLib.App.SimpleUpdater.SR.ComputingFileInfo;
 				};
 			}
 		}

@@ -68,8 +68,8 @@
 			// 
 			// lblVersion
 			// 
-			this.lblVersion.ForeColor = System.Drawing.Color.White;
 			resources.ApplyResources(this.lblVersion, "lblVersion");
+			this.lblVersion.ForeColor = System.Drawing.Color.White;
 			this.lblVersion.Name = "lblVersion";
 			// 
 			// controlContainer
@@ -79,11 +79,11 @@
 			// 
 			// panel1
 			// 
+			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(99)))), ((int)(((byte)(163)))));
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.lblVersion);
 			this.panel1.Controls.Add(this.lblFound);
-			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.panel1.Name = "panel1";
 			// 
@@ -95,8 +95,8 @@
 			// 
 			// lnkCance
 			// 
-			this.lnkCance.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.block_16;
 			resources.ApplyResources(this.lnkCance, "lnkCance");
+			this.lnkCance.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.block_16;
 			this.lnkCance.Name = "lnkCance";
 			this.lnkCance.TabStop = true;
 			this.lnkCance.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCance_LinkClicked);

@@ -175,4 +175,40 @@
   <data name="Updater_AutomaticUpgradeTipNotForce" xml:space="preserve">
     <value>将会自动升级 {0} (版本 {1}) 到 版本 {2}，请等待升级完成。</value>
   </data>
+  <data name="ComputingFileInfo" xml:space="preserve">
+    <value>正在计算要下载的文件信息……</value>
+    <comment>ComputingFileInfo description</comment>
+  </data>
+  <data name="DownloadPackage" xml:space="preserve">
+    <value>正在下载升级包……</value>
+    <comment>DownloadPackage description</comment>
+  </data>
+  <data name="DownloadProgress" xml:space="preserve">
+    <value>下载中...{0}/{1} ({2}/{3})</value>
+    <comment>DownloadProgress description</comment>
+  </data>
+  <data name="ExtractPackage" xml:space="preserve">
+    <value>正在解压缩升级包……</value>
+    <comment>ExtractPackage description</comment>
+  </data>
+  <data name="ClosingApplications" xml:space="preserve">
+    <value>正在请求关闭应用程序...</value>
+    <comment>ClosingApplications description</comment>
+  </data>
+  <data name="InstallPackages" xml:space="preserve">
+    <value>正在安装升级包...</value>
+    <comment>InstallPackages description</comment>
+  </data>
+  <data name="DeleteOriginalFiles" xml:space="preserve">
+    <value>正在删除原始文件...</value>
+    <comment>DeleteOriginalFiles description</comment>
+  </data>
+  <data name="InstallNewFiles" xml:space="preserve">
+    <value>正在安装新文件...</value>
+    <comment>InstallNewFiles description</comment>
+  </data>
+  <data name="ExecuteExternal" xml:space="preserve">
+    <value>正在执行外部进程.....</value>
+    <comment>ExecuteExternal description</comment>
+  </data>
 </root>

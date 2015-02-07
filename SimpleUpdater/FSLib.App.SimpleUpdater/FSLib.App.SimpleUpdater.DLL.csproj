@@ -181,7 +181,7 @@
     </Compile>
     <Compile Include="Wrapper\RunworkEventArgs.cs" />
     <Compile Include="Wrapper\SlideComponent.cs">
-      <SubType>Component</SubType>
+      <SubType>鱼的控件库</SubType>
     </Compile>
     <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
     <Compile Include="Wrapper\XMLSerializeHelper.cs" />
@@ -197,6 +197,9 @@
     <EmbeddedResource Include="Dialogs\EnsureUpdate.resx">
       <DependentUpon>EnsureUpdate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MainWindow.en.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
       <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.en.resx">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
       <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
@@ -235,11 +241,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\ControlBase.en.resx">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\ControlBase.resx">
       <DependentUpon>ControlBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\DownloadingInfo.en.resx">
+      <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
       <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\NoUpdateFound.en.resx">
+      <DependentUpon>NoUpdateFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\NoUpdateFound.resx">
       <DependentUpon>NoUpdateFound.cs</DependentUpon>
@@ -247,8 +262,14 @@
     <EmbeddedResource Include="UpdateControl\RunUpdate.resx">
       <DependentUpon>RunUpdate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateError.en.resx">
+      <DependentUpon>UpdateError.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\UpdateError.resx">
       <DependentUpon>UpdateError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateFinished.en.resx">
+      <DependentUpon>UpdateFinished.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
       <DependentUpon>UpdateFinished.cs</DependentUpon>
@@ -352,7 +373,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
+      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

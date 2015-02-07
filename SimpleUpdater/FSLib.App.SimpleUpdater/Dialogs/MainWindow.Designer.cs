@@ -44,9 +44,9 @@
 			// 
 			// panel1
 			// 
+			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(203)))));
 			this.panel1.Controls.Add(this.label1);
-			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.Name = "panel1";
 			// 
 			// label1
@@ -57,13 +57,13 @@
 			// 
 			// panMain
 			// 
+			resources.ApplyResources(this.panMain, "panMain");
 			this.panMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panMain.Controls.Add(this.downloadingInfo1);
 			this.panMain.Controls.Add(this.runUpdate1);
 			this.panMain.Controls.Add(this.updateFinished1);
 			this.panMain.Controls.Add(this.updateError1);
 			this.panMain.Controls.Add(this.noUpdateFound1);
-			resources.ApplyResources(this.panMain, "panMain");
 			this.panMain.Name = "panMain";
 			// 
 			// downloadingInfo1

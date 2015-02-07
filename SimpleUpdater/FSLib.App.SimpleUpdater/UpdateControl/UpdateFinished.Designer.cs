@@ -28,15 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateFinished));
 			this.SuspendLayout();
 			// 
 			// UpdateFinished
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Name = "UpdateFinished";
 			this.ShowCloseButton = true;
 			this.ShowProgress = false;
-			this.StepDesc = "赞哦，您已经成功升级到了最新版！";
-			this.StepTitle = "自动更新已经成功完成";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

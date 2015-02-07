@@ -28,15 +28,16 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateError));
 			this.SuspendLayout();
 			// 
 			// UpdateError
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.cou_16_warning;
 			this.Name = "UpdateError";
 			this.ShowCloseButton = true;
 			this.ShowProgress = false;
-			this.StepTitle = "更新发生错误，请稍后重试";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

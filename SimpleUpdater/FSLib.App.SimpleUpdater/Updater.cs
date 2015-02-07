@@ -777,7 +777,7 @@ namespace FSLib.App.SimpleUpdater
 
 					if (System.IO.File.Exists(pkgList))
 					{
-						PackagesToUpdate = XMLSerializeHelper.XmlDeserializeFromString<List<PackageInfo>>(System.IO.File.ReadAllText(pkgList));
+						PackagesToUpdate = XMLSerializeHelper.XmlDeserializeFromString<List<PackageInfo>>(System.IO.File.ReadAllText(pkgList, Encoding.UTF8));
 						PackagesToUpdate.ForEach(s => s.Context = Context);
 					}
 					else
@@ -789,7 +789,7 @@ namespace FSLib.App.SimpleUpdater
 					Trace.TraceInformation("外部文件保留列表：{0}", preserveFileList);
 					if (System.IO.File.Exists(preserveFileList))
 					{
-						var list = XMLSerializeHelper.XmlDeserializeFromString<List<string>>(System.IO.File.ReadAllText(preserveFileList));
+						var list = XMLSerializeHelper.XmlDeserializeFromString<List<string>>(System.IO.File.ReadAllText(preserveFileList, Encoding.UTF8));
 						list.ForEach(s => FileInstaller.PreservedFiles.Add(s, null));
 					}
 				}

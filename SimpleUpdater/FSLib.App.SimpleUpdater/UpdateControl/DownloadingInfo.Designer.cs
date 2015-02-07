@@ -28,12 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadingInfo));
 			this.SuspendLayout();
 			// 
 			// DownloadingInfo
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Name = "DownloadingInfo";
-			this.StepTitle = "正在获得更新信息，请稍等...";
+			this.ShowCloseButton = true;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
