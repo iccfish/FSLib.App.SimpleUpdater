@@ -167,4 +167,31 @@
     <value>Your application version of '{1}' can now upgrade to '{0}', upgrade now?</value>
     <comment>UpdatesFound_Top description</comment>
   </data>
+  <data name="ClosingApplications" xml:space="preserve">
+    <value>Closing applications...</value>
+  </data>
+  <data name="ComputingFileInfo" xml:space="preserve">
+    <value>Estimate downloading information...</value>
+  </data>
+  <data name="DeleteOriginalFiles" xml:space="preserve">
+    <value>Removing old files...</value>
+  </data>
+  <data name="DownloadPackage" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="DownloadProgress" xml:space="preserve">
+    <value>Downloading...{0}/{1} ({2}/{3})</value>
+  </data>
+  <data name="ExecuteExternal" xml:space="preserve">
+    <value>Executing program...</value>
+  </data>
+  <data name="ExtractPackage" xml:space="preserve">
+    <value>Extract packages...</value>
+  </data>
+  <data name="InstallNewFiles" xml:space="preserve">
+    <value>Install new files...</value>
+  </data>
+  <data name="InstallPackages" xml:space="preserve">
+    <value>Install packages...</value>
+  </data>
 </root>

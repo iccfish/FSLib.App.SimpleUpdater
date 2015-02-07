@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	For more info on this file format visit http://docs.nuget.org/docs/reference/nuspec-reference.
+-->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>fishlee.net.simpleupdater</id>
+		<version>3.2.1.0</version>
+		<authors>iFish(木鱼)</authors>
+		<title>iFish's Simple Application Updater Library</title>
+		<summary>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5</summary>
+		<description>
+		A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5.
+		一个适用于 .NET 2.0/3.5/4.0/4.5 的高度易用的自动更新客户端。
+		Please visit http://www.fishlee.net/soft/simple_autoupdater/ to get update package builder tool.
+		请访问 http://www.fishlee.net/soft/simple_autoupdater/ 获得更新包打包工具。
+		</description>
+		<language>zh-cn</language>
+		<projectUrl>http://www.fishlee.net/soft/simple_autoupdater/</projectUrl>
+		<licenseUrl>http://www.fishlee.net/soft/simple_autoupdater/license.html</licenseUrl>
+		<tags>autoupdate updater automatic</tags>
+		<!--<references>
+			<group targetFramework="net45">
+				<reference file="FSLib.Network.dll" />
+			</group>
+			<group targetFramework="net40">
+				<reference file="FSLib.Network.dll" />
+			</group>
+			<group targetFramework="net35">
+				<reference file="FSLib.Network.dll" />
+			</group>
+		</references>
+		<dependencies>
+			<group>
+				<dependency id="Newtonsoft.Json" version="[6.0.0,)" />
+				<dependency id="extension.fishlee.net" version="[1.2.0.0,)" />
+			</group>
+		</dependencies>-->
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System"/>
+		</frameworkAssemblies>
+		<releaseNotes>
+		</releaseNotes>
+	</metadata>
+
+	<files>
+		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net20" />
+		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net40" />
+		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net45" />
+	</files>
+</package>

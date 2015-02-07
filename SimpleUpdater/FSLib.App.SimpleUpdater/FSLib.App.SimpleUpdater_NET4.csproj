@@ -5,14 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{21A701D7-063B-48E9-AE2F-5586A954B830}</ProjectGuid>
+    <ProjectGuid>{F2156673-4759-4456-8334-3FF4BEC10F0B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
     <AssemblyName>SimpleUpdater</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>globe_download.ico</ApplicationIcon>
+    <ApplicationIcon>updater.ico</ApplicationIcon>
     <SignManifests>false</SignManifests>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MuYu.snk</AssemblyOriginatorKeyFile>
@@ -42,27 +42,25 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\_Bin.Debug.4\</OutputPath>
+    <OutputPath>bin\exe_4.0\debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\_Bin.Debug.4\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\exe_4.0\debug\SimpleUpdater.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\_Bin.Release.4\</OutputPath>
+    <OutputPath>bin\exe_4.0\release\</OutputPath>
     <DefineConstants>TRACE;NET4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\_Bin.Release.4\SimpleUpdater.XML</DocumentationFile>
+    <DocumentationFile>bin\exe_4.0\release\\SimpleUpdater.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -75,19 +73,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloseApp.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Defination\CancelableEventArgs.cs" />
+    <Compile Include="Defination\FileVerificationLevel.cs" />
+    <Compile Include="Defination\PackageInfo.cs" />
+    <Compile Include="Defination\UpdateContext.cs" />
+    <Compile Include="Defination\UpdateInfo.cs" />
+    <Compile Include="Defination\UpdateMethod.cs" />
+    <Compile Include="Defination\UpdateServerInfo.cs" />
+    <Compile Include="DeletePreviousProgramMethod.cs" />
+    <Compile Include="Dialogs\CloseApp.cs">
+      <SubType>form</SubType>
     </Compile>
-    <Compile Include="CloseApp.Designer.cs">
+    <Compile Include="Dialogs\CloseApp.Designer.cs">
       <DependentUpon>CloseApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="DefaultAppInfoProvider.cs" />
-    <Compile Include="DeletePreviousProgramMethod.cs" />
+    <Compile Include="Dialogs\EnsureUpdate.cs">
+      <SubType>form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EnsureUpdate.Designer.cs">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MainWindow.cs">
+      <SubType>form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MinmumVersionRequired.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\MinmumVersionRequired.Designer.cs">
       <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProgramExecuteTimeout.cs">
+      <SubType>form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProgramExecuteTimeout.Designer.cs">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelfUpdate.cs">
       <SubType>Form</SubType>
@@ -95,7 +117,14 @@
     <Compile Include="Dialogs\SelfUpdate.Designer.cs">
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="IAppInfoProvider.cs" />
+    <Compile Include="Dialogs\UpdateFound.cs">
+      <SubType>form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UpdateFound.Designer.cs">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileInstaller.cs" />
+    <Compile Include="HiddenUiUpdateProxy.cs" />
     <Compile Include="ICCEmbedded\Checksums\Adler32.cs" />
     <Compile Include="ICCEmbedded\Checksums\CRC32.cs" />
     <Compile Include="ICCEmbedded\Checksums\IChecksum.cs" />
@@ -131,31 +160,16 @@
     <Compile Include="ICCEmbedded\Zip\ZipHelperStream.cs" />
     <Compile Include="ICCEmbedded\Zip\ZipNameTransform.cs" />
     <Compile Include="ICCEmbedded\Zip\ZipOutputStream.cs" />
-    <Compile Include="Lib\AbstractReportProgress.cs" />
-    <Compile Include="Lib\Installer.cs" />
-    <Compile Include="Lib\IReportProgress.cs" />
-    <Compile Include="Lib\IZipFileExtractor.cs" />
-    <Compile Include="Lib\PackageDownloader.cs" />
-    <Compile Include="Lib\PackageValidator.cs" />
-    <Compile Include="Lib\SevenZipPackageExtractor.cs" />
-    <Compile Include="Lib\ZipFileExtractManager.cs" />
-    <Compile Include="Lib\ZipPackageExtractor.cs" />
-    <Compile Include="MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainWindow.Designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MultiServerUpdater.cs" />
+    <Compile Include="PackageDownloadException.cs" />
+    <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
+    <Compile Include="PackageEventArgs.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgramExecuteTimeout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProgramExecuteTimeout.Designer.cs">
-      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
-    <Compile Include="Wrapper\ExtendFileStream.cs" />
+    <Compile Include="RunExternalProcessEventArgs.cs" />
+    <Compile Include="Updatable2Attribute.cs" />
     <Compile Include="Wrapper\BackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -165,34 +179,54 @@
     </Compile>
     <Compile Include="Wrapper\RunworkEventArgs.cs" />
     <Compile Include="Wrapper\SlideComponent.cs">
-      <SubType>Component</SubType>
+      <SubType>鱼的控件库</SubType>
     </Compile>
     <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
     <Compile Include="Wrapper\XMLSerializeHelper.cs" />
-    <EmbeddedResource Include="CloseApp.en-US.resx">
+    <EmbeddedResource Include="Dialogs\CloseApp.en.resx">
       <DependentUpon>CloseApp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CloseApp.resx">
+    <EmbeddedResource Include="Dialogs\CloseApp.resx">
       <DependentUpon>CloseApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EnsureUpdate.en.resx">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EnsureUpdate.resx">
+      <DependentUpon>EnsureUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MainWindow.en.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
       <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.en.resx">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
+      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelfUpdate.resx">
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
-      <DependentUpon>MainWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\UpdateFound.en.resx">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgramExecuteTimeout.resx">
-      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\UpdateFound.resx">
+      <DependentUpon>UpdateFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SR.en-US.resx" />
+    <EmbeddedResource Include="SR.en.resx">
+      <DependentUpon>SR.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SR.Designer.cs</LastGenOutput>
@@ -212,22 +246,14 @@
     <EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
       <DependentUpon>UpdateFinished.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\UpdateFound.resx">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateFound.en-US.resx">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateFound.resx">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="app.manifest" />
+    <None Include="appconfig" />
+    <None Include="ifish.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -276,34 +302,17 @@
     <Compile Include="UpdateControl\UpdateFinished.Designer.cs">
       <DependentUpon>UpdateFinished.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateControl\UpdateFound.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\UpdateFound.Designer.cs">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateFound.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdateFound.Designer.cs">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </Compile>
     <Compile Include="Updater.cs" />
-    <Compile Include="UpdateInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\05043139.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\FSLib.App.Utilities.exe.gz" />
     <None Include="Resources\Info.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Warning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="globe_download.ico" />
-    <Content Include="更新说明.txt" />
-    <None Include="Resources\FSLib.App.Utilities.exe" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -322,11 +331,17 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\16px_loading_1.gif" />
+    <Content Include="Resources\block_16.png" />
+    <Content Include="Resources\cou_16_warning.png" />
+    <Content Include="Resources\cou_32_refresh.png" />
+    <Content Include="updater.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\key\muyu.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

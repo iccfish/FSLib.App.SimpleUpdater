@@ -23,6 +23,11 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 
 #更新记录
 
+####3.3.0.0 (包工具) [2015年02月07日]
+
+* 修改升级包生成的文件名编码为UTF-8，避免在语言代码不同的系统上出现乱码
+
+
 ####3.0.14290.0 [2014年10月19日]
 
 * 【客户端】升级包支持“不提示直接自动启动升级”选项
