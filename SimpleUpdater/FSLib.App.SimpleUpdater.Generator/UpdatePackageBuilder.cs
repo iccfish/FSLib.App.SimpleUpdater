@@ -167,6 +167,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					if (!string.IsNullOrEmpty(s))
 					{
 						var fe = entryFactory.MakeDirectoryEntry(s);
+						fe.IsUnicodeText = true;
 						fe.DateTime = DateTime.Now;
 						zip.PutNextEntry(fe);
 						zip.CloseEntry();
@@ -178,6 +179,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 							e.ReportProgress(e.Progress.TaskCount, e.Progress.TaskProgress + 1, string.Format(title, f.Key));
 
 						var ent = entryFactory.MakeFileEntry(f.Key);
+						ent.IsUnicodeText = true;
 						ent.DateTime = f.Value.LastWriteTime;
 
 						//复制文件内容。简单起见，这里不返回进度显示。。。
