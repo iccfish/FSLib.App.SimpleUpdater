@@ -163,6 +163,7 @@
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
     <Compile Include="RunExternalProcessEventArgs.cs" />
     <Compile Include="Updatable2Attribute.cs" />
+    <Compile Include="Utility.cs" />
     <Compile Include="Wrapper\BackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -232,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\UpdateError.resx">
       <DependentUpon>UpdateError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateFinished.en.resx">
+      <DependentUpon>UpdateFinished.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
       <DependentUpon>UpdateFinished.cs</DependentUpon>

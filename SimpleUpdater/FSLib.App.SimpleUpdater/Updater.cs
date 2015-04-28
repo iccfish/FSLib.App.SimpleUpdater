@@ -326,7 +326,15 @@ namespace FSLib.App.SimpleUpdater
 				}
 				else
 				{
-					new UpdateFound().ShowDialog();
+					//启动单独的线程，并设置STA标记
+					//不设置STA标记的时候，当更新信息是网页的话会报错
+					var ts = new Thread(() =>
+					  {
+						  new UpdateFound().ShowDialog();
+					  });
+					ts.IsBackground = false;
+					ts.SetApartmentState(ApartmentState.STA);
+					ts.Start();
 				}
 			}
 			updater.EnsureUpdateStarted();
@@ -1785,13 +1793,13 @@ namespace FSLib.App.SimpleUpdater
 			//启动
 			var sb = new StringBuilder(0x400);
 			sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
-			sb.AppendFormat("/ad \"{0}\" ", Context.ApplicationDirectory);
+			sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
 			sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
 			sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);
 			sb.AppendFormat("/proxy \"{0}\" ", Context.ProxyAddress ?? "");
 			if (Context.NetworkCredential != null)
 				sb.AppendFormat("/cred \"{0}\" ", string.Format("{0}:{1}", Context.NetworkCredential.UserName, Context.NetworkCredential.Password));
-			sb.AppendFormat("/log \"{0}\" ", logPath);
+			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
 			if (Context.AutoKillProcesses) sb.Append("/autokill ");
 			if (Context.ForceUpdate) sb.Append("/forceupdate ");
 			if (Context.HiddenUI) sb.Append("/noui");
@@ -1933,7 +1941,7 @@ namespace FSLib.App.SimpleUpdater
 			//写入配置文件
 			System.IO.File.WriteAllBytes(localpath + ".config", Properties.Resources.appconfig);
 
-			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Context.UpdateTempRoot + "\"";
+			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
 			Process.Start(localpath, arg);
 			_hasCleanProcessStarted = true;
 		}
