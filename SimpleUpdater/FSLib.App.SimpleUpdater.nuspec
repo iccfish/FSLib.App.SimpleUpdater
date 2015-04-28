@@ -38,6 +38,7 @@
 		</dependencies>-->
 		<frameworkAssemblies>
 			<frameworkAssembly assemblyName="System"/>
+			<frameworkAssembly assemblyName="System.Windows.Forms"/>
 		</frameworkAssemblies>
 		<releaseNotes>
 		</releaseNotes>
