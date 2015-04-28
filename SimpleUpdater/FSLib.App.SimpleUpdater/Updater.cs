@@ -1420,6 +1420,7 @@ namespace FSLib.App.SimpleUpdater
 						nextPkg.IsDownloading = true;
 						Trace.TraceInformation("包【" + nextPkg.PackageName + "】开始下载");
 						rt.PostEvent(PackageDownload, this, new PackageEventArgs(nextPkg));
+						Context.ResetWebClient(client);
 						client.DownloadFileAsync(new Uri(Context.RandomUrl(Context.GetUpdatePackageFullUrl(nextPkg.PackageName))), nextPkg.LocalSavePath, nextPkg);
 					}
 				}
