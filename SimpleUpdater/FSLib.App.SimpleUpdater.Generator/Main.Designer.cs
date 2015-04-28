@@ -54,15 +54,18 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.btnOpen = new System.Windows.Forms.Button();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tcMain = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.btnBind = new System.Windows.Forms.Button();
 			this.chkHideAfter = new System.Windows.Forms.CheckBox();
 			this.chkHideBefore = new System.Windows.Forms.CheckBox();
 			this.browseFile = new System.Windows.Forms.Button();
 			this.btnBrowseFolder = new System.Windows.Forms.Button();
+			this.label23 = new System.Windows.Forms.Label();
+			this.txtPackageExtension = new System.Windows.Forms.TextBox();
 			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
 			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
+			this.label22 = new System.Windows.Forms.Label();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
 			this.lnkBindDescToFile = new System.Windows.Forms.LinkLabel();
 			this.btnEditRtf = new System.Windows.Forms.Button();
@@ -106,11 +109,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.btnSaveProject = new System.Windows.Forms.Button();
 			this.btnOpenProject = new System.Windows.Forms.Button();
-			this.label22 = new System.Windows.Forms.Label();
-			this.txtPackageExtension = new System.Windows.Forms.TextBox();
-			this.label23 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.epp)).BeginInit();
-			this.tabControl1.SuspendLayout();
+			this.tcMain.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage6.SuspendLayout();
 			this.tabPage7.SuspendLayout();
@@ -240,19 +240,19 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpen.Name = "btnOpen";
 			this.btnOpen.UseVisualStyleBackColor = true;
 			// 
-			// tabControl1
+			// tcMain
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage6);
-			this.tabControl1.Controls.Add(this.tabPage7);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage8);
-			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Controls.Add(this.tabPage5);
-			this.tabControl1.Controls.Add(this.tabPage4);
-			resources.ApplyResources(this.tabControl1, "tabControl1");
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
+			this.tcMain.Controls.Add(this.tabPage1);
+			this.tcMain.Controls.Add(this.tabPage6);
+			this.tcMain.Controls.Add(this.tabPage7);
+			this.tcMain.Controls.Add(this.tabPage2);
+			this.tcMain.Controls.Add(this.tabPage8);
+			this.tcMain.Controls.Add(this.tabPage3);
+			this.tcMain.Controls.Add(this.tabPage5);
+			this.tcMain.Controls.Add(this.tabPage4);
+			resources.ApplyResources(this.tcMain, "tcMain");
+			this.tcMain.Name = "tcMain";
+			this.tcMain.SelectedIndex = 0;
 			// 
 			// tabPage1
 			// 
@@ -322,6 +322,16 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnBrowseFolder.UseVisualStyleBackColor = true;
 			this.btnBrowseFolder.Click += new System.EventHandler(this.btnBrowseFolder_Click);
 			// 
+			// label23
+			// 
+			resources.ApplyResources(this.label23, "label23");
+			this.label23.Name = "label23";
+			// 
+			// txtPackageExtension
+			// 
+			resources.ApplyResources(this.txtPackageExtension, "txtPackageExtension");
+			this.txtPackageExtension.Name = "txtPackageExtension";
+			// 
 			// fileAfterExecute
 			// 
 			this.fileAfterExecute.AllowDrop = true;
@@ -346,6 +356,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.filePreExecute.RootPath = null;
 			this.filePreExecute.SelectedFileName = "";
 			this.filePreExecute.ShowEmptyEntry = true;
+			// 
+			// label22
+			// 
+			resources.ApplyResources(this.label22, "label22");
+			this.label22.Name = "label22";
 			// 
 			// tabPage6
 			// 
@@ -628,28 +643,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpenProject.UseVisualStyleBackColor = true;
 			this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
 			// 
-			// label22
-			// 
-			resources.ApplyResources(this.label22, "label22");
-			this.label22.Name = "label22";
-			// 
-			// txtPackageExtension
-			// 
-			resources.ApplyResources(this.txtPackageExtension, "txtPackageExtension");
-			this.txtPackageExtension.Name = "txtPackageExtension";
-			// 
-			// label23
-			// 
-			resources.ApplyResources(this.label23, "label23");
-			this.label23.Name = "label23";
-			// 
 			// Main
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.btnOpenProject);
 			this.Controls.Add(this.btnSaveProject);
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.tcMain);
 			this.Controls.Add(this.btnOpen);
 			this.Controls.Add(this.lblStatus);
 			this.Controls.Add(this.btnCreate);
@@ -658,7 +658,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.MaximizeBox = false;
 			this.Name = "Main";
 			((System.ComponentModel.ISupportInitialize)(this.epp)).EndInit();
-			this.tabControl1.ResumeLayout(false);
+			this.tcMain.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage6.ResumeLayout(false);
@@ -701,7 +701,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.TextBox txtTimeout;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Button btnOpen;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tcMain;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private Controls.OptionTab options;

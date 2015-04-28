@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -157,7 +157,7 @@
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -190,7 +190,7 @@
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -223,7 +223,7 @@
     <value>True</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -358,7 +358,7 @@
     <value>True</value>
   </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -418,7 +418,7 @@
     <value>True</value>
   </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -451,7 +451,7 @@
     <value>True</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -940,7 +940,7 @@
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -961,7 +961,7 @@
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -973,7 +973,7 @@
     <value>True</value>
   </data>
   <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1006,7 +1006,7 @@
     <value>True</value>
   </data>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
+    <value>SimSun, 9pt, style=Bold</value>
   </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1057,7 +1057,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1362,7 +1362,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage6.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1464,7 +1464,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1485,7 +1485,7 @@
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1515,7 +1515,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -1725,7 +1725,7 @@
     <value>True</value>
   </data>
   <data name="chkOptForceUpdate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptForceUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1758,7 +1758,7 @@
     <value>True</value>
   </data>
   <data name="chkOptRequireAdminPrivilege.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptRequireAdminPrivilege.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1791,7 +1791,7 @@
     <value>True</value>
   </data>
   <data name="chkStillProptUserInfo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkStillProptUserInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1824,7 +1824,7 @@
     <value>True</value>
   </data>
   <data name="chkOptError.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptError.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1857,7 +1857,7 @@
     <value>True</value>
   </data>
   <data name="chkOptAutoExitProcess.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptAutoExitProcess.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1890,7 +1890,7 @@
     <value>True</value>
   </data>
   <data name="chkAutoEndAppDirProcesses.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkAutoEndAppDirProcesses.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1923,7 +1923,7 @@
     <value>True</value>
   </data>
   <data name="chkOptAutoKillProcess.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptAutoKillProcess.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1956,7 +1956,7 @@
     <value>True</value>
   </data>
   <data name="chkOptMustUpdate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>Microsoft YaHei, 9pt, style=Bold</value>
   </data>
   <data name="chkOptMustUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1986,7 +1986,7 @@
     <value>14</value>
   </data>
   <data name="tabPage8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>Microsoft YaHei, 9pt</value>
   </data>
   <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2010,7 +2010,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage8.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -2031,7 +2031,7 @@
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -2061,7 +2061,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -2082,7 +2082,7 @@
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2109,7 +2109,7 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage5.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -2130,7 +2130,7 @@
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.1.5471.1268, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -2160,30 +2160,30 @@
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tcMain</value>
   </data>
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tcMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tcMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>746, 399</value>
   </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="tcMain.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;tcMain.Name" xml:space="preserve">
+    <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tcMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tcMain.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tcMain.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="btnOpen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">

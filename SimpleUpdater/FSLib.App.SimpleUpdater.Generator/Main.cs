@@ -275,17 +275,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 			var project = UpdatePackageBuilder.Instance.AuProject;
 
-			//检查增量更新
-			if (project.Files.Any(s => s.UpdateMethod != UpdateMethod.Always || s.UpdateMethod != UpdateMethod.Ignore) && !project.EnableIncreaseUpdate)
-			{
-				if (MessageBox.Show("您已经设置部分文件为条件更新，这需要开启增量更新，但是当前尚未打开。这将会导致这些文件的设置失效，是否确定继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
-			}
-			//检查文件存在
-			if (System.IO.Directory.GetFiles(project.ParseFullPath(project.DestinationDirectory), "*.*", SearchOption.AllDirectories).Length > 0)
-			{
-				if (MessageBox.Show("自动更新程序将会生成一个或多个文件（包括xml、zip文件等），而您当前选择的升级包保存文件夹不是空的，这可能会导致同名的文件被覆盖。确定继续吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
-			}
-
 			if (string.IsNullOrEmpty(this.txtAppName.Text)) { epp.SetError(this.txtAppName, "请输入应用程序名"); return; }
 
 			if (string.IsNullOrEmpty(project.VersionUpdateSrc))
@@ -296,7 +285,20 @@ namespace FSLib.App.SimpleUpdater.Generator
 				}
 				catch (Exception)
 				{
-					epp.SetError(this.txtAppVersion, "请输入版本号");
+					epp.SetError(this.txtAppVersion, "请输入版本号，您还木有输入，或输入的不是一个合法的版本号。");
+					return;
+				}
+			}
+			if (!string.IsNullOrEmpty(project.UpdateInfo.RequiredMinVersion))
+			{
+				try
+				{
+					new Version(project.UpdateInfo.RequiredMinVersion);
+				}
+				catch (Exception)
+				{
+					Information("请输入正确的升级最小版本号。如果没有版本限制，请留空。");
+					tcMain.SelectedIndex = 3;
 					return;
 				}
 			}
@@ -314,6 +316,17 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				epp.SetError(this.txtPackagePath, "文件包所在目录不存在");
 				return;
+			}
+
+			//检查增量更新
+			if (project.Files.Any(s => s.UpdateMethod != UpdateMethod.Always || s.UpdateMethod != UpdateMethod.Ignore) && !project.EnableIncreaseUpdate)
+			{
+				if (MessageBox.Show("您已经设置部分文件为条件更新，这需要开启增量更新，但是当前尚未打开。这将会导致这些文件的设置失效，是否确定继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
+			}
+			//检查文件存在
+			if (System.IO.Directory.GetFiles(project.ParseFullPath(project.DestinationDirectory), "*.*", SearchOption.AllDirectories).Length > 0)
+			{
+				if (MessageBox.Show("自动更新程序将会生成一个或多个文件（包括xml、zip文件等），而您当前选择的升级包保存文件夹不是空的，这可能会导致同名的文件被覆盖。确定继续吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK) return;
 			}
 
 			Create();
