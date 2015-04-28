@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22512.0
+VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj", "{21A701D7-063B-48E9-AE2F-5586A954B830}"
 EndProject
@@ -21,6 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.DLL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "相关文件", "相关文件", "{ACE0B366-C027-4D08-866E-C9559936C99D}"
 	ProjectSection(SolutionItems) = preProject
+		content\App.config.install.xdt = content\App.config.install.xdt
+		content\App.config.uninstall.xdt = content\App.config.uninstall.xdt
+		FSLib.App.SimpleUpdater.nuspec = FSLib.App.SimpleUpdater.nuspec
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

@@ -5,7 +5,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>fishlee.net.simpleupdater</id>
-		<version>3.2.1.0</version>
+		<version>3.3.0.0</version>
 		<authors>iFish(木鱼)</authors>
 		<title>iFish's Simple Application Updater Library</title>
 		<summary>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5</summary>
@@ -41,6 +41,7 @@
 			<frameworkAssembly assemblyName="System.Windows.Forms"/>
 		</frameworkAssemblies>
 		<releaseNotes>
+			fixed some issues in specific situations.
 		</releaseNotes>
 	</metadata>
 
@@ -48,5 +49,6 @@
 		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net20" />
 		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net40" />
 		<file src="FSLib.App.SimpleUpdater\bin\dll\release\**\*.*" exclude="**\*.pdb" target="lib\net45" />
+		<file src="content\*" target="content\" />
 	</files>
 </package>
