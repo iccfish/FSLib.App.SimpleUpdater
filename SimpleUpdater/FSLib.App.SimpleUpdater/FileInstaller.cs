@@ -376,6 +376,8 @@ namespace FSLib.App.SimpleUpdater
 			var index = 0;
 			foreach (var file in allOldFiles)
 			{
+				e.ReportProgress(allOldFiles.Length, ++index, file);
+
 				var rPath = file.Remove(0, ApplicationRoot.Length).TrimEnd('\\');
 				//保留的文件
 				if (PreservedFiles.ContainsKey(rPath))
@@ -391,8 +393,7 @@ namespace FSLib.App.SimpleUpdater
 					(UpdateInfo.DeleteMethod == DeletePreviousProgramMethod.NoneButSpecified && rules.FindIndex(s => s.IsMatch(rPath)) != -1)
 					)
 				{
-					e.PostEvent(() => OnDeleteFile(new InstallFileEventArgs(file, dPath, allOldFiles.Length, ++index)));
-
+					e.PostEvent(() => OnDeleteFile(new InstallFileEventArgs(file, dPath, allOldFiles.Length, index)));
 					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dPath));
 					Trace.TraceInformation("备份并删除文件: {0}  ->  {1}", file, dPath);
 					System.IO.File.Copy(file, dPath);
@@ -445,11 +446,13 @@ namespace FSLib.App.SimpleUpdater
 				var index = 0;
 				foreach (var file in filelist)
 				{
+					e.ReportProgress(filelist.Length, ++index, file);
+
 					OriginalPath = System.IO.Path.Combine(ApplicationRoot, file);
 					newVersionFile = System.IO.Path.Combine(SourceFolder, file);
 					backupPath = System.IO.Path.Combine(BackupPath, file);
 
-					e.PostEvent(() => OnInstallFile(new InstallFileEventArgs(newVersionFile, OriginalPath, filelist.Length, ++index)));
+					e.PostEvent(() => OnInstallFile(new InstallFileEventArgs(newVersionFile, OriginalPath, filelist.Length, index)));
 
 					if (System.IO.File.Exists(OriginalPath))
 					{
@@ -562,10 +565,12 @@ namespace FSLib.App.SimpleUpdater
 			var index = 0;
 			foreach (string file in bakList)
 			{
-				string newPath = System.IO.Path.Combine(ApplicationRoot, file);
-				string oldPath = System.IO.Path.Combine(rootPath, file);
+				e.ReportProgress(bakList.Count, ++index, file);
 
-				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, bakList.Count, ++index));
+				var newPath = System.IO.Path.Combine(ApplicationRoot, file);
+				var oldPath = System.IO.Path.Combine(rootPath, file);
+
+				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, bakList.Count, index));
 
 				Trace.TraceInformation("还原原始文件: " + oldPath + "  ->  " + newPath);
 				System.IO.File.Move(oldPath, newPath);
