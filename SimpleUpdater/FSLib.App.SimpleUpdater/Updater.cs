@@ -523,6 +523,12 @@ namespace FSLib.App.SimpleUpdater
 
 				switch (name)
 				{
+					case "/ui":
+						Context.UpdateMainFormType = args[index++];
+						break;
+					case "/assembly":
+						LoadExtraAssemblies(args[index++]);
+						break;
 					case "/cv": Context.CurrentVersion = new Version(args[index++]); break;
 					case "/ad": Context.ApplicationDirectory = args[index++]; break;
 					case "/url": Context.UpdateDownloadUrl = args[index++]; break;
@@ -862,7 +868,7 @@ namespace FSLib.App.SimpleUpdater
 				foreach (var pkg in Context.UpdateInfo.Packages)
 				{
 					rt.ReportProgress(++index, Context.UpdateInfo.Packages.Count);
-					var localPath = System.IO.Path.Combine(Context.ApplicationDirectory, pkg.FilePath);	//对比本地路径
+					var localPath = System.IO.Path.Combine(Context.ApplicationDirectory, pkg.FilePath); //对比本地路径
 					pkg.Context = Context;
 
 					if (pkg.Method == UpdateMethod.Always)
@@ -1084,7 +1090,7 @@ namespace FSLib.App.SimpleUpdater
 				if (p.PropertyType != typeof(bool) && p.PropertyType != typeof(int) && p.PropertyType != typeof(string) && p.PropertyType != typeof(Version)) continue;
 
 				var value = (p.GetValue(Context, null) ?? "").ToString();
-				if (value.Length > 255) continue;	//当属性内容过长时, 忽略设置此属性, 防止设置导致环境变量过长抛出异常.
+				if (value.Length > 255) continue;   //当属性内容过长时, 忽略设置此属性, 防止设置导致环境变量过长抛出异常.
 
 				if (!psi.EnvironmentVariables.ContainsKey(p.Name)) psi.EnvironmentVariables.Add(p.Name, value);
 			}
@@ -1095,7 +1101,7 @@ namespace FSLib.App.SimpleUpdater
 				if (p.PropertyType != typeof(bool) && p.PropertyType != typeof(int) && p.PropertyType != typeof(string) && p.PropertyType != typeof(Version)) continue;
 
 				var value = (p.GetValue(Context.UpdateInfo, null) ?? "").ToString();
-				if (value.Length > 255) continue;	//当属性内容过长时, 忽略设置此属性, 防止设置导致环境变量过长抛出异常.
+				if (value.Length > 255) continue;   //当属性内容过长时, 忽略设置此属性, 防止设置导致环境变量过长抛出异常.
 				if (!psi.EnvironmentVariables.ContainsKey(p.Name)) psi.EnvironmentVariables.Add(p.Name, value);
 			}
 		}
@@ -1619,8 +1625,10 @@ namespace FSLib.App.SimpleUpdater
 			Trace.TraceInformation("开始解压缩升级包");
 			rt.PostEvent(() => OnPackageExtractionBegin(new PackageEventArgs(null)));
 
+			var count = PackagesToUpdate.Count;
+			var index = 0;
 			var fze = new ICCEmbedded.SharpZipLib.Zip.FastZipEvents();
-			fze.ProcessFile += (s, e) => rt.ReportProgress(0, 0, string.Format(SR.Updater_ExtractingFile, e.Name));
+			fze.ProcessFile += (s, e) => rt.ReportProgress(count, index, string.Format(SR.Updater_ExtractingFile, e.Name));
 			var fz = new ICCEmbedded.SharpZipLib.Zip.FastZip(fze);
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.PackagePassword))
 			{
@@ -1629,6 +1637,8 @@ namespace FSLib.App.SimpleUpdater
 
 			foreach (var pkg in PackagesToUpdate)
 			{
+				index++;
+
 				Trace.TraceInformation("正在解压缩 " + pkg.PackageName);
 				rt.PostEvent(() => OnPackageExtractionBegin(new PackageEventArgs(pkg)));
 
@@ -1737,48 +1747,20 @@ namespace FSLib.App.SimpleUpdater
 			XMLSerializeHelper.XmlSerilizeToFile(ExtensionMethod.ToList(FileInstaller.PreservedFiles.Keys), Context.PreserveFileListPath);
 
 			//启动外部程序
-			var runningAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-			var file = runningAssembly.Location;
-			//将要执行的临时文件路径
-			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(file));
-
-			Trace.TraceInformation(string.Format("复制程序集 {0} 到 {1}", file, tempExePath));
-			System.IO.File.Copy(file, tempExePath, true);
-			//如果有PDB调试文件,那么也复制
-			var filePdb = System.IO.Path.ChangeExtension(file, "pdb");
-			if (System.IO.File.Exists(filePdb))
+			var currentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+			if (CopyAssemblyToUpdateRoot(currentAssembly) == null)
 			{
-				var filePdbNewPath = System.IO.Path.ChangeExtension(tempExePath, "pdb");
-				Trace.TraceInformation(string.Format("复制PDB文件 {0} 到 {1}", filePdb, filePdbNewPath));
-				System.IO.File.Copy(filePdb, filePdbNewPath, true);
+				throw new Exception("未能生成临时辅助更新文件");
 			}
+
+			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(currentAssembly.Location));
+
 #if !STANDALONE
 			tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, "AutoUpdater.exe");
 			System.IO.File.WriteAllBytes(tempExePath, ExtensionMethod.Decompress(Properties.Resources.FSLib_App_Utilities_exe));
 #endif
 			//写入配置文件。以便于多Framework支持。。
 			System.IO.File.WriteAllBytes(tempExePath + ".config", Properties.Resources.appconfig);
-
-			//复制引用
-			var assemblies = runningAssembly.GetReferencedAssemblies();
-			foreach (var ass in assemblies)
-			{
-				var location = Assembly.Load(ass).Location;
-				if (!location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase)) continue;
-
-				var dest = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(location));
-				Trace.TraceInformation(string.Format("复制引用程序集 {0} 到 {1}", location, dest));
-				System.IO.File.Copy(location, dest, true);
-
-				//如果有pdb文件, 那么也复制
-				location = System.IO.Path.ChangeExtension(location, "pdb");
-				if (System.IO.File.Exists(location))
-				{
-					Trace.TraceInformation(string.Format("复制PDB文件 {0} 到 {1}", location, dest));
-					dest = System.IO.Path.ChangeExtension(dest, "pdb");
-					System.IO.File.Copy(location, dest, true);
-				}
-			}
 
 			//生成新的日志地址
 			var logPath = "";
@@ -1794,16 +1776,37 @@ namespace FSLib.App.SimpleUpdater
 			//启动
 			var sb = new StringBuilder(0x400);
 			sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
+			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
 			sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
 			sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
 			sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);
 			sb.AppendFormat("/proxy \"{0}\" ", Context.ProxyAddress ?? "");
 			if (Context.NetworkCredential != null)
 				sb.AppendFormat("/cred \"{0}\" ", string.Format("{0}:{1}", Context.NetworkCredential.UserName, Context.NetworkCredential.Password));
-			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
 			if (Context.AutoKillProcesses) sb.Append("/autokill ");
 			if (Context.ForceUpdate) sb.Append("/forceupdate ");
-			if (Context.HiddenUI) sb.Append("/noui");
+			if (Context.HiddenUI) sb.Append("/noui ");
+			if (_mainFormType != null)
+			{
+				CopyAssemblyToUpdateRoot(_mainFormType.Assembly);
+				sb.Append("/ui \"" + _mainFormType.AssemblyQualifiedName + "\" ");
+
+				if (!(_usingAssemblies ?? (_usingAssemblies = new List<Assembly>())).Contains(_mainFormType.Assembly))
+					_usingAssemblies.Add(_mainFormType.Assembly);
+			}
+			if (_usingAssemblies != null && _usingAssemblies.Count > 0)
+			{
+				var assemblyNames = new List<string>();
+				foreach (var assembly in _usingAssemblies)
+				{
+					if (CopyAssemblyToUpdateRoot(assembly) == true)
+						assemblyNames.Add(System.IO.Path.GetFileName(assembly.Location));
+				}
+				if (assemblyNames.Count > 0)
+				{
+					sb.Append("/assembly \"" + string.Join(";", assemblyNames.ToArray()) + "\" ");
+				}
+			}
 
 			FetchProcessList(ownerProcessList).ForEach(s => sb.AppendFormat("/p \"{0}\" ", s));
 
@@ -1829,6 +1832,53 @@ namespace FSLib.App.SimpleUpdater
 				OnUpdateCancelled();
 
 				return false;
+			}
+
+			return true;
+		}
+
+		Dictionary<Assembly, string> _assemblies = new Dictionary<Assembly, string>();
+
+		/// <summary>
+		/// 复制指定程序集到目录
+		/// </summary>
+		/// <param name="assembly"></param>
+		bool? CopyAssemblyToUpdateRoot(Assembly assembly)
+		{
+			if (_assemblies.ContainsKey(assembly))
+				return true;
+
+			var location = assembly.Location;
+			if (!location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase)) return false;
+
+			var dest = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(location));
+			Trace.TraceInformation(string.Format("复制引用程序集 {0} 到 {1}", location, dest));
+			System.IO.File.Copy(location, dest, true);
+			_assemblies.Add(assembly, null);
+
+			//如果有pdb文件, 那么也复制 
+			location = System.IO.Path.ChangeExtension(location, "pdb");
+			if (System.IO.File.Exists(location))
+			{
+				Trace.TraceInformation(string.Format("复制PDB文件 {0} 到 {1}", location, dest));
+				dest = System.IO.Path.ChangeExtension(dest, "pdb");
+				System.IO.File.Copy(location, dest, true);
+			}
+
+			foreach (var referencedAssembly in assembly.GetReferencedAssemblies())
+			{
+				Trace.TraceInformation("checking assembly reference..." + referencedAssembly.FullName);
+				try
+				{
+					if (CopyAssemblyToUpdateRoot(Assembly.Load(referencedAssembly)) == null)
+						return null;
+				}
+				catch (Exception ex)
+				{
+
+					Trace.TraceError("error checking assembly reference : " + ex.ToString());
+					return null;
+				}
 			}
 
 			return true;
@@ -1917,6 +1967,70 @@ namespace FSLib.App.SimpleUpdater
 		{
 			return StartExternalUpdater(null);
 		}
+		#endregion
+
+		#region 额外调用
+
+		/// <summary>
+		/// 加载额外调用
+		/// </summary>
+		/// <param name="namelist"></param>
+		void LoadExtraAssemblies(string namelist)
+		{
+			var assFiles = namelist.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (var assFile in assFiles)
+			{
+				Trace.TraceInformation("begin tring loading file '" + assFile + "'....");
+
+				try
+				{
+					var path = Path.Combine(Context.UpdateTempRoot, assFile);
+					var assembly = System.Reflection.Assembly.LoadFile(path);
+
+					Trace.TraceInformation("assembly loaded. checking for interface notify.");
+					//检查接口调用
+					var types = assembly.GetTypes();
+					foreach (var type in types)
+					{
+						if (type.GetInterface(typeof(IUpdateNotify).FullName) != null)
+						{
+							Trace.TraceInformation("IUpdateNotify detected. Create object instance and invoke Init() method.");
+
+							var obj = Activator.CreateInstance(type) as IUpdateNotify;
+							obj.Init(this);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					Trace.TraceError("file loading failed. error: " + ex.ToString());
+				}
+				Trace.TraceInformation("ending loading file '" + assFile + "'....");
+			}
+		}
+
+		List<Assembly> _usingAssemblies;
+		Type _mainFormType;
+
+		/// <summary>
+		/// 引用指定的程序集
+		/// </summary>
+		/// <param name="assemblies"></param>
+		public void UsingAssembly(params Assembly[] assemblies)
+		{
+			(_usingAssemblies ?? (_usingAssemblies = new List<Assembly>())).AddRange(assemblies);
+		}
+
+		/// <summary>
+		/// 使用指定的界面作为界面
+		/// </summary>
+		/// <typeparam name="T">界面UI的类型</typeparam>
+		public void UsingFormUI<T>() where T : AbstractUpdateBase
+		{
+			_mainFormType = typeof(T);
+		}
+
 		#endregion
 
 		#region 临时目录清理

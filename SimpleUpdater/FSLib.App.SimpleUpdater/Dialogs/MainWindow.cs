@@ -3,58 +3,28 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Dialogs
 {
-	public partial class MainWindow : Form
+	public partial class MainWindow : AbstractUpdateBase
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			Load += MainWindow_Load;
 		}
 
-		protected override void OnLoad(EventArgs e)
+		private void MainWindow_Load(object sender, EventArgs e)
 		{
-			base.OnLoad(e);
-
-			if (Program.IsRunning)
-			{
-				HideAllControls();
-				Updater upd = Updater.Instance;
-				//调用默认的关闭进程处理
-				upd.QueryCloseApplication += (_s, _e) => _e.CallDefaultBeihavior();
-				upd.UpdateCancelled += (_, __) => Environment.Exit(0);
-				upd.UpdatesFound += upd_UpdatesFound;
-				upd.Context.EnableEmbedDialog = false;
-
-				if (upd.Context.IsUpdateInfoDownloaded) { upd.BeginUpdate(); }
-				else upd.BeginCheckUpdateInProcess();
-			}
+			HideAllControls();
 		}
 
-		void upd_UpdatesFound(object sender, EventArgs e)
+		/// <summary>
+		/// 要求初始化请求参数
+		/// </summary>
+		protected override void InitUpdaterParameter()
 		{
-			var u = Updater.Instance;
+			base.InitUpdaterParameter();
 
-			//是否强制更新？
-			if (u.Context.ForceUpdate)
-			{
-				StartUpdate();
-				return;
-			}
-			var dlg = new UpdateFound();
-			if (dlg.ShowDialog() == DialogResult.OK)
-				StartUpdate();
-			else Close();
-		}
-
-		void StartUpdate()
-		{
-			var updater = Updater.Instance;
-			if (updater.Context.IsInUpdateMode)
-				updater.BeginUpdate();
-			else
-			{
-				updater.StartExternalUpdater();
-				Close();
-			}
+			UpdaterInstance.Context.EnableEmbedDialog = false;
 		}
 
 		/// <summary>

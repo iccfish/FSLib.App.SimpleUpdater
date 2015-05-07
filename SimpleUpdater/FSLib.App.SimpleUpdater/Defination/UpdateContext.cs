@@ -6,6 +6,7 @@
 	using System.Net;
 	using System.Net.Cache;
 	using System.Reflection;
+	using FSLib.App.SimpleUpdater.Dialogs;
 
 	/// <summary> 表示当前更新的上下文环境 </summary>
 	/// <remarks></remarks>
@@ -64,6 +65,11 @@
 		/// <value></value>
 		/// <remarks></remarks>
 		public bool IsInUpdateMode { get; private set; }
+
+		/// <summary>
+		/// 主要交互界面
+		/// </summary>
+		internal string UpdateMainFormType { get; set; }
 
 
 		/// <summary>

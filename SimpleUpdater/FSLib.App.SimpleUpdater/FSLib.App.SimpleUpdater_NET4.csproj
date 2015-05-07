@@ -75,12 +75,16 @@
   <ItemGroup>
     <Compile Include="Defination\CancelableEventArgs.cs" />
     <Compile Include="Defination\FileVerificationLevel.cs" />
+    <Compile Include="Defination\IUpdateNotify.cs" />
     <Compile Include="Defination\PackageInfo.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateInfo.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
     <Compile Include="Defination\UpdateServerInfo.cs" />
     <Compile Include="DeletePreviousProgramMethod.cs" />
+    <Compile Include="Dialogs\AbstractUpdateBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\CloseApp.cs">
       <SubType>form</SubType>
     </Compile>
@@ -202,6 +206,9 @@
     <EmbeddedResource Include="Dialogs\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MinmumVersionRequired.en.resx">
+      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
       <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
       <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelfUpdate.en.resx">
+      <DependentUpon>SelfUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelfUpdate.resx">
       <DependentUpon>SelfUpdate.cs</DependentUpon>
@@ -232,14 +242,29 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\ControlBase.en.resx">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\ControlBase.resx">
+      <DependentUpon>ControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\DownloadingInfo.en.resx">
+      <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
       <DependentUpon>DownloadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\NoUpdateFound.en.resx">
+      <DependentUpon>NoUpdateFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\NoUpdateFound.resx">
       <DependentUpon>NoUpdateFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\RunUpdate.resx">
       <DependentUpon>RunUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateControl\UpdateError.en.resx">
+      <DependentUpon>UpdateError.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateControl\UpdateError.resx">
       <DependentUpon>UpdateError.cs</DependentUpon>
