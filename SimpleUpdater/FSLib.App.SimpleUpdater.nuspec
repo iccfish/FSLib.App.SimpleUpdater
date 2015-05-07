@@ -5,7 +5,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>fishlee.net.simpleupdater</id>
-		<version>3.3.0.0</version>
+		<version>4.0.0.0</version>
 		<authors>iFish(木鱼)</authors>
 		<title>iFish's Simple Application Updater Library</title>
 		<summary>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5</summary>
@@ -41,7 +41,7 @@
 			<frameworkAssembly assemblyName="System.Windows.Forms"/>
 		</frameworkAssemblies>
 		<releaseNotes>
-			fixed some issues in specific situations.
+			增加额外的自动调用程序集功能；增加自定义更新提示界面功能；其它的BUG修复和增强。
 		</releaseNotes>
 	</metadata>
 
