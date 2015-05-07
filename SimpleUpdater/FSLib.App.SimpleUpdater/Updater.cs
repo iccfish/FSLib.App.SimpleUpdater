@@ -413,6 +413,39 @@ namespace FSLib.App.SimpleUpdater
 
 		#region 事件区域
 
+		/// <summary>
+		/// 检测组件标记
+		/// </summary>
+		/// <param name="flag"></param>
+		/// <returns></returns>
+		bool CheckComponentFlag(string compId)
+		{
+			var dic = Context.ComponentStatus;
+			if (dic.ContainsKey(compId))
+				return dic[compId];
+
+			var ea = new RequestCheckComponentFlagEventArgs(compId);
+			OnRequestCheckComponentFlag(ea);
+			dic.Add(compId, ea.Valid);
+
+			return ea.Valid;
+		}
+
+		/// <summary>
+		/// 请求检测组件状态位
+		/// </summary>
+		public event EventHandler<RequestCheckComponentFlagEventArgs> RequestCheckComponentFlag;
+
+		/// <summary>
+		/// 引发 <see cref="RequestCheckComponentFlag" /> 事件
+		/// </summary>
+		/// <param name="ea">包含此事件的参数</param>
+		protected virtual void OnRequestCheckComponentFlag(RequestCheckComponentFlagEventArgs ea)
+		{
+			var handler = RequestCheckComponentFlag;
+			if (handler != null)
+				handler(this, ea);
+		}
 
 		/// <summary>
 		/// 正在关闭主程序
@@ -782,7 +815,6 @@ namespace FSLib.App.SimpleUpdater
 
 			if (Context.HasUpdate)
 			{
-
 				//判断要升级的包
 				if (PackagesToUpdate == null || PackagesToUpdate.Count == 0)
 				{
@@ -877,6 +909,14 @@ namespace FSLib.App.SimpleUpdater
 						PackagesToUpdate.Add(pkg);
 						continue;
 					}
+					//判断组件标记
+					if (!string.IsNullOrEmpty(pkg.ComponentId) && !CheckComponentFlag(pkg.ComponentId))
+					{
+						Trace.TraceInformation("组件标记为 " + pkg.ComponentId + "，状态为false，跳过升级包 【" + pkg.PackageName + "】");
+						continue;
+					}
+
+
 					//存在即跳过，或版本比较
 					if (!System.IO.File.Exists(localPath))
 					{

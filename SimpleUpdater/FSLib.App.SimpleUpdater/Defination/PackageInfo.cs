@@ -64,6 +64,12 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string[] Files { get; set; }
 
+		/// <summary>
+		/// 功能标记。
+		/// </summary>
+		public string ComponentId { get; set; }
+
+
 		#endregion
 
 

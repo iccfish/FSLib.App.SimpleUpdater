@@ -22,6 +22,7 @@
 			MultipleDownloadCount = 3;
 			MaxiumRetryDownloadCount = 3;
 			EnableEmbedDialog = true;
+			ComponentStatus = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
 			//如果当前启动路径位于TEMP目录下，则处于临时路径模式
 			var temppath = System.IO.Path.GetTempPath();
@@ -502,6 +503,11 @@
 			get { return _treatErrorAsNotUpdated; }
 			set { _treatErrorAsNotUpdated = value; }
 		}
+
+		/// <summary>
+		/// 获得组件状态
+		/// </summary>
+		public Dictionary<string, bool> ComponentStatus { get; }
 	}
 }
 
