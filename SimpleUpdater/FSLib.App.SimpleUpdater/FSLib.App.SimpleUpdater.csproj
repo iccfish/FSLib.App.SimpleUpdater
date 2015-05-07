@@ -88,7 +88,9 @@
       <DependentUpon>CloseApp.cs</DependentUpon>
     </Compile>
     <Compile Include="DeletePreviousProgramMethod.cs" />
-    <Compile Include="Dialogs\EnsureUpdate.cs" />
+    <Compile Include="Dialogs\EnsureUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\EnsureUpdate.Designer.cs">
       <DependentUpon>EnsureUpdate.cs</DependentUpon>
     </Compile>
@@ -173,7 +175,7 @@
     </Compile>
     <Compile Include="Wrapper\RunworkEventArgs.cs" />
     <Compile Include="Wrapper\SlideComponent.cs">
-      <SubType>Component</SubType>
+      <SubType>鱼的控件库</SubType>
     </Compile>
     <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
     <Compile Include="Wrapper\XMLSerializeHelper.cs" />
