@@ -1637,7 +1637,7 @@ namespace FSLib.App.SimpleUpdater
 
 			foreach (var pkg in PackagesToUpdate)
 			{
-				index ++;
+				index++;
 
 				Trace.TraceInformation("正在解压缩 " + pkg.PackageName);
 				rt.PostEvent(() => OnPackageExtractionBegin(new PackageEventArgs(pkg)));
@@ -1748,7 +1748,10 @@ namespace FSLib.App.SimpleUpdater
 
 			//启动外部程序
 			var currentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-			CopyAssemblyToUpdateRoot(currentAssembly);
+			if (CopyAssemblyToUpdateRoot(currentAssembly) == null)
+			{
+				throw new Exception("未能生成临时辅助更新文件");
+			}
 
 			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(currentAssembly.Location));
 
@@ -1772,8 +1775,8 @@ namespace FSLib.App.SimpleUpdater
 
 			//启动
 			var sb = new StringBuilder(0x400);
-			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
 			sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
+			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
 			sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
 			sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
 			sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);
@@ -1786,7 +1789,7 @@ namespace FSLib.App.SimpleUpdater
 			if (_mainFormType != null)
 			{
 				CopyAssemblyToUpdateRoot(_mainFormType.Assembly);
-				sb.Append("/ui \"" + _mainFormType.FullName + "\" ");
+				sb.Append("/ui \"" + _mainFormType.AssemblyQualifiedName + "\" ");
 
 				if (!(_usingAssemblies ?? (_usingAssemblies = new List<Assembly>())).Contains(_mainFormType.Assembly))
 					_usingAssemblies.Add(_mainFormType.Assembly);
@@ -1796,8 +1799,8 @@ namespace FSLib.App.SimpleUpdater
 				var assemblyNames = new List<string>();
 				foreach (var assembly in _usingAssemblies)
 				{
-					if (CopyAssemblyToUpdateRoot(assembly))
-						assemblyNames.Add(System.IO.Path.GetFileNameWithoutExtension(assembly.Location));
+					if (CopyAssemblyToUpdateRoot(assembly) == true)
+						assemblyNames.Add(System.IO.Path.GetFileName(assembly.Location));
 				}
 				if (assemblyNames.Count > 0)
 				{
@@ -1840,10 +1843,10 @@ namespace FSLib.App.SimpleUpdater
 		/// 复制指定程序集到目录
 		/// </summary>
 		/// <param name="assembly"></param>
-		bool CopyAssemblyToUpdateRoot(Assembly assembly)
+		bool? CopyAssemblyToUpdateRoot(Assembly assembly)
 		{
 			if (_assemblies.ContainsKey(assembly))
-				return false;
+				return true;
 
 			var location = assembly.Location;
 			if (!location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase)) return false;
@@ -1853,7 +1856,7 @@ namespace FSLib.App.SimpleUpdater
 			System.IO.File.Copy(location, dest, true);
 			_assemblies.Add(assembly, null);
 
-			//如果有pdb文件, 那么也复制
+			//如果有pdb文件, 那么也复制 
 			location = System.IO.Path.ChangeExtension(location, "pdb");
 			if (System.IO.File.Exists(location))
 			{
@@ -1862,7 +1865,21 @@ namespace FSLib.App.SimpleUpdater
 				System.IO.File.Copy(location, dest, true);
 			}
 
-			Array.ForEach(assembly.GetReferencedAssemblies(), s => CopyAssemblyToUpdateRoot(Assembly.Load(s)));
+			foreach (var referencedAssembly in assembly.GetReferencedAssemblies())
+			{
+				Trace.TraceInformation("checking assembly reference..." + referencedAssembly.FullName);
+				try
+				{
+					if (CopyAssemblyToUpdateRoot(Assembly.Load(referencedAssembly)) == null)
+						return null;
+				}
+				catch (Exception ex)
+				{
+
+					Trace.TraceError("error checking assembly reference : " + ex.ToString());
+					return null;
+				}
+			}
 
 			return true;
 		}

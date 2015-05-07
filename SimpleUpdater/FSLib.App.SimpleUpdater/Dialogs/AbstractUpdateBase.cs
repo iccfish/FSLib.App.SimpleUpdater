@@ -11,13 +11,17 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 	/// <summary>
 	/// 可供使用的更新抽象基类
 	/// </summary>
-	public abstract class AbstractUpdateBase : Form
+	public class AbstractUpdateBase : Form
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		protected AbstractUpdateBase()
+		public AbstractUpdateBase()
 		{
+			if (!Program.IsRunning)
+				return;
+
+
 			AutoStartUpdate = true;
 			InitUpdaterParameter();
 
