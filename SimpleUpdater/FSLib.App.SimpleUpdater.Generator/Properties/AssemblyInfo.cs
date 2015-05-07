@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("鱼的后花园")]
 [assembly: AssemblyProduct("自动更新包生成工具")]
-[assembly: AssemblyCopyright("Copyright © 鱼的后花园 2010-2012")]
+[assembly: AssemblyCopyright("Copyright © 鱼的后花园 2010-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
