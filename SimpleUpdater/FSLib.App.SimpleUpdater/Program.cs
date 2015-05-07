@@ -40,13 +40,22 @@ namespace FSLib.App.SimpleUpdater
 				if (!dic.ContainsKey(arg)) dic.Add(arg, null);
 			}
 
-			if (Updater.Instance.Context.HiddenUI)
+			var updater = Updater.Instance;
+			if (updater.Context.HiddenUI)
 			{
 				new HiddenUiUpdateProxy().RunUpdate();
 			}
 			else
 			{
-				Application.Run(new MainWindow());
+				if (string.IsNullOrEmpty(updater.Context.UpdateMainFormType))
+				{
+					Application.Run(new MainWindow());
+				}
+				else
+				{
+					var form = Activator.CreateInstance(Type.GetType(updater.Context.UpdateMainFormType)) as AbstractUpdateBase;
+					Application.Run(form);
+				}
 			}
 		}
 	}
