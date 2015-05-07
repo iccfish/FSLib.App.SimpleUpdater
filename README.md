@@ -23,6 +23,15 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 
 #更新记录
 
+#### 4.0.0.0 [2015年05月07日]
+
+* 【客户端】增加自定义引用接口 IUpdateNotify 以及 UsingAssembly() 函数，可在正式更新后依然调用自己的处理事件
+* 【客户端】增加 UsingFormUI() 函数以及更新对话框基类，可以使用自己的更新界面完全替换内置界面
+* 【客户端】修改WebClient初始化流程，避免后续下载包时发出的请求没有UserAgent标头
+* 【客户端】修正丢失的资源文件，避免导致命令行版无法使用
+* 【客户端】变更config文件配置
+* 【客户端】安装文件各操作中也支持报告进度
+
 #### 3.3.1.0 [2015年04月28日]
 
 * 【客户端】修正在根目录下更新会导致出错的BUG
