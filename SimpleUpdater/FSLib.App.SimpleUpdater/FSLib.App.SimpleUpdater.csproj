@@ -78,6 +78,7 @@
     <Compile Include="Defination\FileVerificationLevel.cs" />
     <Compile Include="Defination\IUpdateNotify.cs" />
     <Compile Include="Defination\PackageInfo.cs" />
+    <Compile Include="Defination\RequestCheckComponentFlagEventArgs.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateInfo.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
