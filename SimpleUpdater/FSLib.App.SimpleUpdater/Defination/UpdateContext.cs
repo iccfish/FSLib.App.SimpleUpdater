@@ -14,7 +14,8 @@
 	{
 		public UpdateContext()
 		{
-			CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).FileVersion);
+			//CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).FileVersion);
+			CurrentVersion = new Version(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion);
 			ApplicationDirectory = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 			AutoEndProcessesWithinAppDir = true;
 			ExternalProcessID = new List<int>();
