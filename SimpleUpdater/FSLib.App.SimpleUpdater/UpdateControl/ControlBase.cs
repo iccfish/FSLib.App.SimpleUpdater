@@ -55,7 +55,13 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				progressBar1.Style = ProgressBarStyle.Marquee;
 			else
 			{
-				if (max > 0) progressBar1.Maximum = max;
+				progressBar1.Style = ProgressBarStyle.Blocks;
+				if (max > 0)
+				{
+					if (progressBar1.Value > max)
+						progressBar1.Value = 0;
+					progressBar1.Maximum = max;
+				}
 				progressBar1.Value = current;
 			}
 		}
