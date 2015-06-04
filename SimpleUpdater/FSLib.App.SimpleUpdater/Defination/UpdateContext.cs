@@ -15,8 +15,10 @@
 		public UpdateContext()
 		{
 			//CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).FileVersion);
-			CurrentVersion = new Version(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion);
-			ApplicationDirectory = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+			var processModule = Process.GetCurrentProcess().MainModule;
+
+			CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
+			ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
 			AutoEndProcessesWithinAppDir = true;
 			ExternalProcessID = new List<int>();
 			ExternalProcessName = new List<string>();
@@ -37,21 +39,49 @@
 			{
 				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString());
 				IsInUpdateMode = false;
-			}
 
-			//尝试自动加载升级属性
-			var assembly = Assembly.GetEntryAssembly();
-			var atts = assembly.GetCustomAttributes(false);
-
-			foreach (var item in atts)
-			{
-				if (item is UpdateableAttribute || item is Updatable2Attribute)
+				//尝试自动加载升级属性
+				var assembly = Assembly.GetEntryAssembly() ?? TryGetCallingAssembly();
+				if (assembly != null)
 				{
-					UpdateAttribute = item;
-					break;
+					var atts = assembly.GetCustomAttributes(false);
+
+					foreach (var item in atts)
+					{
+						if (item is UpdateableAttribute || item is Updatable2Attribute)
+						{
+							UpdateAttribute = item;
+							break;
+						}
+					}
 				}
 			}
+
 			AppendRandomTagInDownloadUrl = true;
+		}
+
+		/// <summary>
+		/// 尝试从程序集中获得升级属性
+		/// </summary>
+		/// <returns></returns>
+		static Assembly TryGetCallingAssembly()
+		{
+			Trace.TraceInformation("Tring get entry assembly from stack trace.");
+			try
+			{
+				var st = new StackTrace();
+				var frame = st.GetFrame(st.FrameCount - 1);
+
+				var assembly = frame.GetMethod().DeclaringType.Assembly;
+				Trace.TraceInformation("Got entry assembly from stack trace. Assembly full name=" + assembly.FullName);
+
+				return assembly;
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError("unable to get entry assembly from stacktrace. error = " + ex.ToString());
+				return null;
+			}
 		}
 
 		/// <summary>
