@@ -219,8 +219,8 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		}
 
 		/// <summary> 对序列进行过滤 </summary>
-		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable<T></see> 的参数</param>
-		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func<T,bool></see> 的参数</param>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
+		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
 		/// <returns></returns>
 		public static IEnumerable<T> Where<T>(IEnumerable<T> source, Func<T, bool> predicate)
 		{
@@ -231,8 +231,8 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 		}
 
 		/// <summary> 对序列进行转换 </summary>
-		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable<T></see> 的参数</param>
-		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func<T,bool></see> 的参数</param>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
+		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
 		/// <returns></returns>
 		public static IEnumerable<R> Where<T, R>(IEnumerable<T> source, Func<T, R> predicate)
 		{
