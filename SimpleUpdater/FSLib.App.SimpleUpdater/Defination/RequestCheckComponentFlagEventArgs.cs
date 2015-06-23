@@ -12,7 +12,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary>
 		/// 组件ID
 		/// </summary>
-		public string ComponentId { get; }
+		public string ComponentId { get; private set; }
 
 		/// <summary>
 		/// 组件状态
