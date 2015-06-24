@@ -20,329 +20,12 @@ namespace FSLib.App.SimpleUpdater
 	/// <summary>
 	/// 自动更新操作类
 	/// </summary>
-	public class Updater : IDisposable
+	public partial class Updater : IDisposable
 	{
 		/// <summary> 获得当前更新的上下文 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public UpdateContext Context { get; private set; }
-
-		#region 确认没有更新才启动
-
-		/// <summary>
-		/// 确认是否有更新，再继续后面的操作。
-		/// </summary>
-		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
-		/// <param name="errorHandler">检查更新发生错误的委托</param>
-		public void EnsureNoUpdate(Func<bool?> updateFoundAction = null, Action<Exception> errorHandler = null)
-		{
-			EnsureNoUpdate<Form>(null, null, null);
-		}
-
-		/// <summary>
-		/// 确认是否有更新，再继续后面的操作。
-		/// </summary>
-		/// <typeparam name="T">要显示的UI界面</typeparam>
-		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
-		/// <param name="errorHandler">检查更新发生错误的委托</param>
-		/// <param name="updateUi">用于显示状态的UI界面</param>
-		public void EnsureNoUpdate<T>(Func<bool?> updateFoundAction = null, Func<Exception, bool> errorHandler = null, T updateUi = null) where T : Form
-		{
-			Application.EnableVisualStyles();
-			var ui = (Form)updateUi ?? new EnsureUpdate();
-
-			var continueProcess = false;
-			Context.EnableEmbedDialog = false;
-
-			using (ui)
-			{
-				ui.Shown += (s, e) => BeginCheckUpdateInProcess();
-				EventHandler updateFound = null, versionErrorHandler = null, ueEventHandler = null, noupdateFoundHandler = null;
-
-				var unscribeAllEvents = new Action<Updater, bool, bool>((s, cont, close) =>
-				{
-					Delegate.RemoveAll(s.UpdatesFound, updateFound);
-					Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
-					Delegate.RemoveAll(s.Error, ueEventHandler);
-					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
-
-					continueProcess = cont;
-					if (close)
-						ui.Close();
-				});
-				noupdateFoundHandler = (s, e) => unscribeAllEvents(s as Updater, true, true);
-				updateFound = (s, e) =>
-				{
-					var client = s as Updater;
-					var context = client.Context;
-
-					if (context.MustUpdate || context.ForceUpdate)
-					{
-						Instance_UpdatesFound(s, e);
-						unscribeAllEvents(client, false, true);
-					}
-					else
-					{
-						if (updateFoundAction != null)
-						{
-							var result = updateFoundAction();
-							if (result == true)
-							{
-								client.StartExternalUpdater();
-								unscribeAllEvents(s as Updater, false, true);
-
-								return;
-							}
-							if (result == false)
-							{
-								unscribeAllEvents(s as Updater, true, true);
-
-								return;
-							}
-						}
-						context.EnableEmbedDialog = true;
-						Instance_UpdatesFound(s, e);
-						unscribeAllEvents(s as Updater, true, true);
-					}
-				};
-				versionErrorHandler = (s, e) =>
-				{
-					var result = false;
-					if (errorHandler != null)
-					{
-						result = errorHandler(new Exception(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion)));
-					}
-					else
-					{
-						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion, (s as Updater).Context.CurrentVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					}
-					unscribeAllEvents(s as Updater, result, true);
-				};
-				ueEventHandler = (s, e) =>
-				{
-					var err = (s as Updater).Context.Exception;
-					var result = Context.TreatErrorAsNotUpdated;
-					if (errorHandler != null)
-					{
-						result = errorHandler(err);
-					}
-					else
-					{
-						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					}
-					unscribeAllEvents(s as Updater, result, true);
-				};
-				UpdatesFound += updateFound;
-				Error += ueEventHandler;
-				MinmumVersionRequired += versionErrorHandler;
-				NoUpdatesFound += noupdateFoundHandler;
-
-				ui.ShowDialog();
-			}
-
-			if (!continueProcess)
-			{
-				Environment.Exit(0);
-			}
-		}
-
-
-		#endregion
-
-		#region 静态对象
-
-		static Updater()
-		{
-			var ass = System.Reflection.Assembly.GetExecutingAssembly();
-			UpdaterClientVersion = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
-		}
-
-		static Updater _instance;
-
-		/// <summary>
-		/// 确认没有重复调用
-		/// </summary>
-		static void CheckInitialized()
-		{
-			if (_instance == null)
-				return;
-
-			throw new InvalidOperationException("Updater 已经被初始化。此方法调用之前，不可先调用任何可能会导致Updater被初始化的操作。");
-		}
-
-		/// <summary>
-		/// 获得当前的更新客户端版本
-		/// </summary>
-		public static string UpdaterClientVersion { get; private set; }
-
-		/// <summary>
-		/// 当前的更新实例。直接访问本属性将会获得默认创建的Updater实例。要使用更多信息创建，请使用 <see cref="CreateUpdaterInstance"/> 方法，请确保在使用本属性之前创建。
-		/// </summary>
-		public static Updater Instance
-		{
-			get { return _instance ?? (_instance = CreateUpdaterInstance((Version)null, null)); }
-		}
-
-		/// <summary>
-		/// 创建自动更新客户端
-		/// </summary>
-		/// <returns></returns>
-		public static Updater CreateUpdaterInstance(string templateUrl, string xmlFileName)
-		{
-			return CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
-		}
-
-
-		/// <summary>
-		/// 创建自动更新客户端
-		/// </summary>
-		/// <param name="servers"></param>
-		/// <returns></returns>
-		public static Updater CreateUpdaterInstance(params UpdateServerInfo[] servers)
-		{
-			return CreateUpdaterInstance(null, null, servers);
-		}
-
-		/// <summary>
-		/// 创建自动更新客户端
-		/// </summary>
-		/// <param name="appVersion">应用程序版本，留空将会使用自动判断</param>
-		/// <param name="appDirectory">应用程序目录，留空将会使用自动判断</param>
-		/// <param name="servers">升级服务器地址</param>
-		/// <returns></returns>
-		public static Updater CreateUpdaterInstance(Version appVersion, string appDirectory, params UpdateServerInfo[] servers)
-		{
-			CheckInitialized();
-
-			if (servers == null || servers.Length < 2)
-			{
-				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
-					_instance = new Updater();
-				else _instance = new Updater(appVersion, appDirectory);
-
-				if (servers.Length > 0)
-				{
-					_instance.Context.UpdateDownloadUrl = servers[0].Url;
-					_instance.Context.UpdateInfoFileName = servers[0].InfoFileName;
-				}
-			}
-			else
-			{
-				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
-					_instance = new MultiServerUpdater(servers);
-				else _instance = new MultiServerUpdater(appVersion, appDirectory, servers);
-			}
-
-			return _instance;
-		}
-
-		/// <summary>
-		/// 提供一个最简单的自动更新入口
-		/// </summary>
-		/// <returns>返回是否开始检查操作</returns>
-		public static bool CheckUpdateSimple()
-		{
-			return CheckUpdateSimple(string.Empty);
-		}
-
-		/// <summary>
-		/// 提供一个最简单的自动更新入口
-		/// </summary>
-		/// <param name="updateUrl">更新URL. 如果不传递或传递空的地址, 请使用 <see cref="T:FSLib.App.SimpleUpdater.UpdateableAttribute"/> 属性来标记更新地址</param>
-		/// <returns>返回是否开始检查操作</returns>
-		[Obsolete("这是一个不被推荐的检测更新方式")]
-		public static bool CheckUpdateSimple(string updateUrl)
-		{
-			if (_instance == null)
-				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(updateUrl, null) });
-			else if (!string.IsNullOrEmpty(updateUrl))
-			{
-				_instance.Context.UpdateDownloadUrl = updateUrl;
-				_instance.Context.UpdateInfoFileName = null;
-			}
-			_instance.Context.EnableEmbedDialog = true;
-
-			return Instance.BeginCheckUpdateInProcess();
-		}
-
-		/// <summary>
-		/// 提供一个最简单的自动更新入口
-		/// </summary>
-		/// <param name="templateUrl">更新模板URL. 如果不传递或传递空的地址, 请使用 <see cref="T:FSLib.App.SimpleUpdater.UpdateableAttribute"/> 属性来标记更新地址</param>
-		/// <param name="xmlFileName">更新XML信息文件名</param>
-		/// <returns>返回是否开始检查操作</returns>
-		public static bool CheckUpdateSimple(string templateUrl, string xmlFileName)
-		{
-			if (_instance == null)
-				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
-			else if (!string.IsNullOrEmpty(templateUrl))
-			{
-				_instance.Context.UpdateDownloadUrl = templateUrl;
-				_instance.Context.UpdateInfoFileName = xmlFileName;
-			}
-			_instance.Context.EnableEmbedDialog = true;
-
-			return Instance.BeginCheckUpdateInProcess();
-		}
-
-		//要求最低版本
-		static void Instance_MinmumVersionRequired(object sender, EventArgs e)
-		{
-			var updater = sender as Updater;
-			if (!updater.Context.EnableEmbedDialog) return;
-
-			new Dialogs.MinmumVersionRequired().ShowDialog();
-		}
-
-		//找到更新，启动更新
-		static void Instance_UpdatesFound(object sender, EventArgs e)
-		{
-			var updater = sender as Updater;
-
-			if (updater.Context.MustUpdate)
-			{
-				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
-					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipForce,
-												updater.Context.UpdateInfo.AppName,
-												updater.Context.CurrentVersion,
-												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				updater.StartExternalUpdater();
-			}
-			else if (updater.Context.ForceUpdate)
-			{
-				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
-					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipNotForce,
-												updater.Context.UpdateInfo.AppName,
-												updater.Context.CurrentVersion,
-												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				updater.StartExternalUpdater();
-			}
-			else
-			{
-				if (!updater.Context.EnableEmbedDialog) return;
-
-				if (Application.MessageLoop)
-				{
-					new UpdateFound().Show();
-				}
-				else
-				{
-					//启动单独的线程，并设置STA标记
-					//不设置STA标记的时候，当更新信息是网页的话会报错
-					var ts = new Thread(() =>
-					  {
-						  new UpdateFound().ShowDialog();
-					  });
-					ts.IsBackground = false;
-					ts.SetApartmentState(ApartmentState.STA);
-					ts.Start();
-				}
-			}
-			updater.EnsureUpdateStarted();
-		}
-
-
-		#endregion
 
 		#region 构造函数
 
@@ -412,134 +95,6 @@ namespace FSLib.App.SimpleUpdater
 
 		#endregion
 
-		#region 事件区域
-
-		/// <summary>
-		/// 检测组件标记
-		/// </summary>
-		/// <param name="flag"></param>
-		/// <returns></returns>
-		bool CheckComponentFlag(string compId)
-		{
-			var dic = Context.ComponentStatus;
-			if (dic.ContainsKey(compId))
-				return dic[compId];
-
-			var ea = new RequestCheckComponentFlagEventArgs(compId);
-			OnRequestCheckComponentFlag(ea);
-			dic.Add(compId, ea.Valid);
-
-			return ea.Valid;
-		}
-
-		/// <summary>
-		/// 请求检测组件状态位
-		/// </summary>
-		public event EventHandler<RequestCheckComponentFlagEventArgs> RequestCheckComponentFlag;
-
-		/// <summary>
-		/// 引发 <see cref="RequestCheckComponentFlag" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		protected virtual void OnRequestCheckComponentFlag(RequestCheckComponentFlagEventArgs ea)
-		{
-			var handler = RequestCheckComponentFlag;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary>
-		/// 正在关闭主程序
-		/// </summary>
-		public event EventHandler<QueryCloseApplicationEventArgs> QueryCloseApplication;
-
-		/// <summary>
-		/// 引发 <see cref="QueryCloseApplication"/> 事件
-		/// </summary>
-		protected virtual void OnQueryCloseApplication(QueryCloseApplicationEventArgs e)
-		{
-			if (QueryCloseApplication == null)
-				return;
-
-			QueryCloseApplication(this, e);
-		}
-
-		/// <summary>
-		/// 正在安装更新
-		/// </summary>
-		public event EventHandler InstallUpdates;
-
-		/// <summary>
-		/// 引发 <see cref="InstallUpdates"/> 事件
-		/// </summary>
-		protected virtual void OnInstallUpdates()
-		{
-			if (InstallUpdates == null)
-				return;
-
-			InstallUpdates(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 已经完成更新
-		/// </summary>
-		public event EventHandler UpdateFinished;
-
-		/// <summary>
-		/// 引发 <see cref="UpdateFinsihed"/> 事件
-		/// </summary>
-		protected virtual void OnUpdateFinsihed()
-		{
-			if (UpdateFinished == null)
-				return;
-
-			UpdateFinished(this, EventArgs.Empty);
-		}
-
-
-		/// <summary>
-		/// 更新中发生错误
-		/// </summary>
-		public event EventHandler Error;
-
-		/// <summary>
-		/// 引发 <see cref="Error" /> 事件
-		/// </summary>
-		protected virtual void OnError()
-		{
-			CleanTemp();
-			var handler = Error;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-
-			if (!Context.IsInUpdateMode && Context.MustUpdate && Context.TreatErrorAsNotUpdated)
-				TerminateProcess(this);
-		}
-
-
-		/// <summary>
-		/// 不满足最低版本要求
-		/// </summary>
-		public event EventHandler MinmumVersionRequired;
-
-		/// <summary>
-		/// 引发 <see cref="MinmumVersionRequired" /> 事件
-		/// </summary>
-		protected virtual void OnMinmumVersionRequired()
-		{
-			if (MinmumVersionRequired == null)
-				return;
-
-			MinmumVersionRequired(this, EventArgs.Empty);
-
-			if (Context.MustUpdate && Context.TreatErrorAsNotUpdated)
-				TerminateProcess(this);
-		}
-
-
-
-		#endregion
-
 		#region 初始化函数
 
 		/// <summary>
@@ -596,89 +151,6 @@ namespace FSLib.App.SimpleUpdater
 
 		#region 检查更新部分
 
-
-		/// <summary>
-		/// 开始下载更新信息文件
-		/// </summary>
-		public event EventHandler DownloadUpdateInfo;
-
-		/// <summary>
-		/// 引发 <see cref="DownloadUpdateInfo"/> 事件
-		/// </summary>
-		protected virtual void OnDownloadUpdateInfo()
-		{
-			if (DownloadUpdateInfo == null)
-				return;
-
-			DownloadUpdateInfo(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 结束下载更新信息文件
-		/// </summary>
-		public event EventHandler DownloadUpdateInfoFinished;
-
-		/// <summary>
-		/// 引发 <see cref="DownloadUpdateInfoFinished"/> 事件
-		/// </summary>
-		public virtual void OnDownloadUpdateInfoFinished()
-		{
-			if (DownloadUpdateInfoFinished == null)
-				return;
-
-			DownloadUpdateInfoFinished(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 没有发现更新
-		/// </summary>
-		public event EventHandler NoUpdatesFound;
-
-		/// <summary>
-		/// 引发 <see cref="NoUpdatesFound"/> 事件
-		/// </summary>
-		protected virtual void OnNoUpdatesFound()
-		{
-			if (NoUpdatesFound == null)
-				return;
-
-			NoUpdatesFound(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 发现了更新
-		/// </summary>
-		public event EventHandler UpdatesFound;
-
-		/// <summary>
-		/// 引发 <see cref="UpdatesFound"/> 事件
-		/// </summary>
-		protected virtual void OnUpdatesFound()
-		{
-			if (UpdatesFound == null)
-				return;
-
-			UpdatesFound(this, EventArgs.Empty);
-			EnsureUpdateStarted();
-		}
-
-		/// <summary>
-		/// 更新操作已经被用户取消
-		/// </summary>
-		public event EventHandler UpdateCancelled;
-
-		/// <summary>
-		/// 引发 <see cref="UpdateCancelled" /> 事件
-		/// </summary>
-		internal virtual void OnUpdateCancelled()
-		{
-			CleanTemp();
-			var handler = UpdateCancelled;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-		}
-
-
 		/// <summary>
 		/// 开始检测更新
 		/// </summary>
@@ -702,6 +174,7 @@ namespace FSLib.App.SimpleUpdater
 				Context.Exception = e.Exception;
 				Trace.TraceWarning("检测更新信息失败：" + e.Exception.Message, e.Exception.ToString());
 				OnError();
+				OnCheckUpdateComplete();
 			};
 			bgw.WorkCompleted += (s, e) =>
 			{
@@ -718,7 +191,7 @@ namespace FSLib.App.SimpleUpdater
 					OnNoUpdatesFound();
 				}
 				else OnUpdatesFound();
-
+				OnCheckUpdateComplete();
 			};
 			bgw.WorkerProgressChanged += (s, e) => OnOperationProgressChanged(e);
 			Context.IsInUpdating = true;
@@ -845,29 +318,8 @@ namespace FSLib.App.SimpleUpdater
 			//如果没有要升级的包？虽然很奇怪，但依然当作不需要升级
 			Context.HasUpdate &= PackagesToUpdate.Count > 0;
 		}
+
 		#region 确定要下载的包
-
-		/// <summary> 确定需要下载的包 </summary>
-		/// <remarks></remarks>
-		public event EventHandler GatheringPackages;
-
-		/// <summary> 引发 <see cref="GatheringPackages"/> 事件 </summary>
-		protected virtual void OnGatheringPackages()
-		{
-			var handler = GatheringPackages;
-			if (handler != null) handler(this, EventArgs.Empty);
-		}
-
-		/// <summary> 已确定要下载的包 </summary>
-		/// <remarks></remarks>
-		public event EventHandler GatheredPackages;
-
-		/// <summary> 引发 <see cref="GatheredPackages"/> 事件 </summary>
-		protected virtual void OnGatheredPackages()
-		{
-			var handler = GatheredPackages;
-			if (handler != null) handler(this, EventArgs.Empty);
-		}
 
 		/// <summary> 生成下载列表 </summary>
 		void GatheringDownloadPackages(RunworkEventArgs rt)
@@ -1078,22 +530,6 @@ namespace FSLib.App.SimpleUpdater
 
 		#region 外部进程调度
 
-		/// <summary> 启动外部进程 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<RunExternalProcessEventArgs> RunExternalProcess;
-
-		/// <summary>
-		/// 引发 <see cref="RunExternalProcess" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		protected virtual void OnRunExternalProcess(RunExternalProcessEventArgs ea)
-		{
-			var handler = RunExternalProcess;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-
 		/// <summary>
 		/// 替换环境变量
 		/// </summary>
@@ -1216,10 +652,6 @@ namespace FSLib.App.SimpleUpdater
 		}
 		#endregion
 
-		#region 版本校验
-
-		#endregion
-
 		#region 更新包下载
 
 		#region 公共属性
@@ -1261,99 +693,6 @@ namespace FSLib.App.SimpleUpdater
 
 		#endregion
 
-		#region 事件
-
-		/// <summary> 下载进度发生变化事件 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageDownloadProgressChangedEventArgs> DownloadProgressChanged;
-
-		/// <summary>
-		/// 引发 <see cref="DownloadProgressChanged"/> 事件
-		/// </summary>
-		/// <param name="e"></param>
-		public virtual void OnDownloadProgressChanged(PackageDownloadProgressChangedEventArgs e)
-		{
-			var handler = DownloadProgressChanged;
-
-			if (handler != null) handler(this, e);
-		}
-
-		/// <summary> 开始下载指定的包 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageDownload;
-
-		/// <summary>
-		/// 引发 <see cref="PackageDownload" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		public virtual void OnPackageDownload(PackageEventArgs ea)
-		{
-			var handler = PackageDownload;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary> 指定的包下载完成 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageDownloadFinished;
-
-		/// <summary>
-		/// 引发 <see cref="PackageDownloadFinished" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		public virtual void OnPackageDownloadFinished(PackageEventArgs ea)
-		{
-			var handler = PackageDownloadFinished;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary> 包下载失败 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageDownloadFailed;
-
-		/// <summary>
-		/// 引发 <see cref="PackageDownloadFailed" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		public virtual void OnPackageDownloadFailed(PackageEventArgs ea)
-		{
-			var handler = PackageDownloadFailed;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary> 下载的包Hash不对 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageHashMismatch;
-
-		/// <summary>
-		/// 引发 <see cref="PackageHashMismatch" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		public virtual void OnPackageHashMismatch(PackageEventArgs ea)
-		{
-			var handler = PackageHashMismatch;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary> 包重试下载 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageDownloadRetried;
-
-		/// <summary>
-		/// 引发 <see cref="PackageDownloadRetried" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		public virtual void OnPackageDownloadRetried(PackageEventArgs ea)
-		{
-			var handler = PackageDownloadRetried;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		#endregion
 
 		/// <summary> 执行下载 </summary>
 		bool DownloadPackages(Wrapper.RunworkEventArgs rt)
@@ -1501,27 +840,6 @@ namespace FSLib.App.SimpleUpdater
 
 		#endregion
 
-		#region 自定义操作
-
-		#endregion
-
-		/// <summary> 操作进度发生变更 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<RunworkEventArgs> OperationProgressChanged;
-
-		/// <summary>
-		/// 引发 <see cref="OperationProgressChanged"/> 事件
-		/// </summary>
-		public virtual void OnOperationProgressChanged(RunworkEventArgs ea)
-		{
-			var op = OperationProgressChanged;
-			if (op != null)
-			{
-				op(this, ea);
-			}
-		}
-
-
 		/// <summary>
 		/// 开始进行更新
 		/// </summary>
@@ -1556,35 +874,6 @@ namespace FSLib.App.SimpleUpdater
 			get { return _installer ?? (_installer = new FileInstaller()); }
 		}
 
-		/// <summary>
-		/// 正在执行安装前进程
-		/// </summary>
-		public event EventHandler ExecuteExternalProcessBefore;
-
-		/// <summary>
-		/// 引发 <see cref="ExecuteExternalProcessBefore" /> 事件
-		/// </summary>
-		protected virtual void OnExecuteExternalProcessBefore()
-		{
-			var handler = ExecuteExternalProcessBefore;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 正在执行安装后进程
-		/// </summary>
-		public event EventHandler ExecuteExternalProcessAfter;
-
-		/// <summary>
-		/// 引发 <see cref="ExecuteExternalProcessAfter" /> 事件
-		/// </summary>
-		protected virtual void OnExecuteExternalProcessAfter()
-		{
-			var handler = ExecuteExternalProcessAfter;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-		}
 
 		//BMK 更新主函数 (正式更新)
 		/// <summary>
@@ -1628,35 +917,6 @@ namespace FSLib.App.SimpleUpdater
 			e.PostEvent(OnUpdateFinsihed);
 		}
 
-		/// <summary> 开始解包 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageExtractionBegin;
-
-		/// <summary>
-		/// 引发 <see cref="PackageExtractionBegin" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		protected virtual void OnPackageExtractionBegin(PackageEventArgs ea)
-		{
-			var handler = PackageExtractionBegin;
-			if (handler != null)
-				handler(this, ea);
-		}
-
-		/// <summary> 解包完成 </summary>
-		/// <remarks></remarks>
-		public event EventHandler<PackageEventArgs> PackageExtractionEnd;
-
-		/// <summary>
-		/// 引发 <see cref="PackageExtractionEnd" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		protected virtual void OnPackageExtractionEnd(PackageEventArgs ea)
-		{
-			var handler = PackageExtractionEnd;
-			if (handler != null)
-				handler(this, ea);
-		}
 
 		/// <summary>
 		/// 解开安装包
@@ -1728,51 +988,6 @@ namespace FSLib.App.SimpleUpdater
 			Environment.Exit(exitCode);
 		}
 
-		/// <summary>
-		/// 正在中止当前进程
-		/// </summary>
-		public static event EventHandler<CancelableEventArgs> RequireTerminateProcess;
-
-		/// <summary>
-		/// 引发 <see cref="RequireTerminateProcess" /> 事件
-		/// </summary>
-		/// <param name="ea">包含此事件的参数</param>
-		internal static void OnRequireTerminateProcess(object sender, CancelableEventArgs ea)
-		{
-			var handler = RequireTerminateProcess;
-			if (handler != null)
-				handler(sender, ea);
-		}
-
-		/// <summary>
-		/// 即将启动外部启动更新进程
-		/// </summary>
-		public event EventHandler ExternalUpdateStart;
-
-		/// <summary>
-		/// 引发 <see cref="ExternalUpdateStart" /> 事件
-		/// </summary>
-		protected virtual void OnExternalUpdateStart()
-		{
-			var handler = ExternalUpdateStart;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-		}
-
-		/// <summary>
-		/// 已经启动外部启动更新进程
-		/// </summary>
-		public event EventHandler ExternalUpdateStarted;
-
-		/// <summary>
-		/// 引发 <see cref="ExternalUpdateStart" /> 事件
-		/// </summary>
-		protected virtual void OnExternalUpdateStarted()
-		{
-			var handler = ExternalUpdateStarted;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
-		}
 
 		/// <summary>
 		/// 复制更新程序到临时目录并启动

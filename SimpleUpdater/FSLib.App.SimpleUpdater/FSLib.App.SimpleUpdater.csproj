@@ -79,6 +79,7 @@
     <Compile Include="Defination\IUpdateNotify.cs" />
     <Compile Include="Defination\PackageInfo.cs" />
     <Compile Include="Defination\RequestCheckComponentFlagEventArgs.cs" />
+    <Compile Include="Defination\UpdateCheckResult.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateInfo.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
@@ -170,6 +171,15 @@
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
     <Compile Include="RunExternalProcessEventArgs.cs" />
     <Compile Include="Updatable2Attribute.cs" />
+    <Compile Include="Updater.Events.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.Extend.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.Static.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility.cs" />
     <Compile Include="Wrapper\BackgroundWorker.cs">
       <SubType>Component</SubType>

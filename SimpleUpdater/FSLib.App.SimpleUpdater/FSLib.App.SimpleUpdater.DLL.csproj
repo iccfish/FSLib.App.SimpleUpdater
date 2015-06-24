@@ -79,6 +79,7 @@
     <Compile Include="Defination\CancelableEventArgs.cs" />
     <Compile Include="Defination\IUpdateNotify.cs" />
     <Compile Include="Defination\RequestCheckComponentFlagEventArgs.cs" />
+    <Compile Include="Defination\UpdateCheckResult.cs" />
     <Compile Include="Defination\UpdateServerInfo.cs" />
     <Compile Include="DeletePreviousProgramMethod.cs" />
     <Compile Include="Dialogs\AbstractUpdateBase.cs">
@@ -177,6 +178,15 @@
     <Compile Include="Updatable2Attribute.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />
+    <Compile Include="Updater.Events.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.Extend.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.Static.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility.cs" />
     <Compile Include="Wrapper\BackgroundWorker.cs">
       <SubType>Component</SubType>
@@ -379,7 +389,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties IncrementOnRebuild="True" IncrementOnBuild="True" IncrementAction="2" Versioning="1" StartAt="2013/9/7 0:00:00" />
+      <UserProperties StartAt="2013/9/7 0:00:00" Versioning="1" IncrementAction="2" IncrementOnBuild="True" IncrementOnRebuild="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
