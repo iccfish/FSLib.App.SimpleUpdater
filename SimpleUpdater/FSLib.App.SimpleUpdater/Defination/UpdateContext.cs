@@ -491,7 +491,6 @@
 		bool _forceUpdate;
 		bool _autoKillProcesses;
 		bool _mustUpdate;
-		bool _treatErrorAsNotUpdated;
 		bool _autoEndProcessesWithinAppDir;
 		bool _promptUserBeforeAutomaticUpgrade;
 
@@ -529,16 +528,12 @@
 		/// 这个选项影响设置必须强制更新的选项。
 		/// 如果检测更新遇到错误，此选项设置为false时，则按照“未找到更新”处理；如果此选项设置为true，则按照“有更新但是没有更新”处理，会强制退出软件。
 		/// </summary>
-		public bool TreatErrorAsNotUpdated
-		{
-			get { return _treatErrorAsNotUpdated; }
-			set { _treatErrorAsNotUpdated = value; }
-		}
+		public bool TreatErrorAsNotUpdated { get; set; }
 
 		/// <summary>
 		/// 获得组件状态
 		/// </summary>
-		public Dictionary<string, bool> ComponentStatus { get; }
+		public Dictionary<string, bool> ComponentStatus { get; private set; }
 	}
 }
 

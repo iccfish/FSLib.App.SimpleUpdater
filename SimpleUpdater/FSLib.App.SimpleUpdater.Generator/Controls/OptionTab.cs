@@ -36,25 +36,25 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			{
 				UpdatePackageBuilder.Instance.AuProject.UpdateInfo.DeleteFileLimits = deleteRules.Lines;
 			};
-			rbAlways.CheckedChanged += (s, e) =>
+			rbAlways.Click += (s, e) =>
 			{
 				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.Always, rbAlways.Checked);
 			};
-			chkSkipIfNotExist.CheckedChanged += (s, e) =>
+			chkSkipIfNotExist.Click += (s, e) =>
 			{
 				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.SkipIfNotExist, chkSkipIfNotExist.Checked);
 			};
-			rbIgnore.CheckedChanged += (s, e) =>
+			rbIgnore.Click += (s, e) =>
 			{
 				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.Ignore, rbIgnore.Checked);
 			};
-			rbOnlyNotExist.CheckedChanged += (s, e) =>
+			rbOnlyNotExist.Click += (s, e) =>
 			{
 				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.SkipIfExists, rbOnlyNotExist.Checked);
 			};
-			rbVersionCheck.CheckedChanged += (s, e) =>
+			rbVersionCheck.Click += (s, e) =>
 			{
-				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.VersionCompare, !rbVersionCheck.Checked);
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.VersionCompare, rbVersionCheck.Checked);
 
 				if (rbVersionCheck.Checked)
 				{
@@ -121,25 +121,13 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		/// <param name="project"></param>
 		void RebindDefaultUpdateMethodInfo(AuProject project)
 		{
+			rbAlways.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.Always);
+			rbVersionCheck.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.VersionCompare);
+			rbOnlyNotExist.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.SkipIfExists);
+			rbIgnore.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.Ignore);
+			chkSkipIfNotExist.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.SkipIfNotExist);
 
-			switch (project.DefaultUpdateMethod)
-			{
-				case UpdateMethod.Always:
-					rbAlways.Checked = true;
-					break;
-				case UpdateMethod.VersionCompare:
-					rbVersionCheck.Checked = true;
-					break;
-				case UpdateMethod.SkipIfExists:
-					rbOnlyNotExist.Checked = true;
-					break;
-				case UpdateMethod.Ignore:
-					rbIgnore.Checked = true;
-					break;
-				default:
-					break;
-			}
-			lblCheckTypeDesc.Text = project.DefaultUpdateMethod == UpdateMethod.VersionCompare ? project.DefaultFileVerificationLevel.ToDisplayString() : "点击选项时选择比较类型";
+			lblCheckTypeDesc.Text = Utility.HasMethod(project.DefaultUpdateMethod ,UpdateMethod.VersionCompare) ? project.DefaultFileVerificationLevel.ToDisplayString() : "点击选项时选择比较类型";
 		}
 
 	}

@@ -32,7 +32,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 检测组件标记
 		/// </summary>
-		/// <param name="flag"></param>
+		/// <param name="compId">组件ID</param>
 		/// <returns></returns>
 		bool CheckComponentFlag(string compId)
 		{

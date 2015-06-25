@@ -13,13 +13,14 @@ namespace FSLib.App.SimpleUpdater.Generator.Defination
 	/// </summary>
 	class FileTreeItem
 	{
+
 		public FileTreeItem(FileInfo fileInfo, UpdateMethod method, FileVerificationLevel level, string relativePath, string flag)
 		{
 			FileInfo = fileInfo;
-			UpdateMethod = method;
-			VerificationLevel = level;
 			RelativePath = relativePath;
-			Flag = flag;
+			_updateMethod = method;
+			_verificationLevel = level;
+			_flag = flag;
 		}
 
 		/// <summary>
