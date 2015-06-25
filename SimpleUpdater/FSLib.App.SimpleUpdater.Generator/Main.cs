@@ -60,7 +60,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 					!System.IO.File.Exists(files[0])
 					||
 					!(files[0].EndsWith(".xml", StringComparison.OrdinalIgnoreCase) || files[0].EndsWith(".auproj", StringComparison.OrdinalIgnoreCase))
-					) return;
+					)
+					return;
 
 				e.Effect = DragDropEffects.Link;
 			};
@@ -90,7 +91,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 					(files = doe.GetFileDropList()).Count == 0
 					||
 					!System.IO.Directory.Exists(files[0])
-					) return;
+					)
+					return;
 
 				e.Effect = DragDropEffects.Link;
 			};
@@ -105,7 +107,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 					(files = doe.GetFileDropList()).Count == 0
 					||
 					!System.IO.Directory.Exists(files[0])
-					) return;
+					)
+					return;
 
 				e.Effect = DragDropEffects.Link;
 			};
@@ -134,7 +137,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 					!System.IO.File.Exists(files[0])
 					||
 					!files[0].EndsWith(".rtf", StringComparison.OrdinalIgnoreCase)
-					) return;
+					)
+					return;
 
 				e.Effect = DragDropEffects.Link;
 			};
@@ -499,6 +503,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
 			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
 			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
+			chkCleanTargetDirectory.AddDataBinding(project, s => s.Checked, s => s.CleanBeforeBuild);
+			chkRandomPackageName.AddDataBinding(project, s => s.Checked, s => s.UseRandomPackageNaming);
 
 			project.PropertyChanged += (ss, ee) =>
 			{
@@ -555,6 +561,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 			chkOptError.DataBindings.Clear();
 			chkOptRequireAdminPrivilege.DataBindings.Clear();
 			txtPackageExtension.DataBindings.Clear();
+			chkCleanTargetDirectory.DataBindings.Clear();
+			chkRandomPackageName.DataBindings.Clear();
 		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)

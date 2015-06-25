@@ -235,6 +235,24 @@ namespace FSLib.App.SimpleUpdater.Generator
 		}
 
 		/// <summary>
+		/// 清理目标目录
+		/// </summary>
+		void CleanTargetDirectory()
+		{
+			var directory = AuProject.ParseFullPath(AuProject.DestinationDirectory);
+			//删除 update*.xml
+			foreach (var file in Directory.GetFiles(directory, "update*.xml"))
+			{
+				File.Delete(file);
+			}
+			//删除package
+			foreach (var file in Directory.GetFiles(directory, "*." + AuProject.PackageExtension))
+			{
+				File.Delete(file);
+			}
+		}
+
+		/// <summary>
 		/// 创建指定包
 		/// </summary>
 		/// <param name="e"></param>
@@ -253,6 +271,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 			if (ui == null)
 				throw new ApplicationException("准备升级信息时发生异常");
+
+			if (AuProject.CleanBeforeBuild)
+			{
+				e.ReportProgress(0, 0, "正在清理目录...");
+				CleanTargetDirectory();
+			}
 
 			Result = new Dictionary<string, string>();
 			BuildPackages(e, ui);
@@ -327,7 +351,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//古典版的安装包？
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
 			{
-				var mainPkgId = GetPackageName("main") + "."+AuProject.PackageExtension;
+				var mainPkgId = GetPackageName("main") + "." + AuProject.PackageExtension;
 				var file = System.IO.Path.Combine(targetDir, mainPkgId);
 				Result.Add(mainPkgId, "兼容升级模式（或未开启增量更新时）的升级包文件");
 				e.Progress.TaskCount = targetfiles.Length;
@@ -426,9 +450,20 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		static MD5 _md5 = MD5.Create();
 		static UpdatePackageBuilder _instance;
+		Dictionary<string, string> _nameCache = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-		static string GetPackageName(string path)
+		string GetPackageName(string path)
 		{
+			if (_nameCache.ContainsKey(path))
+				return _nameCache[path];
+
+			if (AuProject.UseRandomPackageNaming)
+			{
+				var name = Guid.NewGuid().ToString("N");
+				_nameCache[path] = name;
+				return name;
+			}
+
 			return BitConverter.ToString(_md5.ComputeHash(System.Text.Encoding.Unicode.GetBytes(path.ToLower()))).Replace("-", "").ToUpper();
 		}
 	}

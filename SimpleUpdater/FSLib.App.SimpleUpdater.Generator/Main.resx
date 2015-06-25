@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -151,13 +151,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -184,13 +184,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -217,13 +217,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -238,7 +238,7 @@
     <value>1</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>新程序目录</value>
+    <value>新版本目录</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -250,7 +250,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="txtAppName.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 11</value>
@@ -271,7 +271,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppName.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>26</value>
   </data>
   <data name="txtPublishUrl.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 38</value>
@@ -298,7 +298,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPublishUrl.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>27</value>
   </data>
   <data name="pbProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -358,7 +358,7 @@
     <value>True</value>
   </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -373,7 +373,7 @@
     <value>1</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>升级包路径</value>
+    <value>升级包目录</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -385,7 +385,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="lblStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -418,13 +418,13 @@
     <value>True</value>
   </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 123</value>
+    <value>5, 149</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 12</value>
@@ -445,19 +445,19 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 152</value>
+    <value>5, 178</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 12</value>
@@ -478,10 +478,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="txtAfterExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 146</value>
+    <value>363, 172</value>
   </data>
   <data name="txtAfterExecuteArgs.Size" type="System.Drawing.Size, System.Drawing">
     <value>297, 21</value>
@@ -502,10 +502,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAfterExecuteArgs.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="txtPreExecuteArgs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 118</value>
+    <value>363, 144</value>
   </data>
   <data name="txtPreExecuteArgs.Size" type="System.Drawing.Size, System.Drawing">
     <value>297, 21</value>
@@ -526,7 +526,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPreExecuteArgs.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="txtAppVersion.Location" type="System.Drawing.Point, System.Drawing">
     <value>490, 11</value>
@@ -550,10 +550,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAppVersion.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>28</value>
   </data>
   <data name="txtTimeout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 175</value>
+    <value>89, 201</value>
   </data>
   <data name="txtTimeout.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 21</value>
@@ -574,7 +574,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtTimeout.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="txtNewSoftDir.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 65</value>
@@ -598,7 +598,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtNewSoftDir.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="txtPackagePath.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 92</value>
@@ -622,7 +622,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPackagePath.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <metadata name="epp.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>146, 17</value>
@@ -690,6 +690,76 @@
   <data name="&gt;&gt;btnSaveProject.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="chkRandomPackageName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkRandomPackageName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkRandomPackageName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 119</value>
+  </data>
+  <data name="chkRandomPackageName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 16</value>
+  </data>
+  <data name="chkRandomPackageName.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="chkRandomPackageName.Text" xml:space="preserve">
+    <value>升级包文件名随机命名 (!请看鼠标提示!)</value>
+  </data>
+  <data name="chkRandomPackageName.ToolTip" xml:space="preserve">
+    <value>使用随机生成的文件名（GUID）来作为升级包的名字，而不是路径相关的名字。
+选中此选项有助于改善部分网络运营商喜欢根据文件名来缓存文件导致的意外更新失败。
+但此选项会导致目标目录中每次文件名都不一致，建议手动或自动清理以免文件多余。</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Name" xml:space="preserve">
+    <value>chkRandomPackageName</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkCleanTargetDirectory.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkCleanTargetDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 119</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 16</value>
+  </data>
+  <data name="chkCleanTargetDirectory.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Text" xml:space="preserve">
+    <value>生成之前清理目标目录 (!危险! 请务必看鼠标提示!)</value>
+  </data>
+  <data name="chkCleanTargetDirectory.ToolTip" xml:space="preserve">
+    <value>在生成目标升级包之前，清理升级包目录。
+清理的内容包括更新信息文件，以及升级包文件。这里的文件是根据设置的文件名和扩展名自动查找的。
+为了防止您的文件被误删，强烈建议为升级包建立单独的目录！</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Name" xml:space="preserve">
+    <value>chkCleanTargetDirectory</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnBind.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -718,7 +788,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnBind.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -727,7 +797,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 149</value>
+    <value>666, 175</value>
   </data>
   <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
@@ -751,7 +821,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkHideAfter.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -760,7 +830,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 122</value>
+    <value>666, 148</value>
   </data>
   <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
@@ -784,7 +854,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -814,7 +884,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;browseFile.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -844,13 +914,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 208</value>
+    <value>255, 234</value>
   </data>
   <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
     <value>459, 29</value>
@@ -871,7 +941,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -880,7 +950,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 178</value>
+    <value>256, 204</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 12</value>
@@ -901,10 +971,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="txtPackageExtension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 205</value>
+    <value>88, 231</value>
   </data>
   <data name="txtPackageExtension.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 21</value>
@@ -925,10 +995,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPackageExtension.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 147</value>
+    <value>88, 173</value>
   </data>
   <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 20</value>
@@ -940,16 +1010,16 @@
     <value>fileAfterExecute</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 119</value>
+    <value>89, 145</value>
   </data>
   <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 20</value>
@@ -961,25 +1031,25 @@
     <value>filePreExecute</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="label22.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 208</value>
+    <value>6, 234</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 12</value>
@@ -1000,19 +1070,19 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun, 9pt, style=Bold</value>
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
   </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 178</value>
+    <value>4, 204</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 12</value>
@@ -1033,7 +1103,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1485,7 +1555,7 @@
     <value>options</value>
   </data>
   <data name="&gt;&gt;options.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -1725,7 +1795,7 @@
     <value>True</value>
   </data>
   <data name="chkOptForceUpdate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptForceUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1758,7 +1828,7 @@
     <value>True</value>
   </data>
   <data name="chkOptRequireAdminPrivilege.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptRequireAdminPrivilege.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1791,7 +1861,7 @@
     <value>True</value>
   </data>
   <data name="chkStillProptUserInfo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkStillProptUserInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1824,7 +1894,7 @@
     <value>True</value>
   </data>
   <data name="chkOptError.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptError.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1857,7 +1927,7 @@
     <value>True</value>
   </data>
   <data name="chkOptAutoExitProcess.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptAutoExitProcess.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1890,7 +1960,7 @@
     <value>True</value>
   </data>
   <data name="chkAutoEndAppDirProcesses.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkAutoEndAppDirProcesses.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1923,7 +1993,7 @@
     <value>True</value>
   </data>
   <data name="chkOptAutoKillProcess.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptAutoKillProcess.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1956,7 +2026,7 @@
     <value>True</value>
   </data>
   <data name="chkOptMustUpdate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9pt, style=Bold</value>
   </data>
   <data name="chkOptMustUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1986,7 +2056,7 @@
     <value>14</value>
   </data>
   <data name="tabPage8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt</value>
+    <value>Microsoft YaHei UI, 9pt</value>
   </data>
   <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2031,7 +2101,7 @@
     <value>fileConfig</value>
   </data>
   <data name="&gt;&gt;fileConfig.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -2082,7 +2152,7 @@
     <value>argumentGenerator1</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2130,7 +2200,7 @@
     <value>aboutPanel1</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Type" xml:space="preserve">
-    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
     <value>tabPage4</value>
@@ -2471,6 +2541,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAPAAAAAAAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIAB
         AACAAQAAgAEAAIABAACAAQAAgAEAAP//AAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

@@ -31,6 +31,7 @@
 			CompressPackage = true;
 			DefaultFileVerificationLevel = FileVerificationLevel.Hash;
 			DefaultUpdateMethod = UpdateMethod.VersionCompare;
+			UseRandomPackageNaming = true;
 		}
 
 		#region 事件区域
@@ -511,6 +512,38 @@
 			PropertyChangedEventHandler handler = PropertyChanged;
 			if (handler != null)
 				handler(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		bool _useRandomPackageNaming;
+
+		/// <summary>
+		/// 升级包随机命名
+		/// </summary>
+		public bool UseRandomPackageNaming
+		{
+			get { return _useRandomPackageNaming; }
+			set
+			{
+				if (value == _useRandomPackageNaming) return;
+				_useRandomPackageNaming = value;
+				OnPropertyChanged("UseRandomPackageNaming");
+			}
+		}
+
+		bool _cleanBeforeBuild;
+
+		/// <summary>
+		/// 构建之前先清理
+		/// </summary>
+		public bool CleanBeforeBuild
+		{
+			get { return _cleanBeforeBuild; }
+			set
+			{
+				if (value == _cleanBeforeBuild) return;
+				_cleanBeforeBuild = value;
+				OnPropertyChanged("CleanBeforeBuild");
+			}
 		}
 	}
 }
