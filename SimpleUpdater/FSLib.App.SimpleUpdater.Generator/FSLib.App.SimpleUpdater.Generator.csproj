@@ -121,6 +121,7 @@
       <DependentUpon>OptionTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RootNode.cs" />
+    <Compile Include="Defination\FileTreeItem.cs" />
     <Compile Include="Defination\ProjectItem.cs" />
     <Compile Include="Defination\ServerNode.cs" />
     <Compile Include="Dialogs\PackageGenerateResult.cs">

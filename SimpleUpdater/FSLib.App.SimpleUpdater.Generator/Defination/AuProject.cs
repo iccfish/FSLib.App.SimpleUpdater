@@ -399,7 +399,7 @@
 			project.TryLoadUpdateInfo();
 
 			if (project._updateInfo == null)
-				return null;	//加载失败
+				return null;    //加载失败
 			TranformOldProjectInfo(project);
 
 			//返回
@@ -543,6 +543,27 @@
 				if (value == _cleanBeforeBuild) return;
 				_cleanBeforeBuild = value;
 				OnPropertyChanged("CleanBeforeBuild");
+			}
+		}
+
+		public ProjectItem FindProjectItem(string path)
+		{
+			return Files.FirstOrDefault(s => string.Compare(s.Path, path, StringComparison.OrdinalIgnoreCase) == 0);
+		}
+
+		string _componentFlags;
+
+		/// <summary>
+		/// 获得或设置组件标记
+		/// </summary>
+		public string ComponentFlags
+		{
+			get { return _componentFlags ?? ""; }
+			set
+			{
+				if (value == _componentFlags) return;
+				_componentFlags = value;
+				OnPropertyChanged("ComponentFlags");
 			}
 		}
 	}

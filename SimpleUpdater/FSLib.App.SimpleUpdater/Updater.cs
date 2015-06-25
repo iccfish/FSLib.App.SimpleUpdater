@@ -373,12 +373,20 @@ namespace FSLib.App.SimpleUpdater
 					//存在即跳过，或版本比较
 					if (!System.IO.File.Exists(localPath))
 					{
-						PackagesToUpdate.Add(pkg);
-						Trace.TraceInformation("本地路径【" + pkg.FilePath + "】不存在，添加升级包 【" + pkg.PackageName + "】");
+						if (Utility.HasMethod(pkg.Method, UpdateMethod.SkipIfNotExist))
+						{
+							Trace.TraceInformation("本地路径【" + pkg.FilePath + "】不存在，并且指定了不存在则跳过，因此跳过更新");
+						}
+						else
+						{
+
+							PackagesToUpdate.Add(pkg);
+							Trace.TraceInformation("本地路径【" + pkg.FilePath + "】不存在，添加升级包 【" + pkg.PackageName + "】");
+						}
 						continue;
 					}
 					//如果存在即跳过……那么你好去跳过了。
-					if (pkg.Method == UpdateMethod.SkipIfExists)
+					if (Utility.HasMethod(pkg.Method, UpdateMethod.SkipIfExists))
 					{
 						AddPackageToPreserveList(pkg);
 						Trace.TraceInformation("本地路径【" + pkg.FilePath + "】已经存在，跳过升级包 【" + pkg.PackageName + "】");
@@ -386,6 +394,10 @@ namespace FSLib.App.SimpleUpdater
 					}
 
 					var isNewer = false;
+					if ((pkg.VerificationLevel & FileVerificationLevel.Size) == FileVerificationLevel.Size)
+					{
+						isNewer |= new System.IO.FileInfo(localPath).Length != pkg.FileSize;
+					}
 					if ((pkg.VerificationLevel & FileVerificationLevel.Version) == FileVerificationLevel.Version)
 					{
 						isNewer |= string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version);
@@ -393,10 +405,6 @@ namespace FSLib.App.SimpleUpdater
 					if ((pkg.VerificationLevel & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
 					{
 						isNewer |= ExtensionMethod.GetFileHash(localPath) != pkg.FileHash;
-					}
-					if ((pkg.VerificationLevel & FileVerificationLevel.Size) == FileVerificationLevel.Size)
-					{
-						isNewer |= new System.IO.FileInfo(localPath).Length != pkg.FileSize;
 					}
 
 					if (isNewer)

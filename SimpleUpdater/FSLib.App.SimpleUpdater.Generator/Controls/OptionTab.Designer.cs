@@ -45,10 +45,12 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lblCheckTypeDesc = new System.Windows.Forms.Label();
-			this.rbVersionCheck = new System.Windows.Forms.RadioButton();
-			this.rbOnlyNotExist = new System.Windows.Forms.RadioButton();
-			this.rbIgnore = new System.Windows.Forms.RadioButton();
-			this.rbAlways = new System.Windows.Forms.RadioButton();
+			this.rbVersionCheck = new System.Windows.Forms.CheckBox();
+			this.rbOnlyNotExist = new System.Windows.Forms.CheckBox();
+			this.rbIgnore = new System.Windows.Forms.CheckBox();
+			this.rbAlways = new System.Windows.Forms.CheckBox();
+			this.chkSkipIfNotExist = new System.Windows.Forms.CheckBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.gpSetDeleteSyntax.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -57,7 +59,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label1.Location = new System.Drawing.Point(3, 173);
+			this.label1.Location = new System.Drawing.Point(5, 214);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(122, 12);
 			this.label1.TabIndex = 0;
@@ -71,7 +73,7 @@
             "仅覆盖, 不主动删除",
             "清空原程序目录",
             "仅删除指定文件和目录"});
-			this.deletePreviousFileMode.Location = new System.Drawing.Point(150, 169);
+			this.deletePreviousFileMode.Location = new System.Drawing.Point(159, 214);
 			this.deletePreviousFileMode.Name = "deletePreviousFileMode";
 			this.deletePreviousFileMode.Size = new System.Drawing.Size(218, 20);
 			this.deletePreviousFileMode.TabIndex = 1;
@@ -82,13 +84,13 @@
 			this.deleteRules.Multiline = true;
 			this.deleteRules.Name = "deleteRules";
 			this.deleteRules.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.deleteRules.Size = new System.Drawing.Size(694, 125);
+			this.deleteRules.Size = new System.Drawing.Size(694, 77);
 			this.deleteRules.TabIndex = 2;
 			this.deleteRules.WordWrap = false;
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(6, 148);
+			this.label2.Location = new System.Drawing.Point(3, 100);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(512, 16);
 			this.label2.TabIndex = 3;
@@ -98,9 +100,9 @@
 			// 
 			this.gpSetDeleteSyntax.Controls.Add(this.deleteRules);
 			this.gpSetDeleteSyntax.Controls.Add(this.label2);
-			this.gpSetDeleteSyntax.Location = new System.Drawing.Point(7, 195);
+			this.gpSetDeleteSyntax.Location = new System.Drawing.Point(7, 240);
 			this.gpSetDeleteSyntax.Name = "gpSetDeleteSyntax";
-			this.gpSetDeleteSyntax.Size = new System.Drawing.Size(705, 167);
+			this.gpSetDeleteSyntax.Size = new System.Drawing.Size(705, 120);
 			this.gpSetDeleteSyntax.TabIndex = 4;
 			this.gpSetDeleteSyntax.TabStop = false;
 			// 
@@ -199,22 +201,25 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.label5);
 			this.panel1.Controls.Add(this.lblCheckTypeDesc);
 			this.panel1.Controls.Add(this.rbVersionCheck);
 			this.panel1.Controls.Add(this.rbOnlyNotExist);
 			this.panel1.Controls.Add(this.rbIgnore);
+			this.panel1.Controls.Add(this.chkSkipIfNotExist);
 			this.panel1.Controls.Add(this.rbAlways);
-			this.panel1.Location = new System.Drawing.Point(153, 113);
+			this.panel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.panel1.Location = new System.Drawing.Point(144, 113);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(552, 37);
+			this.panel1.Size = new System.Drawing.Size(561, 95);
 			this.panel1.TabIndex = 11;
 			// 
 			// lblCheckTypeDesc
 			// 
 			this.lblCheckTypeDesc.AutoSize = true;
-			this.lblCheckTypeDesc.Location = new System.Drawing.Point(378, 12);
+			this.lblCheckTypeDesc.Location = new System.Drawing.Point(117, 33);
 			this.lblCheckTypeDesc.Name = "lblCheckTypeDesc";
-			this.lblCheckTypeDesc.Size = new System.Drawing.Size(137, 12);
+			this.lblCheckTypeDesc.Size = new System.Drawing.Size(140, 17);
 			this.lblCheckTypeDesc.TabIndex = 1;
 			this.lblCheckTypeDesc.Text = "点击选项时选择比较类型";
 			// 
@@ -222,22 +227,22 @@
 			// 
 			this.rbVersionCheck.AutoSize = true;
 			this.rbVersionCheck.Checked = true;
-			this.rbVersionCheck.Location = new System.Drawing.Point(277, 10);
+			this.rbVersionCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rbVersionCheck.Location = new System.Drawing.Point(15, 32);
 			this.rbVersionCheck.Name = "rbVersionCheck";
-			this.rbVersionCheck.Size = new System.Drawing.Size(95, 16);
+			this.rbVersionCheck.Size = new System.Drawing.Size(99, 21);
 			this.rbVersionCheck.TabIndex = 0;
-			this.rbVersionCheck.TabStop = true;
 			this.rbVersionCheck.Text = "比较版本更新";
 			this.rbVersionCheck.UseVisualStyleBackColor = true;
 			// 
 			// rbOnlyNotExist
 			// 
 			this.rbOnlyNotExist.AutoSize = true;
-			this.rbOnlyNotExist.Location = new System.Drawing.Point(169, 10);
+			this.rbOnlyNotExist.Location = new System.Drawing.Point(215, 10);
 			this.rbOnlyNotExist.Name = "rbOnlyNotExist";
-			this.rbOnlyNotExist.Size = new System.Drawing.Size(95, 16);
+			this.rbOnlyNotExist.Size = new System.Drawing.Size(87, 21);
 			this.rbOnlyNotExist.TabIndex = 0;
-			this.rbOnlyNotExist.Text = "不存在时更新";
+			this.rbOnlyNotExist.Text = "存在则跳过";
 			this.rbOnlyNotExist.UseVisualStyleBackColor = true;
 			// 
 			// rbIgnore
@@ -245,7 +250,7 @@
 			this.rbIgnore.AutoSize = true;
 			this.rbIgnore.Location = new System.Drawing.Point(15, 10);
 			this.rbIgnore.Name = "rbIgnore";
-			this.rbIgnore.Size = new System.Drawing.Size(71, 16);
+			this.rbIgnore.Size = new System.Drawing.Size(75, 21);
 			this.rbIgnore.TabIndex = 0;
 			this.rbIgnore.Text = "忽略更新";
 			this.rbIgnore.UseVisualStyleBackColor = true;
@@ -253,12 +258,32 @@
 			// rbAlways
 			// 
 			this.rbAlways.AutoSize = true;
-			this.rbAlways.Location = new System.Drawing.Point(92, 10);
+			this.rbAlways.Location = new System.Drawing.Point(115, 10);
 			this.rbAlways.Name = "rbAlways";
-			this.rbAlways.Size = new System.Drawing.Size(71, 16);
+			this.rbAlways.Size = new System.Drawing.Size(75, 21);
 			this.rbAlways.TabIndex = 0;
 			this.rbAlways.Text = "始终更新";
 			this.rbAlways.UseVisualStyleBackColor = true;
+			// 
+			// chkSkipIfNotExist
+			// 
+			this.chkSkipIfNotExist.AutoSize = true;
+			this.chkSkipIfNotExist.Location = new System.Drawing.Point(315, 10);
+			this.chkSkipIfNotExist.Name = "chkSkipIfNotExist";
+			this.chkSkipIfNotExist.Size = new System.Drawing.Size(99, 21);
+			this.chkSkipIfNotExist.TabIndex = 0;
+			this.chkSkipIfNotExist.Text = "不存在则跳过";
+			this.chkSkipIfNotExist.UseVisualStyleBackColor = true;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.label5.Location = new System.Drawing.Point(12, 56);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(356, 34);
+			this.label5.TabIndex = 2;
+			this.label5.Text = "如果通过第一行选项确定不需要更新，则“比较版本更新”无效。\r\n如果通过第一行选项确定必须更新，则“比较版本更新”无效。";
 			// 
 			// OptionTab
 			// 
@@ -305,9 +330,11 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblCheckTypeDesc;
-		private System.Windows.Forms.RadioButton rbVersionCheck;
-		private System.Windows.Forms.RadioButton rbOnlyNotExist;
-		private System.Windows.Forms.RadioButton rbAlways;
-		private System.Windows.Forms.RadioButton rbIgnore;
+		private System.Windows.Forms.CheckBox rbVersionCheck;
+		private System.Windows.Forms.CheckBox rbOnlyNotExist;
+		private System.Windows.Forms.CheckBox rbAlways;
+		private System.Windows.Forms.CheckBox rbIgnore;
+		private System.Windows.Forms.CheckBox chkSkipIfNotExist;
+		private System.Windows.Forms.Label label5;
 	}
 }

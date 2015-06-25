@@ -416,7 +416,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				{
 					config = projectItems[file.Key];
 					//fix always pack issue
-					if (config.UpdateMethod != UpdateMethod.VersionCompare && config.UpdateMethod != UpdateMethod.SkipIfExists)
+					if (config.UpdateMethod == UpdateMethod.Always)
 						continue;
 				}
 
@@ -442,7 +442,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 					PackageName = pkgFileName,
 					PackageSize = pkgInfo.Length,
 					Method = config.UpdateMethod,
-					Files = new[] { file.Key }
+					Files = new[] { file.Key },
+					ComponentId = config.Flag
 				});
 			}
 		}

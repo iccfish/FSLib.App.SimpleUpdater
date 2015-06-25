@@ -6,6 +6,9 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
+	using FSLib.App.SimpleUpdater.Defination;
+	using FSLib.App.SimpleUpdater.Generator.Defination;
+
 	class FolderNode : System.Windows.Forms.TreeNode
 	{
 		public FolderNode(string path, string root)
@@ -26,18 +29,29 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 				return;
 			}
 
-			_files = di.GetFiles().ToDictionary(s => s.FullName.Remove(0, root.Length).Trim('\\'), StringComparer.OrdinalIgnoreCase);
+			var proj = UpdatePackageBuilder.Instance.AuProject;
+			_files = di.GetFiles()
+						.Select(s =>
+						{
+							var rp = s.FullName.Remove(0, root.Length).Trim('\\');
+							var pi = proj.FindProjectItem(rp);
+
+							return new FileTreeItem(s, pi == null ? UpdateMethod.AsProject : pi.UpdateMethod, pi == null ? FileVerificationLevel.None : pi.FileVerificationLevel, rp, pi == null ? null : pi.Flag);
+						})
+						.ToDictionary(
+									 s => s.RelativePath
+				);
 		}
 
 		string _path;
 		string _root;
 
-		private Dictionary<string, FileInfo> _files;
+		private Dictionary<string, FileTreeItem> _files;
 
 		/// <summary> 获得当前文件夹的文件 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public Dictionary<string, FileInfo> Files
+		public Dictionary<string, FileTreeItem> Files
 		{
 			get { return _files; }
 		}
@@ -45,11 +59,11 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		/// <summary>
 		/// 获得当前节点下的所有文件信息
 		/// </summary>
-		public virtual KeyValuePair<string,FileInfo>[] AllFiles
+		public virtual KeyValuePair<string, FileTreeItem>[] AllFiles
 		{
 			get
 			{
-				return Files.AsEnumerable().Concat(Nodes.Cast<FolderNode>().SelectMany(s=>s.AllFiles)).ToArray();
+				return Files.AsEnumerable().Concat(Nodes.Cast<FolderNode>().SelectMany(s => s.AllFiles)).ToArray();
 			}
 		}
 	}

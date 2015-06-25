@@ -38,25 +38,26 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			};
 			rbAlways.CheckedChanged += (s, e) =>
 			{
-				if (rbAlways.Checked)
-					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.Always;
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.Always, rbAlways.Checked);
+			};
+			chkSkipIfNotExist.CheckedChanged += (s, e) =>
+			{
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.SkipIfNotExist, chkSkipIfNotExist.Checked);
 			};
 			rbIgnore.CheckedChanged += (s, e) =>
 			{
-				if (rbIgnore.Checked)
-					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.Ignore;
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.Ignore, rbIgnore.Checked);
 			};
 			rbOnlyNotExist.CheckedChanged += (s, e) =>
 			{
-				if (rbOnlyNotExist.Checked)
-					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.SkipIfExists;
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.SkipIfExists, rbOnlyNotExist.Checked);
 			};
 			rbVersionCheck.CheckedChanged += (s, e) =>
 			{
+				UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = Utility.SetOrClearUpdateMethodFlag(UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod, UpdateMethod.VersionCompare, !rbVersionCheck.Checked);
+
 				if (rbVersionCheck.Checked)
 				{
-					UpdatePackageBuilder.Instance.AuProject.DefaultUpdateMethod = UpdateMethod.VersionCompare;
-
 					using (var dlg = new SelectVerificationLevel())
 					{
 						if (dlg.ShowDialog() == DialogResult.OK)

@@ -26,5 +26,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Defination
 		/// 获得或设置更新的级别
 		/// </summary>
 		public FileVerificationLevel FileVerificationLevel { get; set; }
+
+		public string Flag { get; set; }
 	}
 }

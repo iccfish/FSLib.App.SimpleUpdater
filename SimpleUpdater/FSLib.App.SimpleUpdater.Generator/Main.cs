@@ -505,6 +505,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
 			chkCleanTargetDirectory.AddDataBinding(project, s => s.Checked, s => s.CleanBeforeBuild);
 			chkRandomPackageName.AddDataBinding(project, s => s.Checked, s => s.UseRandomPackageNaming);
+			txtCompFlag.AddDataBinding(project, s => s.Text, s => s.ComponentFlags);
 
 			project.PropertyChanged += (ss, ee) =>
 			{
@@ -563,6 +564,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			txtPackageExtension.DataBindings.Clear();
 			chkCleanTargetDirectory.DataBindings.Clear();
 			chkRandomPackageName.DataBindings.Clear();
+			txtCompFlag.DataBindings.Clear();
 		}
 
 		private void btnSaveProject_Click(object sender, EventArgs e)

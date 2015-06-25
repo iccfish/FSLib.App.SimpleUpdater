@@ -269,6 +269,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <returns></returns>
 		public static string ToDisplayString(this FileVerificationLevel fv)
 		{
+			if (fv == FileVerificationLevel.None)
+				return "跟随项目";
+
 			var fvd = new List<string>();
 
 			if ((fv & FileVerificationLevel.Version) == FileVerificationLevel.Version)
@@ -283,6 +286,36 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				fvd.Add("大小");
 			}
+
+			return string.Join(";", fvd.ToArray());
+		}
+
+		/// <summary>
+		/// 获得显示的字符串
+		/// </summary>
+		/// <param name="fv"></param>
+		/// <returns></returns>
+		public static string ToDisplayString(this UpdateMethod fv)
+		{
+			if (fv == UpdateMethod.AsProject)
+			{
+				return "跟随项目";
+			}
+			if (fv == UpdateMethod.Ignore)
+			{
+				return "忽略";
+			}
+			if (fv == UpdateMethod.Always)
+			{
+				return "始终更新";
+			}
+			var fvd = new List<string>();
+			if (Utility.HasMethod(fv, UpdateMethod.SkipIfExists))
+				fvd.Add("存在则跳过");
+			if (Utility.HasMethod(fv, UpdateMethod.SkipIfNotExist))
+				fvd.Add("不存在则跳过");
+			if (Utility.HasMethod(fv, UpdateMethod.VersionCompare))
+				fvd.Add("比较文件");
 
 			return string.Join(";", fvd.ToArray());
 		}
