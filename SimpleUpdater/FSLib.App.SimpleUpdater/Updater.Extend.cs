@@ -6,7 +6,11 @@ namespace FSLib.App.SimpleUpdater
 {
 	using System.Drawing;
 	using System.Threading;
+
+#if NET4
 	using System.Threading.Tasks;
+#endif
+
 	using System.Windows.Forms;
 	using FSLib.App.SimpleUpdater.Defination;
 	using FSLib.App.SimpleUpdater.Dialogs;
@@ -19,9 +23,12 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 同步检查更新
 		/// </summary>
+		/// <param name="enableEmbedDialog">是否启用内置对话框，默认为 <code>true</code>，也就是允许当发现新版本时先弹出提示或进行相关操作。</param>
 		/// <returns></returns>
-		public UpdateCheckResult CheckUpdateSync()
+		public UpdateCheckResult CheckUpdateSync(bool enableEmbedDialog = true)
 		{
+			Context.EnableEmbedDialog = enableEmbedDialog;
+
 			var evt = new ManualResetEvent(false);
 			EventHandler eh = null;
 			UpdateCheckResult result = null;
@@ -51,9 +58,12 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 任务模式检查更新。任务将会返回新版本号，如果返回null，则意味着没找到新版本。
 		/// </summary>
+		/// <param name="enableEmbedDialog">是否启用内置对话框，默认为 <code>true</code>，也就是允许当发现新版本时先弹出提示或进行相关操作。</param>
 		/// <returns></returns>
-		public Task<Version> CheckUpdateTask()
+		public Task<Version> CheckUpdateTask(bool enableEmbedDialog = true)
 		{
+			Context.EnableEmbedDialog = enableEmbedDialog;
+
 			var tcs = new TaskCompletionSource<Version>();
 
 			EventHandler eh = null;
