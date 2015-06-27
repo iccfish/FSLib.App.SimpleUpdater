@@ -185,6 +185,8 @@ namespace FSLib.App.SimpleUpdater
 				if (Context.CurrentVersionTooLow)
 				{
 					OnMinmumVersionRequired();
+					Context.Exception = new VersionTooLowException(Context.CurrentVersion, new Version(Context.UpdateInfo.RequiredMinVersion));
+					OnError();
 				}
 				else if (!Context.HasUpdate)
 				{

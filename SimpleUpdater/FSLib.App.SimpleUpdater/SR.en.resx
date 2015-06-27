@@ -194,4 +194,7 @@
   <data name="InstallPackages" xml:space="preserve">
     <value>Install packages...</value>
   </data>
+  <data name="Ex_VersionTooLow" xml:space="preserve">
+    <value>Unable to update due to current version '{1}' was too low to perform update (required '{0}').</value>
+  </data>
 </root>

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Updater_AssemblyNotMarkedAsUpdateable" xml:space="preserve">
     <value>程序集未标记为可更新，无法确定更新地址</value>
@@ -210,5 +210,8 @@
   <data name="ExecuteExternal" xml:space="preserve">
     <value>正在执行外部进程.....</value>
     <comment>ExecuteExternal description</comment>
+  </data>
+  <data name="Ex_VersionTooLow" xml:space="preserve">
+    <value>当前的更新要求最低版本为 {0}，已安装版本为 {1}，请手动更新。</value>
   </data>
 </root>

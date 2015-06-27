@@ -14,7 +14,7 @@ namespace FSLib.App.SimpleUpdater
 		public PackageInfo Package { get; private set; }
 
 		/// <summary>
-		/// 创建 <see cref="PackageDownloadEventArgs" />  的新实例(PackageDownloadEventArgs)
+		/// 创建 <see cref="PackageEventArgs" />  的新实例(PackageDownloadEventArgs)
 		/// </summary>
 		public PackageEventArgs(PackageInfo package) { Package = package; }
 	}
