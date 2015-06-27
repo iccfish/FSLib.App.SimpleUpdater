@@ -29,7 +29,7 @@
 			EnableIncreaseUpdate = true;
 			CreateCompatiblePackage = true;
 			CompressPackage = true;
-			DefaultFileVerificationLevel = FileVerificationLevel.Hash;
+			DefaultFileVerificationLevel = FileVerificationLevel.Hash | FileVerificationLevel.Size;
 			DefaultUpdateMethod = UpdateMethod.VersionCompare;
 			UseRandomPackageNaming = true;
 		}
