@@ -83,6 +83,16 @@ namespace FSLib.App.SimpleUpdater.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap AUTOMATIC_UPDATES_16x16_32 {
+            get {
+                object obj = ResourceManager.GetObject("AUTOMATIC UPDATES_16x16-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap block_16 {
             get {
                 object obj = ResourceManager.GetObject("block_16", resourceCulture);

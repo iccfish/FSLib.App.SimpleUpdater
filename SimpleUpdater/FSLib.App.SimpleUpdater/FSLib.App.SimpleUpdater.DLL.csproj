@@ -176,11 +176,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCloseApplicationEventArgs.cs" />
     <Compile Include="RunExternalProcessEventArgs.cs" />
-    <Compile Include="SR.en.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SR.en.resx</DependentUpon>
-    </Compile>
     <Compile Include="Updatable2Attribute.cs" />
     <Compile Include="Defination\UpdateContext.cs" />
     <Compile Include="Defination\UpdateMethod.cs" />

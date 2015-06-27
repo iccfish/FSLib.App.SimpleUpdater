@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 17</value>
   </data>
@@ -140,6 +140,12 @@
         AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="downloadingInfo1.StepDesc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="downloadingInfo1.StepTitle" xml:space="preserve">
+    <value>正在获得更新信息，请稍等...</value>
+  </data>
   <data name="runUpdate1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
@@ -155,6 +161,12 @@
         KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
         AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="runUpdate1.StepDesc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="runUpdate1.StepTitle" xml:space="preserve">
+    <value />
   </data>
   <data name="updateFinished1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -172,6 +184,12 @@
         AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="updateFinished1.StepDesc" xml:space="preserve">
+    <value>赞哦，您已经成功升级到了最新版！</value>
+  </data>
+  <data name="updateFinished1.StepTitle" xml:space="preserve">
+    <value>自动更新已经成功完成</value>
+  </data>
   <data name="updateError1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAK
@@ -188,6 +206,12 @@
         t/sj/huwP+Q0gvvTLetlAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="updateError1.StepDesc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="updateError1.StepTitle" xml:space="preserve">
+    <value>更新发生错误，请稍后重试</value>
+  </data>
   <data name="noUpdateFound1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAmFJREFUOE9j
@@ -203,6 +227,12 @@
         KKGrwwrQFYFwxQK5+CnbbP61rdf/H9vNtztnhqwgNnVYATaFJfOk9JIncH1K6OWeUzBblhObGhAe8YCB
         AQDx9UcTOCRZoAAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="noUpdateFound1.StepDesc" xml:space="preserve">
+    <value>赞哦，您正在使用最新版。如果对此有任何疑问，请联系我们。</value>
+  </data>
+  <data name="noUpdateFound1.StepTitle" xml:space="preserve">
+    <value>木有找到更新</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AutoUpdate</value>
