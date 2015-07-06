@@ -23,6 +23,9 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 
 ##更新记录
 
+### 4.2.1 [2015年7月6日]
+* 提升使用匿名FTP作为服务器地址进行更新的兼容性
+
 ### 4.2.0.0 [2015年6月27日]
 
 ####以下为客户端更新
