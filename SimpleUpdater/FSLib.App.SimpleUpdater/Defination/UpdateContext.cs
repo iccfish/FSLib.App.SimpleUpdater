@@ -357,26 +357,21 @@
 		/// <returns></returns>
 		public WebClient CreateWebClient()
 		{
-			var client = new WebClient();
+			var client = new WebClientWrapper();
 			ResetWebClient(client);
 
 			if (!string.IsNullOrEmpty(ProxyAddress))
 			{
 				client.Proxy = new WebProxy(ProxyAddress);
+				if (NetworkCredential != null)
+				{
+					client.Proxy.Credentials = NetworkCredential;
+				}
 			}
-			else
-			{
-				client.Proxy = WebRequest.DefaultWebProxy;
-			}
-
-			if (NetworkCredential != null)
+			else if (NetworkCredential != null)
 			{
 				client.UseDefaultCredentials = false;
 				client.Credentials = NetworkCredential;
-			}
-			else
-			{
-				client.UseDefaultCredentials = true;
 			}
 
 			return client;

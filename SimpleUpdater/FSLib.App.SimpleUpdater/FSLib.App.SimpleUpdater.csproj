@@ -85,6 +85,9 @@
     <Compile Include="Defination\UpdateMethod.cs" />
     <Compile Include="Defination\UpdateServerInfo.cs" />
     <Compile Include="Defination\VersionTooLowException.cs" />
+    <Compile Include="Defination\WebClientWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dialogs\AbstractUpdateBase.cs">
       <SubType>Form</SubType>
     </Compile>
