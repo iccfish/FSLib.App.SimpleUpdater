@@ -13,7 +13,16 @@ namespace FSLib.App.SimpleUpdater
 	/// </summary>
 	class MultiServerUpdater : Updater
 	{
+		/// <summary>
+		/// 获得当前使用的备用服务器列表
+		/// </summary>
 		public Queue<UpdateServerInfo> Servers { get; private set; }
+
+		/// <summary>
+		/// 获得或设置当没有找到更新的时候是否也切换服务器地址。默认为 <see langword="false" />
+		/// </summary>
+		public bool SwitchIfNoUpdatesFound { get; set; }
+
 
 		public MultiServerUpdater(params UpdateServerInfo[] servers)
 			: base()
@@ -73,6 +82,28 @@ namespace FSLib.App.SimpleUpdater
 			else
 			{
 				base.OnError();
+			}
+		}
+
+		/// <summary>
+		/// 引发 <see cref="Updater.NoUpdatesFound"/> 事件
+		/// </summary>
+		protected override void OnNoUpdatesFound()
+		{
+
+			if (SwitchIfNoUpdatesFound && Servers.Count > 0)
+			{
+				var server = Servers.Dequeue();
+				Context.UpdateDownloadUrl = server.Url;
+				Context.UpdateInfoFileName = server.InfoFileName;
+
+				Trace.TraceWarning("没有找到更新。正尝试自动切换至其它的服务器节点。已切换至 " + server.Url);
+
+				BeginCheckUpdateInProcess();
+			}
+			else
+			{
+				base.OnNoUpdatesFound();
 			}
 		}
 

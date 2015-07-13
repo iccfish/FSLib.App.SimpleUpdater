@@ -59,11 +59,22 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 创建自动更新客户端
 		/// </summary>
-		/// <param name="servers"></param>
+		/// <param name="servers">要使用的服务器地址</param>
 		/// <returns></returns>
 		public static Updater CreateUpdaterInstance(params UpdateServerInfo[] servers)
 		{
-			return CreateUpdaterInstance(null, null, servers);
+			return CreateUpdaterInstance(false, servers);
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <param name="servers">要使用的服务器地址列表</param>
+		/// <param name="switchIfNoUpdate">当没有找到更新时，是否也切换服务器地址。默认为 <see langword="false"/></param>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(bool switchIfNoUpdate, params UpdateServerInfo[] servers)
+		{
+			return CreateUpdaterInstance(null, null, switchIfNoUpdate, servers);
 		}
 
 		/// <summary>
@@ -74,6 +85,19 @@ namespace FSLib.App.SimpleUpdater
 		/// <param name="servers">升级服务器地址</param>
 		/// <returns></returns>
 		public static Updater CreateUpdaterInstance(Version appVersion, string appDirectory, params UpdateServerInfo[] servers)
+		{
+			return CreateUpdaterInstance(appVersion, appDirectory, false, servers);
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <param name="appVersion">应用程序版本，留空将会使用自动判断</param>
+		/// <param name="appDirectory">应用程序目录，留空将会使用自动判断</param>
+		/// <param name="servers">升级服务器地址</param>
+		/// <param name="switchIfNoUpdate">当没有找到更新时，是否也切换服务器地址。默认为 <see langword="false"/></param>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(Version appVersion, string appDirectory, bool switchIfNoUpdate, params UpdateServerInfo[] servers)
 		{
 			CheckInitialized();
 
@@ -92,8 +116,8 @@ namespace FSLib.App.SimpleUpdater
 			else
 			{
 				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
-					_instance = new MultiServerUpdater(servers);
-				else _instance = new MultiServerUpdater(appVersion, appDirectory, servers);
+					_instance = new MultiServerUpdater(servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
+				else _instance = new MultiServerUpdater(appVersion, appDirectory, servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
 			}
 
 			return _instance;
