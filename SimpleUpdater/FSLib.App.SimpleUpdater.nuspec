@@ -5,7 +5,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>fishlee.net.simpleupdater</id>
-		<version>4.2.0.0</version>
+		<version>4.2.1.0</version>
 		<authors>iFish(木鱼)</authors>
 		<title>iFish's Simple Application Updater Library</title>
 		<summary>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5</summary>
@@ -41,12 +41,7 @@
 			<frameworkAssembly assemblyName="System.Windows.Forms"/>
 		</frameworkAssemblies>
 		<releaseNotes>
-			增加支持检测组件ID；
-			增加同步更新以及任务更新模式；
-			修正下载时显示进度的bug；
-			变更获得当前主程序模块以及信息的方法；
-			版本达不到最低版本要求也视作异常；
-			部分逻辑调整优化；
+			Improved compatibility with update using anonymous ftp.
 		</releaseNotes>
 	</metadata>
 
