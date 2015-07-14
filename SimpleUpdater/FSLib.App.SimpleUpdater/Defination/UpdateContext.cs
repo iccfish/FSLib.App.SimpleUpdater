@@ -420,7 +420,7 @@
 					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(_logFile));
 
 					_logger = new TextWriterTraceListener(_logFile);
-					//_logger.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime | System.Diagnostics.TraceOptions.ProcessId | System.Diagnostics.TraceOptions.ThreadId | System.Diagnostics.TraceOptions.LogicalOperationStack;
+					_logger.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
 					Trace.Listeners.Add(_logger);
 				}
 			}
@@ -439,6 +439,7 @@
 				if (_consoleTraceListener == null)
 				{
 					_consoleTraceListener = new ConsoleTraceListener(true);
+					_consoleTraceListener.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
 					Trace.Listeners.Add(_consoleTraceListener);
 				}
 			}

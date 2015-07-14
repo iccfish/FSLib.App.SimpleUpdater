@@ -213,18 +213,27 @@ namespace FSLib.App.SimpleUpdater
 			//下载更新信息
 			e.PostEvent(OnDownloadUpdateInfo);
 
-			//下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
-			Exception ex = null;
-			byte[] data = null;
-			var url = Context.RandomUrl(Context.UpdateInfoFileUrl);
+			var localFile = Context.UpdateInfoFilePath;
 
-			var client = Context.CreateWebClient();
-			client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
-
-			//远程下载。为了支持进度显示，这里必须使用异步下载
-			using (var wHandler = new AutoResetEvent(false))
+			if (System.IO.File.Exists(localFile))
 			{
-				client.DownloadDataCompleted += (x, y) =>
+				Trace.TraceInformation("正在读取本地升级信息文件 [" + localFile + "]");
+				Context.UpdateInfoTextContent = System.IO.File.ReadAllText(localFile, System.Text.Encoding.UTF8);
+			}
+			else
+			{
+				//下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
+				Exception ex = null;
+				byte[] data = null;
+				var url = Context.RandomUrl(Context.UpdateInfoFileUrl);
+
+				var client = Context.CreateWebClient();
+				client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
+
+				//远程下载。为了支持进度显示，这里必须使用异步下载
+				using (var wHandler = new AutoResetEvent(false))
+				{
+					client.DownloadDataCompleted += (x, y) =>
 					{
 						ex = y.Error;
 						if (ex == null)
@@ -233,60 +242,60 @@ namespace FSLib.App.SimpleUpdater
 						}
 						wHandler.Set();
 					};
-				Trace.TraceInformation("正在从 " + url + " 下载升级信息");
-				client.DownloadDataAsync(new Uri(url));
-				//等待下载完成
-				wHandler.WaitOne();
-			}
-			Trace.TraceInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
-			if (data != null && data.Length > 0x10)
-			{
-				//不是<xml标记，则执行解压缩
-				if (BitConverter.ToInt32(data, 0) != 0x6D783F3C && BitConverter.ToInt32(data, 0) != 0x3CBFBBEF)
-				{
-					Trace.TraceInformation("数据非正常数据, 正在执行解压缩");
-					data = ExtensionMethod.Decompress(data);
+					Trace.TraceInformation("正在从 " + url + " 下载升级信息");
+					client.DownloadDataAsync(new Uri(url));
+					//等待下载完成
+					wHandler.WaitOne();
 				}
-				Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
-			}
+				Trace.TraceInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
+				if (data != null && data.Length > 0x10)
+				{
+					//不是<xml标记，则执行解压缩
+					if (BitConverter.ToInt32(data, 0) != 0x6D783F3C && BitConverter.ToInt32(data, 0) != 0x3CBFBBEF)
+					{
+						Trace.TraceInformation("数据非正常数据, 正在执行解压缩");
+						data = ExtensionMethod.Decompress(data);
+					}
+					Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
+				}
 
-			if (ex != null) throw ex;
-			e.PostEvent(OnDownloadUpdateInfoFinished);
-
-			//是否返回了正确的结果?
-			if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
-			{
-				throw new ApplicationException("服务器返回了不正确的更新结果");
-			}
-			if (Context.UpdateInfo == null)
-			{
+				//是否返回了正确的结果?
 				if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
 				{
-					Trace.TraceInformation("正在读取本地升级信息文件");
-					Context.UpdateInfoTextContent = System.IO.File.ReadAllText(Context.UpdateInfoFilePath, System.Text.Encoding.UTF8);
+					throw new ApplicationException("服务器返回了不正确的更新结果");
 				}
-				Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent);
+
+
+				if (ex != null) throw ex;
 			}
-			if (Context.UpdateInfo == null)
+			e.PostEvent(OnDownloadUpdateInfoFinished);
+			if ((Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent)) == null)
 			{
 				throw new ApplicationException("未能成功加载升级信息");
 			}
+			Trace.TraceInformation("服务器版本：{0}", Context.UpdateInfo.AppVersion);
+			Trace.TraceInformation("当前版本：{0}", Context.CurrentVersion);
 			//设置必须的属性
 			if (Context.UpdateInfo.MustUpdate)
 			{
 				Context.AutoKillProcesses = true;
+				Trace.TraceInformation("已设置自动关闭进程。");
 				Context.AutoEndProcessesWithinAppDir = true;
+				Trace.TraceInformation("已设置自动关闭同目录进程。");
 				Context.ForceUpdate = true;
+				Trace.TraceInformation("已设置强制升级。");
 			}
 
 			//判断升级
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.RequiredMinVersion) && Context.CurrentVersion < new Version(Context.UpdateInfo.RequiredMinVersion))
 			{
 				Context.CurrentVersionTooLow = true;
+				Trace.TraceWarning("当前应用程序版本过低，无法升级。要求最低版本：{0}，当前版本：{1}。", Context.UpdateInfo.RequiredMinVersion, Context.CurrentVersion);
 			}
 			else
 			{
 				Context.HasUpdate = new Version(Context.UpdateInfo.AppVersion) > Context.CurrentVersion;
+				Trace.TraceInformation("已找到升级："+Context.HasUpdate);
 			}
 
 			if (Context.HasUpdate)
@@ -299,11 +308,13 @@ namespace FSLib.App.SimpleUpdater
 
 					if (System.IO.File.Exists(pkgList))
 					{
+						Trace.TraceInformation("外部升级包列表：已加载成功");
 						PackagesToUpdate = XMLSerializeHelper.XmlDeserializeFromString<List<PackageInfo>>(System.IO.File.ReadAllText(pkgList, Encoding.UTF8));
 						PackagesToUpdate.ForEach(s => s.Context = Context);
 					}
 					else
 					{
+						Trace.TraceInformation("外部升级包列表：当前不存在，正在生成升级清单");
 						GatheringDownloadPackages(e);
 					}
 
@@ -311,14 +322,26 @@ namespace FSLib.App.SimpleUpdater
 					Trace.TraceInformation("外部文件保留列表：{0}", preserveFileList);
 					if (System.IO.File.Exists(preserveFileList))
 					{
+						Trace.TraceInformation("外部文件保留列表：已加载成功");
 						var list = XMLSerializeHelper.XmlDeserializeFromString<List<string>>(System.IO.File.ReadAllText(preserveFileList, Encoding.UTF8));
 						list.ForEach(s => FileInstaller.PreservedFiles.Add(s, null));
+					}
+					else
+					{
+						Trace.TraceInformation("外部升级包列表：当前不存在，等待重新生成");
 					}
 				}
 			}
 
 			//如果没有要升级的包？虽然很奇怪，但依然当作不需要升级
-			Context.HasUpdate &= PackagesToUpdate.Count > 0;
+			if (Context.HasUpdate)
+			{
+				if (PackagesToUpdate.Count == 0)
+				{
+					Context.HasUpdate = false;
+					Trace.TraceWarning("警告：虽然版本出现差别，但是并没有可升级的文件。将会当作无升级对待。");
+				}
+			}
 		}
 
 		#region 确定要下载的包
