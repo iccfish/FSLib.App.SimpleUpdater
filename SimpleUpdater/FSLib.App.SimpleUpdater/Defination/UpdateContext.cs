@@ -426,6 +426,32 @@
 			}
 		}
 
+		ConsoleTraceListener _consoleTraceListener;
+
+		/// <summary>
+		/// 切换是否启用控制台日志
+		/// </summary>
+		/// <param name="enable"></param>
+		public void EnableConsoleLogger(bool enable)
+		{
+			if (enable)
+			{
+				if (_consoleTraceListener == null)
+				{
+					_consoleTraceListener = new ConsoleTraceListener(true);
+					Trace.Listeners.Add(_consoleTraceListener);
+				}
+			}
+			else
+			{
+				if (_consoleTraceListener != null)
+				{
+					Trace.Listeners.Remove(_consoleTraceListener);
+					_consoleTraceListener = null;
+				}
+			}
+		}
+
 		/// <summary>
 		/// 获得或设置是否不经提示便自动更新
 		/// </summary>
