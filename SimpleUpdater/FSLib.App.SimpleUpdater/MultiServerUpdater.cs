@@ -13,10 +13,12 @@ namespace FSLib.App.SimpleUpdater
 	/// </summary>
 	class MultiServerUpdater : Updater
 	{
+		int _serverIndex = 0;
+
 		/// <summary>
 		/// 获得当前使用的备用服务器列表
 		/// </summary>
-		public Queue<UpdateServerInfo> Servers { get; private set; }
+		public List<UpdateServerInfo> Servers { get; private set; }
 
 		/// <summary>
 		/// 获得或设置当没有找到更新的时候是否也切换服务器地址。默认为 <see langword="false" />
@@ -25,10 +27,8 @@ namespace FSLib.App.SimpleUpdater
 
 
 		public MultiServerUpdater(params UpdateServerInfo[] servers)
-			: base()
+			: this(null, null, servers)
 		{
-			Servers = new Queue<UpdateServerInfo>(servers);
-			InitServerInfo();
 		}
 
 		/// <param name="appVersion">指定的应用程序版本</param>
@@ -37,7 +37,8 @@ namespace FSLib.App.SimpleUpdater
 		public MultiServerUpdater(Version appVersion, string appDirectory, params UpdateServerInfo[] servers)
 			: base(appVersion, appDirectory)
 		{
-			Servers = new Queue<UpdateServerInfo>(servers);
+			Servers = new List<UpdateServerInfo>();
+			Servers.AddRange(servers);
 			InitServerInfo();
 		}
 
@@ -55,11 +56,22 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 选择下一个服务器
 		/// </summary>
-		void PeekNextServer()
+		bool PeekNextServer()
 		{
-			var server = Servers.Dequeue();
+			if (Servers.Count == 0)
+				return false;
+
+			if (_serverIndex >= Servers.Count)
+			{
+				_serverIndex = 0;
+				return false;
+			}
+
+			var server = Servers[_serverIndex++];
 			Context.UpdateDownloadUrl = server.Url;
 			Context.UpdateInfoFileName = server.InfoFileName;
+
+			return true;
 		}
 
 		/// <summary>
@@ -69,15 +81,17 @@ namespace FSLib.App.SimpleUpdater
 		{
 			var ex = Context.Exception;
 
-			if (ex is WebException && Servers.Count > 0)
+			if (ex is WebException)
 			{
-				var server = Servers.Dequeue();
-				Context.UpdateDownloadUrl = server.Url;
-				Context.UpdateInfoFileName = server.InfoFileName;
-
-				Trace.TraceWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + server.Url);
-
-				BeginCheckUpdateInProcess();
+				if (PeekNextServer())
+				{
+					Trace.TraceWarning("尝试更新时出现服务器错误，且服务器已遍历完成。");
+				}
+				else
+				{
+					Trace.TraceWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
+					base.BeginCheckUpdateInProcess();
+				}
 			}
 			else
 			{
@@ -91,20 +105,36 @@ namespace FSLib.App.SimpleUpdater
 		protected override void OnNoUpdatesFound()
 		{
 
-			if (SwitchIfNoUpdatesFound && Servers.Count > 0)
+			if (SwitchIfNoUpdatesFound)
 			{
-				var server = Servers.Dequeue();
-				Context.UpdateDownloadUrl = server.Url;
-				Context.UpdateInfoFileName = server.InfoFileName;
-
-				Trace.TraceWarning("没有找到更新。正尝试自动切换至其它的服务器节点。已切换至 " + server.Url);
-
-				BeginCheckUpdateInProcess();
+				if (PeekNextServer())
+				{
+					Trace.TraceWarning("没有找到更新，且服务器已遍历完成。");
+				}
+				else
+				{
+					Trace.TraceWarning("没有找到更新。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
+					base.BeginCheckUpdateInProcess();
+				}
 			}
 			else
 			{
 				base.OnNoUpdatesFound();
 			}
+		}
+
+		/// <summary>
+		/// 开始检测更新
+		/// </summary>
+		/// <returns>返回是否成功开始检查</returns>
+		/// <exception cref="System.InvalidOperationException"></exception>
+		public override bool BeginCheckUpdateInProcess()
+		{
+			//重置服务器
+			_serverIndex = 0;
+			PeekNextServer();
+
+			return base.BeginCheckUpdateInProcess();
 		}
 
 		#endregion

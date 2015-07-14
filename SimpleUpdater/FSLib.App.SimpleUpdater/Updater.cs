@@ -156,7 +156,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		/// <returns>返回是否成功开始检查</returns>
 		/// <exception cref="System.InvalidOperationException"></exception>
-		public bool BeginCheckUpdateInProcess()
+		public virtual bool BeginCheckUpdateInProcess()
 		{
 			var url = Context.UpdateInfoFileUrl;
 
