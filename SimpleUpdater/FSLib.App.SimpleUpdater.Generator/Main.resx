@@ -1253,11 +1253,38 @@
   <data name="&gt;&gt;lnkBindDescToFile.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnClearRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnClearRtf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>670, 294</value>
+  </data>
+  <data name="btnClearRtf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 23</value>
+  </data>
+  <data name="btnClearRtf.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnClearRtf.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="&gt;&gt;btnClearRtf.Name" xml:space="preserve">
+    <value>btnClearRtf</value>
+  </data>
+  <data name="&gt;&gt;btnClearRtf.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnClearRtf.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;btnClearRtf.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnEditRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnEditRtf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>670, 293</value>
+    <value>608, 294</value>
   </data>
   <data name="btnEditRtf.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 23</value>
@@ -1278,13 +1305,13 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;btnEditRtf.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnBrowserRtf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnBrowserRtf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>607, 293</value>
+    <value>545, 294</value>
   </data>
   <data name="btnBrowserRtf.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 23</value>
@@ -1305,13 +1332,13 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;btnBrowserRtf.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="rtfPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 294</value>
   </data>
   <data name="rtfPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 21</value>
+    <value>424, 21</value>
   </data>
   <data name="rtfPath.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1329,7 +1356,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;rtfPath.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="txtUrl.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 267</value>
@@ -1350,7 +1377,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;txtUrl.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1380,7 +1407,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1410,7 +1437,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1439,7 +1466,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1469,7 +1496,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="txtDesc.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 108</value>
@@ -1496,7 +1523,7 @@
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;txtDesc.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

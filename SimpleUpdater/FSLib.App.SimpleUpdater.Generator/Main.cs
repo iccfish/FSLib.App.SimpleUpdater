@@ -209,6 +209,10 @@ namespace FSLib.App.SimpleUpdater.Generator
 					Information("无法打开相关的应用程序 - " + ex.Message);
 				}
 			};
+			btnClearRtf.Click += (s, e) =>
+			{
+				UpdatePackageBuilder.Instance.AuProject.UpdateRtfNotePath = null;
+			};
 			btnBind.Click += (s, e) =>
 			{
 				if (string.IsNullOrEmpty(UpdatePackageBuilder.Instance.AuProject.VersionUpdateSrc))

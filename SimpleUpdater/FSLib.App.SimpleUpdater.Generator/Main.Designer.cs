@@ -114,6 +114,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.btnSaveProject = new System.Windows.Forms.Button();
 			this.btnOpenProject = new System.Windows.Forms.Button();
+			this.btnClearRtf = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.epp)).BeginInit();
 			this.tcMain.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -405,6 +406,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			// tabPage6
 			// 
 			this.tabPage6.Controls.Add(this.lnkBindDescToFile);
+			this.tabPage6.Controls.Add(this.btnClearRtf);
 			this.tabPage6.Controls.Add(this.btnEditRtf);
 			this.tabPage6.Controls.Add(this.btnBrowserRtf);
 			this.tabPage6.Controls.Add(this.rtfPath);
@@ -683,6 +685,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpenProject.UseVisualStyleBackColor = true;
 			this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
 			// 
+			// btnClearRtf
+			// 
+			resources.ApplyResources(this.btnClearRtf, "btnClearRtf");
+			this.btnClearRtf.Name = "btnClearRtf";
+			this.btnClearRtf.UseVisualStyleBackColor = true;
+			// 
 			// Main
 			// 
 			resources.ApplyResources(this, "$this");
@@ -801,5 +809,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.TextBox txtCompFlag;
 		private System.Windows.Forms.Label label24;
 		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.Button btnClearRtf;
 	}
 }
