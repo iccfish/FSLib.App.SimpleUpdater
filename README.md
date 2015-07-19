@@ -17,11 +17,19 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 
 ##发布和支持信息
 
-###软件发布主页 [http://www.fishlee.net/soft/simple_autoupdater/](http://www.fishlee.net/soft/simple_autoupdater/)
-反馈意见建议 [http://bbs.fishlee.net/](http://bbs.fishlee.net/)
+**软件发布主页** [http://www.fishlee.net/soft/simple_autoupdater/](http://www.fishlee.net/soft/simple_autoupdater/)
+
+**使用建议** 可以在 [自动更新库知识社区] _(推荐)_ 或 [后花园论坛] 发帖询问
 
 
 ##更新记录
+
+### 4.2.2 [2015年7月19日]
+
+* 修正在.NET2.0情况下使用DLL会有加载异常的BUG
+* 多服务器模式增加遍历模式：除发生错误外，没更新时也可以遍历所有服务器直到没有更新
+* 修正个别情况下多次检查更新时，重新下载的更新内容不会被使用的BUG
+* 更新操作跟踪日志内容更新，更全面，同时增加控制台日志模式
 
 ### 4.2.1 [2015年7月6日]
 * 提升使用匿名FTP作为服务器地址进行更新的兼容性
@@ -104,3 +112,7 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/update.xml")
 * 支持绑定版本信息到指定文件，避免每次需要手动修改版本
 * 支持绑定更新说明到指定文件，避免每次都需要手动更新说明
 * 项目文件重新设计，不受文件位置移动的影响
+
+
+[自动更新库知识社区]: http://ask.fishlee.net/category-19
+[后花园论坛]: http://bbs.fishlee.net/
