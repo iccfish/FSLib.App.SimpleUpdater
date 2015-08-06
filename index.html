@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>AutoUpdater Client for .NET by iccfish</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>AutoUpdater Client for .NET</h1>
+        <h2>A simple automatic update library for .net.</h2>
+        <a href="https://github.com/iccfish/FSLib.App.SimpleUpdater" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="autoupdater-client-for-net" class="anchor" href="#autoupdater-client-for-net" aria-hidden="true"><span class="octicon octicon-link"></span></a>AutoUpdater Client for .NET</h1>
+
+<h2>
+<a id="简要说明" class="anchor" href="#%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>简要说明</h2>
+
+<p>在发布应用程序时，我们经常会需要给自己的程序加上自动升级功能。.Net Framework自带的ClickOnce中有自动升级的功能，但是往往不太好用，比如必须用ClickOnce发布，安装的文件夹一个版本一个等等，我们会想要一个比较简单、甚至绿色软件也能使用的自动升级功能，这个自动升级程序就是基于这个目的而制作的。</p>
+
+<p>为了让使用起来更加简单快捷，我对内置的功能进行了大幅度的精简和集成，最简单的情况下只需要你只需要一行代码即可实现自动更新，如下所示：</p>
+
+<div class="highlight highlight-c#"><pre>FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple(<span class="pl-s"><span class="pl-pds">"</span>http://localhost/update.xml<span class="pl-pds">"</span></span>);</pre></div>
+
+<p>内含测试项目&amp;手册，更多信息请参阅下载分发包里的手册。</p>
+
+<h2>
+<a id="发布和支持信息" class="anchor" href="#%E5%8F%91%E5%B8%83%E5%92%8C%E6%94%AF%E6%8C%81%E4%BF%A1%E6%81%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>发布和支持信息</h2>
+
+<p><strong>软件发布主页</strong> <a href="http://www.fishlee.net/soft/simple_autoupdater/">http://www.fishlee.net/soft/simple_autoupdater/</a></p>
+
+<p><strong>使用建议</strong> 可以在 <a href="http://ask.fishlee.net/category-19">自动更新库知识社区</a> <em>(推荐)</em> 或 <a href="http://bbs.fishlee.net/">后花园论坛</a> 发帖询问</p>
+
+<h2>
+<a id="更新记录" class="anchor" href="#%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新记录</h2>
+
+<h3>
+<a id="422-2015年7月19日" class="anchor" href="#422-2015%E5%B9%B47%E6%9C%8819%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.2.2 [2015年7月19日]</h3>
+
+<ul>
+<li>修正在.NET2.0情况下使用DLL会有加载异常的BUG</li>
+<li>多服务器模式增加遍历模式：除发生错误外，没更新时也可以遍历所有服务器直到没有更新</li>
+<li>修正个别情况下多次检查更新时，重新下载的更新内容不会被使用的BUG</li>
+<li>更新操作跟踪日志内容更新，更全面，同时增加控制台日志模式</li>
+</ul>
+
+<h3>
+<a id="421-2015年7月6日" class="anchor" href="#421-2015%E5%B9%B47%E6%9C%886%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.2.1 [2015年7月6日]</h3>
+
+<ul>
+<li>提升使用匿名FTP作为服务器地址进行更新的兼容性</li>
+</ul>
+
+<h3>
+<a id="4200-2015年6月27日" class="anchor" href="#4200-2015%E5%B9%B46%E6%9C%8827%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.2.0.0 [2015年6月27日]</h3>
+
+<h4>
+<a id="以下为客户端更新" class="anchor" href="#%E4%BB%A5%E4%B8%8B%E4%B8%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9B%B4%E6%96%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>以下为客户端更新</h4>
+
+<ul>
+<li>增加组件ID检测事件</li>
+<li>增加同步检测更新以及任务检测更新方式</li>
+<li>增加“不存在则跳过”的文件更新逻辑</li>
+<li>修正下载时进度显示的bug</li>
+<li>变更当前主程序模块以及信息监测方式</li>
+<li>变更行为，最低版本达不到要求也视作错误</li>
+<li>部分逻辑调整，提升特定情况下检测更新的速度</li>
+</ul>
+
+<h4>
+<a id="以下为打包工具更新" class="anchor" href="#%E4%BB%A5%E4%B8%8B%E4%B8%BA%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E6%9B%B4%E6%96%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>以下为打包工具更新</h4>
+
+<ul>
+<li>加入组件ID支持</li>
+<li>变更文件列表编辑方式，新增组件ID编辑以及“不存在则跳过”逻辑</li>
+<li>新增打包选项，支持使用随机包名</li>
+<li>新增打包前清空目标目录的选项</li>
+</ul>
+
+<h3>
+<a id="4000-2015年05月07日" class="anchor" href="#4000-2015%E5%B9%B405%E6%9C%8807%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.0.0.0 [2015年05月07日]</h3>
+
+<ul>
+<li>【客户端】增加自定义引用接口 IUpdateNotify 以及 UsingAssembly() 函数，可在正式更新后依然调用自己的处理事件</li>
+<li>【客户端】增加 UsingFormUI() 函数以及更新对话框基类，可以使用自己的更新界面完全替换内置界面</li>
+<li>【客户端】修改WebClient初始化流程，避免后续下载包时发出的请求没有UserAgent标头</li>
+<li>【客户端】修正丢失的资源文件，避免导致命令行版无法使用</li>
+<li>【客户端】变更config文件配置</li>
+<li>【客户端】安装文件各操作中也支持报告进度</li>
+</ul>
+
+<h3>
+<a id="3310-2015年04月28日" class="anchor" href="#3310-2015%E5%B9%B404%E6%9C%8828%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3.1.0 [2015年04月28日]</h3>
+
+<ul>
+<li>【客户端】修正在根目录下更新会导致出错的BUG</li>
+<li>【客户端】修正当更新信息设置为显示网页时有时可能会报ActiveX初始化异常的BUG</li>
+<li>【包工具】修正当输入最小版本号不正确时没做检查导致客户端出错的BUG</li>
+</ul>
+
+<h3>
+<a id="3300-包工具-2015年02月07日" class="anchor" href="#3300-%E5%8C%85%E5%B7%A5%E5%85%B7-2015%E5%B9%B402%E6%9C%8807%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3.0.0 (包工具) [2015年02月07日]</h3>
+
+<ul>
+<li>修改升级包生成的文件名编码为UTF-8，避免在语言代码不同的系统上出现乱码</li>
+</ul>
+
+<h3>
+<a id="30142900-2014年10月19日" class="anchor" href="#30142900-2014%E5%B9%B410%E6%9C%8819%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.0.14290.0 [2014年10月19日]</h3>
+
+<ul>
+<li>【客户端】升级包支持“不提示直接自动启动升级”选项</li>
+<li>【客户端】升级包支持“自动结束进程”选项</li>
+<li>【客户端】升级包支持“自动结束同目录下进程”选项</li>
+<li>【客户端】升级包支持“强制更新否则退出软件选项”选项</li>
+<li>【客户端】升级包支持“启动更新后自动解除当前进程”选项</li>
+<li>【客户端】升级包支持“检测遇到错误时是否按照有更新处理”选项</li>
+<li>【客户端】自动升级不再强制要求管理员权限，改为自动检测，仅在需要时才请求管理员权限</li>
+<li>【客户端】升级文件安装逻辑，降低因文件安装速度过快导致出错的失败率</li>
+<li>【客户端】增加多服务器支持，允许使用多个服务器地址进行更新，失败后自动切换服务器</li>
+<li>【客户端】增加确保更新函数，支持在确保是最新版的情况下才继续运行</li>
+<li>【客户端】多国语言资源完善</li>
+<li>【客户端】其它细节调整和BUG修复</li>
+<li>【包工具】增加对新增选项的支持，修复已知BUG</li>
+</ul>
+
+<h3>
+<a id="23821-2014年7月5日" class="anchor" href="#23821-2014%E5%B9%B47%E6%9C%885%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3.8.21 [2014年7月5日]</h3>
+
+<ul>
+<li>支持在正式更新前Ping请求到指定地址（统计）</li>
+<li>更新界面更新</li>
+<li>细节更新</li>
+<li>代码重构</li>
+</ul>
+
+<h3>
+<a id="239-2014年7月18日" class="anchor" href="#239-2014%E5%B9%B47%E6%9C%8818%E6%97%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3.9 [2014年7月18日]</h3>
+
+<ul>
+<li>【包工具】 修正就算没有指定/build命令行的时候依然会自动构建的BUG</li>
+<li>【包工具】 修正因为转短路径后因为出现了“..”导致的异常</li>
+<li>【包工具】 短路径为空的时候（同级目录）显示为“.\”而不是空白。</li>
+<li>【包工具】 当打开项目的时候，如果已经绑定了信息文件，则自动重新读取</li>
+<li>【包工具】 增加默认更新模式选项，当没有为文件指定更新模式的时候，自动使用项目默认</li>
+</ul>
+
+<h3>
+<a id="23821-2014年7月5日-1" class="anchor" href="#23821-2014%E5%B9%B47%E6%9C%885%E6%97%A5-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3.8.21 [2014年7月5日]</h3>
+
+<ul>
+<li>完全重构</li>
+<li>支持命令行模式，支持命令行打开项目</li>
+<li>支持命令行指定构建参数直接构建更新项目</li>
+<li>支持三种模式构建以及无提示构建项目</li>
+<li>支持绑定版本信息到指定文件，避免每次需要手动修改版本</li>
+<li>支持绑定更新说明到指定文件，避免每次都需要手动更新说明</li>
+<li>项目文件重新设计，不受文件位置移动的影响</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/iccfish/FSLib.App.SimpleUpdater/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/iccfish/FSLib.App.SimpleUpdater/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/iccfish/FSLib.App.SimpleUpdater"></a> is maintained by <a href="https://github.com/iccfish">iccfish</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
