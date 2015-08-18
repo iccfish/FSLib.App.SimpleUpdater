@@ -26,6 +26,7 @@
 			MaxiumRetryDownloadCount = 3;
 			EnableEmbedDialog = true;
 			ComponentStatus = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+			AutoClosePreviousPopup = true;
 
 			//如果当前启动路径位于TEMP目录下，则处于临时路径模式
 			var temppath = System.IO.Path.GetTempPath();
@@ -556,6 +557,11 @@
 		/// 获得组件状态
 		/// </summary>
 		public Dictionary<string, bool> ComponentStatus { get; private set; }
+
+		/// <summary>
+		/// 获得或设置是否自动关闭之前的找到更新的提示框
+		/// </summary>
+		public bool AutoClosePreviousPopup { get; set; }
 	}
 }
 

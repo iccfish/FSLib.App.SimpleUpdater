@@ -4,6 +4,7 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater.Dialogs
 {
+	using System.Collections.Generic;
 	using System.Diagnostics;
 
 	/// <summary>
@@ -46,6 +47,30 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			if (Updater.Instance == null) return;
 
 			var ctx = Updater.Instance.Context;
+
+			//是否关闭之前其它的对话框？
+			if (ctx.AutoClosePreviousPopup)
+			{
+				try
+				{
+					var forms = Application.OpenForms;
+					var targetForms = new List<Form>();
+					foreach (var form in forms)
+					{
+						if (form != this && form is UpdateFound)
+						{
+							targetForms.Add((Form)form);
+						}
+					}
+
+					targetForms.ForEach(s => s.Close());
+				}
+				catch (Exception)
+				{
+				}
+
+			}
+
 			var ui = ctx.UpdateInfo;
 
 			lblFound.Text = ui.AppName;
