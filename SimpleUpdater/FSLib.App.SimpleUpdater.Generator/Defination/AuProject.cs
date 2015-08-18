@@ -118,7 +118,7 @@
 			private set
 			{
 				_pojectFilePath = value;
-				ProjectFolder = string.IsNullOrEmpty(value) ? "" : Path.GetDirectoryName(value);
+				ProjectFolder = string.IsNullOrEmpty(value) ? "" : Path.GetDirectoryName(Path.GetFullPath(value));
 			}
 		}
 
