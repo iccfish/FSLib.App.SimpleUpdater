@@ -14,7 +14,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 	public class AbstractUpdateBase : Form
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public AbstractUpdateBase()
 		{
@@ -324,7 +324,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		/// 正在安装文件
 		/// </summary>
 		/// <param name="e"></param>
-		protected virtual void OnInstallFile(FileInstaller.InstallFileEventArgs e)
+		protected virtual void OnInstallFile(InstallFileEventArgs e)
 		{
 
 		}
@@ -333,7 +333,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		/// 正在删除文件
 		/// </summary>
 		/// <param name="e"></param>
-		protected virtual void OnRemoveFile(FileInstaller.InstallFileEventArgs e)
+		protected virtual void OnRemoveFile(InstallFileEventArgs e)
 		{
 		}
 
@@ -356,7 +356,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		/// 正在回滚文件
 		/// </summary>
 		/// <param name="e"></param>
-		protected virtual void OnRollbackFile(FileInstaller.InstallFileEventArgs e)
+		protected virtual void OnRollbackFile(InstallFileEventArgs e)
 		{
 
 		}

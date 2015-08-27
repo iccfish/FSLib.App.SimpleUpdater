@@ -6,46 +6,17 @@ using System.Diagnostics;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.IO;
 	using Defination;
 
+	/// <summary>
+	/// 更新文件安装工作类
+	/// </summary>
 	public class FileInstaller
 	{
 		/// <summary>
 		/// 文件操作事件类
 		/// </summary>
-		public class InstallFileEventArgs : EventArgs
-		{
-			/// <summary>
-			/// 获得来源文件
-			/// </summary>
-			public string Source { get; private set; }
-
-			/// <summary>
-			/// 获得目标文件
-			/// </summary>
-			public string Destination { get; private set; }
-
-			/// <summary> 总数 </summary>
-			/// <value></value>
-			/// <remarks></remarks>
-			public int TotalCount { get; private set; }
-
-			/// <summary> 当前的序号 </summary>
-			/// <value></value>
-			/// <remarks></remarks>
-			public int CurrentCount { get; private set; }
-
-			/// <summary>
-			/// 创建 <see cref="InstallFileEventArgs" /> 的新实例
-			/// </summary>
-			public InstallFileEventArgs(string source, string destination, int totalCount, int currentCount)
-			{
-				CurrentCount = currentCount;
-				TotalCount = totalCount;
-				Source = source;
-				Destination = destination;
-			}
-		}
 
 		/// <summary>
 		/// 创建一个 <see cref="FileInstaller"/> 的新对象
@@ -53,6 +24,29 @@ namespace FSLib.App.SimpleUpdater
 		public FileInstaller()
 		{
 			PreservedFiles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+		}
+
+		/// <summary>
+		/// 安装文件
+		/// </summary>
+		public bool Install(RunworkEventArgs e)
+		{
+			if (!DeletePreviousFile(e))
+			{
+				RollbackFiles(e);
+				return false;
+			}
+			DeleteEmptyDirectories();
+
+			if (!InstallFiles(e))
+			{
+				DeleteInstalledFiles(e);
+				RollbackFiles(e);
+
+				return false;
+			}
+
+			return true;
 		}
 
 		#region 属性
@@ -67,7 +61,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		public string WorkingRoot { get; set; }
 
-		private string _applicationRoot;
+		string _applicationRoot;
 		/// <summary>
 		/// 获得或设置应用程序目录
 		/// </summary>
@@ -84,7 +78,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 		}
 
-		private string _sourceFolder;
+		string _sourceFolder;
 		/// <summary>
 		/// 安装的源文件夹
 		/// </summary>
@@ -137,8 +131,8 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 备份文件
 		/// </summary>
-		readonly List<string> bakList = new List<string>();
-		readonly List<string> installedFile = new List<string>();
+		readonly List<string> _bakList = new List<string>();
+		readonly List<string> _installedFile = new List<string>();
 
 
 		#endregion
@@ -160,10 +154,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnDeleteFileStart()
 		{
-			if (DeleteFileStart != null)
-			{
-				DeleteFileStart(this, EventArgs.Empty);
-			}
+			var handler = DeleteFileStart;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -176,8 +169,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnDeleteFileFinished()
 		{
-			if (DeleteFileFinished != null)
-				DeleteFileFinished(this, EventArgs.Empty);
+			var handler = DeleteFileFinished;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -190,10 +184,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnDeleteFile(InstallFileEventArgs ea)
 		{
-			if (DeleteFile == null)
-				return;
-
-			DeleteFile(this, ea);
+			var handler = DeleteFile;
+			if (handler != null)
+				handler(this, ea);
 		}
 
 
@@ -208,10 +201,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnInstallFileStart()
 		{
-			if (InstallFileStart == null)
-				return;
-
-			InstallFileStart(this, EventArgs.Empty);
+			var handler = InstallFileStart;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -224,10 +216,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnInstallFileFinished()
 		{
-			if (InstallFileFinished == null)
-				return;
-
-			InstallFileFinished(this, EventArgs.Empty);
+			var handler = InstallFileFinished;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -240,10 +231,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnInstallFile(InstallFileEventArgs ea)
 		{
-			if (InstallFile == null)
-				return;
-
-			InstallFile(this, ea);
+			var handler = InstallFile;
+			if (handler != null)
+				handler(this, ea);
 		}
 
 		/// <summary>
@@ -256,10 +246,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnRollbackStart()
 		{
-			if (RollbackStart == null)
-				return;
-
-			RollbackStart(this, EventArgs.Empty);
+			var handler = RollbackStart;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -272,10 +261,9 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnRollbackFinished()
 		{
-			if (RollbackFinished == null)
-				return;
-
-			RollbackFinished(this, EventArgs.Empty);
+			var handler = RollbackFinished;
+			if (handler != null)
+				handler(this, EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -288,37 +276,14 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected virtual void OnRollbackFile(InstallFileEventArgs ea)
 		{
-			if (RollbackFile == null)
-				return;
-
-			RollbackFile(this, ea);
+			var handler = RollbackFile;
+			if (handler != null)
+				handler(this, ea);
 		}
 
 
 		#endregion
 
-		/// <summary>
-		/// 安装文件
-		/// </summary>
-		public bool Install(RunworkEventArgs e)
-		{
-			if (!DeletePreviousFile(e))
-			{
-				RollbackFiles(e);
-				return false;
-			}
-			DeleteEmptyDirectories();
-
-			if (!InstallFiles(e))
-			{
-				DeleteInstalledFiles(e);
-				RollbackFiles(e);
-
-				return false;
-			}
-
-			return true;
-		}
 
 		#region 工作函数
 
@@ -351,7 +316,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 			catch (Exception ex)
 			{
-				Trace.TraceInformation("删除空目录时发生错误：{0}", ex.Message);
+				Trace.TraceWarning("删除空目录时发生错误：{0}", ex.Message);
 			}
 		}
 
@@ -419,7 +384,7 @@ namespace FSLib.App.SimpleUpdater
 						else return false;
 
 					}
-					bakList.Add(rPath);
+					_bakList.Add(rPath);
 				}
 			}
 			e.PostEvent(OnDeleteFileFinished);
@@ -464,21 +429,27 @@ namespace FSLib.App.SimpleUpdater
 							++tryCount;
 							try
 							{
-								Trace.TraceInformation("第[" + tryCount + "]次尝试备份文件: " + OriginalPath + "  ->  " + backupPath);
-								System.IO.File.Move(OriginalPath, backupPath);
-								Trace.TraceInformation("备份成功。");
+								if (File.Exists(OriginalPath))
+								{
+									Trace.TraceInformation("第[" + tryCount + "]次尝试备份文件: " + OriginalPath + "  ->  " + backupPath);
+									File.Copy(OriginalPath, backupPath, true);
+									Trace.TraceInformation("第[" + tryCount + "]次尝试删除文件: " + OriginalPath);
+									File.Delete(OriginalPath);
+									Trace.TraceInformation("备份成功。");
+								}
+
 								break;
 							}
 							catch (Exception ex)
 							{
 								Trace.TraceWarning("第[" + tryCount + "]次尝试失败： " + ex.Message);
 
-								if (tryCount < 10)
+								if (tryCount < 20)
 									Thread.Sleep(1000);
 								else throw ex;
 							}
 						}
-						bakList.Add(file);
+						_bakList.Add(file);
 					}
 					tryCount = 0;
 					while (true)
@@ -487,7 +458,7 @@ namespace FSLib.App.SimpleUpdater
 						try
 						{
 							Trace.TraceInformation("正在复制新版本文件: " + newVersionFile + "  ->  " + OriginalPath);
-							System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(OriginalPath));
+							System.IO.Directory.CreateDirectory(Path.GetDirectoryName(OriginalPath));
 							System.IO.File.Copy(newVersionFile, OriginalPath);
 							Trace.TraceInformation("安装成功");
 							break;
@@ -523,14 +494,14 @@ namespace FSLib.App.SimpleUpdater
 						}
 
 					}
-					installedFile.Add(file);
+					_installedFile.Add(file);
 					Trace.TraceInformation("安装文件: " + newVersionFile + "  ->  " + OriginalPath);
 				}
 			}
 			catch (Exception ex)
 			{
 				this.Exception = new Exception(string.Format(SR.Updater_InstallFileError, OriginalPath, newVersionFile, ex.Message));
-				Trace.Fail("安装文件时发生错误：" + ex.Message, ex.ToString());
+				Trace.TraceWarning("安装文件时发生错误：" + ex.Message, ex.ToString());
 				return false;
 			}
 
@@ -544,7 +515,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		void DeleteInstalledFiles(RunworkEventArgs e)
 		{
-			foreach (var filepath in installedFile)
+			foreach (var filepath in _installedFile)
 			{
 				var originalFile = System.IO.Path.Combine(ApplicationRoot, filepath);
 
@@ -563,14 +534,14 @@ namespace FSLib.App.SimpleUpdater
 			var rootPath = RollbackPath;
 
 			var index = 0;
-			foreach (string file in bakList)
+			foreach (string file in _bakList)
 			{
-				e.ReportProgress(bakList.Count, ++index, file);
+				e.ReportProgress(_bakList.Count, ++index, file);
 
 				var newPath = System.IO.Path.Combine(ApplicationRoot, file);
 				var oldPath = System.IO.Path.Combine(rootPath, file);
 
-				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, bakList.Count, index));
+				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, _bakList.Count, index));
 
 				Trace.TraceInformation("还原原始文件: " + oldPath + "  ->  " + newPath);
 				System.IO.File.Move(oldPath, newPath);
