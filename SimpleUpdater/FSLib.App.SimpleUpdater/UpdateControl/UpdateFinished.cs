@@ -24,11 +24,18 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 		{
 			this.HideControls();
 			this.Show();
-		}
 
-		private void btnClose_Click(object sender, EventArgs e)
-		{
-			this.FindForm().Close();
+			if (Updater.Instance.Context.UpdateInfo.AutoCloseSucceedWindow)
+			{
+				var t = new Timer();
+				t.Interval = 2000;
+				t.Tick += (s, x) =>
+				{
+					t.Stop();
+					FindForm().Close();
+				};
+				t.Start();
+			}
 		}
 	}
 }

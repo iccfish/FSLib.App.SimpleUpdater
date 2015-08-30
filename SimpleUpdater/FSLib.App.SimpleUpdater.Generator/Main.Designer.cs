@@ -73,6 +73,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.label22 = new System.Windows.Forms.Label();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
 			this.lnkBindDescToFile = new System.Windows.Forms.LinkLabel();
+			this.btnClearRtf = new System.Windows.Forms.Button();
 			this.btnEditRtf = new System.Windows.Forms.Button();
 			this.btnBrowserRtf = new System.Windows.Forms.Button();
 			this.rtfPath = new System.Windows.Forms.TextBox();
@@ -114,7 +115,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.btnSaveProject = new System.Windows.Forms.Button();
 			this.btnOpenProject = new System.Windows.Forms.Button();
-			this.btnClearRtf = new System.Windows.Forms.Button();
+			this.chkAutoCloseSucceed = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.epp)).BeginInit();
 			this.tcMain.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -427,6 +428,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.lnkBindDescToFile.TabStop = true;
 			this.tip.SetToolTip(this.lnkBindDescToFile, resources.GetString("lnkBindDescToFile.ToolTip"));
 			// 
+			// btnClearRtf
+			// 
+			resources.ApplyResources(this.btnClearRtf, "btnClearRtf");
+			this.btnClearRtf.Name = "btnClearRtf";
+			this.btnClearRtf.UseVisualStyleBackColor = true;
+			// 
 			// btnEditRtf
 			// 
 			resources.ApplyResources(this.btnEditRtf, "btnEditRtf");
@@ -524,6 +531,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.tabPage8.Controls.Add(this.label15);
 			this.tabPage8.Controls.Add(this.chkOptForceUpdate);
 			this.tabPage8.Controls.Add(this.chkOptRequireAdminPrivilege);
+			this.tabPage8.Controls.Add(this.chkAutoCloseSucceed);
 			this.tabPage8.Controls.Add(this.chkStillProptUserInfo);
 			this.tabPage8.Controls.Add(this.chkOptError);
 			this.tabPage8.Controls.Add(this.chkOptAutoExitProcess);
@@ -685,11 +693,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			this.btnOpenProject.UseVisualStyleBackColor = true;
 			this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
 			// 
-			// btnClearRtf
+			// chkAutoCloseSucceed
 			// 
-			resources.ApplyResources(this.btnClearRtf, "btnClearRtf");
-			this.btnClearRtf.Name = "btnClearRtf";
-			this.btnClearRtf.UseVisualStyleBackColor = true;
+			resources.ApplyResources(this.chkAutoCloseSucceed, "chkAutoCloseSucceed");
+			this.chkAutoCloseSucceed.ForeColor = System.Drawing.Color.MediumVioletRed;
+			this.chkAutoCloseSucceed.Name = "chkAutoCloseSucceed";
+			this.chkAutoCloseSucceed.UseVisualStyleBackColor = true;
 			// 
 			// Main
 			// 
@@ -789,13 +798,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.CheckBox chkOptForceUpdate;
 		private System.Windows.Forms.CheckBox chkOptError;
 		private System.Windows.Forms.CheckBox chkOptAutoExitProcess;
-		private System.Windows.Forms.CheckBox chkAutoEndAppDirProcesses;
 		private System.Windows.Forms.CheckBox chkOptAutoKillProcess;
 		private System.Windows.Forms.CheckBox chkOptMustUpdate;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.CheckBox chkStillProptUserInfo;
@@ -810,5 +817,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 		private System.Windows.Forms.Label label24;
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.Button btnClearRtf;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.CheckBox chkAutoEndAppDirProcesses;
+		private System.Windows.Forms.CheckBox chkAutoCloseSucceed;
 	}
 }

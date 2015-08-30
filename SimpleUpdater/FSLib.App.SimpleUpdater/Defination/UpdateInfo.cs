@@ -16,7 +16,7 @@
 	/// </summary>
 	[Serializable]
 	[DoNotObfuscate, DoNotObfuscateControlFlow, DoNotObfuscateType, DoNotPrune, DoNotPruneType]
-	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings]	//防止SmartAssembly处理
+	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings] //防止SmartAssembly处理
 	public class UpdateInfo : INotifyPropertyChanged
 	{
 		public UpdateInfo()
@@ -210,6 +210,22 @@
 				if (value.Equals(_promptUserBeforeAutomaticUpgrade)) return;
 				_promptUserBeforeAutomaticUpgrade = value;
 				OnPropertyChanged("PromptUserBeforeAutomaticUpgrade");
+			}
+		}
+
+		bool _autoCloseSucceedWindow = true;
+
+		/// <summary>
+		/// 获得或设置当升级成功后是否自动关闭提示对话框
+		/// </summary>
+		public bool AutoCloseSucceedWindow
+		{
+			get { return _autoCloseSucceedWindow; }
+			set
+			{
+				if (value.Equals(_autoCloseSucceedWindow)) return;
+				_autoCloseSucceedWindow = value;
+				OnPropertyChanged("AutoCloseSucceedWindow");
 			}
 		}
 
@@ -578,8 +594,15 @@
 
 		#region 受保护函数
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="propertyName"></param>
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged(string propertyName)
 		{
