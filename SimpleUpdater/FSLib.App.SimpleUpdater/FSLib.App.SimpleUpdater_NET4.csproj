@@ -150,6 +150,7 @@
     <Compile Include="ICCEmbedded\Zip\ZipHelperStream.cs" />
     <Compile Include="ICCEmbedded\Zip\ZipNameTransform.cs" />
     <Compile Include="ICCEmbedded\Zip\ZipOutputStream.cs" />
+    <Compile Include="InstallFileEventArgs.cs" />
     <Compile Include="MultiServerUpdater.cs" />
     <Compile Include="PackageDownloadException.cs" />
     <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />

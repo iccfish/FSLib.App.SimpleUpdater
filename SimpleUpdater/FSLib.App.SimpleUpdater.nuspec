@@ -5,7 +5,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>fishlee.net.simpleupdater</id>
-		<version>4.2.2.0</version>
+		<version>4.2.3.1</version>
 		<authors>iFish(木鱼)</authors>
 		<title>iFish's Simple Application Updater Library</title>
 		<summary>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5</summary>
@@ -18,6 +18,7 @@
 		<language>zh-cn</language>
 		<projectUrl>http://www.fishlee.net/soft/simple_autoupdater/</projectUrl>
 		<licenseUrl>http://www.fishlee.net/soft/simple_autoupdater/license.html</licenseUrl>
+		<iconUrl>http://static.fishlee.net/resources/images/coquette/32x32/promotion.png</iconUrl>
 		<tags>autoupdate updater automatic</tags>
 		<!--<references>
 			<group targetFramework="net45">

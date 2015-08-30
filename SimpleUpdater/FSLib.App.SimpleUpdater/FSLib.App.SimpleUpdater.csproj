@@ -98,6 +98,7 @@
       <DependentUpon>SelfUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="HiddenUiUpdateProxy.cs" />
+    <Compile Include="InstallFileEventArgs.cs" />
     <Compile Include="MultiServerUpdater.cs" />
     <Compile Include="PackageEventArgs.cs" />
     <Compile Include="PackageDownloadException.cs" />
