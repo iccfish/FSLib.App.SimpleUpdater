@@ -13,12 +13,6 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			InitializeComponent();
 		}
 
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
-			Close();
-		}
-
 		private void btnAutoClose_Click(object sender, EventArgs e)
 		{
 			Process[] plist = new Process[processList.Items.Count];
