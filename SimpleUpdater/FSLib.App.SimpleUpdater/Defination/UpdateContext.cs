@@ -6,12 +6,19 @@
 	using System.Net;
 	using System.Net.Cache;
 	using System.Reflection;
+	using System.Windows.Forms;
+
 	using FSLib.App.SimpleUpdater.Dialogs;
 
 	/// <summary> 表示当前更新的上下文环境 </summary>
 	/// <remarks></remarks>
 	public class UpdateContext
 	{
+		/// <summary>
+		/// 获得或设置相关联的主窗口。所有的提示界面将会以其为父窗口
+		/// </summary>
+		public static Form MainWindow { get; set; }
+
 		public UpdateContext()
 		{
 			//CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).FileVersion);

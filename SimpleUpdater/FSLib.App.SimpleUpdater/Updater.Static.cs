@@ -4,8 +4,12 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.Linq;
 	using System.Threading;
 	using System.Windows.Forms;
+
+	using Annotations;
+
 	using FSLib.App.SimpleUpdater.Defination;
 	using FSLib.App.SimpleUpdater.Dialogs;
 	using FSLib.App.SimpleUpdater.Wrapper;
@@ -178,7 +182,7 @@ namespace FSLib.App.SimpleUpdater
 			var updater = sender as Updater;
 			if (!updater.Context.EnableEmbedDialog) return;
 
-			new Dialogs.MinmumVersionRequired().ShowDialog();
+			ShowUiForm(new Dialogs.MinmumVersionRequired());
 		}
 
 		//找到更新，启动更新
@@ -208,24 +212,57 @@ namespace FSLib.App.SimpleUpdater
 			{
 				if (!updater.Context.EnableEmbedDialog) return;
 
-				if (Application.MessageLoop)
-				{
-					new UpdateFound().Show();
-				}
-				else
-				{
-					//启动单独的线程，并设置STA标记
-					//不设置STA标记的时候，当更新信息是网页的话会报错
-					var ts = new Thread(() =>
-					{
-						new UpdateFound().ShowDialog();
-					});
-					ts.IsBackground = false;
-					ts.SetApartmentState(ApartmentState.STA);
-					ts.Start();
-				}
+				ShowUiForm(new UpdateFound());
 			}
 			updater.EnsureUpdateStarted();
+		}
+
+		/// <summary>
+		/// 显示UI窗体
+		/// </summary>
+		/// <param name="from"></param>
+		public static void ShowUiForm(Form from)
+		{
+			DispatchOnUiThread(_ =>
+			{
+				if (_ == null)
+					from.ShowDialog();
+				else
+					from.Show(_);
+			});
+		}
+
+		/// <summary>
+		/// 调度线程到UI线程
+		/// </summary>
+		public static void DispatchOnUiThread([NotNull] Action<IWin32Window> action)
+		{
+			if (action == null)
+				throw new ArgumentNullException("action");
+
+			//线程调度
+			var parentForm = UpdateContext.MainWindow;
+
+			if (parentForm != null)
+			{
+				if (parentForm.InvokeRequired)
+					parentForm.Invoke(action, (IWin32Window)parentForm);
+				else
+					action(parentForm);
+			}
+			else if (Application.MessageLoop)
+			{
+				action(null);
+			}
+			else
+			{
+				//启动单独的线程，并设置STA标记
+				//不设置STA标记的时候，当更新信息是网页的话会报错
+				var ts = new Thread(() => action(null));
+				ts.IsBackground = false;
+				ts.SetApartmentState(ApartmentState.STA);
+				ts.Start();
+			}
 		}
 
 
