@@ -20,3 +20,4 @@ _Tools/
 .localhistory
 *.ide
 .vs/
+/SimpleUpdater/FSLib.App.SimpleUpdater/*.csdat
