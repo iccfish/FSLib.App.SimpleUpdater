@@ -21,3 +21,4 @@ _Tools/
 *.ide
 .vs/
 /SimpleUpdater/FSLib.App.SimpleUpdater/*.csdat
+/SimpleUpdater/FSLib.App.SimpleUpdater.Generator/*.csdat

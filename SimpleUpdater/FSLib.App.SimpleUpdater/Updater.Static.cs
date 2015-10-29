@@ -4,7 +4,6 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater
 {
-	using System.Linq;
 	using System.Threading;
 	using System.Windows.Forms;
 
@@ -16,7 +15,7 @@ namespace FSLib.App.SimpleUpdater
 
 	partial class Updater
 	{
-		#region 静态对象
+#region 静态对象
 
 		static Updater()
 		{
@@ -266,6 +265,6 @@ namespace FSLib.App.SimpleUpdater
 		}
 
 
-		#endregion
+#endregion
 	}
 }
