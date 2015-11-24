@@ -295,7 +295,7 @@ namespace FSLib.App.SimpleUpdater
 			else
 			{
 				Context.HasUpdate = new Version(Context.UpdateInfo.AppVersion) > Context.CurrentVersion;
-				Trace.TraceInformation("已找到升级："+Context.HasUpdate);
+				Trace.TraceInformation("已找到升级：" + Context.HasUpdate);
 			}
 
 			if (Context.HasUpdate)
@@ -418,19 +418,12 @@ namespace FSLib.App.SimpleUpdater
 						continue;
 					}
 
-					var isNewer = false;
-					if ((pkg.VerificationLevel & FileVerificationLevel.Size) == FileVerificationLevel.Size)
-					{
-						isNewer |= new System.IO.FileInfo(localPath).Length != pkg.FileSize;
-					}
-					if ((pkg.VerificationLevel & FileVerificationLevel.Version) == FileVerificationLevel.Version)
-					{
-						isNewer |= string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version);
-					}
-					if ((pkg.VerificationLevel & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
-					{
-						isNewer |= ExtensionMethod.GetFileHash(localPath) != pkg.FileHash;
-					}
+					var isNewer = (pkg.HasVerifyFlag(FileVerificationLevel.Size) && new System.IO.FileInfo(localPath).Length != pkg.FileSize)
+						||
+						(pkg.HasVerifyFlag(FileVerificationLevel.Version) && (string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version)))
+						||
+						(pkg.HasVerifyFlag(FileVerificationLevel.Hash) && ExtensionMethod.GetFileHash(localPath) != pkg.FileHash)
+						;
 
 					if (isNewer)
 					{

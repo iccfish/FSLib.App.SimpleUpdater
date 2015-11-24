@@ -71,8 +71,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 
 		#endregion
-
-
+		
 		#region 包本身的公开方法
 
 		/// <summary> 解压包 </summary>
@@ -87,8 +86,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		}
 
 		#endregion
-
-
+		
 		#region 扩展属性-为了运行时而引入，非固化在升级包中的属性
 
 		/// <summary> 获得或设置处理用的上下文环境 </summary>
@@ -172,6 +170,20 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		[XmlIgnore]
 		public long DownloadedSize { get; internal set; }
+
+		#endregion
+
+		#region 辅助方法
+
+		/// <summary>
+		/// 确定是否有此标记位
+		/// </summary>
+		/// <param name="level"></param>
+		/// <returns></returns>
+		internal bool HasVerifyFlag(FileVerificationLevel level)
+		{
+			return (level & VerificationLevel) > 0;
+		}
 
 		#endregion
 	}
