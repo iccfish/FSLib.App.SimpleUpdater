@@ -137,6 +137,12 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 				StartDownloadUpdate();
 				return;
 			}
+			foreach (Form openForm in Application.OpenForms)
+			{
+				if (openForm is UpdateFound)
+					return;
+			}
+
 			using (var dlg = new UpdateFound())
 			{
 				if (dlg.ShowDialog() == DialogResult.OK)

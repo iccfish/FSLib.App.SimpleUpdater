@@ -15,7 +15,7 @@ namespace FSLib.App.SimpleUpdater
 
 	partial class Updater
 	{
-#region 静态对象
+		#region 静态对象
 
 		static Updater()
 		{
@@ -132,7 +132,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns>返回是否开始检查操作</returns>
 		public static bool CheckUpdateSimple()
 		{
-			return CheckUpdateSimple(string.Empty);
+			return CheckUpdateSimple(null, null);
 		}
 
 		/// <summary>
@@ -220,10 +220,16 @@ namespace FSLib.App.SimpleUpdater
 		/// 显示UI窗体
 		/// </summary>
 		/// <param name="from"></param>
-		public static void ShowUiForm(Form from)
+		public static void ShowUiForm<TForm>(TForm from) where TForm : Form
 		{
 			DispatchOnUiThread(_ =>
 			{
+				foreach (Form openForm in Application.OpenForms)
+				{
+					if (openForm is TForm)
+						return;
+				}
+
 				if (_ == null)
 					from.ShowDialog();
 				else
@@ -265,6 +271,6 @@ namespace FSLib.App.SimpleUpdater
 		}
 
 
-#endregion
+		#endregion
 	}
 }
