@@ -50,6 +50,9 @@
 			// btnUpdate
 			// 
 			resources.ApplyResources(this.btnUpdate, "btnUpdate");
+			this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(145)))), ((int)(((byte)(45)))));
+			this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(232)))), ((int)(((byte)(174)))));
+			this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(146)))), ((int)(((byte)(63)))));
 			this.btnUpdate.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.cou_32_refresh;
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.UseVisualStyleBackColor = true;
@@ -58,6 +61,8 @@
 			// lnkSoft
 			// 
 			resources.ApplyResources(this.lnkSoft, "lnkSoft");
+			this.lnkSoft.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+			this.lnkSoft.LinkColor = System.Drawing.Color.Green;
 			this.lnkSoft.Name = "lnkSoft";
 			this.lnkSoft.TabStop = true;
 			// 
@@ -80,7 +85,7 @@
 			// panel1
 			// 
 			resources.ApplyResources(this.panel1, "panel1");
-			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(99)))), ((int)(((byte)(163)))));
+			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(180)))), ((int)(((byte)(101)))));
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.lblVersion);
 			this.panel1.Controls.Add(this.lblFound);
@@ -97,6 +102,8 @@
 			// 
 			resources.ApplyResources(this.lnkCance, "lnkCance");
 			this.lnkCance.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.block_16;
+			this.lnkCance.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+			this.lnkCance.LinkColor = System.Drawing.Color.Green;
 			this.lnkCance.Name = "lnkCance";
 			this.lnkCance.TabStop = true;
 			this.lnkCance.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCance_LinkClicked);
@@ -106,12 +113,14 @@
 			this.AcceptButton = this.btnUpdate;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.lnkCance);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.controlContainer);
 			this.Controls.Add(this.lblSize);
 			this.Controls.Add(this.lnkSoft);
 			this.Controls.Add(this.btnUpdate);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "UpdateFound";

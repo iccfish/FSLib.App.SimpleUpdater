@@ -30,27 +30,34 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panMain = new System.Windows.Forms.Panel();
-			this.slideComponent1 = new FSLib.App.SimpleUpdater.Wrapper.SlideComponent();
 			this.downloadingInfo1 = new FSLib.App.SimpleUpdater.UpdateControl.DownloadingInfo();
 			this.runUpdate1 = new FSLib.App.SimpleUpdater.UpdateControl.RunUpdate();
 			this.updateFinished1 = new FSLib.App.SimpleUpdater.UpdateControl.UpdateFinished();
 			this.updateError1 = new FSLib.App.SimpleUpdater.UpdateControl.UpdateError();
 			this.noUpdateFound1 = new FSLib.App.SimpleUpdater.UpdateControl.NoUpdateFound();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.slideComponent1 = new FSLib.App.SimpleUpdater.Wrapper.SlideComponent();
 			this.panel1.SuspendLayout();
-			this.panMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.panMain.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(107)))), ((int)(((byte)(173)))));
+			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(163)))), ((int)(((byte)(78)))));
 			this.panel1.Controls.Add(this.pictureBox1);
 			this.panel1.Controls.Add(this.label1);
 			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.Name = "panel1";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.AUTOMATIC_UPDATES_16x16_32;
+			resources.ApplyResources(this.pictureBox1, "pictureBox1");
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.TabStop = false;
 			// 
 			// label1
 			// 
@@ -69,17 +76,9 @@
 			resources.ApplyResources(this.panMain, "panMain");
 			this.panMain.Name = "panMain";
 			// 
-			// slideComponent1
-			// 
-			this.slideComponent1.AlwaysSetLocation = false;
-			this.slideComponent1.AttachedForm = this;
-			this.slideComponent1.DirectX = FSLib.App.SimpleUpdater.Wrapper.SlideComponent.FlyXDirection.None;
-			this.slideComponent1.MoveSpeedX = 0;
-			this.slideComponent1.MoveSpeedY = 8;
-			// 
 			// downloadingInfo1
 			// 
-			this.downloadingInfo1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(231)))), ((int)(((byte)(244)))));
+			this.downloadingInfo1.BackColor = System.Drawing.Color.White;
 			resources.ApplyResources(this.downloadingInfo1, "downloadingInfo1");
 			this.downloadingInfo1.Image = ((System.Drawing.Image)(resources.GetObject("downloadingInfo1.Image")));
 			this.downloadingInfo1.Name = "downloadingInfo1";
@@ -118,18 +117,19 @@
 			this.noUpdateFound1.ShowCloseButton = true;
 			this.noUpdateFound1.ShowProgress = false;
 			// 
-			// pictureBox1
+			// slideComponent1
 			// 
-			this.pictureBox1.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.AUTOMATIC_UPDATES_16x16_32;
-			resources.ApplyResources(this.pictureBox1, "pictureBox1");
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.TabStop = false;
+			this.slideComponent1.AlwaysSetLocation = false;
+			this.slideComponent1.AttachedForm = this;
+			this.slideComponent1.DirectX = FSLib.App.SimpleUpdater.Wrapper.SlideComponent.FlyXDirection.None;
+			this.slideComponent1.MoveSpeedX = 0;
+			this.slideComponent1.MoveSpeedY = 8;
 			// 
 			// MainWindow
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(233)))), ((int)(((byte)(249)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.panMain);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -138,8 +138,8 @@
 			this.TopMost = true;
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.panMain.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
