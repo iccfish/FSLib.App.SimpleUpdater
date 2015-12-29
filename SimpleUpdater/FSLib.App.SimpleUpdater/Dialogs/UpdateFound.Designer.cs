@@ -36,7 +36,6 @@
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.controlContainer = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.lnkCance = new System.Windows.Forms.LinkLabel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -73,8 +72,8 @@
 			// 
 			// lblVersion
 			// 
-			resources.ApplyResources(this.lblVersion, "lblVersion");
 			this.lblVersion.ForeColor = System.Drawing.Color.White;
+			resources.ApplyResources(this.lblVersion, "lblVersion");
 			this.lblVersion.Name = "lblVersion";
 			// 
 			// controlContainer
@@ -84,24 +83,17 @@
 			// 
 			// panel1
 			// 
-			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(180)))), ((int)(((byte)(101)))));
-			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Controls.Add(this.lblVersion);
 			this.panel1.Controls.Add(this.lblFound);
+			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.panel1.Name = "panel1";
 			// 
-			// groupBox1
-			// 
-			resources.ApplyResources(this.groupBox1, "groupBox1");
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.TabStop = false;
-			// 
 			// lnkCance
 			// 
-			resources.ApplyResources(this.lnkCance, "lnkCance");
 			this.lnkCance.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.block_16;
+			resources.ApplyResources(this.lnkCance, "lnkCance");
 			this.lnkCance.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
 			this.lnkCance.LinkColor = System.Drawing.Color.Green;
 			this.lnkCance.Name = "lnkCance";
@@ -141,7 +133,6 @@
 		private System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.Panel controlContainer;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.LinkLabel lnkCance;
 	}
 }
