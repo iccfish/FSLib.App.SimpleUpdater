@@ -27,6 +27,7 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/{0}", "updat
 * Add updater assembly ```SimpleUpdater.dll``` reference to your project (Recommand using Nuget package, add ```fishlee.net.simpleupdater``` package)
 * Add update call to your ```Main()``` function
 
+
 * 使用更新包构建工具创建更新包
 * 上传生成的更新包到服务器目录中
 * 在项目中添加 ```SimpleUpdater.dll``` 引用 （推荐使用Nuget包引用，搜索 ```fishlee.net.simpleupdater```）
