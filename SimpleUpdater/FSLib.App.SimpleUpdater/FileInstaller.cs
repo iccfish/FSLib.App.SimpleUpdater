@@ -96,17 +96,6 @@ namespace FSLib.App.SimpleUpdater
 		}
 
 		/// <summary>
-		/// 获得备份路径
-		/// </summary>
-		string BackupPath
-		{
-			get
-			{
-				return System.IO.Path.Combine(WorkingRoot, "backup");
-			}
-		}
-
-		/// <summary>
 		/// 获得还原路径
 		/// </summary>
 		string RollbackPath
@@ -415,7 +404,7 @@ namespace FSLib.App.SimpleUpdater
 
 					OriginalPath = System.IO.Path.Combine(ApplicationRoot, file);
 					newVersionFile = System.IO.Path.Combine(SourceFolder, file);
-					backupPath = System.IO.Path.Combine(BackupPath, file);
+					backupPath = System.IO.Path.Combine(RollbackPath, file);
 
 					e.PostEvent(() => OnInstallFile(new InstallFileEventArgs(newVersionFile, OriginalPath, filelist.Length, index)));
 
@@ -519,7 +508,8 @@ namespace FSLib.App.SimpleUpdater
 			{
 				var originalFile = System.IO.Path.Combine(ApplicationRoot, filepath);
 
-				if (System.IO.File.Exists(originalFile)) System.IO.File.Delete(originalFile);
+				if (System.IO.File.Exists(originalFile))
+					System.IO.File.Delete(originalFile);
 
 				Trace.TraceInformation("删除已安装文件: " + originalFile);
 			}
