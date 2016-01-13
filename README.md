@@ -20,12 +20,13 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/{0}", "updat
 * 丰富的API接口事件，可定制化 / A large set events and customizable UI
 * 提供打包工具，支持命令行打包 / Update package builder provided, supports build update packages via command line
 
-##基本集成步骤 / Basic steps to integrated
+##基本集成步骤 / Basic steps to integrate
 
 * Using package builder to build update packages
 * Uploading update packages previously built to your server
 * Add updater assembly ```SimpleUpdater.dll``` reference to your project (Recommand using Nuget package, add ```fishlee.net.simpleupdater``` package)
 * Add update call to your ```Main()``` function
+
 
 * 使用更新包构建工具创建更新包
 * 上传生成的更新包到服务器目录中
