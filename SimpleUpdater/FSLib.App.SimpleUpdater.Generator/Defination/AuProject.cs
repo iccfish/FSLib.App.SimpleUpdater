@@ -434,6 +434,7 @@
 			ProjectFilePath = path;
 			AllToRelativePath();
 
+			path = Path.GetFullPath(path);
 			System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));
 			using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None))
 			{
