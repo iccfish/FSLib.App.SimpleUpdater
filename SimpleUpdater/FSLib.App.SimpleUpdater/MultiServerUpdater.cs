@@ -79,22 +79,14 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		protected override void OnError()
 		{
-			var ex = Context.Exception;
-
-			if (ex is WebException)
+			if (PeekNextServer())
 			{
-				if (PeekNextServer())
-				{
-					Trace.TraceWarning("尝试更新时出现服务器错误，且服务器已遍历完成。");
-				}
-				else
-				{
-					Trace.TraceWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
-					base.BeginCheckUpdateInProcess();
-				}
+				Trace.TraceWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
+				base.BeginCheckUpdateInProcess();
 			}
 			else
 			{
+				Trace.TraceWarning("尝试更新时出现服务器错误，且服务器已遍历完成。");
 				base.OnError();
 			}
 		}

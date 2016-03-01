@@ -249,6 +249,8 @@ namespace FSLib.App.SimpleUpdater
 					//等待下载完成
 					wHandler.WaitOne();
 				}
+				if (ex != null) throw ex;
+
 				Trace.TraceInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
 				if (data != null && data.Length > 0x10)
 				{
@@ -267,8 +269,6 @@ namespace FSLib.App.SimpleUpdater
 					throw new ApplicationException("服务器返回了不正确的更新结果");
 				}
 
-
-				if (ex != null) throw ex;
 			}
 			e.PostEvent(OnDownloadUpdateInfoFinished);
 			if ((Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent)) == null)
