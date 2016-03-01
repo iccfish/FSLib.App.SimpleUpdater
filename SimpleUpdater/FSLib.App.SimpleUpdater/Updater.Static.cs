@@ -119,8 +119,17 @@ namespace FSLib.App.SimpleUpdater
 			else
 			{
 				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
-					_instance = new MultiServerUpdater(servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
-				else _instance = new MultiServerUpdater(appVersion, appDirectory, servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
+				{
+					_instance = new MultiServerUpdater(servers) {SwitchIfNoUpdatesFound = switchIfNoUpdate};
+				}
+				else
+				{
+					if (appVersion == null || string.IsNullOrEmpty(appDirectory))
+						throw new ArgumentException("If appVersion or appDirectory was provided, you must provide another one also.");
+
+
+					_instance = new MultiServerUpdater(appVersion, appDirectory, servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
+				}
 			}
 
 			return _instance;

@@ -37,8 +37,10 @@ namespace FSLib.App.SimpleUpdater
 		protected Updater(Version appVersion, string appDirectory)
 			: this()
 		{
-			Context.CurrentVersion = appVersion;
-			Context.ApplicationDirectory = appDirectory;
+			if (appVersion != null)
+				Context.CurrentVersion = appVersion;
+			if (!string.IsNullOrEmpty(appDirectory))
+				Context.ApplicationDirectory = appDirectory;
 		}
 
 		/// <summary>
