@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Net;
 	using System.Net.Cache;
 	using System.Reflection;
@@ -21,11 +22,8 @@
 
 		public UpdateContext()
 		{
-			//CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).FileVersion);
-			var processModule = Process.GetCurrentProcess().MainModule;
+			InitializeCurrentVersion();
 
-			CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
-			ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
 			AutoEndProcessesWithinAppDir = true;
 			ExternalProcessID = new List<int>();
 			ExternalProcessName = new List<string>();
@@ -66,6 +64,26 @@
 			}
 
 			AppendRandomTagInDownloadUrl = true;
+		}
+
+		/// <summary>
+		/// 初始化当前的版本信息
+		/// </summary>
+		void InitializeCurrentVersion()
+		{
+			var assembly = Assembly.GetEntryAssembly();
+			if (assembly != null)
+			{
+				CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion);
+				ApplicationDirectory = Path.GetDirectoryName(assembly.Location);
+			}
+			else
+			{
+				var processModule = Process.GetCurrentProcess().MainModule;
+
+				CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
+				ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
+			}
 		}
 
 		/// <summary>
