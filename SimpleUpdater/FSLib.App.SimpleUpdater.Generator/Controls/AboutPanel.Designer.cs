@@ -57,6 +57,7 @@
 			// 
 			// textBox1
 			// 
+			this.textBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.textBox1.Location = new System.Drawing.Point(20, 88);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
@@ -64,7 +65,9 @@
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBox1.Size = new System.Drawing.Size(684, 257);
 			this.textBox1.TabIndex = 2;
-			this.textBox1.Text = resources.GetString("textBox1.Text");
+			this.textBox1.Text = "感谢使用升级包创建工具和升级库。\r\n\r\n官方网站：http://www.fishlee.net/soft/simple_autoupdater\r\n如果您有任何问题" +
+    "或建议，请在讨论区反馈：http://www.fishlee.net/Discussion/Index/33\r\n\r\n关注我的微博： http://t.qq.co" +
+    "m/ccfish\r\n欢迎加入我们的技术交流群：134546850";
 			// 
 			// AboutPanel
 			// 
