@@ -407,7 +407,7 @@
 		{
 			client.Headers.Clear();
 			client.Headers.Add(HttpRequestHeader.UserAgent, "Fish SimpleUpdater v" + Updater.UpdaterClientVersion);
-			client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
+			//client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
 			client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
 			client.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
 		}
