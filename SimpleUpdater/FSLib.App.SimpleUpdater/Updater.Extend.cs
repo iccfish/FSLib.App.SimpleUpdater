@@ -108,98 +108,107 @@ namespace FSLib.App.SimpleUpdater
 		/// <param name="updateFoundAction">发现更新的委托。如果此委托为null或返回null，则显示内置的更新对话框。如果此委托返回true，则启动更新后自动退出；如果此委托返回false，则忽略更新并按照正常的操作流程继续。</param>
 		/// <param name="errorHandler">检查更新发生错误的委托</param>
 		/// <param name="updateUi">用于显示状态的UI界面</param>
-		public void EnsureNoUpdate<T>(Func<bool?> updateFoundAction = null, Func<Exception, bool> errorHandler = null, T updateUi = null) where T : Form
+		public void EnsureNoUpdate<T>(Func<bool?> updateFoundAction = null, Func<Exception, bool> errorHandler = null, T updateUi = null, bool noUi = false) where T : Form
 		{
 			Application.EnableVisualStyles();
-			var ui = (Form)updateUi ?? new EnsureUpdate();
+			var ui = noUi ? null : (Form)updateUi ?? new EnsureUpdate();
+			var evt = new ManualResetEvent(false);
 
 			var continueProcess = false;
 			Context.EnableEmbedDialog = false;
 
-			using (ui)
-			{
+			if (ui != null)
 				ui.Shown += (s, e) => BeginCheckUpdateInProcess();
-				EventHandler updateFound = null, versionErrorHandler = null, ueEventHandler = null, noupdateFoundHandler = null;
 
-				var unscribeAllEvents = new Action<Updater, bool, bool>((s, cont, close) =>
+			EventHandler updateFound = null, versionErrorHandler = null, ueEventHandler = null, noupdateFoundHandler = null;
+
+			var unscribeAllEvents = new Action<Updater, bool, bool>((s, cont, close) =>
+			{
+				Delegate.RemoveAll(s.UpdatesFound, updateFound);
+				Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
+				Delegate.RemoveAll(s.Error, ueEventHandler);
+				Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
+
+				continueProcess = cont;
+				if (close)
 				{
-					Delegate.RemoveAll(s.UpdatesFound, updateFound);
-					Delegate.RemoveAll(s.MinmumVersionRequired, versionErrorHandler);
-					Delegate.RemoveAll(s.Error, ueEventHandler);
-					Delegate.RemoveAll(s.NoUpdatesFound, noupdateFoundHandler);
+					ui?.Close();
+					evt.Set();
+				}
+			});
+			noupdateFoundHandler = (s, e) => unscribeAllEvents(s as Updater, true, true);
+			updateFound = (s, e) =>
+			{
+				var client = s as Updater;
+				var context = client.Context;
 
-					continueProcess = cont;
-					if (close)
-						ui.Close();
-				});
-				noupdateFoundHandler = (s, e) => unscribeAllEvents(s as Updater, true, true);
-				updateFound = (s, e) =>
+				if (context.MustUpdate || context.ForceUpdate)
 				{
-					var client = s as Updater;
-					var context = client.Context;
-
-					if (context.MustUpdate || context.ForceUpdate)
+					Instance_UpdatesFound(s, e);
+					unscribeAllEvents(client, false, true);
+				}
+				else
+				{
+					if (updateFoundAction != null)
 					{
-						Instance_UpdatesFound(s, e);
-						unscribeAllEvents(client, false, true);
-					}
-					else
-					{
-						if (updateFoundAction != null)
+						var result = updateFoundAction();
+						if (result == true)
 						{
-							var result = updateFoundAction();
-							if (result == true)
-							{
-								client.StartExternalUpdater();
-								unscribeAllEvents(s as Updater, false, true);
+							client.StartExternalUpdater();
+							unscribeAllEvents(s as Updater, false, true);
 
-								return;
-							}
-							if (result == false)
-							{
-								unscribeAllEvents(s as Updater, true, true);
-
-								return;
-							}
+							return;
 						}
-						context.EnableEmbedDialog = true;
-						Instance_UpdatesFound(s, e);
-						unscribeAllEvents(s as Updater, true, true);
-					}
-				};
-				versionErrorHandler = (s, e) =>
-				{
-					var result = false;
-					if (errorHandler != null)
-					{
-						result = errorHandler(new Exception(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion)));
-					}
-					else
-					{
-						MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion, (s as Updater).Context.CurrentVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					}
-					unscribeAllEvents(s as Updater, result, true);
-				};
-				ueEventHandler = (s, e) =>
-				{
-					var err = (s as Updater).Context.Exception;
-					var result = Context.TreatErrorAsNotUpdated;
-					if (errorHandler != null)
-					{
-						result = errorHandler(err);
-					}
-					else
-					{
-						MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					}
-					unscribeAllEvents(s as Updater, result, true);
-				};
-				UpdatesFound += updateFound;
-				Error += ueEventHandler;
-				MinmumVersionRequired += versionErrorHandler;
-				NoUpdatesFound += noupdateFoundHandler;
+						if (result == false)
+						{
+							unscribeAllEvents(s as Updater, true, true);
 
+							return;
+						}
+					}
+					context.EnableEmbedDialog = true;
+					Instance_UpdatesFound(s, e);
+					unscribeAllEvents(s as Updater, true, true);
+				}
+			};
+			versionErrorHandler = (s, e) =>
+			{
+				var result = false;
+				if (errorHandler != null)
+				{
+					result = errorHandler(new Exception(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion)));
+				}
+				else
+				{
+					MessageBox.Show(string.Format(SR.MinmumVersionRequired_Desc, (s as Updater).Context.UpdateInfo.RequiredMinVersion, (s as Updater).Context.CurrentVersion), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+				unscribeAllEvents(s as Updater, result, true);
+			};
+			ueEventHandler = (s, e) =>
+			{
+				var err = (s as Updater).Context.Exception;
+				var result = Context.TreatErrorAsNotUpdated;
+				if (errorHandler != null)
+				{
+					result = errorHandler(err);
+				}
+				else
+				{
+					MessageBox.Show(String.Format(SR.Updater_UnableToCheckUpdate, err.Message), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+				unscribeAllEvents(s as Updater, result, true);
+			};
+			UpdatesFound += updateFound;
+			Error += ueEventHandler;
+			MinmumVersionRequired += versionErrorHandler;
+			NoUpdatesFound += noupdateFoundHandler;
+
+			if (ui != null)
 				ui.ShowDialog();
+			else
+			{
+				BeginCheckUpdateInProcess();
+				evt.WaitOne();
 			}
 
 			if (!continueProcess)
