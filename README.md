@@ -1,7 +1,7 @@
 SimpleUpdater.NET
 =======================
 
-##简要说明 / Introduction
+## 简要说明 / Introduction
 
 这是一个快速为已有的应用程序增加自动更新功能的组件，专为 .NET/WinForm 设计，虽然也可以通过命令行模式工作在其它语言中。
 WPF将会在稍后支持。
@@ -13,14 +13,14 @@ WPF support is on schedule.
 FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/{0}", "update_c.xml");
 ```
 
-###特点 / Advantage
+### 特点 / Advantage
 
 * 通过HTTP传输所有资料 / Using HTTP to perform update
 * 全自动化，几乎不需要额外代码 / Fully automatically, almost no extra codes required
 * 丰富的API接口事件，可定制化 / A large set events and customizable UI
 * 提供打包工具，支持命令行打包 / Update package builder provided, supports build update packages via command line
 
-##基本集成步骤 / Basic steps to integrate
+## 基本集成步骤 / Basic steps to integrate
 
 * Using package builder to build update packages
 * Uploading update packages previously built to your server
@@ -33,7 +33,7 @@ FSLib.App.SimpleUpdater.Updater.CheckUpdateSimple("http://localhost/{0}", "updat
 * 在项目中添加 ```SimpleUpdater.dll``` 引用 （推荐使用Nuget包引用，搜索 ```fishlee.net.simpleupdater```）
 * 在 ```Main()``` 函数中添加更新检查调用
 
-##发布和支持信息 / Release and Support
+## 发布和支持信息 / Release and Support
 
 **软件发布主页 / Offical website** [http://www.fishlee.net/soft/simple_autoupdater/](http://www.fishlee.net/soft/simple_autoupdater/)
 
