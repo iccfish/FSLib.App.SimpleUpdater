@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -153,11 +153,14 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 					return;
 				}
 
-				string p = value.ToLower();
+				if (value == SelectedItem?.ToString())
+				{
+					return;
+				}
 
 				foreach (var item in this.Items)
 				{
-					if (item.ToString().ToLower() == p)
+					if (value == item.ToString())
 					{
 						this.SelectedItem = item;
 						break;

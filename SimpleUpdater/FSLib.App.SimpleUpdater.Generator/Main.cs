@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -494,7 +494,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 			chkHideBefore.AddDataBinding(ui, s => s.Checked, s => s.HideBeforeExecuteWindow);
 			chkHideAfter.AddDataBinding(ui, s => s.Checked, s => s.HideAfterExecuteWindow);
 			fileAfterExecute.AddDataBinding(ui, s => s.SelectedFileName, s => s.FileExecuteAfter);
+			ui.FileExecuteAfter = fileAfterExecute.SelectedFileName;
+
 			filePreExecute.AddDataBinding(ui, s => s.SelectedFileName, s => s.FileExecuteBefore);
+			ui.FileExecuteBefore = filePreExecute.SelectedFileName;
+
 			txtUrl.AddDataBinding(ui, s => s.Text, s => s.WebUpdateNote);
 			txtPing.AddDataBinding(ui, s => s.Text, s => s.UpdatePingUrl);
 
