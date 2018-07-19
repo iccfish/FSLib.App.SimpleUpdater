@@ -95,7 +95,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 				}
 				set
 				{
-					if (value < 0 || value > 100) throw new ArgumentOutOfRangeException("PercentageRangeLimit");
+					if (value < 0 || value > TaskCount) throw new ArgumentOutOfRangeException("PercentageRangeLimit");
 					TaskCount = 0;
 					TaskProgress = value;
 				}

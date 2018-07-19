@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,7 +41,7 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface.FormBuildUi
 			else
 			{
 				pg.Style = ProgressBarStyle.Continuous;
-				pg.Value = progress.TaskProgress;
+				pg.Value = progress.TaskPercentage;
 			}
 
 			if (!string.IsNullOrEmpty(progress.StateMessage))
