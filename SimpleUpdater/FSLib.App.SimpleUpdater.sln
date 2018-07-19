@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27906.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj", "{21A701D7-063B-48E9-AE2F-5586A954B830}"
 EndProject
@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DF50C946
 		_Tools\FSLib.App.Utilities.exe = _Tools\FSLib.App.Utilities.exe
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.DLL", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.DLL.csproj", "{FAF40031-DAA1-4990-8B13-297F1242F9BC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "相关文件", "相关文件", "{ACE0B366-C027-4D08-866E-C9559936C99D}"
 	ProjectSection(SolutionItems) = preProject
 		content\App.config.install.xdt = content\App.config.install.xdt
@@ -26,10 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "相关文件", "相关文�
 		FSLib.App.SimpleUpdater.nuspec = FSLib.App.SimpleUpdater.nuspec
 		..\README.md = ..\README.md
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater_NET4", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater_NET4.csproj", "{F2156673-4759-4456-8334-3FF4BEC10F0B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.DLL_NET4", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.DLL_NET4.csproj", "{69E699A5-8624-4A02-88C6-75E9CB31FFB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,32 +57,11 @@ Global
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Any CPU.Build.0 = Release|x86
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.Build.0 = Release|x86
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{FAF40031-DAA1-4990-8B13-297F1242F9BC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F2156673-4759-4456-8334-3FF4BEC10F0B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{69E699A5-8624-4A02-88C6-75E9CB31FFB6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C50100DC-CE22-4CA1-A341-B865C5548B69}
 	EndGlobalSection
 EndGlobal

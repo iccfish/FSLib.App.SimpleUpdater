@@ -1,48 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{21A701D7-063B-48E9-AE2F-5586A954B830}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
     <AssemblyName>SimpleUpdater</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>updater.ico</ApplicationIcon>
     <SignManifests>false</SignManifests>
     <SignAssembly>true</SignAssembly>
-    <StartupObject>FSLib.App.SimpleUpdater.Program</StartupObject>
-    <TargetFrameworkProfile />
-    <BaseIntermediateOutputPath>obj\exe\net20</BaseIntermediateOutputPath>
+    <TargetFrameworks>net20;net35;net40;net45</TargetFrameworks>
+	<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\exe\debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;STANDALONE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\exe\debug\SimpleUpdater.XML</DocumentationFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\exe\release\</OutputPath>
-    <DefineConstants>TRACE;STANDALONE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\exe\release\SimpleUpdater.XML</DocumentationFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup />
+  <ItemGroup>
+    <Content Include="content\**\*" PackagePath="%(Identity)" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -272,7 +250,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="appconfig" />
     <None Include="ifish.snk" />
     <None Include="Properties\Settings.settings">
@@ -342,34 +319,36 @@
     <None Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\16px_loading_1.gif" />
-    <Content Include="Resources\block_16.png" />
-    <Content Include="Resources\cou_16_warning.png" />
-    <Content Include="Resources\cou_32_refresh.png" />
-    <Content Include="updater.ico" />
+    <None Include="Resources\16px_loading_1.gif" />
+    <None Include="Resources\block_16.png" />
+    <None Include="Resources\cou_16_warning.png" />
+    <None Include="Resources\cou_32_refresh.png" />
+    <None Include="updater.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <PackageId>fishlee.net.simpleupdater</PackageId>
+    <Version>4.3.0.0</Version>
+    <Authors>iFish(木鱼)</Authors>
+    <Description>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5.
+一个适用于 .NET 2.0/3.5/4.0/4.5 的高度易用的自动更新客户端。
+Please visit http://www.fishlee.net/soft/simple_autoupdater/ to get update package builder tool.
+请访问 http://www.fishlee.net/soft/simple_autoupdater/ 获得更新包打包工具。
+</Description>
+    <Product>iFish's Simple Application Updater Library</Product>
+    <PackageProjectUrl>https://blog.fishlee.net/</PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageIconUrl>https://ssl-static.fishlee.net/resources/images/coquette/32x32/promotion.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/iccfish/FSLib.App.SimpleUpdater</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>autoupdate updater automatic</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>鱼的后花园</Company>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net20|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,16 +39,6 @@ namespace FSLib.App.SimpleUpdater
 		{
 			Servers = new List<UpdateServerInfo>();
 			Servers.AddRange(servers);
-			InitServerInfo();
-		}
-
-		/// <summary>
-		/// 初始化服务器信息
-		/// </summary>
-		void InitServerInfo()
-		{
-			if (string.IsNullOrEmpty(Context.UpdateDownloadUrl))
-				PeekNextServer();
 		}
 
 		#region Overrides of Updater
