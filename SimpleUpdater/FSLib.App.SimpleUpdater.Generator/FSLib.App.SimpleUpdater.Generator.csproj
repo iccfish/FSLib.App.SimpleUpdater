@@ -216,6 +216,12 @@
     <None Include="Resources\tick_16.png" />
     <None Include="Resources\info_16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj">
+      <Project>{21a701d7-063b-48e9-ae2f-5586a954b830}</Project>
+      <Name>FSLib.App.SimpleUpdater</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
