@@ -61,7 +61,7 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 			if (!string.IsNullOrEmpty(progress.StateMessage))
 			{
 				Console.ForegroundColor = ConsoleColor.Gray;
-				Console.WriteLine("[" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "] " + progress.StateMessage);
+				Console.WriteLine("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " + progress.StateMessage);
 				Console.ResetColor();
 			}
 		}
