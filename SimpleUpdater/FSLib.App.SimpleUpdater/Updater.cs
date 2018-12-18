@@ -488,17 +488,17 @@ namespace FSLib.App.SimpleUpdater
 				try
 				{
 					closeApplication.Add(Process.GetProcessById(pid));
-					Trace.TraceInformation("添加进程PID=" + pid + "到等待关闭列表");
+					Trace.TraceInformation($"添加进程PID={pid}到等待关闭列表");
 				}
 				catch (Exception ex)
 				{
-					Trace.TraceInformation("添加进程PID=" + pid + "到等待关闭列表时出错：" + ex.Message);
+					Trace.TraceInformation($"添加进程PID={pid}到等待关闭列表时出错：{ex.Message}");
 				}
 			}
 			foreach (var pn in Context.ExternalProcessName)
 			{
 				closeApplication.AddRange(Process.GetProcessesByName(pn));
-				Trace.TraceInformation("添加进程名=" + pn + "到等待关闭列表");
+				Trace.TraceInformation($"添加进程名={pn}到等待关闭列表");
 			}
 
 			if (closeApplication.Count > 0)
@@ -511,18 +511,18 @@ namespace FSLib.App.SimpleUpdater
 					{
 						if (s.HasExited)
 						{
-							Trace.TraceInformation("进程【" + s.ProcessName + "】已经提前退出。");
+							Trace.TraceInformation($"进程 PID={s.Id} 已经提前退出。");
 						}
 						else
 						{
 							try
 							{
 								s.Kill();
-								Trace.TraceInformation("进程【" + s.ProcessName + "】已经成功结束。");
+								Trace.TraceInformation($"进程 [PID={s.Id}] 已经成功结束。");
 							}
 							catch (Exception ex)
 							{
-								Trace.TraceError("进程【" + s.ProcessName + "】结束失败：" + ex.Message);
+								Trace.TraceError($"进程【{s.Id}】结束失败：{ex.Message}");
 
 								return false;
 							}

@@ -1,358 +1,352 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{21A701D7-063B-48E9-AE2F-5586A954B830}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
-    <AssemblyName>SimpleUpdater</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <TargetFrameworks>net20;net35;net40;net45</TargetFrameworks>
-	<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.2.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="content\**\*" PackagePath="%(Identity)" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Defination\CancelableEventArgs.cs" />
-    <Compile Include="Defination\FileVerificationLevel.cs" />
-    <Compile Include="Defination\IUpdateNotify.cs" />
-    <Compile Include="Defination\PackageInfo.cs" />
-    <Compile Include="Defination\RequestCheckComponentFlagEventArgs.cs" />
-    <Compile Include="Defination\UpdateCheckResult.cs" />
-    <Compile Include="Defination\UpdateContext.cs" />
-    <Compile Include="Defination\UpdateInfo.cs" />
-    <Compile Include="Defination\UpdateMethod.cs" />
-    <Compile Include="Defination\UpdateServerInfo.cs" />
-    <Compile Include="Defination\VersionTooLowException.cs" />
-    <Compile Include="Defination\WebClientWrapper.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Dialogs\AbstractUpdateBase.cs" SubType="Form" />
-    <Compile Include="Dialogs\CloseApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\CloseApp.Designer.cs">
-      <DependentUpon>CloseApp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DeletePreviousProgramMethod.cs" />
-    <Compile Include="Dialogs\EnsureUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\EnsureUpdate.Designer.cs">
-      <DependentUpon>EnsureUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\MinmumVersionRequired.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\MinmumVersionRequired.Designer.cs">
-      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\SelfUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\SelfUpdate.Designer.cs">
-      <DependentUpon>SelfUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HiddenUiUpdateProxy.cs" />
-    <Compile Include="InstallFileEventArgs.cs" />
-    <Compile Include="MultiServerUpdater.cs" />
-    <Compile Include="PackageEventArgs.cs" />
-    <Compile Include="PackageDownloadException.cs" />
-    <Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
-    <Compile Include="ICCEmbedded\Checksums\Adler32.cs" />
-    <Compile Include="ICCEmbedded\Checksums\CRC32.cs" />
-    <Compile Include="ICCEmbedded\Checksums\IChecksum.cs" />
-    <Compile Include="ICCEmbedded\Core\FileSystemScanner.cs" />
-    <Compile Include="ICCEmbedded\Core\INameTransform.cs" />
-    <Compile Include="ICCEmbedded\Core\IScanFilter.cs" />
-    <Compile Include="ICCEmbedded\Core\NameFilter.cs" />
-    <Compile Include="ICCEmbedded\Core\PathFilter.cs" />
-    <Compile Include="ICCEmbedded\Core\StreamUtils.cs" />
-    <Compile Include="ICCEmbedded\Encryption\PkzipClassic.cs" />
-    <Compile Include="ICCEmbedded\SharpZipBaseException.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterConstants.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterEngine.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterHuffman.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\DeflaterPending.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Inflater.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\InflaterDynHeader.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\InflaterHuffmanTree.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Streams\OutputWindow.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\PendingBuffer.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Streams\DeflaterOutputStream.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Streams\InflaterInputStream.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Streams\StreamManipulator.cs" />
-    <Compile Include="ICCEmbedded\Zip\Compression\Deflater.cs" />
-    <Compile Include="ICCEmbedded\Zip\FastZip.cs" />
-    <Compile Include="ICCEmbedded\Zip\IEntryFactory.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipConstants.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipEntry.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipEntryFactory.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipException.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipExtraData.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipFile.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipHelperStream.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipNameTransform.cs" />
-    <Compile Include="ICCEmbedded\Zip\ZipOutputStream.cs" />
-    <Compile Include="FileInstaller.cs" />
-    <Compile Include="Dialogs\MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\MainWindow.Designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Dialogs\ProgramExecuteTimeout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ProgramExecuteTimeout.Designer.cs">
-      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryCloseApplicationEventArgs.cs" />
-    <Compile Include="RunExternalProcessEventArgs.cs" />
-    <Compile Include="Updatable2Attribute.cs" />
-    <Compile Include="Updater.Events.cs">
-      <DependentUpon>Updater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Updater.Extend.cs">
-      <DependentUpon>Updater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Updater.Static.cs">
-      <DependentUpon>Updater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Utility.cs" />
-    <Compile Include="Wrapper\BackgroundWorker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Wrapper\ExtensionMethod.cs" />
-    <Compile Include="Wrapper\FunctionalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Wrapper\RunworkEventArgs.cs" />
-    <Compile Include="Wrapper\SlideComponent.cs">
-      <SubType>鱼的控件库</SubType>
-    </Compile>
-    <Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
-    <Compile Include="Wrapper\XMLSerializeHelper.cs" />
-    <EmbeddedResource Include="Dialogs\CloseApp.en.resx">
-      <DependentUpon>CloseApp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CloseApp.resx">
-      <DependentUpon>CloseApp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\EnsureUpdate.en.resx">
-      <DependentUpon>EnsureUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\EnsureUpdate.resx">
-      <DependentUpon>EnsureUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MainWindow.en.resx">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MinmumVersionRequired.en.resx">
-      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
-      <DependentUpon>MinmumVersionRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.en.resx">
-      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SelfUpdate.en.resx">
-      <DependentUpon>SelfUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SelfUpdate.resx">
-      <DependentUpon>SelfUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MainWindow.resx">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
-      <DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UpdateFound.en.resx">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SR.en.resx">
-      <DependentUpon>SR.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\ControlBase.en.resx">
-      <DependentUpon>ControlBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\ControlBase.resx">
-      <DependentUpon>ControlBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\DownloadingInfo.en.resx">
-      <DependentUpon>DownloadingInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
-      <DependentUpon>DownloadingInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\NoUpdateFound.en.resx">
-      <DependentUpon>NoUpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\NoUpdateFound.resx">
-      <DependentUpon>NoUpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\RunUpdate.resx">
-      <DependentUpon>RunUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\UpdateError.en.resx">
-      <DependentUpon>UpdateError.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\UpdateError.resx">
-      <DependentUpon>UpdateError.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\UpdateFinished.en.resx">
-      <DependentUpon>UpdateFinished.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
-      <DependentUpon>UpdateFinished.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UpdateFound.resx">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="appconfig" />
-    <None Include="ifish.snk" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="SR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateableAttribute.cs" />
-    <Compile Include="UpdateControl\ControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\DownloadingInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\DownloadingInfo.Designer.cs">
-      <DependentUpon>DownloadingInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateControl\NoUpdateFound.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\NoUpdateFound.Designer.cs">
-      <DependentUpon>NoUpdateFound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateControl\RunUpdate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\RunUpdate.Designer.cs">
-      <DependentUpon>RunUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateControl\UpdateError.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\UpdateError.Designer.cs">
-      <DependentUpon>UpdateError.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateControl\UpdateFinished.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UpdateControl\UpdateFinished.Designer.cs">
-      <DependentUpon>UpdateFinished.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\UpdateFound.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\UpdateFound.Designer.cs">
-      <DependentUpon>UpdateFound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Updater.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\05043139.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FSLib.App.Utilities.exe.gz" />
-    <None Include="Resources\Info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Warning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\16px_loading_1.gif" />
-    <None Include="Resources\block_16.png" />
-    <None Include="Resources\cou_16_warning.png" />
-    <None Include="Resources\cou_32_refresh.png" />
-    <None Include="updater.ico" />
-  </ItemGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
-    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
-    <PackageId>fishlee.net.simpleupdater</PackageId>
-    <Version>4.3.0.0</Version>
-    <Authors>iFish(木鱼)</Authors>
-    <Description>A light weight automatic application updater library for .net 2.0/3.5/4.0/4.5.
-一个适用于 .NET 2.0/3.5/4.0/4.5 的高度易用的自动更新客户端。
-Please visit http://www.fishlee.net/soft/simple_autoupdater/ to get update package builder tool.
-请访问 http://www.fishlee.net/soft/simple_autoupdater/ 获得更新包打包工具。
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProductVersion>9.0.30729</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{21A701D7-063B-48E9-AE2F-5586A954B830}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
+		<AssemblyName>SimpleUpdater</AssemblyName>
+		<SignAssembly>true</SignAssembly>
+		<TargetFrameworks>net20;net35;net40;net45</TargetFrameworks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="content\**\*" PackagePath="%(Identity)" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Deployment" />
+		<Reference Include="System.Design" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Runtime.Remoting" />
+		<Reference Include="System.Web" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Defination\CancelableEventArgs.cs" />
+		<Compile Include="Defination\FileVerificationLevel.cs" />
+		<Compile Include="Defination\IUpdateNotify.cs" />
+		<Compile Include="Defination\PackageInfo.cs" />
+		<Compile Include="Defination\RequestCheckComponentFlagEventArgs.cs" />
+		<Compile Include="Defination\UpdateCheckResult.cs" />
+		<Compile Include="Defination\UpdateContext.cs" />
+		<Compile Include="Defination\UpdateInfo.cs" />
+		<Compile Include="Defination\UpdateMethod.cs" />
+		<Compile Include="Defination\UpdateServerInfo.cs" />
+		<Compile Include="Defination\VersionTooLowException.cs" />
+		<Compile Include="Defination\WebClientWrapper.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Include="Dialogs\AbstractUpdateBase.cs" SubType="Form" />
+		<Compile Include="Dialogs\CloseApp.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\CloseApp.Designer.cs">
+			<DependentUpon>CloseApp.cs</DependentUpon>
+		</Compile>
+		<Compile Include="DeletePreviousProgramMethod.cs" />
+		<Compile Include="Dialogs\EnsureUpdate.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\EnsureUpdate.Designer.cs">
+			<DependentUpon>EnsureUpdate.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Dialogs\MinmumVersionRequired.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\MinmumVersionRequired.Designer.cs">
+			<DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Dialogs\SelfUpdate.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\SelfUpdate.Designer.cs">
+			<DependentUpon>SelfUpdate.cs</DependentUpon>
+		</Compile>
+		<Compile Include="HiddenUiUpdateProxy.cs" />
+		<Compile Include="InstallFileEventArgs.cs" />
+		<Compile Include="MultiServerUpdater.cs" />
+		<Compile Include="PackageEventArgs.cs" />
+		<Compile Include="PackageDownloadException.cs" />
+		<Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
+		<Compile Include="ICCEmbedded\Checksums\Adler32.cs" />
+		<Compile Include="ICCEmbedded\Checksums\CRC32.cs" />
+		<Compile Include="ICCEmbedded\Checksums\IChecksum.cs" />
+		<Compile Include="ICCEmbedded\Core\FileSystemScanner.cs" />
+		<Compile Include="ICCEmbedded\Core\INameTransform.cs" />
+		<Compile Include="ICCEmbedded\Core\IScanFilter.cs" />
+		<Compile Include="ICCEmbedded\Core\NameFilter.cs" />
+		<Compile Include="ICCEmbedded\Core\PathFilter.cs" />
+		<Compile Include="ICCEmbedded\Core\StreamUtils.cs" />
+		<Compile Include="ICCEmbedded\Encryption\PkzipClassic.cs" />
+		<Compile Include="ICCEmbedded\SharpZipBaseException.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\DeflaterConstants.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\DeflaterEngine.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\DeflaterHuffman.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\DeflaterPending.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Inflater.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\InflaterDynHeader.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\InflaterHuffmanTree.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Streams\OutputWindow.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\PendingBuffer.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Streams\InflaterInputStream.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Streams\StreamManipulator.cs" />
+		<Compile Include="ICCEmbedded\Zip\Compression\Deflater.cs" />
+		<Compile Include="ICCEmbedded\Zip\FastZip.cs" />
+		<Compile Include="ICCEmbedded\Zip\IEntryFactory.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipConstants.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipEntry.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipEntryFactory.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipException.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipExtraData.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipFile.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipHelperStream.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipNameTransform.cs" />
+		<Compile Include="ICCEmbedded\Zip\ZipOutputStream.cs" />
+		<Compile Include="FileInstaller.cs" />
+		<Compile Include="Dialogs\MainWindow.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\MainWindow.Designer.cs">
+			<DependentUpon>MainWindow.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Program.cs" />
+		<Compile Include="Dialogs\ProgramExecuteTimeout.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\ProgramExecuteTimeout.Designer.cs">
+			<DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Properties\Annotations.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="QueryCloseApplicationEventArgs.cs" />
+		<Compile Include="RunExternalProcessEventArgs.cs" />
+		<Compile Include="Updatable2Attribute.cs" />
+		<Compile Include="Updater.Events.cs">
+			<DependentUpon>Updater.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Updater.Extend.cs">
+			<DependentUpon>Updater.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Updater.Static.cs">
+			<DependentUpon>Updater.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Utility.cs" />
+		<Compile Include="Wrapper\BackgroundWorker.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Include="Wrapper\ExtensionMethod.cs" />
+		<Compile Include="Wrapper\FunctionalForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Wrapper\RunworkEventArgs.cs" />
+		<Compile Include="Wrapper\SlideComponent.cs">
+			<SubType>鱼的控件库</SubType>
+		</Compile>
+		<Compile Include="Wrapper\SmartAssembly.Attributes.cs" />
+		<Compile Include="Wrapper\XMLSerializeHelper.cs" />
+		<EmbeddedResource Include="Dialogs\CloseApp.en.resx">
+			<DependentUpon>CloseApp.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\CloseApp.resx">
+			<DependentUpon>CloseApp.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\EnsureUpdate.en.resx">
+			<DependentUpon>EnsureUpdate.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\EnsureUpdate.resx">
+			<DependentUpon>EnsureUpdate.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\MainWindow.en.resx">
+			<DependentUpon>MainWindow.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\MinmumVersionRequired.en.resx">
+			<DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\MinmumVersionRequired.resx">
+			<DependentUpon>MinmumVersionRequired.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.en.resx">
+			<DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\SelfUpdate.en.resx">
+			<DependentUpon>SelfUpdate.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\SelfUpdate.resx">
+			<DependentUpon>SelfUpdate.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\MainWindow.resx">
+			<DependentUpon>MainWindow.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\ProgramExecuteTimeout.resx">
+			<DependentUpon>ProgramExecuteTimeout.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\UpdateFound.en.resx">
+			<DependentUpon>UpdateFound.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SR.en.resx">
+			<DependentUpon>SR.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SR.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>SR.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\ControlBase.en.resx">
+			<DependentUpon>ControlBase.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\ControlBase.resx">
+			<DependentUpon>ControlBase.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\DownloadingInfo.en.resx">
+			<DependentUpon>DownloadingInfo.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\DownloadingInfo.resx">
+			<DependentUpon>DownloadingInfo.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\NoUpdateFound.en.resx">
+			<DependentUpon>NoUpdateFound.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\NoUpdateFound.resx">
+			<DependentUpon>NoUpdateFound.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\RunUpdate.resx">
+			<DependentUpon>RunUpdate.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\UpdateError.en.resx">
+			<DependentUpon>UpdateError.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\UpdateError.resx">
+			<DependentUpon>UpdateError.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\UpdateFinished.en.resx">
+			<DependentUpon>UpdateFinished.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="UpdateControl\UpdateFinished.resx">
+			<DependentUpon>UpdateFinished.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Dialogs\UpdateFound.resx">
+			<DependentUpon>UpdateFound.cs</DependentUpon>
+		</EmbeddedResource>
+		<Compile Include="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<None Include="appconfig" />
+		<None Include="ifish.snk" />
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<Compile Include="Properties\Settings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+		</Compile>
+		<Compile Include="SR.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>SR.resx</DependentUpon>
+		</Compile>
+		<Compile Include="UpdateableAttribute.cs" />
+		<Compile Include="UpdateControl\ControlBase.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\DownloadingInfo.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\DownloadingInfo.Designer.cs">
+			<DependentUpon>DownloadingInfo.cs</DependentUpon>
+		</Compile>
+		<Compile Include="UpdateControl\NoUpdateFound.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\NoUpdateFound.Designer.cs">
+			<DependentUpon>NoUpdateFound.cs</DependentUpon>
+		</Compile>
+		<Compile Include="UpdateControl\RunUpdate.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\RunUpdate.Designer.cs">
+			<DependentUpon>RunUpdate.cs</DependentUpon>
+		</Compile>
+		<Compile Include="UpdateControl\UpdateError.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\UpdateError.Designer.cs">
+			<DependentUpon>UpdateError.cs</DependentUpon>
+		</Compile>
+		<Compile Include="UpdateControl\UpdateFinished.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="UpdateControl\UpdateFinished.Designer.cs">
+			<DependentUpon>UpdateFinished.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Dialogs\UpdateFound.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Dialogs\UpdateFound.Designer.cs">
+			<DependentUpon>UpdateFound.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Updater.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\05043139.gif" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\FSLib.App.Utilities.exe.gz" />
+		<None Include="Resources\Info.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Warning.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\16px_loading_1.gif" />
+		<None Include="Resources\block_16.png" />
+		<None Include="Resources\cou_16_warning.png" />
+		<None Include="Resources\cou_32_refresh.png" />
+		<None Include="updater.ico" />
+	</ItemGroup>
+	<PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
+		<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+		<PackageId>fishlee.net.simpleupdater</PackageId>
+		<Version>4.3.0.0</Version>
+		<Authors>iFish(木鱼)</Authors>
+		<Description>A light weight automatic application updater library for .net 2.0+.
+一个适用于 .NET 2.0+ 的高度易用的自动更新客户端。
+Please visit https://www.fishlee.net/soft/simple_autoupdater/ to get update package builder tool.
+请访问 https://www.fishlee.net/soft/simple_autoupdater/ 获得更新包打包工具。
 </Description>
-    <Product>iFish's Simple Application Updater Library</Product>
-    <PackageProjectUrl>https://blog.fishlee.net/</PackageProjectUrl>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageIconUrl>https://ssl-static.fishlee.net/resources/images/coquette/32x32/promotion.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/iccfish/FSLib.App.SimpleUpdater</RepositoryUrl>
-    <RepositoryType>GIT</RepositoryType>
-    <PackageTags>autoupdate updater automatic</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Company>鱼的后花园</Company>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net20|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+		<Product>iFish's Simple Application Updater Library</Product>
+		<PackageProjectUrl>https://blog.fishlee.net/</PackageProjectUrl>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageIconUrl>https://ssl-static.fishlee.net/resources/images/coquette/32x32/promotion.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/iccfish/FSLib.App.SimpleUpdater</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>autoupdate updater automatic</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Company>鱼的后花园</Company>
+	</PropertyGroup>
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+			 Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
 </Project>

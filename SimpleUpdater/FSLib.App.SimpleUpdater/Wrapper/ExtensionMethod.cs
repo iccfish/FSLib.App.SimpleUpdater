@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace FSLib.App.SimpleUpdater.Wrapper
 {
-#if !NET4
+#if NET20
 	public delegate TR Func<TR>();
 	public delegate TR Func<TS, TR>(TS ele);
 	public delegate void Action<T1, T2>(T1 t1, T2 t2);
