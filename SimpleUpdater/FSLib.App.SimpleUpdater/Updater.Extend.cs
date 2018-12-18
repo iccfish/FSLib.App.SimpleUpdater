@@ -4,10 +4,11 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Threading;
 
-#if NET4
+#if !NET20 && !NET35
 	using System.Threading.Tasks;
 #endif
 
@@ -29,6 +30,8 @@ namespace FSLib.App.SimpleUpdater
 		{
 			Context.EnableEmbedDialog = enableEmbedDialog;
 
+			Trace.TraceInformation($"{nameof(CheckUpdateSync)} Start with threadid={Thread.CurrentThread.ManagedThreadId}");
+
 			var evt = new ManualResetEvent(false);
 			EventHandler eh = null;
 			UpdateCheckResult result = null;
@@ -46,14 +49,17 @@ namespace FSLib.App.SimpleUpdater
 				evt.Set();
 			};
 			CheckUpdateComplete += eh;
-			BeginCheckUpdateInProcess();
 
+			//强制从非UI线程启动，否则如果当前线程是UI线程，会冻结整个线程造成死锁。
+			ThreadPool.QueueUserWorkItem(_ => BeginCheckUpdateInProcess());
 			evt.WaitOne();
+
+			Trace.TraceInformation($"{nameof(CheckUpdateSync)} End with threadid={Thread.CurrentThread.ManagedThreadId}");
 
 			return result;
 		}
 
-#if NET4
+#if !NET20 && !NET35
 
 		/// <summary>
 		/// 任务模式检查更新。任务将会返回新版本号，如果返回null，则意味着没找到新版本。

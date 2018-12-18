@@ -44,10 +44,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 当前的更新实例。直接访问本属性将会获得默认创建的Updater实例。要使用更多信息创建，请使用 <see cref="CreateUpdaterInstance"/> 方法，请确保在使用本属性之前创建。
 		/// </summary>
-		public static Updater Instance
-		{
-			get { return _instance ?? (_instance = CreateUpdaterInstance((Version)null, null)); }
-		}
+		public static Updater Instance => _instance ?? (_instance = CreateUpdaterInstance((Version)null, null));
 
 		/// <summary>
 		/// 创建自动更新客户端
