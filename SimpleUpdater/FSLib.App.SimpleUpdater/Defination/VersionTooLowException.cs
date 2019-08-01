@@ -25,7 +25,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <param name="currentVersion"></param>
 		/// <param name="minimumVersion"></param>
 		public VersionTooLowException(Version currentVersion, Version minimumVersion) :
-			base(string.Format(SR.Ex_VersionTooLow, currentVersion, minimumVersion))
+			base(string.Format(SR.Ex_VersionTooLow, minimumVersion, currentVersion))
 		{
 			CurrentVersion = currentVersion;
 			MinimumVersion = minimumVersion;
