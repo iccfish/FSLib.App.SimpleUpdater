@@ -27,5 +27,18 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 				if (item is UpdateControl.ControlBase) item.Visible = false;
 			}
 		}
+
+		/// <summary>
+		/// 应用主题
+		/// </summary>
+		/// <param name="style"></param>
+		protected override void ApplyTheme(DialogStyle style)
+		{
+			base.ApplyTheme(style);
+
+			panel1.BackColor = style.TitleBackColor;
+			panel1.ForeColor = style.TitleForeColor;
+			pictureBox1.Image = style.Icon;
+		}
 	}
 }

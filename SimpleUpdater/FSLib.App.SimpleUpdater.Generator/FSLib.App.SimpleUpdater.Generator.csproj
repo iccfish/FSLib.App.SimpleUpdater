@@ -85,6 +85,15 @@
     <Compile Include="BuilderInterface\FormBuildUi\MiniBuildUi.Designer.cs">
       <DependentUpon>MiniBuildUi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProjectComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ThemeConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ThemeConfig.Designer.cs">
+      <DependentUpon>ThemeConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Defination\AuProject.cs" />
     <Compile Include="Controls\AboutPanel.cs">
       <SubType>UserControl</SubType>
@@ -137,10 +146,10 @@
       <DependentUpon>SelectVerificationLevel.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="Dialogs\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Dialogs\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="PackageEventArgs.cs" />
@@ -174,13 +183,16 @@
     <EmbeddedResource Include="Controls\OptionTab.resx">
       <DependentUpon>OptionTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ThemeConfig.resx">
+      <DependentUpon>ThemeConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PackageGenerateResult.resx">
       <DependentUpon>PackageGenerateResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectVerificationLevel.resx">
       <DependentUpon>SelectVerificationLevel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Dialogs\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

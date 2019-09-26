@@ -11,6 +11,8 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 	using BuilderInterface;
 
+	using Dialogs;
+
 	static class Program
 	{
 		internal static bool Running;

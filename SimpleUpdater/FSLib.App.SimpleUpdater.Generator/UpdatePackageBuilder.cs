@@ -87,10 +87,14 @@ namespace FSLib.App.SimpleUpdater.Generator
 		}
 
 		/// <summary>
+		/// 项目正在卸载
+		/// </summary>
+		public event EventHandler<PackageEventArgs> ProjectClosing;
+
+		/// <summary>
 		/// 项目已卸载
 		/// </summary>
 		public event EventHandler<PackageEventArgs> ProjectClosed;
-
 		/// <summary>
 		/// 引发 <see cref="ProjectClosed" /> 事件
 		/// </summary>

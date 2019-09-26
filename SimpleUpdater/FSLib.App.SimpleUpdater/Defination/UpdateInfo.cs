@@ -6,7 +6,7 @@
 	using System.Text.RegularExpressions;
 
 	using Annotations;
-
+	using FSLib.App.SimpleUpdater.Dialogs;
 	using global::SimpleUpdater.Attributes;
 
 	using Wrapper;
@@ -592,10 +592,28 @@
 
 		#endregion
 
+		private DialogStyle _dialogStyle;
+
+		/// <summary>
+		/// 获得或设置对话框主题
+		/// </summary>
+		public DialogStyle DialogStyle
+		{
+			get => _dialogStyle;
+			set
+			{
+				if (_dialogStyle == value)
+					return;
+
+				_dialogStyle = value;
+				OnPropertyChanged(nameof(DialogStyle));
+			}
+		}
+
 		#region 受保护函数
 
 		/// <summary>
-		/// 
+		/// 当属性发生变更时引发
 		/// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -607,8 +625,7 @@
 		protected virtual void OnPropertyChanged(string propertyName)
 		{
 			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null)
-				handler(this, new PropertyChangedEventArgs(propertyName));
+			handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 		#endregion
 	}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -148,7 +148,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -181,7 +181,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -214,7 +214,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -247,11 +247,14 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
+  <metadata name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>361, 17</value>
+  </metadata>
   <data name="txtAppName.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 11</value>
   </data>
@@ -261,9 +264,6 @@
   <data name="txtAppName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <metadata name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>361, 17</value>
-  </metadata>
   <data name="txtAppName.ToolTip" xml:space="preserve">
     <value>显示的应用程序标题</value>
   </data>
@@ -274,7 +274,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtAppName.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtAppName.ZOrder" xml:space="preserve">
     <value>29</value>
@@ -298,7 +298,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPublishUrl.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtPublishUrl.ZOrder" xml:space="preserve">
     <value>30</value>
@@ -310,7 +310,7 @@
     <value>12, 432</value>
   </data>
   <data name="pbProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 15</value>
+    <value>795, 15</value>
   </data>
   <data name="pbProgress.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -330,11 +330,14 @@
   <data name="&gt;&gt;pbProgress.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="btnCreate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="btnCreate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnCreate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>639, 453</value>
+    <value>692, 453</value>
   </data>
   <data name="btnCreate.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 30</value>
@@ -385,7 +388,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>20</value>
@@ -445,7 +448,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>22</value>
@@ -478,7 +481,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>24</value>
@@ -502,7 +505,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtAfterExecuteArgs.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtAfterExecuteArgs.ZOrder" xml:space="preserve">
     <value>19</value>
@@ -526,7 +529,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPreExecuteArgs.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtPreExecuteArgs.ZOrder" xml:space="preserve">
     <value>21</value>
@@ -551,7 +554,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtAppVersion.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtAppVersion.ZOrder" xml:space="preserve">
     <value>31</value>
@@ -579,7 +582,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtTimeout.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtTimeout.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -603,7 +606,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtNewSoftDir.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtNewSoftDir.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -627,7 +630,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPackagePath.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtPackagePath.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -642,7 +645,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>770, 489</value>
+    <value>819, 489</value>
   </data>
   <data name="btnOpenProject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -698,29 +701,6 @@
   <data name="&gt;&gt;btnSaveProject.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="chkRandomPackageName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkRandomPackageName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkRandomPackageName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>414, 119</value>
-  </data>
-  <data name="chkRandomPackageName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 16</value>
-  </data>
-  <data name="chkRandomPackageName.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="chkRandomPackageName.Text" xml:space="preserve">
-    <value>升级包文件名随机命名 (!请看鼠标提示!)</value>
-  </data>
-  <data name="chkRandomPackageName.ToolTip" xml:space="preserve">
-    <value>使用随机生成的文件名（GUID）来作为升级包的名字，而不是路径相关的名字。
-选中此选项有助于改善部分网络运营商喜欢根据文件名来缓存文件导致的意外更新失败。
-但此选项会导致目标目录中每次文件名都不一致，建议手动或自动清理以免文件多余。</value>
-  </data>
   <data name="&gt;&gt;chkRandomPackageName.Name" xml:space="preserve">
     <value>chkRandomPackageName</value>
   </data>
@@ -728,33 +708,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkRandomPackageName.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;chkRandomPackageName.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="chkCleanTargetDirectory.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkCleanTargetDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkCleanTargetDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 119</value>
-  </data>
-  <data name="chkCleanTargetDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 16</value>
-  </data>
-  <data name="chkCleanTargetDirectory.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="chkCleanTargetDirectory.Text" xml:space="preserve">
-    <value>生成之前清理目标目录 (!危险! 请务必看鼠标提示!)</value>
-  </data>
-  <data name="chkCleanTargetDirectory.ToolTip" xml:space="preserve">
-    <value>在生成目标升级包之前，清理升级包目录。
-清理的内容包括更新信息文件，以及升级包文件。这里的文件是根据设置的文件名和扩展名自动查找的。
-为了防止您的文件被误删，强烈建议为升级包建立单独的目录！</value>
   </data>
   <data name="&gt;&gt;chkCleanTargetDirectory.Name" xml:space="preserve">
     <value>chkCleanTargetDirectory</value>
@@ -763,28 +720,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkCleanTargetDirectory.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;chkCleanTargetDirectory.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="btnBind.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnBind.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 9</value>
-  </data>
-  <data name="btnBind.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="btnBind.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="btnBind.Text" xml:space="preserve">
-    <value>绑定</value>
-  </data>
-  <data name="btnBind.ToolTip" xml:space="preserve">
-    <value>将版本信息绑定到指定的文件上，将不必手动输入，每次构建的时候将会自动读取</value>
   </data>
   <data name="&gt;&gt;btnBind.Name" xml:space="preserve">
     <value>btnBind</value>
@@ -793,31 +732,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnBind.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;btnBind.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkHideAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 175</value>
-  </data>
-  <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="chkHideAfter.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="chkHideAfter.Text" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="chkHideAfter.ToolTip" xml:space="preserve">
-    <value>隐藏进程执行的窗口</value>
   </data>
   <data name="&gt;&gt;chkHideAfter.Name" xml:space="preserve">
     <value>chkHideAfter</value>
@@ -826,31 +744,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkHideAfter.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;chkHideAfter.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkHideBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 148</value>
-  </data>
-  <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="chkHideBefore.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="chkHideBefore.Text" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="chkHideBefore.ToolTip" xml:space="preserve">
-    <value>隐藏进程执行的窗口</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.Name" xml:space="preserve">
     <value>chkHideBefore</value>
@@ -859,28 +756,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;chkHideBefore.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="browseFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 92</value>
-  </data>
-  <data name="browseFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="browseFile.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="browseFile.Text" xml:space="preserve">
-    <value>浏览</value>
-  </data>
-  <data name="browseFile.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;browseFile.Name" xml:space="preserve">
     <value>browseFile</value>
@@ -889,28 +768,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;browseFile.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;browseFile.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnBrowseFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 65</value>
-  </data>
-  <data name="btnBrowseFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="btnBrowseFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btnBrowseFolder.Text" xml:space="preserve">
-    <value>浏览</value>
-  </data>
-  <data name="btnBrowseFolder.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.Name" xml:space="preserve">
     <value>btnBrowseFolder</value>
@@ -919,26 +780,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="label25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 314</value>
-  </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>643, 29</value>
-  </data>
-  <data name="label25.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>文件为增量更新时可设置依赖组件，如果检测组件不存在则会跳过对指定文件的更新。组件ID对始终更新的文件无效。
-多个组件标记之间用空格或半角逗号隔开。</value>
   </data>
   <data name="&gt;&gt;label25.Name" xml:space="preserve">
     <value>label25</value>
@@ -947,25 +792,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label25.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
     <value>11</value>
-  </data>
-  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 234</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 29</value>
-  </data>
-  <data name="label23.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>(默认为zip，但是个别ISP喜欢拦截这种扩展名并重定向。设置后，务必确认此文件类型可以在服务器中正确下载)</value>
   </data>
   <data name="&gt;&gt;label23.Name" xml:space="preserve">
     <value>label23</value>
@@ -974,28 +804,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 204</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 12</value>
-  </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>（秒,0为不限制）</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
@@ -1004,25 +816,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
     <value>13</value>
-  </data>
-  <data name="txtCompFlag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 265</value>
-  </data>
-  <data name="txtCompFlag.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtCompFlag.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="txtCompFlag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>643, 46</value>
-  </data>
-  <data name="txtCompFlag.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
   </data>
   <data name="&gt;&gt;txtCompFlag.Name" xml:space="preserve">
     <value>txtCompFlag</value>
@@ -1031,22 +828,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtCompFlag.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtCompFlag.ZOrder" xml:space="preserve">
     <value>15</value>
-  </data>
-  <data name="txtPackageExtension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 231</value>
-  </data>
-  <data name="txtPackageExtension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 21</value>
-  </data>
-  <data name="txtPackageExtension.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="txtPackageExtension.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
   </data>
   <data name="&gt;&gt;txtPackageExtension.Name" xml:space="preserve">
     <value>txtPackageExtension</value>
@@ -1055,24 +840,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPackageExtension.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;txtPackageExtension.ZOrder" xml:space="preserve">
     <value>16</value>
-  </data>
-  <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 173</value>
-  </data>
-  <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 20</value>
-  </data>
-  <data name="fileAfterExecute.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="fileAfterExecute.ToolTip" xml:space="preserve">
-    <value>选择更新前执行的可执行文件。
-文件将会在目标程序目录中执行。
-如果下拉框为空，请检查新版本目录中是否包含正确的文件。</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Name" xml:space="preserve">
     <value>fileAfterExecute</value>
@@ -1081,22 +852,10 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
     <value>23</value>
-  </data>
-  <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 145</value>
-  </data>
-  <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 20</value>
-  </data>
-  <data name="filePreExecute.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="filePreExecute.ToolTip" xml:space="preserve">
-    <value>选择更新前执行的可执行文件。文件将会在临时目录中执行而不是目标程序目录中。如果下拉框为空，请检查新版本目录中是否包含正确的文件。</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Name" xml:space="preserve">
     <value>filePreExecute</value>
@@ -1105,31 +864,10 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
     <value>25</value>
-  </data>
-  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label24.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun-ExtB, 9pt, style=Bold</value>
-  </data>
-  <data name="label24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 268</value>
-  </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 12</value>
-  </data>
-  <data name="label24.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>组件标记</value>
   </data>
   <data name="&gt;&gt;label24.Name" xml:space="preserve">
     <value>label24</value>
@@ -1138,31 +876,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label24.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
     <value>26</value>
-  </data>
-  <data name="label22.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun-ExtB, 9pt, style=Bold</value>
-  </data>
-  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 234</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 12</value>
-  </data>
-  <data name="label22.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>文件包扩展名</value>
   </data>
   <data name="&gt;&gt;label22.Name" xml:space="preserve">
     <value>label22</value>
@@ -1171,31 +888,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label22.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
     <value>27</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>SimSun-ExtB, 9pt, style=Bold</value>
-  </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 204</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 12</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>执行时间限制</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -1204,36 +900,39 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tpInfo</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>28</value>
   </data>
-  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
-  </data>
-  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpInfo.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
+  <data name="tpInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpInfo.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tpInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 372</value>
+  </data>
+  <data name="tpInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tpInfo.Text" xml:space="preserve">
     <value>基本信息</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;tpInfo.Name" xml:space="preserve">
+    <value>tpInfo</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpInfo.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tpInfo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lnkBindDescToFile.AutoSize" type="System.Boolean, mscorlib">
@@ -1264,7 +963,7 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lnkBindDescToFile.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;lnkBindDescToFile.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1291,7 +990,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnClearRtf.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;btnClearRtf.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1318,7 +1017,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnEditRtf.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;btnEditRtf.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1345,7 +1044,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnBrowserRtf.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;btnBrowserRtf.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -1369,7 +1068,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rtfPath.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;rtfPath.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1390,7 +1089,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtUrl.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;txtUrl.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -1420,7 +1119,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label13.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -1450,7 +1149,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -1479,7 +1178,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -1509,7 +1208,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -1536,45 +1235,36 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtDesc.Parent" xml:space="preserve">
-    <value>tabPage6</value>
+    <value>tpDesc</value>
   </data>
   <data name="&gt;&gt;txtDesc.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPage6.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
-  </data>
-  <data name="tabPage6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tabPage6.Text" xml:space="preserve">
-    <value>更新说明</value>
-  </data>
-  <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
-    <value>tabPage6</value>
-  </data>
-  <data name="&gt;&gt;tabPage6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage6.Parent" xml:space="preserve">
-    <value>tcMain</value>
-  </data>
-  <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
+  <data name="tpDesc.ImageIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="txtPing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 20</value>
+  <data name="tpDesc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
   </data>
-  <data name="txtPing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 21</value>
+  <data name="tpDesc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="txtPing.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpDesc.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tpDesc.Text" xml:space="preserve">
+    <value>更新说明</value>
+  </data>
+  <data name="&gt;&gt;tpDesc.Name" xml:space="preserve">
+    <value>tpDesc</value>
+  </data>
+  <data name="&gt;&gt;tpDesc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tpDesc.Parent" xml:space="preserve">
+    <value>tcMain</value>
+  </data>
+  <data name="&gt;&gt;tpDesc.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="&gt;&gt;txtPing.Name" xml:space="preserve">
@@ -1588,24 +1278,6 @@
   </data>
   <data name="&gt;&gt;txtPing.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 23</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>通知地址</value>
   </data>
   <data name="&gt;&gt;label14.Name" xml:space="preserve">
     <value>label14</value>
@@ -1638,36 +1310,36 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gpUpdatePing.Parent" xml:space="preserve">
-    <value>tabPage7</value>
+    <value>tpServerOpt</value>
   </data>
   <data name="&gt;&gt;gpUpdatePing.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPage7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpServerOpt.ImageIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="tabPage7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="tpServerOpt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
   </data>
-  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpServerOpt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="tabPage7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="tpServerOpt.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
+  <data name="tpServerOpt.Text" xml:space="preserve">
     <value>服务器选项</value>
   </data>
-  <data name="&gt;&gt;tabPage7.Name" xml:space="preserve">
-    <value>tabPage7</value>
+  <data name="&gt;&gt;tpServerOpt.Name" xml:space="preserve">
+    <value>tpServerOpt</value>
   </data>
-  <data name="&gt;&gt;tabPage7.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpServerOpt.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage7.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpServerOpt.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tpServerOpt.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="options.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1677,7 +1349,7 @@
     <value>3, 3</value>
   </data>
   <data name="options.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
+    <value>781, 366</value>
   </data>
   <data name="options.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1689,36 +1361,39 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.OptionTab, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;options.Parent" xml:space="preserve">
-    <value>tabPage2</value>
+    <value>tpOption1</value>
   </data>
   <data name="&gt;&gt;options.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpOption1.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tpOption1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpOption1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpOption1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpOption1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
+  <data name="tpOption1.Text" xml:space="preserve">
     <value>更新选项1</value>
   </data>
-  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
-    <value>tabPage2</value>
+  <data name="&gt;&gt;tpOption1.Name" xml:space="preserve">
+    <value>tpOption1</value>
   </data>
-  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpOption1.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpOption1.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tpOption1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -1743,7 +1418,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label18.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1770,7 +1445,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1797,7 +1472,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label21.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1827,7 +1502,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -1858,7 +1533,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1888,7 +1563,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -1918,7 +1593,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -1951,7 +1626,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptForceUpdate.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptForceUpdate.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -1984,7 +1659,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptRequireAdminPrivilege.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptRequireAdminPrivilege.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -2017,7 +1692,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkAutoCloseSucceed.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkAutoCloseSucceed.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -2050,7 +1725,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkStillProptUserInfo.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkStillProptUserInfo.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -2083,7 +1758,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptError.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptError.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -2116,7 +1791,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptAutoExitProcess.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptAutoExitProcess.ZOrder" xml:space="preserve">
     <value>12</value>
@@ -2149,7 +1824,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkAutoEndAppDirProcesses.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkAutoEndAppDirProcesses.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -2182,7 +1857,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptAutoKillProcess.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptAutoKillProcess.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -2215,39 +1890,42 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkOptMustUpdate.Parent" xml:space="preserve">
-    <value>tabPage8</value>
+    <value>tpOption2</value>
   </data>
   <data name="&gt;&gt;chkOptMustUpdate.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="tabPage8.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="tpOption2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft YaHei UI, 9pt</value>
   </data>
-  <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpOption2.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="tabPage8.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tpOption2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpOption2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpOption2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="tabPage8.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpOption2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="tabPage8.Text" xml:space="preserve">
+  <data name="tpOption2.Text" xml:space="preserve">
     <value>更新选项2</value>
   </data>
-  <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
-    <value>tabPage8</value>
+  <data name="&gt;&gt;tpOption2.Name" xml:space="preserve">
+    <value>tpOption2</value>
   </data>
-  <data name="&gt;&gt;tabPage8.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpOption2.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage8.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpOption2.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tpOption2.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="fileConfig.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -2257,7 +1935,7 @@
     <value>3, 3</value>
   </data>
   <data name="fileConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
+    <value>781, 366</value>
   </data>
   <data name="fileConfig.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2269,37 +1947,94 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;fileConfig.Parent" xml:space="preserve">
-    <value>tabPage3</value>
+    <value>tpFile</value>
   </data>
   <data name="&gt;&gt;fileConfig.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpFile.ImageIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="tabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tpFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpFile.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpFile.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
+  <data name="tpFile.Text" xml:space="preserve">
     <value>文件配置</value>
   </data>
-  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
-    <value>tabPage3</value>
+  <data name="&gt;&gt;tpFile.Name" xml:space="preserve">
+    <value>tpFile</value>
   </data>
-  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpFile.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tpFile.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="themeConfig1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="themeConfig1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="themeConfig1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>781, 366</value>
+  </data>
+  <data name="themeConfig1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;themeConfig1.Name" xml:space="preserve">
+    <value>themeConfig1</value>
+  </data>
+  <data name="&gt;&gt;themeConfig1.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.ThemeConfig, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+  </data>
+  <data name="&gt;&gt;themeConfig1.Parent" xml:space="preserve">
+    <value>tpTheme</value>
+  </data>
+  <data name="&gt;&gt;themeConfig1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tpTheme.ImageIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tpTheme.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpTheme.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tpTheme.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
+  </data>
+  <data name="tpTheme.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="tpTheme.Text" xml:space="preserve">
+    <value>主题设置</value>
+  </data>
+  <data name="&gt;&gt;tpTheme.Name" xml:space="preserve">
+    <value>tpTheme</value>
+  </data>
+  <data name="&gt;&gt;tpTheme.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tpTheme.Parent" xml:space="preserve">
+    <value>tcMain</value>
+  </data>
+  <data name="&gt;&gt;tpTheme.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="argumentGenerator1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2308,7 +2043,7 @@
     <value>0, 0</value>
   </data>
   <data name="argumentGenerator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+    <value>787, 372</value>
   </data>
   <data name="argumentGenerator1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2320,34 +2055,37 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.Parent" xml:space="preserve">
-    <value>tabPage5</value>
+    <value>tpCmd</value>
   </data>
   <data name="&gt;&gt;argumentGenerator1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpCmd.ImageIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpCmd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
   </data>
-  <data name="tabPage5.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpCmd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
+  </data>
+  <data name="tpCmd.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="tabPage5.Text" xml:space="preserve">
+  <data name="tpCmd.Text" xml:space="preserve">
     <value>命令行生成</value>
   </data>
-  <data name="&gt;&gt;tabPage5.Name" xml:space="preserve">
-    <value>tabPage5</value>
+  <data name="&gt;&gt;tpCmd.Name" xml:space="preserve">
+    <value>tpCmd</value>
   </data>
-  <data name="&gt;&gt;tabPage5.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpCmd.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpCmd.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;tpCmd.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="aboutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2356,7 +2094,7 @@
     <value>3, 3</value>
   </data>
   <data name="aboutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 367</value>
+    <value>781, 366</value>
   </data>
   <data name="aboutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2368,43 +2106,127 @@
     <value>FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.Parent" xml:space="preserve">
-    <value>tabPage4</value>
+    <value>tpAbout</value>
   </data>
   <data name="&gt;&gt;aboutPanel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="tpAbout.ImageIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="tabPage4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tpAbout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="tpAbout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 373</value>
+  <data name="tpAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>787, 372</value>
   </data>
-  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+  <data name="tpAbout.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
+  <data name="tpAbout.Text" xml:space="preserve">
     <value>关于...</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
-    <value>tabPage4</value>
+  <data name="&gt;&gt;tpAbout.Name" xml:space="preserve">
+    <value>tpAbout</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+  <data name="&gt;&gt;tpAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tpAbout.Parent" xml:space="preserve">
     <value>tcMain</value>
   </data>
-  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;tpAbout.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <metadata name="illist.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>428, 17</value>
+  </metadata>
+  <data name="illist.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAB4
+        EAAAAk1TRnQBSQFMAgEBCAEAARgBAAEYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAATADAAEBAQABCAYAAQwYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8AFQAI/wL0
+        AfMB8gEHARAB7wL/AW0C6gETAhQBEwcSAesEAAH/BvQC/xMAAf8B9An/AfMBFQEUAREB/wLsAvAB7AES
+        AeoBrgG8ArQB9AK7AfQBbQIAAvQB8gEHAbUBzwK0AbUBBwHyAfMC9A7zAgAB/wHzCP8B8gEVARQBEgEU
+        Af8B6wHxAe8B9wHwAeoBbQETAfcCiwHyArQB9AHtAwAB9AG1ArQD1QK0AbsB/wIAAfIMtAH0AgABGQH/
+        AQkBGQH/BPQB8QIVAeoBFAHzAf8B6wH0AQcB7wH0AeoBEgHrAW0B6gFsAQcCtAH0Ae8CAAH0BrQD1QG0
+        AZEB9AEAAbQBCQvcAQkCAAH/AfMC/wL0AvMB8AIVAW0BFAHzAv8B7AH0AvMB9AFtARIB6gEHAfcBbQHs
+        AZEBtAHyAbwBAAH/CrQBmAFXAXIB/wG0AQkB3ArWAbUCAAH/AfQB/wL0AvMBvAIVAesBFAHxA/8B7AH0
+        AvMB9AHrAUsB6gHsAesB7wGSAW0B7AHvAbwBAAHwCrQBtQFYAVEBBwK0AQkK3AG1AfIBAAP/AvQB8wG8
+        ARQBFQHsARQB8AH0A/8B7QFYAjEBWAHsAW8B7AESAWcCvAEHAZIB7QH0AQAMtAFYAVcBcgK0AQkL3AG7
+        AQAD/wH0AfMBvAEUARUB7AEUAbwB8wH0A/8B9wFYAjEBWAHsAe8BmgHqAesBBwL3AfMB7wHzAf8FtAG1
+        AdYBtQK0AVEBcgJXAVADtAEJCtwBtQH0Av8C9AHwARQBFQHtARQBvALzAfQD/wHvAfQC8wH0Ae0BKwFT
+        AXQB7AHtAY0BvAHzAfAC/wK0AXIBtAHWAwkB1gF4AVgDVwFQAbQBuwK0Af8KGQHzA/8B8gGtARUB7QEU
+        AbwB8gLzAfED/wHvAVkCOAFZAZIBKwF1ARsB7AHtAZIB9AHwAfQBAAH/ArQBeAG1AQkCGQHdAQkBHAFY
+        A1cBUAG0AdwBtQq0AfIB9AP/AfMBrQHVAQkBtAG8A/MB9AEZA/8BBwFZAjgBWQH3AZMBGgF6AZoB7QHv
+        AbwB8gMAAewBcwJRAfEB9AH/ARkBCQG0BFcBcgG0AQkE3AYJAbUB/wEAAv8B9AGtAdUBCQG0AfEB8wEJ
+        AfMB8QEJAf8BCQEZAf8BvAH0AvMB9AHvAXQBUwFZAXoB7wG8AfAB/wMAAe8BcgFXAVgBeQL/ARkBCQG1
+        AVcBUAFyAVABvAG0AfQDGQEJB7UB/wIAAfQBrQHVAQkBtAHyAvQBGQH0AgAB8wIAAf8BvAGgAl4BoAHv
+        AXQBegGaAfQCvAUAAf8BUAJXAVgBeQLdAbQBkgFXAXgBVwFyAQAB3QW1Af8JAAGtAdUBCQG0AfQB/wHz
+        Ad0B/wEJARkB8wH0A/8BvAGgAl4BoAEHARwC8wG8AfEB/wYAAfIBUAJXAVEDtAG1AZgBeAFQAfQRAAHc
+        AQkBtAH0Av8BAAH/AfMG/wEAAbwE9AG8A/AB9AkAAfMB9wO0A9UBtAEJAf8SAAH0AdwB9AP/AQAB/wH0
+        A/8EAAHwBLwB8AH/AfMB/wsAAf8B8gEJA7QBCQHzCAAD9AH/A/QC/wkABPQC/wcAAf8B8wfsAfMB/wUA
+        AvQB8gEHAuwB7wHzAvQDAAH/AQAC9AHyAbUFtAG1AfIB8wL0BQAB/wG1AbQBuwHyAvMC9AH/BQAB9AEH
+        Bf8BBwHzBgAC/wEAAewC9wHsAQAC/wYAAfQItAG1AfQIAAHyA7QB8gH/CQAB/wUHAv8FAAHyAuwBBwHs
+        AvcB7AHvAe0B7AHyBAAB8gu0AfQBAAH0AbUGtALVA7QBtQH0BwAF7AH/BQAB8wHsAvcB7QT3Ae0C9wHt
+        AfICAAH/BLQB1gMJAdYDtAG1Af8BtAHVBtYCtAPWAdUBtAEAEPcBAAH0AewB9wjvAfcB7AH0AgABCQK0
+        AbUC1gEJAfQBCQLWA7QB8QG0AdYHtAHVAdYCtAHWAbQBAAH3DvAB9wIAAvcE7wH3A+8B9wHtAwABtQHW
+        AbUD1gHdAfQBCQPWAbQBtQG7AbQB3AG0A9YC3ATWAbQB3AG0AQAB9wHwDLQB8AH3Av8B7QPvAfcB7QH3
+        Ae0BkgLvAe0D/wG0BdYB3QH/AQkF1gG1AbQB3AHVCdwB1gHcAbQBAAH3AfABtArWAbQB8AH3Ae0B9wTv
+        AZIB/wEAAfQBkgPvAfcB7AH/AbUC3APWAd0B/wHdBNYB3AG1AbQC3AHdAfQCCQH0AQkB3AIZAtwB1QEA
+        AfcB8AG0CtYBtAHwAfcB7QQHAe8B9wMAAfcEBwHsAf8BtQEJBNwBGQH/Ad0D3AHWAQkBtQG0AQkB3AK0
+        AdYDtAHWArQC3AHVAQAB9wHwAbQK3AG0AfAB9wHtAZIEBwHtAf8BAAH0AfcDBwH3AewBAAYJA7UE3AIJ
+        AbQBCQvcAQkB1QEAAfcB8AG0CtwBtAHwAfcC/wHtAwcB7wP3AwcB7QL/AQAB8QIJA9wB3QH/Ad0C3AIJ
+        AdwB8wG0DdwB1QEAAfcB8AG0CtwBtAHwAfcCAAL3CAcB9wGSAwAB/wMJAtwBGQH/ARkC3AMJAQAB1Q3c
+        AdUBAAH3AfABtArcAbQB8AH3AQAB8gHtAQcCvAIHArwDBwHtAfIDAAH0BQkC3AQJAf8BAAHcDQkB3AEA
+        AfcB8Ay0AfAB9wEAAf8B7QHxAe8B7QHvArwB7wHtAQcB8QHtAfQEAAH/AQkB3AEJAd0BGQHdAgkB3QH/
+        AgABCQ3WAQkBAAH3Dv8B9wIAAfQB7QGSAfQB7QL/Ae0B9AH3Ae0B9AYAAf8B8wUJAfQUABAHAwAC/wEA
+        AQcD9wEAAv8DAAFCAU0BPgcAAT4DAAEoAwABQAMAATADAAEBAQABAQUAAYABARYAA/+BAAL/BAAB8AEH
+        Av8EAAHAAgABAwQAAeABAwEAAQMEAAHAAQEBAAEDBAABgAIAAQMEAAGAAgABAQQAAYACAAEBEwABAQcA
+        AQMBgAIAAQIDAAEDAYACAAEDAQABNgEAAQ8BgAIBAf8DAAEPAcABAQL/AQIBAQEAAT8B4AEDAv8BAgEP
+        AQABfwHwAQ8B8AEHAfwBDwHgAQMB4AEHAUABAAH4AQEB8AEHAeQBJwHgAQMB/AEPAfgBBwHAAQMBwAEB
+        AQABAQH8AQ8BgAEBAYACAAEBAgABgAEBAYACAAEBAgABwAEDAYACAAEBBwABAQMAAYADAAEBAgABAQHA
+        AwABAQMAAoACAAEBBAABgAIAAQECAAHAAQMBgAEBAQABAQIAAYABAQHAAQEBAAEBAgABgAEBAeABAwEA
+        AQECAAHAAQMB8AEPAv8CAAHkAScL
+</value>
   </data>
   <data name="tcMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
   <data name="tcMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 399</value>
+    <value>795, 399</value>
   </data>
   <data name="tcMain.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -2421,11 +2243,14 @@
   <data name="&gt;&gt;tcMain.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnOpen.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="btnOpen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnOpen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>518, 453</value>
+    <value>571, 453</value>
   </data>
   <data name="btnOpen.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 30</value>
@@ -2707,9 +2532,6 @@
         AACAAQAAgAEAAIABAACAAQAAgAEAAP//AAA=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -2721,6 +2543,12 @@
   </data>
   <data name="&gt;&gt;epp.Type" xml:space="preserve">
     <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;illist.Name" xml:space="preserve">
+    <value>illist</value>
+  </data>
+  <data name="&gt;&gt;illist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fbd.Name" xml:space="preserve">
     <value>fbd</value>
@@ -2740,7 +2568,572 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 204</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>执行时间限制</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 204</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>（秒,0为不限制）</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="chkRandomPackageName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkRandomPackageName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkRandomPackageName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 119</value>
+  </data>
+  <data name="chkRandomPackageName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 16</value>
+  </data>
+  <data name="chkRandomPackageName.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="chkRandomPackageName.Text" xml:space="preserve">
+    <value>升级包文件名随机命名 (!请看鼠标提示!)</value>
+  </data>
+  <data name="chkRandomPackageName.ToolTip" xml:space="preserve">
+    <value>使用随机生成的文件名（GUID）来作为升级包的名字，而不是路径相关的名字。
+选中此选项有助于改善部分网络运营商喜欢根据文件名来缓存文件导致的意外更新失败。
+但此选项会导致目标目录中每次文件名都不一致，建议手动或自动清理以免文件多余。</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Name" xml:space="preserve">
+    <value>chkRandomPackageName</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;chkRandomPackageName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkCleanTargetDirectory.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkCleanTargetDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 119</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 16</value>
+  </data>
+  <data name="chkCleanTargetDirectory.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="chkCleanTargetDirectory.Text" xml:space="preserve">
+    <value>生成之前清理目标目录 (!危险! 请务必看鼠标提示!)</value>
+  </data>
+  <data name="chkCleanTargetDirectory.ToolTip" xml:space="preserve">
+    <value>在生成目标升级包之前，清理升级包目录。
+清理的内容包括更新信息文件，以及升级包文件。这里的文件是根据设置的文件名和扩展名自动查找的。
+为了防止您的文件被误删，强烈建议为升级包建立单独的目录！</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Name" xml:space="preserve">
+    <value>chkCleanTargetDirectory</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;chkCleanTargetDirectory.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnBind.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnBind.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 9</value>
+  </data>
+  <data name="btnBind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="btnBind.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnBind.Text" xml:space="preserve">
+    <value>绑定</value>
+  </data>
+  <data name="btnBind.ToolTip" xml:space="preserve">
+    <value>将版本信息绑定到指定的文件上，将不必手动输入，每次构建的时候将会自动读取</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Name" xml:space="preserve">
+    <value>btnBind</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBind.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;btnBind.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkHideAfter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 175</value>
+  </data>
+  <data name="chkHideAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideAfter.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideAfter.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Name" xml:space="preserve">
+    <value>chkHideAfter</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;chkHideAfter.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkHideBefore.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideBefore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 148</value>
+  </data>
+  <data name="chkHideBefore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkHideBefore.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chkHideBefore.Text" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="chkHideBefore.ToolTip" xml:space="preserve">
+    <value>隐藏进程执行的窗口</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Name" xml:space="preserve">
+    <value>chkHideBefore</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;chkHideBefore.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="browseFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="browseFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 92</value>
+  </data>
+  <data name="browseFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="browseFile.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="browseFile.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="browseFile.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Name" xml:space="preserve">
+    <value>browseFile</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;browseFile.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;browseFile.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnBrowseFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnBrowseFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 65</value>
+  </data>
+  <data name="btnBrowseFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
+  <data name="btnBrowseFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnBrowseFolder.Text" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="btnBrowseFolder.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Name" xml:space="preserve">
+    <value>btnBrowseFolder</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseFolder.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 314</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>643, 29</value>
+  </data>
+  <data name="label25.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>文件为增量更新时可设置依赖组件，如果检测组件不存在则会跳过对指定文件的更新。组件ID对始终更新的文件无效。
+多个组件标记之间用空格或半角逗号隔开。</value>
+  </data>
+  <data name="&gt;&gt;label25.Name" xml:space="preserve">
+    <value>label25</value>
+  </data>
+  <data name="&gt;&gt;label25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label25.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 234</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>459, 29</value>
+  </data>
+  <data name="label23.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>(默认为zip，但是个别ISP喜欢拦截这种扩展名并重定向。设置后，务必确认此文件类型可以在服务器中正确下载)</value>
+  </data>
+  <data name="&gt;&gt;label23.Name" xml:space="preserve">
+    <value>label23</value>
+  </data>
+  <data name="&gt;&gt;label23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtCompFlag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 265</value>
+  </data>
+  <data name="txtCompFlag.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtCompFlag.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtCompFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>643, 46</value>
+  </data>
+  <data name="txtCompFlag.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtCompFlag.Name" xml:space="preserve">
+    <value>txtCompFlag</value>
+  </data>
+  <data name="&gt;&gt;txtCompFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCompFlag.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;txtCompFlag.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="txtPackageExtension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 231</value>
+  </data>
+  <data name="txtPackageExtension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="txtPackageExtension.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="txtPackageExtension.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Name" xml:space="preserve">
+    <value>txtPackageExtension</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;txtPackageExtension.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="fileAfterExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 173</value>
+  </data>
+  <data name="fileAfterExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 20</value>
+  </data>
+  <data name="fileAfterExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="fileAfterExecute.ToolTip" xml:space="preserve">
+    <value>选择更新前执行的可执行文件。
+文件将会在目标程序目录中执行。
+如果下拉框为空，请检查新版本目录中是否包含正确的文件。</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Name" xml:space="preserve">
+    <value>fileAfterExecute</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;fileAfterExecute.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="filePreExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 145</value>
+  </data>
+  <data name="filePreExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 20</value>
+  </data>
+  <data name="filePreExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="filePreExecute.ToolTip" xml:space="preserve">
+    <value>选择更新前执行的可执行文件。文件将会在临时目录中执行而不是目标程序目录中。如果下拉框为空，请检查新版本目录中是否包含正确的文件。</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Name" xml:space="preserve">
+    <value>filePreExecute</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Type" xml:space="preserve">
+    <value>FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox, 自动更新包生成工具, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c532149a76b9a64b</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;filePreExecute.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label24.Font" type="System.Drawing.Font, System.Drawing">
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
+  </data>
+  <data name="label24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 268</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 12</value>
+  </data>
+  <data name="label24.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>组件标记</value>
+  </data>
+  <data name="&gt;&gt;label24.Name" xml:space="preserve">
+    <value>label24</value>
+  </data>
+  <data name="&gt;&gt;label24.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label24.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="label22.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
+    <value>SimSun-ExtB, 9pt, style=Bold</value>
+  </data>
+  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 234</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>文件包扩展名</value>
+  </data>
+  <data name="&gt;&gt;label22.Name" xml:space="preserve">
+    <value>label22</value>
+  </data>
+  <data name="&gt;&gt;label22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
+    <value>tpInfo</value>
+  </data>
+  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="txtPing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="txtPing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 21</value>
+  </data>
+  <data name="txtPing.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Name" xml:space="preserve">
+    <value>txtPing</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPing.Parent" xml:space="preserve">
+    <value>gpUpdatePing</value>
+  </data>
+  <data name="&gt;&gt;txtPing.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 23</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>通知地址</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>gpUpdatePing</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="fbd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>220, 17</value>
+  </metadata>
+  <metadata name="tip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>361, 17</value>
   </metadata>
 </root>

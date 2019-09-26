@@ -25,6 +25,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			AutoStartUpdate = true;
 			InitUpdaterParameter();
 
+			Load += AbstractUpdateBase_Load;
 			Shown += AbstractUpdateBase_Shown;
 
 			//挂钩事件
@@ -67,6 +68,11 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 
 			//misc
 			instance.MinmumVersionRequired += (s, e) => OnMiniumalVersionRequired();
+		}
+
+		private void AbstractUpdateBase_Load(object sender, EventArgs e)
+		{
+			ApplyTheme(DialogStyle);
 		}
 
 		private void AbstractUpdateBase_Shown(object sender, EventArgs e)
@@ -421,6 +427,21 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		/// <summary>
 		/// 返回当前的更新实例
 		/// </summary>
-		protected Updater UpdaterInstance { get { return Updater.Instance; } }
+		protected Updater UpdaterInstance => Updater.Instance;
+
+		/// <summary>
+		/// 获得当前的对话框主题
+		/// </summary>
+		protected DialogStyle DialogStyle => Updater.Instance.Context.DialogStyle;
+
+		/// <summary>
+		/// 应用主题
+		/// </summary>
+		/// <param name="style"></param>
+		protected virtual void ApplyTheme(DialogStyle style)
+		{
+			ForeColor = style.ForeColor;
+			BackColor = style.BackColor;
+		}
 	}
 }

@@ -52,6 +52,7 @@
 			<DependentUpon>CloseApp.cs</DependentUpon>
 		</Compile>
 		<Compile Include="DeletePreviousProgramMethod.cs" />
+		<Compile Include="Dialogs\DialogStyle.cs" />
 		<Compile Include="Dialogs\EnsureUpdate.cs">
 			<SubType>Form</SubType>
 		</Compile>

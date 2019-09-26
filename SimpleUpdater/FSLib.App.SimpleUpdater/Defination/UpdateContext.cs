@@ -587,6 +587,17 @@
 		/// 获得或设置是否自动关闭之前的找到更新的提示框
 		/// </summary>
 		public bool AutoClosePreviousPopup { get; set; }
+
+		private DialogStyle _dialogStyle;
+
+		/// <summary>
+		/// 获得或设置更新对话框主题配置
+		/// </summary>
+		public DialogStyle DialogStyle
+		{
+			get => UpdateInfo?.DialogStyle ?? _dialogStyle ?? DialogStyle.Default;
+			set => _dialogStyle = value;
+		}
 	}
 }
 

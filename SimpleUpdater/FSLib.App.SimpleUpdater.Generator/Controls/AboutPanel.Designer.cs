@@ -65,9 +65,9 @@
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBox1.Size = new System.Drawing.Size(684, 257);
 			this.textBox1.TabIndex = 2;
-			this.textBox1.Text = "感谢使用升级包创建工具和升级库。\r\n\r\n官方网站：http://www.fishlee.net/soft/simple_autoupdater\r\n如果您有任何问题" +
-    "或建议，请在讨论区反馈：http://www.fishlee.net/Discussion/Index/33\r\n\r\n关注我的微博： http://t.qq.co" +
-    "m/ccfish\r\n欢迎加入我们的技术交流群：134546850";
+			this.textBox1.Text = "感谢使用升级包创建工具和升级库。\r\n\r\n官方网站：https://www.fishlee.net/soft/simple_autoupdater\r\n开源仓库：ht" +
+    "tps://github.com/iccfish/FSLib.App.SimpleUpdater\r\n关注我的微博： https://weibo.com/imcf" +
+    "ish/\r\n\r\n欢迎加入我们的技术交流群：134546850";
 			// 
 			// AboutPanel
 			// 
