@@ -181,6 +181,28 @@ namespace FSLib.App.SimpleUpdater
 			return Instance.BeginCheckUpdateInProcess();
 		}
 
+		/// <summary>
+		/// 提供一个最简单的自动更新入口
+		/// </summary>
+		/// <param name="templateUrl">更新模板URL. 如果不传递或传递空的地址, 请使用 <see cref="T:FSLib.App.SimpleUpdater.UpdateableAttribute"/> 属性来标记更新地址</param>
+		/// <param name="xmlFileName">更新XML信息文件名</param>
+		/// <param name="userAgent">请求的UserAgent</param>
+		/// <returns>返回是否开始检查操作</returns>
+		public static bool CheckUpdateSimple(string templateUrl, string xmlFileName, string userAgent)
+		{
+			if (_instance == null)
+				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+			else if (!string.IsNullOrEmpty(templateUrl))
+			{
+				_instance.Context.UpdateDownloadUrl = templateUrl;
+				_instance.Context.UpdateInfoFileName = xmlFileName;
+			}
+			_instance.Context.EnableEmbedDialog = true;
+			_instance.Context.UserAgent = userAgent;
+
+			return Instance.BeginCheckUpdateInProcess();
+		}
+
 		//要求最低版本
 		static void Instance_MinmumVersionRequired(object sender, EventArgs e)
 		{
