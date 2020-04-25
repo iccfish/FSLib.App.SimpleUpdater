@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -920,7 +920,7 @@ namespace FSLib.App.SimpleUpdater
 			ExtractPackage(e);
 
 			//关闭主程序
-			if (!CloseApplication(e)) throw new Exception(SR.Updater_UpdateCanceledByCloseApp);
+			if (!CloseApplication(e)) throw new OperationCanceledException(SR.Updater_UpdateCanceledByCloseApp);
 
 			//运行安装前进程
 			e.PostEvent(OnExecuteExternalProcessBefore);

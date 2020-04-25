@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -143,7 +143,7 @@
     <comment>MinmumVersionRequired_Desc description</comment>
   </data>
   <data name="UpdatesFound_Tip" xml:space="preserve">
-    <value>亲，『{1}』可以升级到 {0} 了喔，现在就动手呗？</value>
+    <value>『{1}』已经可以自动更新到 {0} 是否现在就更新？</value>
     <comment>UpdatesFound_Top description</comment>
   </data>
   <data name="DonotRunMeDirectly" xml:space="preserve">
@@ -213,5 +213,11 @@
   </data>
   <data name="Ex_VersionTooLow" xml:space="preserve">
     <value>当前的更新要求最低版本为 {0}，已安装版本为 {1}，请手动更新。</value>
+  </data>
+  <data name="Update_Cancelled" xml:space="preserve">
+    <value>更新已取消</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>更新失败</value>
   </data>
 </root>
