@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +24,17 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 		{
 			HideControls();
 			this.Visible = true;
+
+			if (Updater.Instance.Context.Exception is OperationCanceledException)
+			{
+				StepTitle = SR.Update_Cancelled;
+			}
+			else
+			{
+				StepTitle = SR.Update_Failed;
+			}
+
+
 			StepDesc = Updater.Instance.Context.Exception.Message;
 			System.Diagnostics.Trace.TraceWarning(Updater.Instance.Context.Exception.ToString());
 

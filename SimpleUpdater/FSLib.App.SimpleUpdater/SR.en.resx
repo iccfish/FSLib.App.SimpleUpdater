@@ -197,4 +197,10 @@
   <data name="Ex_VersionTooLow" xml:space="preserve">
     <value>Unable to update due to current version '{1}' was too low to perform update (required '{0}').</value>
   </data>
+  <data name="Update_Cancelled" xml:space="preserve">
+    <value>Update Cancelled</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Update Failed</value>
+  </data>
 </root>

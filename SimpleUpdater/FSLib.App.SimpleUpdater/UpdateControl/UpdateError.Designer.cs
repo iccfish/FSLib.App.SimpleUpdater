@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.UpdateControl
+namespace FSLib.App.SimpleUpdater.UpdateControl
 {
 	partial class UpdateError
 	{
