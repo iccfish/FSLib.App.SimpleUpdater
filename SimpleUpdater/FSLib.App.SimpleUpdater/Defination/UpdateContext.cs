@@ -379,6 +379,11 @@
 		/// <remarks></remarks>
 		public string ProxyAddress { get; set; }
 
+		/// <summary> 获得或设置网络请求的 UserAgent </summary>
+		/// <value></value>
+		/// <remarks></remarks>
+		public string UserAgent { get; set; }
+
 		/// <summary> 创建新的WebClient </summary>
 		/// <returns></returns>
 		public WebClient CreateWebClient()
@@ -406,7 +411,13 @@
 		public virtual void ResetWebClient(WebClient client)
 		{
 			client.Headers.Clear();
-			client.Headers.Add(HttpRequestHeader.UserAgent, "Fish SimpleUpdater v" + Updater.UpdaterClientVersion);
+
+			var _ua = UserAgent;
+			if (String.IsNullOrEmpty(_ua))
+			{
+				_ua = "Fish SimpleUpdater v" + Updater.UpdaterClientVersion;
+			}
+			client.Headers.Add(HttpRequestHeader.UserAgent, _ua);
 			//client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
 			client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
 			client.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
