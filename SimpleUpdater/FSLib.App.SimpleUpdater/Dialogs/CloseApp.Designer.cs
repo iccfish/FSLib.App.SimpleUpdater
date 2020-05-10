@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Dialogs
+namespace FSLib.App.SimpleUpdater.Dialogs
 {
 	partial class CloseApp
 	{
@@ -32,6 +32,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.processList = new System.Windows.Forms.ListBox();
 			this.btnAutoClose = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -41,23 +42,34 @@
 			// 
 			// processList
 			// 
-			resources.ApplyResources(this.processList, "processList");
 			this.processList.FormattingEnabled = true;
+			resources.ApplyResources(this.processList, "processList");
 			this.processList.Name = "processList";
 			// 
 			// btnAutoClose
 			// 
 			resources.ApplyResources(this.btnAutoClose, "btnAutoClose");
+			this.btnAutoClose.ForeColor = System.Drawing.Color.RoyalBlue;
 			this.btnAutoClose.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.Info;
 			this.btnAutoClose.Name = "btnAutoClose";
 			this.btnAutoClose.UseVisualStyleBackColor = true;
 			this.btnAutoClose.Click += new System.EventHandler(this.btnAutoClose_Click);
+			// 
+			// btnCancel
+			// 
+			resources.ApplyResources(this.btnCancel, "btnCancel");
+			this.btnCancel.ForeColor = System.Drawing.Color.Sienna;
+			this.btnCancel.Image = global::FSLib.App.SimpleUpdater.Properties.Resources.Info;
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
 			// CloseApp
 			// 
 			this.AcceptButton = this.btnAutoClose;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnAutoClose);
 			this.Controls.Add(this.processList);
 			this.Controls.Add(this.label1);
@@ -75,5 +87,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ListBox processList;
 		private System.Windows.Forms.Button btnAutoClose;
+		private System.Windows.Forms.Button btnCancel;
 	}
 }

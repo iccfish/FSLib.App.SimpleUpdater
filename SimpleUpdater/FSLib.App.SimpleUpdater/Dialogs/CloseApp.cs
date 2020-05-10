@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -11,6 +11,13 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		public CloseApp()
 		{
 			InitializeComponent();
+
+			btnCancel.Click += BtnCancel_Click;
+		}
+
+		private void BtnCancel_Click(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
 		}
 
 		private void btnAutoClose_Click(object sender, EventArgs e)

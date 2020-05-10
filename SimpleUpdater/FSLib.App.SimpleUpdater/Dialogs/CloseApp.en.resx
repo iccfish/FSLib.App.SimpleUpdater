@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Update needs close follow application(s)</value>
+    <value>Updater needs to close following apps</value>
   </data>
   <data name="btnAutoClose.Text" xml:space="preserve">
     <value>Auto Close</value>
