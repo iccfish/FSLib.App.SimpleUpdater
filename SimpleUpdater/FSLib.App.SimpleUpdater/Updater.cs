@@ -897,10 +897,7 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary> 获得当前用于安装文件的对象 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public FileInstaller FileInstaller
-		{
-			get { return _installer ?? (_installer = new FileInstaller()); }
-		}
+		public FileInstaller FileInstaller => _installer ?? (_installer = new FileInstaller());
 
 
 		//BMK 更新主函数 (正式更新)

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27906.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj", "{21A701D7-063B-48E9-AE2F-5586A954B830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSLib.App.SimpleUpdater", "FSLib.App.SimpleUpdater\FSLib.App.SimpleUpdater.csproj", "{21A701D7-063B-48E9-AE2F-5586A954B830}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSLib.App.SimpleUpdater.Generator", "FSLib.App.SimpleUpdater.Generator\FSLib.App.SimpleUpdater.Generator.csproj", "{8B5CD550-1566-417C-8180-AA0F57AFE979}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "相关文件", "相关文�
 		FSLib.App.SimpleUpdater.nuspec = FSLib.App.SimpleUpdater.nuspec
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateTestHost", "UpdateTestHost\UpdateTestHost.csproj", "{C80739B1-933B-4D7E-9810-E700770623AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,14 @@ Global
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Any CPU.Build.0 = Release|x86
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{57C6AF2B-BF51-4C0C-A11A-E902C8F77CB1}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C80739B1-933B-4D7E-9810-E700770623AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
