@@ -835,7 +835,7 @@ namespace FSLib.App.SimpleUpdater
 						Trace.TraceInformation("包【" + nextPkg.PackageName + "】开始下载");
 						rt.PostEvent(PackageDownload, this, new PackageEventArgs(nextPkg));
 						Context.ResetWebClient(client);
-						client.DownloadFileAsync(new Uri(Context.RandomUrl(Context.GetUpdatePackageFullUrl(nextPkg.PackageName))), nextPkg.LocalSavePath, nextPkg);
+						client.DownloadFileAsync(new Uri(Context.GetUpdatePackageFullUrl(nextPkg.PackageName)), nextPkg.LocalSavePath, nextPkg);
 					}
 				}
 				if (breakFlag) break;

@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Defination
+namespace FSLib.App.SimpleUpdater.Defination
 {
 	using System;
 	using System.Collections.Generic;
@@ -557,25 +557,6 @@
 		/// 获得或设置是否在下载地址中附加随机码以避免缓存。默认值：true
 		/// </summary>
 		public bool AppendRandomTagInDownloadUrl { get; set; }
-
-		/// <summary>
-		/// 随机化网址
-		/// </summary>
-		/// <param name="url"></param>
-		/// <returns></returns>
-		internal string RandomUrl(string url)
-		{
-			if (String.IsNullOrEmpty(url))
-				throw new ArgumentException("url is null or empty.", "url");
-
-			if (!AppendRandomTagInDownloadUrl || url.IndexOf('/') == -1 || url.IndexOf("http", StringComparison.OrdinalIgnoreCase) != 0)
-				return url;
-
-			if (url.IndexOf('?') == -1)
-				return url + "?" + new Random().NextDouble().ToString();
-
-			return url + "&" + new Random().NextDouble().ToString();
-		}
 
 		/// <summary>
 		/// 获得更新程序是否已经成功启动了
