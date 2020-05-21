@@ -2973,7 +2973,7 @@
     <value>8</value>
   </data>
   <data name="fileAfterExecute.ToolTip" xml:space="preserve">
-    <value>选择更新前执行的可执行文件。
+    <value>选择更新后执行的可执行文件。
 文件将会在目标程序目录中执行。
 如果下拉框为空，请检查新版本目录中是否包含正确的文件。</value>
   </data>
