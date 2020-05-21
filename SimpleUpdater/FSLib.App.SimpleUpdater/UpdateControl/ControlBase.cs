@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -155,6 +155,20 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 			if (!Visible) return;
 
 			FindForm().Close();
+		}
+
+		protected void AutoClose(int timeout)
+		{
+			var t = new Timer
+			{
+				Interval = timeout
+			};
+			t.Tick += (s, x) =>
+			{
+				t.Stop();
+				FindForm().Close();
+			};
+			t.Start();
 		}
 	}
 }

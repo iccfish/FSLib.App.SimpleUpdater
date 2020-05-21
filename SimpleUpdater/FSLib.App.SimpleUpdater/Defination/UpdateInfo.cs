@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Defination
+namespace FSLib.App.SimpleUpdater.Defination
 {
 	using System;
 	using System.Collections.Generic;
@@ -228,6 +228,56 @@
 				OnPropertyChanged("AutoCloseSucceedWindow");
 			}
 		}
+
+		private int _autoCloseSucceedTimeout = 2000;
+		/// <summary>
+		/// 自动关闭成功通知框超时时间
+		/// </summary>
+		public int AutoCloseSucceedTimeout
+		{
+			get => _autoCloseSucceedTimeout;
+			set
+			{
+				if (value == _autoCloseSucceedTimeout)
+					return;
+				_autoCloseSucceedTimeout = value;
+				OnPropertyChanged(nameof(AutoCloseSucceedTimeout));
+			}
+		}
+
+		private bool _autoCloseFailedDialog = false;
+
+		/// <summary>
+		/// 失败或已取消的更新，通知框自动关闭
+		/// </summary>
+		public bool AutoCloseFailedDialog
+		{
+			get => _autoCloseFailedDialog;
+			set
+			{
+				if (_autoCloseFailedDialog == value)
+					return;
+				_autoCloseFailedDialog = value;
+				OnPropertyChanged(nameof(AutoCloseFailedDialog));
+			}
+		}
+
+		private int _autoCloseFailedTimeout = 2000;
+		/// <summary>
+		/// 自动关闭失败通知框超时时间
+		/// </summary>
+		public int AutoCloseFailedTimeout
+		{
+			get => _autoCloseFailedTimeout;
+			set
+			{
+				if (value == _autoCloseFailedTimeout)
+					return;
+				_autoCloseFailedTimeout = value;
+				OnPropertyChanged(nameof(AutoCloseFailedTimeout));
+			}
+		}
+
 
 		/// <summary>
 		/// 更新描述

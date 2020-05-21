@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +24,11 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 		{
 			HideControls();
 			Show();
+			
+			if (Updater.Instance.Context.UpdateInfo.AutoCloseSucceedWindow)
+			{
+				AutoClose(Updater.Instance.Context.UpdateInfo.AutoCloseSucceedTimeout);
+			}
 		}
 	}
 }

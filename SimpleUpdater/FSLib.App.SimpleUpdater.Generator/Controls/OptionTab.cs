@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -18,6 +18,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 
 	public partial class OptionTab : UserControl
 	{
+		private AuProject _project;
+
 		public OptionTab()
 		{
 			InitializeComponent();
@@ -65,7 +67,20 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 					}
 				}
 			};
-
+			nudTimeoutSucceed.AddDataBinding(chkAutoCloseSucceed, s => s.Enabled, s => s.Checked);
+			nudTimeoutFailed.AddDataBinding(chkAutoCloseFailed, s => s.Enabled, s => s.Checked);
+			nudTimeoutFailed.ValueChanged += (sender, args) =>
+			{
+				if (_project == null)
+					return;
+				_project.UpdateInfo.AutoCloseFailedTimeout = (int)nudTimeoutFailed.Value;
+			};
+			nudTimeoutSucceed.ValueChanged += (sender, args) =>
+			{
+				if (_project == null)
+					return;
+				_project.UpdateInfo.AutoCloseSucceedTimeout = (int)nudTimeoutSucceed.Value;
+			};
 			Load += OptionTab_Load;
 		}
 
@@ -86,6 +101,9 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			chkCompressUpdateInfo.DataBindings.Clear();
 			txtPackagePassword.DataBindings.Clear();
 			requiredMinVersion.DataBindings.Clear();
+			chkAutoCloseSucceed.DataBindings.Clear();
+			chkAutoCloseFailed.DataBindings.Clear();
+			_project = null;
 		}
 
 		void upb_ProjectLoaded(object sender, PackageEventArgs e)
@@ -97,9 +115,15 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		{
 			var ui = project.UpdateInfo;
 
+			_project = project;
 			chkUseIncreaseUpdate.AddDataBinding(project, s => s.Checked, s => s.EnableIncreaseUpdate);
 			chkCompressUpdateInfo.AddDataBinding(project, s => s.Checked, s => s.CompressPackage);
 			chkCreateCompatiblePackage.AddDataBinding(project, s => s.Checked, s => s.CreateCompatiblePackage);
+			chkAutoCloseSucceed.AddDataBinding(ui, s => s.Checked, s => s.AutoCloseSucceedWindow);
+			chkAutoCloseFailed.AddDataBinding(ui, s => s.Checked, s => s.AutoCloseFailedDialog);
+			nudTimeoutFailed.Value = ui.AutoCloseFailedTimeout;
+			nudTimeoutSucceed.Value = ui.AutoCloseSucceedTimeout;
+
 
 			this.deletePreviousFileMode.SelectedIndex = (int)ui.DeleteMethod;
 			this.deleteRules.Text = ui.DeleteFileLimits.IsEmpty() ? "" : string.Join(Environment.NewLine, ui.DeleteFileLimits);

@@ -514,7 +514,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			chkOptMustUpdate.AddDataBinding(ui, s => s.Checked, s => s.MustUpdate);
 			chkAutoEndAppDirProcesses.AddDataBinding(ui, s => s.Checked, s => s.AutoEndProcessesWithinAppDir);
 			chkStillProptUserInfo.AddDataBinding(ui, s => s.Checked, s => s.PromptUserBeforeAutomaticUpgrade);
-			chkAutoCloseSucceed.AddDataBinding(ui, s => s.Checked, s => s.AutoCloseSucceedWindow);
 			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
 			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
 			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
@@ -574,7 +573,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			chkOptMustUpdate.DataBindings.Clear();
 			chkAutoEndAppDirProcesses.DataBindings.Clear();
 			chkStillProptUserInfo.DataBindings.Clear();
-			chkAutoCloseSucceed.DataBindings.Clear();
 			chkOptError.DataBindings.Clear();
 			chkOptRequireAdminPrivilege.DataBindings.Clear();
 			txtPackageExtension.DataBindings.Clear();

@@ -41,6 +41,12 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 #if DEBUG
 			System.Windows.Forms.MessageBox.Show(Updater.Instance.Context.Exception.ToString());
 #endif
+
+
+			if (Updater.Instance.Context.UpdateInfo.AutoCloseFailedDialog)
+			{
+				AutoClose(Updater.Instance.Context.UpdateInfo.AutoCloseFailedTimeout);
+			}
 		}
 	}
 }

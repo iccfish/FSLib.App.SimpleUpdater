@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Generator.Controls
+namespace FSLib.App.SimpleUpdater.Generator.Controls
 {
 	partial class OptionTab
 	{
@@ -44,15 +44,21 @@
 			this.chkCompressUpdateInfo = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label5 = new System.Windows.Forms.Label();
 			this.lblCheckTypeDesc = new System.Windows.Forms.Label();
 			this.rbVersionCheck = new System.Windows.Forms.CheckBox();
 			this.rbOnlyNotExist = new System.Windows.Forms.CheckBox();
 			this.rbIgnore = new System.Windows.Forms.CheckBox();
-			this.rbAlways = new System.Windows.Forms.CheckBox();
 			this.chkSkipIfNotExist = new System.Windows.Forms.CheckBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.rbAlways = new System.Windows.Forms.CheckBox();
+			this.chkAutoCloseSucceed = new System.Windows.Forms.CheckBox();
+			this.chkAutoCloseFailed = new System.Windows.Forms.CheckBox();
+			this.nudTimeoutSucceed = new System.Windows.Forms.NumericUpDown();
+			this.nudTimeoutFailed = new System.Windows.Forms.NumericUpDown();
 			this.gpSetDeleteSyntax.SuspendLayout();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudTimeoutSucceed)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudTimeoutFailed)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -170,23 +176,27 @@
 			// 
 			this.chkCreateCompatiblePackage.Checked = true;
 			this.chkCreateCompatiblePackage.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkCreateCompatiblePackage.Location = new System.Drawing.Point(7, 78);
+			this.chkCreateCompatiblePackage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.chkCreateCompatiblePackage.ForeColor = System.Drawing.Color.DeepPink;
+			this.chkCreateCompatiblePackage.Location = new System.Drawing.Point(7, 72);
 			this.chkCreateCompatiblePackage.Name = "chkCreateCompatiblePackage";
-			this.chkCreateCompatiblePackage.Size = new System.Drawing.Size(705, 33);
+			this.chkCreateCompatiblePackage.Size = new System.Drawing.Size(183, 21);
 			this.chkCreateCompatiblePackage.TabIndex = 9;
-			this.chkCreateCompatiblePackage.Text = "创建兼容的升级信息包。如果不选择此选项且有文件使用增量更新方式发布，在2.0.0.0版本之前（不支持增量更新的自动更新客户端）将无法使用此处的安装包进行更新。";
+			this.chkCreateCompatiblePackage.Text = "创建兼容的升级信息包";
+			this.tip.SetToolTip(this.chkCreateCompatiblePackage, "创建兼容的升级信息包。如果不选择此选项且有文件使用增量更新方式发布，在2.0.0.0版本之前（不支持增量更新的自动更新客户端）将无法使用此处的安装包进行更新。");
 			this.chkCreateCompatiblePackage.UseVisualStyleBackColor = true;
 			// 
 			// chkCompressUpdateInfo
 			// 
 			this.chkCompressUpdateInfo.Checked = true;
 			this.chkCompressUpdateInfo.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkCompressUpdateInfo.Location = new System.Drawing.Point(7, 37);
+			this.chkCompressUpdateInfo.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.chkCompressUpdateInfo.ForeColor = System.Drawing.Color.DeepPink;
+			this.chkCompressUpdateInfo.Location = new System.Drawing.Point(7, 44);
 			this.chkCompressUpdateInfo.Name = "chkCompressUpdateInfo";
-			this.chkCompressUpdateInfo.Size = new System.Drawing.Size(705, 44);
+			this.chkCompressUpdateInfo.Size = new System.Drawing.Size(183, 21);
 			this.chkCompressUpdateInfo.TabIndex = 9;
-			this.chkCompressUpdateInfo.Text = "生成压缩版的升级信息文件。这将有助于在启用增量更新时大幅减小升级信息文件大小。请使用 “update_c.xml” 作为升级信息文件名。建议选中『创建兼容的升级信" +
-    "息包』，否则2.0.0.0之前的自动升级客户端将无法执行升级。";
+			this.chkCompressUpdateInfo.Text = "生成压缩版的升级信息文件";
 			this.chkCompressUpdateInfo.UseVisualStyleBackColor = true;
 			// 
 			// label4
@@ -213,6 +223,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(561, 95);
 			this.panel1.TabIndex = 11;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.label5.Location = new System.Drawing.Point(12, 56);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(356, 34);
+			this.label5.TabIndex = 2;
+			this.label5.Text = "如果通过第一行选项确定不需要更新，则“比较版本更新”无效。\r\n如果通过第一行选项确定必须更新，则“比较版本更新”无效。";
 			// 
 			// lblCheckTypeDesc
 			// 
@@ -255,16 +275,6 @@
 			this.rbIgnore.Text = "忽略更新";
 			this.rbIgnore.UseVisualStyleBackColor = true;
 			// 
-			// rbAlways
-			// 
-			this.rbAlways.AutoSize = true;
-			this.rbAlways.Location = new System.Drawing.Point(115, 10);
-			this.rbAlways.Name = "rbAlways";
-			this.rbAlways.Size = new System.Drawing.Size(75, 21);
-			this.rbAlways.TabIndex = 0;
-			this.rbAlways.Text = "始终更新";
-			this.rbAlways.UseVisualStyleBackColor = true;
-			// 
 			// chkSkipIfNotExist
 			// 
 			this.chkSkipIfNotExist.AutoSize = true;
@@ -275,20 +285,94 @@
 			this.chkSkipIfNotExist.Text = "不存在则跳过";
 			this.chkSkipIfNotExist.UseVisualStyleBackColor = true;
 			// 
-			// label5
+			// rbAlways
 			// 
-			this.label5.AutoSize = true;
-			this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.label5.Location = new System.Drawing.Point(12, 56);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(356, 34);
-			this.label5.TabIndex = 2;
-			this.label5.Text = "如果通过第一行选项确定不需要更新，则“比较版本更新”无效。\r\n如果通过第一行选项确定必须更新，则“比较版本更新”无效。";
+			this.rbAlways.AutoSize = true;
+			this.rbAlways.Location = new System.Drawing.Point(115, 10);
+			this.rbAlways.Name = "rbAlways";
+			this.rbAlways.Size = new System.Drawing.Size(75, 21);
+			this.rbAlways.TabIndex = 0;
+			this.rbAlways.Text = "始终更新";
+			this.rbAlways.UseVisualStyleBackColor = true;
+			// 
+			// chkAutoCloseSucceed
+			// 
+			this.chkAutoCloseSucceed.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+			this.chkAutoCloseSucceed.ForeColor = System.Drawing.Color.DeepPink;
+			this.chkAutoCloseSucceed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.chkAutoCloseSucceed.Location = new System.Drawing.Point(368, 44);
+			this.chkAutoCloseSucceed.Name = "chkAutoCloseSucceed";
+			this.chkAutoCloseSucceed.Size = new System.Drawing.Size(269, 21);
+			this.chkAutoCloseSucceed.TabIndex = 22;
+			this.chkAutoCloseSucceed.Text = "升级成功提示自动关闭于　　　　　　毫秒";
+			this.chkAutoCloseSucceed.UseVisualStyleBackColor = true;
+			// 
+			// chkAutoCloseFailed
+			// 
+			this.chkAutoCloseFailed.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+			this.chkAutoCloseFailed.ForeColor = System.Drawing.Color.DeepPink;
+			this.chkAutoCloseFailed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.chkAutoCloseFailed.Location = new System.Drawing.Point(368, 71);
+			this.chkAutoCloseFailed.Name = "chkAutoCloseFailed";
+			this.chkAutoCloseFailed.Size = new System.Drawing.Size(269, 21);
+			this.chkAutoCloseFailed.TabIndex = 22;
+			this.chkAutoCloseFailed.Text = "升级失败提示自动关闭于　　　　　　毫秒";
+			this.chkAutoCloseFailed.UseVisualStyleBackColor = true;
+			// 
+			// nudTimeoutSucceed
+			// 
+			this.nudTimeoutSucceed.Location = new System.Drawing.Point(523, 43);
+			this.nudTimeoutSucceed.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+			this.nudTimeoutSucceed.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			this.nudTimeoutSucceed.Name = "nudTimeoutSucceed";
+			this.nudTimeoutSucceed.Size = new System.Drawing.Size(64, 21);
+			this.nudTimeoutSucceed.TabIndex = 23;
+			this.nudTimeoutSucceed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.nudTimeoutSucceed.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+			// 
+			// nudTimeoutFailed
+			// 
+			this.nudTimeoutFailed.Location = new System.Drawing.Point(523, 70);
+			this.nudTimeoutFailed.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+			this.nudTimeoutFailed.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			this.nudTimeoutFailed.Name = "nudTimeoutFailed";
+			this.nudTimeoutFailed.Size = new System.Drawing.Size(64, 21);
+			this.nudTimeoutFailed.TabIndex = 23;
+			this.nudTimeoutFailed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.nudTimeoutFailed.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
 			// 
 			// OptionTab
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.nudTimeoutFailed);
+			this.Controls.Add(this.nudTimeoutSucceed);
+			this.Controls.Add(this.chkAutoCloseFailed);
+			this.Controls.Add(this.chkAutoCloseSucceed);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.chkCreateCompatiblePackage);
@@ -307,6 +391,8 @@
 			this.gpSetDeleteSyntax.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudTimeoutSucceed)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudTimeoutFailed)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -336,5 +422,9 @@
 		private System.Windows.Forms.CheckBox rbIgnore;
 		private System.Windows.Forms.CheckBox chkSkipIfNotExist;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.CheckBox chkAutoCloseSucceed;
+		private System.Windows.Forms.CheckBox chkAutoCloseFailed;
+		private System.Windows.Forms.NumericUpDown nudTimeoutSucceed;
+		private System.Windows.Forms.NumericUpDown nudTimeoutFailed;
 	}
 }

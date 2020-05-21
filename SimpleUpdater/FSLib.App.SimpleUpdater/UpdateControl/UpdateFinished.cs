@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,14 +27,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 
 			if (Updater.Instance.Context.UpdateInfo.AutoCloseSucceedWindow)
 			{
-				var t = new Timer();
-				t.Interval = 2000;
-				t.Tick += (s, x) =>
-				{
-					t.Stop();
-					FindForm().Close();
-				};
-				t.Start();
+				AutoClose(Updater.Instance.Context.UpdateInfo.AutoCloseSucceedTimeout);
 			}
 		}
 	}
