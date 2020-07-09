@@ -62,8 +62,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 					}
 				}
 			}
-
-			AppendRandomTagInDownloadUrl = true;
 		}
 
 		/// <summary>
@@ -552,11 +550,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 		bool _mustUpdate;
 		bool _autoEndProcessesWithinAppDir;
 		bool _promptUserBeforeAutomaticUpgrade;
-
-		/// <summary>
-		/// 获得或设置是否在下载地址中附加随机码以避免缓存。默认值：true
-		/// </summary>
-		public bool AppendRandomTagInDownloadUrl { get; set; }
 
 		/// <summary>
 		/// 获得更新程序是否已经成功启动了
