@@ -227,7 +227,7 @@ namespace FSLib.App.SimpleUpdater
 				//下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
 				Exception ex = null;
 				byte[] data = null;
-				var url = Context.RandomUrl(Context.UpdateInfoFileUrl);
+				var url = Context.UpdateInfoFileUrl;
 
 				var client = Context.CreateWebClient();
 				client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
