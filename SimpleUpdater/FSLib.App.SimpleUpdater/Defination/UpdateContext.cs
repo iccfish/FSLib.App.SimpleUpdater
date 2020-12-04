@@ -65,6 +65,94 @@ namespace FSLib.App.SimpleUpdater.Defination
 		}
 
 		/// <summary>
+		/// 初始化一些升级的参数
+		/// </summary>
+		internal void Init()
+		{
+			if (!Uri.TryCreate(UpdateDownloadUrl, UriKind.RelativeOrAbsolute, out var uri))
+			{
+				throw new ArgumentException("Invalid uri.", nameof(UpdateDownloadUrl));
+			}
+
+			//本地路径
+			var defaultInfoName = "update_c.xml";
+			if (uri.IsFile)
+			{
+				var downloadUrl = UpdateDownloadUrl;
+
+				if (!string.IsNullOrEmpty(UpdateInfoFileName))
+				{
+					//有设置文件名，则检查有没有占位模板；没有的话，则自动附加一个
+					if (!UpdateDownloadUrl.Contains("{0}"))
+					{
+						if (downloadUrl[downloadUrl.Length - 1] != Path.DirectorySeparatorChar)
+							downloadUrl += Path.DirectorySeparatorChar;
+						downloadUrl += "{0}";
+					}
+				}
+				else
+				{
+					if (downloadUrl[downloadUrl.Length - 1] != Path.DirectorySeparatorChar)
+					{
+						if (!downloadUrl.Contains("{0}"))
+						{
+							//没有指定新文件的名字，则取文件名后，再使用目录组合
+							UpdateInfoFileName = Path.GetFileName(UpdateDownloadUrl);
+							downloadUrl = Path.Combine(Path.GetDirectoryName(downloadUrl), "{0}");
+						}
+						else
+						{
+							UpdateInfoFileName = defaultInfoName;
+						}
+					}
+					else
+					{
+						//是目录
+						UpdateInfoFileName = defaultInfoName;
+						if (!downloadUrl.Contains("{0}"))
+							downloadUrl += "{0}";
+					}
+				}
+
+				UpdateDownloadUrl = downloadUrl;
+			}
+			else
+			{
+				//网址模式
+				if (string.IsNullOrEmpty(UpdateInfoFileName))
+				{
+					if (uri.LocalPath.EndsWith("/"))
+					{
+						UpdateInfoFileName = defaultInfoName;
+						uri = new Uri(new Uri(uri, "{0}"), uri.Query);
+					}
+					else
+					{
+						UpdateInfoFileName = uri.Segments[uri.Segments.Length - 1];
+						uri = new Uri(new Uri(uri, "./"), uri.Query);
+					}
+				}
+				else
+				{
+					if (!uri.LocalPath.Contains("{0}"))
+					{
+						//有文件，没模板，自动在最后拼接
+						if (uri.LocalPath.EndsWith("/"))
+						{
+							uri = new Uri(new Uri(uri, "./{{0}}"), uri.Query);
+						}
+						else
+						{
+							uri = new Uri(new Uri(uri, $"./{uri.Segments[uri.Segments.Length - 1]}/{{0}}"), uri.Query);
+						}
+					}
+				}
+
+				UpdateDownloadUrl = uri.ToString();
+			}
+		}
+
+		/// <summary>
 		/// 初始化当前的版本信息
 		/// </summary>
 		void InitializeCurrentVersion()
@@ -179,6 +267,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 				{
 					return (UpdateAttribute as Updatable2Attribute).InfoFileName;
 				}
+
 				return _updateInfoFileName;
 			}
 			set { _updateInfoFileName = value; }
@@ -192,7 +281,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 			get
 			{
 				return _updateAttribute;
-
 			}
 			set
 			{
@@ -200,6 +288,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 				{
 					throw new InvalidOperationException("设置的参数值不是正确的标记，仅支持 UpdateableAttribute 或 Updatable2Attribute。");
 				}
+
 				_updateAttribute = value;
 			}
 		}
@@ -236,8 +325,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <returns>完整路径</returns>
 		public string GetUpdatePackageFullUrl(string packageName)
 		{
-			if (!string.IsNullOrEmpty(UpdateInfoFileName)) return string.Format(UpdateDownloadUrl.Replace("\\", "\\\\"), packageName);
-			return (UpdateDownloadUrl.Substring(0, UpdateDownloadUrl.LastIndexOf("/") + 1) + packageName);
+			return string.Format(UpdateDownloadUrl.Replace("\\", "\\\\"), packageName);
 		}
 
 		/// <summary> 获得或设置当前的版本 </summary>
@@ -415,6 +503,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 			{
 				_ua = "Fish SimpleUpdater v" + Updater.UpdaterClientVersion;
 			}
+
 			client.Headers.Add(HttpRequestHeader.UserAgent, _ua);
 			//client.Headers.Add(HttpRequestHeader.IfNoneMatch, "DisableCache");
 			client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
@@ -447,6 +536,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 					_logger.Close();
 					Trace.Listeners.Remove(_logger);
 				}
+
 				if (!string.IsNullOrEmpty(_logFile))
 				{
 					if (!System.IO.Path.IsPathRooted(_logFile)) _logFile = Environment.ExpandEnvironmentVariables("%TEMP%\\" + _logFile);
@@ -585,4 +675,3 @@ namespace FSLib.App.SimpleUpdater.Defination
 		}
 	}
 }
-

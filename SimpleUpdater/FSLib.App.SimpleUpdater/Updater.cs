@@ -215,6 +215,8 @@ namespace FSLib.App.SimpleUpdater
 			//下载更新信息
 			e.PostEvent(OnDownloadUpdateInfo);
 
+			Context.Init();
+
 			var localFile = Context.UpdateInfoFilePath;
 
 			if (System.IO.File.Exists(localFile))
@@ -754,7 +756,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 
 			//生成下载队列
-			Trace.TraceInformation("正在初始化 {0} 个WebClient", workerCount);
+			Trace.TraceInformation($"正在初始化 {workerCount} 个WebClient");
 			for (var i = 0; i < workerCount; i++)
 			{
 				var clnt = Context.CreateWebClient();
