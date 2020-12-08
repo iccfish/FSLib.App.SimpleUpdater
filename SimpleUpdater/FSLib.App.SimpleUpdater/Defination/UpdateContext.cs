@@ -121,15 +121,22 @@ namespace FSLib.App.SimpleUpdater.Defination
 				//网址模式
 				if (string.IsNullOrEmpty(UpdateInfoFileName))
 				{
-					if (uri.LocalPath.EndsWith("/"))
+					if (uri.LocalPath.Contains("{0}"))
 					{
 						UpdateInfoFileName = defaultInfoName;
-						uri = new Uri(new Uri(uri, "{0}"), uri.Query);
 					}
 					else
 					{
-						UpdateInfoFileName = uri.Segments[uri.Segments.Length - 1];
-						uri = new Uri(new Uri(uri, "./"), uri.Query);
+						if (uri.LocalPath.EndsWith("/"))
+						{
+							UpdateInfoFileName = defaultInfoName;
+							uri = new Uri(new Uri(uri, "{0}"), uri.Query);
+						}
+						else
+						{
+							UpdateInfoFileName = uri.Segments[uri.Segments.Length - 1];
+							uri = new Uri(new Uri(uri, "./{0}"), uri.Query);
+						}
 					}
 				}
 				else
@@ -139,7 +146,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 						//有文件，没模板，自动在最后拼接
 						if (uri.LocalPath.EndsWith("/"))
 						{
-							uri = new Uri(new Uri(uri, "./{{0}}"), uri.Query);
+							uri = new Uri(new Uri(uri, "./{0}"), uri.Query);
 						}
 						else
 						{
