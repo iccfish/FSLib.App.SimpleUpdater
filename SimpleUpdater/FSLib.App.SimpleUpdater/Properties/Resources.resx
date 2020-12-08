@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="appconfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\appconfig;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,9 +127,6 @@
   <data name="cou_16_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cou_16_warning.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FSLib_App_Utilities_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FSLib.App.Utilities.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="cou_32_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cou_32_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,5 +135,23 @@
   </data>
   <data name="AUTOMATIC UPDATES_16x16-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AUTOMATIC UPDATES_16x16-32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="app_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\app.config.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FSLib_App_Utilities_dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\fslib.app.utilities.dll.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FSLib_App_Utilities_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\fslib.app.utilities.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FSLib_App_Utilities_runtimeconfig_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\fslib.app.utilities.runtimeconfig.json.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Utilities_Net20_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\utilities_net20.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Utilities_Net40_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\utilities\utilities_net40.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

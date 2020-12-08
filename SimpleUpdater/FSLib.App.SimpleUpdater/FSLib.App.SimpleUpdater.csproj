@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,9 +11,10 @@
 		<RootNamespace>FSLib.App.SimpleUpdater</RootNamespace>
 		<AssemblyName>SimpleUpdater</AssemblyName>
 		<SignAssembly>true</SignAssembly>
-		<TargetFrameworks>net20;net35;net40;net45</TargetFrameworks>
+		<TargetFrameworks>net20;net40;net45;net5.0-windows</TargetFrameworks>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<ItemGroup>
 		<Content Include="content\**\*" PackagePath="%(Identity)" />
@@ -246,7 +247,6 @@
 			<DependentUpon>Resources.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
 		</Compile>
-		<None Include="appconfig" />
 		<None Include="ifish.snk" />
 		<None Include="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
@@ -308,7 +308,6 @@
 		<None Include="Resources\05043139.gif" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="Resources\FSLib.App.Utilities.exe.gz" />
 		<None Include="Resources\Info.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -326,7 +325,7 @@
 		<AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
 		<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 		<PackageId>fishlee.net.simpleupdater</PackageId>
-		<Version>4.3.0.0</Version>
+		<Version>5.0.0.0</Version>
 		<Authors>iFish(木鱼)</Authors>
 		<Description>A light weight automatic application updater library for .net 2.0+.
 一个适用于 .NET 2.0+ 的高度易用的自动更新客户端。

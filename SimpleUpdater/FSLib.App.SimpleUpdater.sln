@@ -15,6 +15,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DF50C946-AEEF-423A-AD8A-D2A4F342CEBF}"
 	ProjectSection(SolutionItems) = preProject
 		_Tools\FSLib.App.Utilities.exe = _Tools\FSLib.App.Utilities.exe
+		更新附属工具集.cmd = 更新附属工具集.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "相关文件", "相关文件", "{ACE0B366-C027-4D08-866E-C9559936C99D}"

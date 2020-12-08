@@ -64,7 +64,7 @@ namespace FSLib.App.Utilities
 		static Type GetUpdaterType()
 		{
 			var a = LoadUpdaterAssembly();
-			return a == null ? null : a.GetType("FSLib.App.SimpleUpdater.Program");
+			return a?.GetType("FSLib.App.SimpleUpdater.Program");
 		}
 
 

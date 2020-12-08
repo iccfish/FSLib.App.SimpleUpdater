@@ -19,6 +19,7 @@ _Tools/
 *.DotSettings
 .localhistory
 *.ide
+.idea
 .vs/
 /SimpleUpdater/FSLib.App.SimpleUpdater/*.csdat
 /SimpleUpdater/FSLib.App.SimpleUpdater.Generator/*.csdat

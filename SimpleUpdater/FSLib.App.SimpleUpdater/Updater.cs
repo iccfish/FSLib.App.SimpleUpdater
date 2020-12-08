@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Reflection;
-using System.Web.UI;
 using System.Windows.Forms;
 using System.Diagnostics;
 using FSLib.App.SimpleUpdater.Annotations;
@@ -1036,14 +1035,28 @@ namespace FSLib.App.SimpleUpdater
 				throw new Exception("未能生成临时辅助更新文件");
 			}
 
-			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, System.IO.Path.GetFileName(currentAssembly.Location));
+			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, "FSLib.App.Utilities.exe");
 
 #if !STANDALONE
-			tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, "AutoUpdater.exe");
-			System.IO.File.WriteAllBytes(tempExePath, ExtensionMethod.Decompress(Properties.Resources.FSLib_App_Utilities_exe));
+			var targetFiles = new List<KeyValuePair<string, byte[]>>();
+#if NET20
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net20_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+#elif NET40 || NET45
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net40_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+#elif NET5_0
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.dll", Properties.Resources.FSLib_App_Utilities_dll));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.FSLib_App_Utilities_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.runtimeconfig.json", Properties.Resources.FSLib_App_Utilities_runtimeconfig_json));
 #endif
-			//写入配置文件。以便于多Framework支持。。
-			System.IO.File.WriteAllBytes(tempExePath + ".config", Properties.Resources.appconfig);
+
+			foreach (var kvp in targetFiles)
+			{
+				System.IO.File.WriteAllBytes(Path.Combine(Context.UpdateTempRoot, kvp.Key), ExtensionMethod.Decompress(kvp.Value));
+			}
+
+#endif
 
 			//生成新的日志地址
 			var logPath = "";
