@@ -320,6 +320,19 @@
 		<None Include="Resources\cou_32_refresh.png" />
 		<None Include="updater.ico" />
 	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net45'">
+		<EmbeddedResource Include="Utilities\Utilities_Net40.exe.gz" />
+		<EmbeddedResource Include="Utilities\app.config.gz" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net20'">
+		<EmbeddedResource Include="Utilities\app.config.gz" />
+		<EmbeddedResource Include="Utilities\Utilities_Net20.exe.gz" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+	<EmbeddedResource Include="Utilities\FSLib.App.Utilities.dll.gz" />
+		<EmbeddedResource Include="Utilities\FSLib.App.Utilities.exe.gz" />
+		<EmbeddedResource Include="Utilities\FSLib.App.Utilities.runtimeconfig.json.gz" />
+	</ItemGroup>
 	<PropertyGroup>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>

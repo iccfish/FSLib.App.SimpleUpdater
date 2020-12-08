@@ -71,16 +71,6 @@ namespace FSLib.App.SimpleUpdater.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] app_config {
-            get {
-                object obj = ResourceManager.GetObject("app_config", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap AUTOMATIC_UPDATES_16x16_32 {
@@ -121,62 +111,12 @@ namespace FSLib.App.SimpleUpdater.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] FSLib_App_Utilities_dll {
-            get {
-                object obj = ResourceManager.GetObject("FSLib_App_Utilities_dll", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] FSLib_App_Utilities_exe {
-            get {
-                object obj = ResourceManager.GetObject("FSLib_App_Utilities_exe", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] FSLib_App_Utilities_runtimeconfig_json {
-            get {
-                object obj = ResourceManager.GetObject("FSLib_App_Utilities_runtimeconfig_json", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap Info {
             get {
                 object obj = ResourceManager.GetObject("Info", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] Utilities_Net20_exe {
-            get {
-                object obj = ResourceManager.GetObject("Utilities_Net20_exe", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] Utilities_Net40_exe {
-            get {
-                object obj = ResourceManager.GetObject("Utilities_Net40_exe", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }

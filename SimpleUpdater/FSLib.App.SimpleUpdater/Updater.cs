@@ -1014,20 +1014,37 @@ namespace FSLib.App.SimpleUpdater
 			Environment.Exit(exitCode);
 		}
 
+		KeyValuePair<string, byte[]> ReadEmbedStream(string name)
+		{
+			using (var stream = typeof(Updater).Assembly.GetManifestResourceStream($"FSLib.App.SimpleUpdater.Utilities.{name}.gz"))
+			{
+				using (var ms = new MemoryStream())
+				{
+					var buf = new byte[0x400];
+					var count = 0;
+					while((count=stream.Read(buf,0,buf.Length))>0)
+						ms.Write(buf,0,count);
+					ms.Flush();
+
+					return new KeyValuePair<string, byte[]>(name, ms.ToArray());
+				}
+			}
+		}
+
 		void CopyUtilityExecutable()
 		{
 			var targetFiles = new List<KeyValuePair<string, byte[]>>();
 
 #if NET20
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net20_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe.config"));
 #elif NET40 || NET45
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net40_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe.config"));
 #elif NET5_0
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.dll", Properties.Resources.FSLib_App_Utilities_dll));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.FSLib_App_Utilities_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.runtimeconfig.json", Properties.Resources.FSLib_App_Utilities_runtimeconfig_json));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.dll"));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
+			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.runtimeconfig.json"));
 #endif
 
 			foreach (var kvp in targetFiles)
