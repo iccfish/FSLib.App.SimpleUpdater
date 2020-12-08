@@ -1014,6 +1014,35 @@ namespace FSLib.App.SimpleUpdater
 			Environment.Exit(exitCode);
 		}
 
+		void CopyUtilityExecutable()
+		{
+			var targetFiles = new List<KeyValuePair<string, byte[]>>();
+
+#if NET20
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net20_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+#elif NET40 || NET45
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net40_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
+#elif NET5_0
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.dll", Properties.Resources.FSLib_App_Utilities_dll));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.FSLib_App_Utilities_exe));
+			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.runtimeconfig.json", Properties.Resources.FSLib_App_Utilities_runtimeconfig_json));
+#endif
+
+			foreach (var kvp in targetFiles)
+			{
+				try
+				{
+					System.IO.File.WriteAllBytes(Path.Combine(Context.UpdateTempRoot, kvp.Key), ExtensionMethod.Decompress(kvp.Value));
+				}
+				catch (Exception e)
+				{
+					Trace.TraceError($"Unable write target file --> {kvp.Key} error --> {e.ToString()}}");
+				}
+			}
+		}
+
 
 		/// <summary>
 		/// 复制更新程序到临时目录并启动
@@ -1038,23 +1067,8 @@ namespace FSLib.App.SimpleUpdater
 			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, "FSLib.App.Utilities.exe");
 
 #if !STANDALONE
-			var targetFiles = new List<KeyValuePair<string, byte[]>>();
-#if NET20
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net20_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
-#elif NET40 || NET45
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.Utilities_Net40_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe.config", Properties.Resources.app_config));
-#elif NET5_0
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.dll", Properties.Resources.FSLib_App_Utilities_dll));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.exe", Properties.Resources.FSLib_App_Utilities_exe));
-			targetFiles.Add(new KeyValuePair<string, byte[]>("FSLib.App.Utilities.runtimeconfig.json", Properties.Resources.FSLib_App_Utilities_runtimeconfig_json));
-#endif
-
-			foreach (var kvp in targetFiles)
-			{
-				System.IO.File.WriteAllBytes(Path.Combine(Context.UpdateTempRoot, kvp.Key), ExtensionMethod.Decompress(kvp.Value));
-			}
+			
+			CopyUtilityExecutable();
 
 #endif
 
@@ -1347,11 +1361,9 @@ namespace FSLib.App.SimpleUpdater
 			}
 			Trace.TraceInformation("启动外部清理进程。");
 
-			var localpath = Environment.ExpandEnvironmentVariables(@"%TEMP%\FSLib.DeleteTmp_" + new Random().Next(100000) + ".exe");
-			System.IO.File.WriteAllBytes(localpath, ExtensionMethod.Decompress(Properties.Resources.FSLib_App_Utilities_exe));
-			//写入配置文件
-			System.IO.File.WriteAllBytes(localpath + ".config", Properties.Resources.appconfig);
+			CopyUtilityExecutable();
 
+			var localpath = Path.Combine(Context.UpdateTempRoot, "FSLib.App.Utilities.exe");
 			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
 			Process.Start(localpath, arg);
 			_hasCleanProcessStarted = true;

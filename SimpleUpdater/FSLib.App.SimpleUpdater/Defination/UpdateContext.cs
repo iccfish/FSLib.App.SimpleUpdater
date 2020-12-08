@@ -67,7 +67,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary>
 		/// 初始化一些升级的参数
 		/// </summary>
-		internal void Init()
+		public void Init()
 		{
 			if (!Uri.TryCreate(UpdateDownloadUrl, UriKind.RelativeOrAbsolute, out var uri))
 			{
