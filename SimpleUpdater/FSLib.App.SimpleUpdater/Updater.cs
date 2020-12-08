@@ -1038,7 +1038,7 @@ namespace FSLib.App.SimpleUpdater
 				}
 				catch (Exception e)
 				{
-					Trace.TraceError($"Unable write target file --> {kvp.Key} error --> {e.ToString()}}");
+					Trace.TraceError($"Unable write target file --> {kvp.Key} error --> {e.ToString()}");
 				}
 			}
 		}
