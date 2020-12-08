@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -146,7 +146,6 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		/// <param name="updateUrl">更新URL. 如果不传递或传递空的地址, 请使用 <see cref="T:FSLib.App.SimpleUpdater.UpdateableAttribute"/> 属性来标记更新地址</param>
 		/// <returns>返回是否开始检查操作</returns>
-		[Obsolete("这是一个不被推荐的检测更新方式")]
 		public static bool CheckUpdateSimple(string updateUrl)
 		{
 			if (_instance == null)
