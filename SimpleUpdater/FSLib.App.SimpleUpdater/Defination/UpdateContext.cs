@@ -11,10 +11,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 	using FSLib.App.SimpleUpdater.Dialogs;
 
+	using Logs;
+
 	/// <summary> 表示当前更新的上下文环境 </summary>
 	/// <remarks></remarks>
 	public class UpdateContext
 	{
+		private static ILogger _logger = LogManager.Instance.GetLogger<UpdateContext>();
+		
 		/// <summary>
 		/// 获得或设置相关联的主窗口。所有的提示界面将会以其为父窗口
 		/// </summary>
@@ -185,20 +189,20 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <returns></returns>
 		static Assembly TryGetCallingAssembly()
 		{
-			Trace.TraceInformation("Tring get entry assembly from stack trace.");
+			_logger.LogInformation("Tring get entry assembly from stack trace.");
 			try
 			{
 				var st = new StackTrace();
 				var frame = st.GetFrame(st.FrameCount - 1);
 
 				var assembly = frame.GetMethod().DeclaringType.Assembly;
-				Trace.TraceInformation("Got entry assembly from stack trace. Assembly full name=" + assembly.FullName);
+				_logger.LogInformation("Got entry assembly from stack trace. Assembly full name=" + assembly.FullName);
 
 				return assembly;
 			}
 			catch (Exception ex)
 			{
-				Trace.TraceError("unable to get entry assembly from stacktrace. error = " + ex.ToString());
+				_logger.LogError("unable to get entry assembly from stacktrace. error = " + ex.Message, ex);
 				return null;
 			}
 		}
@@ -538,53 +542,18 @@ namespace FSLib.App.SimpleUpdater.Defination
 				if (string.Compare(_logFile, value, true) == 0) return;
 
 				_logFile = value;
-				if (_logger != null)
-				{
-					_logger.Close();
-					Trace.Listeners.Remove(_logger);
-				}
 
+				var lm = LogManager.Instance;
+				lm.RemoveAllLogTargets();
 				if (!string.IsNullOrEmpty(_logFile))
 				{
-					if (!System.IO.Path.IsPathRooted(_logFile)) _logFile = Environment.ExpandEnvironmentVariables("%TEMP%\\" + _logFile);
-
-					if (System.IO.File.Exists(_logFile)) System.IO.File.Delete(_logFile);
-					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(_logFile));
-
-					_logger = new TextWriterTraceListener(_logFile);
-					_logger.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
-					Trace.Listeners.Add(_logger);
+					if (!Path.IsPathRooted(_logFile)) _logFile = Environment.ExpandEnvironmentVariables("%TEMP%\\" + _logFile);
+					Directory.CreateDirectory(Path.GetDirectoryName(_logFile));
+					lm.AddLogTarget(new FileLogTarget(_logFile));
 				}
 			}
 		}
-
-		ConsoleTraceListener _consoleTraceListener;
-
-		/// <summary>
-		/// 切换是否启用控制台日志
-		/// </summary>
-		/// <param name="enable"></param>
-		public void EnableConsoleLogger(bool enable)
-		{
-			if (enable)
-			{
-				if (_consoleTraceListener == null)
-				{
-					_consoleTraceListener = new ConsoleTraceListener(true);
-					_consoleTraceListener.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
-					Trace.Listeners.Add(_consoleTraceListener);
-				}
-			}
-			else
-			{
-				if (_consoleTraceListener != null)
-				{
-					Trace.Listeners.Remove(_consoleTraceListener);
-					_consoleTraceListener = null;
-				}
-			}
-		}
-
+		
 		/// <summary>
 		/// 获得或设置是否不经提示便自动更新
 		/// </summary>
@@ -639,7 +608,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 			}
 		}
 
-		TextWriterTraceListener _logger;
 		private string _applicationDirectory;
 		bool _hiddenUI;
 		bool _forceUpdate;

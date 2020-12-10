@@ -16,25 +16,43 @@
 		/// 记录信息
 		/// </summary>
 		/// <param name="message"></param>
-		void LogInformation(string message);
+		void LogInformation(string message, object state = null);
 
 		/// <summary>
 		/// 记录警告信息
 		/// </summary>
 		/// <param name="message"></param>
-		void LogWarning(string message);
+		void LogWarning(string message, object state = null);
 
 		/// <summary>
 		/// 记录调试信息
 		/// </summary>
 		/// <param name="message"></param>
-		void LogDebug(string message);
+		void LogDebug(string message, object state = null);
 
 		/// <summary>
 		/// 记录错误信息
 		/// </summary>
 		/// <param name="message">信息</param>
-		/// <param name="ex">关联的异常</param>
-		void LogError(string message, Exception ex);
+		/// <param name="state">状态信息</param>
+		void LogError(string message, object state = null);
+
+		/// <summary>
+		/// 记录日志项
+		/// </summary>
+		/// <param name="entry"></param>
+		void Log(LogEntry entry);
+
+		/// <summary>
+		/// 请求记录日志项
+		/// </summary>
+		event EventHandler<RequestLogEventArgs> RequestLog;
+	}
+
+	class RequestLogEventArgs : EventArgs
+	{
+		public RequestLogEventArgs(LogEntry entry) { Entry = entry; }
+
+		public LogEntry Entry { get; }
 	}
 }
