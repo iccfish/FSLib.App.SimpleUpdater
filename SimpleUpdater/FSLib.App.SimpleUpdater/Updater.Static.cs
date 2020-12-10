@@ -52,7 +52,25 @@ namespace FSLib.App.SimpleUpdater
 		/// <returns></returns>
 		public static Updater CreateUpdaterInstance(string templateUrl, string xmlFileName)
 		{
-			return CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+			return CreateUpdaterInstance(null, null, new[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(string url)
+		{
+			return CreateUpdaterInstance(null, null, new[] { new UpdateServerInfo(url, null) });
+		}
+
+		/// <summary>
+		/// 创建自动更新客户端
+		/// </summary>
+		/// <returns></returns>
+		public static Updater CreateUpdaterInstance(bool switchIfNoUpdate, params string[] url)
+		{
+			return CreateUpdaterInstance(null, null, ExtensionMethod.ToArray(ExtensionMethod.Select(url, x => new UpdateServerInfo(x))));
 		}
 
 
@@ -117,7 +135,7 @@ namespace FSLib.App.SimpleUpdater
 			{
 				if (appVersion == null && string.IsNullOrEmpty(appDirectory))
 				{
-					_instance = new MultiServerUpdater(servers) {SwitchIfNoUpdatesFound = switchIfNoUpdate};
+					_instance = new MultiServerUpdater(servers) { SwitchIfNoUpdatesFound = switchIfNoUpdate };
 				}
 				else
 				{
@@ -149,7 +167,7 @@ namespace FSLib.App.SimpleUpdater
 		public static bool CheckUpdateSimple(string updateUrl)
 		{
 			if (_instance == null)
-				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(updateUrl, null) });
+				_instance = CreateUpdaterInstance(null, null, new[] { new UpdateServerInfo(updateUrl, null) });
 			else if (!string.IsNullOrEmpty(updateUrl))
 			{
 				_instance.Context.UpdateDownloadUrl = updateUrl;
@@ -169,7 +187,7 @@ namespace FSLib.App.SimpleUpdater
 		public static bool CheckUpdateSimple(string templateUrl, string xmlFileName)
 		{
 			if (_instance == null)
-				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+				_instance = CreateUpdaterInstance(null, null, new[] { new UpdateServerInfo(templateUrl, xmlFileName) });
 			else if (!string.IsNullOrEmpty(templateUrl))
 			{
 				_instance.Context.UpdateDownloadUrl = templateUrl;
@@ -190,7 +208,7 @@ namespace FSLib.App.SimpleUpdater
 		public static bool CheckUpdateSimple(string templateUrl, string xmlFileName, string userAgent)
 		{
 			if (_instance == null)
-				_instance = CreateUpdaterInstance(null, null, new UpdateServerInfo[] { new UpdateServerInfo(templateUrl, xmlFileName) });
+				_instance = CreateUpdaterInstance(null, null, new[] { new UpdateServerInfo(templateUrl, xmlFileName) });
 			else if (!string.IsNullOrEmpty(templateUrl))
 			{
 				_instance.Context.UpdateDownloadUrl = templateUrl;

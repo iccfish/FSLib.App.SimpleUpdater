@@ -1017,19 +1017,20 @@ namespace FSLib.App.SimpleUpdater
 			Environment.Exit(exitCode);
 		}
 
-		KeyValuePair<string, byte[]> ReadEmbedStream(string name)
+		KeyValuePair<string, byte[]> ReadEmbedStream(string name, string fileName = null)
 		{
+			fileName = fileName ?? name;
 			using (var stream = typeof(Updater).Assembly.GetManifestResourceStream($"FSLib.App.SimpleUpdater.Utilities.{name}.gz"))
 			{
 				using (var ms = new MemoryStream())
 				{
 					var buf = new byte[0x400];
 					var count = 0;
-					while((count=stream.Read(buf,0,buf.Length))>0)
-						ms.Write(buf,0,count);
+					while ((count = stream.Read(buf, 0, buf.Length)) > 0)
+						ms.Write(buf, 0, count);
 					ms.Flush();
 
-					return new KeyValuePair<string, byte[]>(name, ms.ToArray());
+					return new KeyValuePair<string, byte[]>(fileName, ms.ToArray());
 				}
 			}
 		}
@@ -1039,11 +1040,11 @@ namespace FSLib.App.SimpleUpdater
 			var targetFiles = new List<KeyValuePair<string, byte[]>>();
 
 #if NET20
-			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
-			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe.config"));
+			targetFiles.Add(ReadEmbedStream("Utilities_Net20.exe", "FSLib.App.Utilities.exe"));
+			targetFiles.Add(ReadEmbedStream("app.config", "FSLib.App.Utilities.exe.config"));
 #elif NET40 || NET45
-			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
-			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe.config"));
+			targetFiles.Add(ReadEmbedStream("Utilities_Net40.exe", "FSLib.App.Utilities.exe"));
+			targetFiles.Add(ReadEmbedStream("app.config", "FSLib.App.Utilities.exe.config"));
 #elif NET5_0
 			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.dll"));
 			targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
@@ -1054,7 +1055,9 @@ namespace FSLib.App.SimpleUpdater
 			{
 				try
 				{
-					System.IO.File.WriteAllBytes(Path.Combine(Context.UpdateTempRoot, kvp.Key), ExtensionMethod.Decompress(kvp.Value));
+					var target = Path.Combine(Context.UpdateTempRoot, kvp.Key);
+					if (!File.Exists(target))
+						System.IO.File.WriteAllBytes(target, ExtensionMethod.Decompress(kvp.Value));
 				}
 				catch (Exception e)
 				{
@@ -1087,26 +1090,15 @@ namespace FSLib.App.SimpleUpdater
 			var tempExePath = System.IO.Path.Combine(Context.UpdateTempRoot, "FSLib.App.Utilities.exe");
 
 #if !STANDALONE
-			
+
 			CopyUtilityExecutable();
 
 #endif
 
-			//生成新的日志地址
-			var logPath = "";
-			if (!string.IsNullOrEmpty(Context.LogFile))
-			{
-				logPath = System.IO.Path.Combine(
-					System.IO.Path.GetDirectoryName(Context.LogFile),
-					System.IO.Path.GetFileNameWithoutExtension(Context.LogFile) + "_1" +
-					System.IO.Path.GetExtension(Context.LogFile)
-				);
-			}
-
 			//启动
 			var sb = new StringBuilder(0x400);
 			sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
-			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(logPath));
+			sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.LogFile ?? ""));
 			sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
 			sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
 			sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);

@@ -17,14 +17,14 @@ namespace FSLib.App.SimpleUpdater.Logs
 		/// <inheritdoc />
 		public void Append(LogEntry entry)
 		{
-			entry.Message = $"[{DateTime.Now:O}][{Thread.CurrentThread.ManagedThreadId}][{entry.Level.ToString().ToUpper()}] {entry.Message}";
+			entry.Message = $"[{DateTime.Now:O}][{Thread.CurrentThread.ManagedThreadId}][{entry.LoggerName}][{entry.Level.ToString().ToUpper()}] {entry.Message}";
 
 			lock (_entryLock)
 			{
 				LogEntries.Enqueue(entry);
 			}
 
-			if (_isWritingEntries != 0)
+			if (_isWritingEntries == 0)
 				WriteEntries();
 		}
 

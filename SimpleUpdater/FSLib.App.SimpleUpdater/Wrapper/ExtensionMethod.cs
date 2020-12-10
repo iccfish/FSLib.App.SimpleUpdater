@@ -13,7 +13,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 	public delegate void Action<T1, T2, T3>(T1 t1, T2 t2, T3 t3);
 #endif
 
-	public static class ExtensionMethod
+	static class ExtensionMethod
 	{
 		/// <summary>
 		/// 为字符串设定默认值
@@ -155,7 +155,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			}
 		}
 
-		/// <summary> 将指定的序列转换为强类型的List独享 </summary>
+		/// <summary> 将指定的序列转换为强类型的List对象 </summary>
 		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable`1</see> 的参数</param>
 		/// <returns></returns>
 		public static List<T> ToList<T>(IEnumerable<T> source)
@@ -165,8 +165,14 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			{
 				list.Add(item);
 			}
+
 			return list;
 		}
+
+		/// <summary> 将指定的序列转换为强类型的List对象 </summary>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable`1</see> 的参数</param>
+		/// <returns></returns>
+		public static T[] ToArray<T>(IEnumerable<T> source) => ToList(source).ToArray();
 
 		/// <summary>
 		/// 解压缩一个字节流
@@ -227,18 +233,6 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			foreach (var item in source)
 			{
 				if (predicate(item)) yield return item;
-			}
-		}
-
-		/// <summary> 对序列进行转换 </summary>
-		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
-		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
-		/// <returns></returns>
-		public static IEnumerable<R> Where<T, R>(IEnumerable<T> source, Func<T, R> predicate)
-		{
-			foreach (var item in source)
-			{
-				yield return predicate(item);
 			}
 		}
 
