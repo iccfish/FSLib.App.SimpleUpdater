@@ -152,7 +152,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// </summary>
 		/// <param name="zipFile"></param>
 		/// <param name="e"></param>
-		public void CreateZip(string title, string zipFile, string pwd, Wrapper.RunworkEventArgs e, KeyValuePair<string, FileInfo>[] files)
+		public void CreateZip(string title, string zipFile, string pwd, RunworkEventArgs e, KeyValuePair<string, FileInfo>[] files)
 		{
 			using (var fs = new System.IO.FileStream(zipFile, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None))
 			using (var zip = new ICCEmbedded.SharpZipLib.Zip.ZipOutputStream(fs))
@@ -260,7 +260,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// 创建指定包
 		/// </summary>
 		/// <param name="e"></param>
-		public void Build(Wrapper.RunworkEventArgs e)
+		public void Build(RunworkEventArgs e)
 		{
 			e.ReportProgress(0, 0, "正在准备信息...");
 			AutoLoadInformations();
@@ -314,7 +314,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// 创建指定包
 		/// </summary>
 		/// <param name="e"></param>
-		public void BuildPackages(Wrapper.RunworkEventArgs e, UpdateInfo ui)
+		public void BuildPackages(RunworkEventArgs e, UpdateInfo ui)
 		{
 			var targetDir = AuProject.ParseFullPath(AuProject.DestinationDirectory);
 			var appDir = AuProject.ParseFullPath(AuProject.ApplicationDirectory);
@@ -364,7 +364,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var fileInfo = new System.IO.FileInfo(file);
 				ui.PackageSize = fileInfo.Length;
 				e.ReportProgress(0, 0, "正在计算包文件Hash...");
-				ui.MD5 = Wrapper.ExtensionMethod.GetFileHash(file);
+				ui.MD5 = ExtensionMethod.GetFileHash(file);
 				ui.Package = mainPkgId;
 			}
 			if (!AuProject.EnableIncreaseUpdate) return;
@@ -392,7 +392,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					FilePath = "",
 					FileSize = 0L,
 					FileHash = "",
-					PackageHash = Wrapper.ExtensionMethod.GetFileHash(pkgName),
+					PackageHash = ExtensionMethod.GetFileHash(pkgName),
 					PackageName = mainPkgId,
 					PackageSize = fileInfo.Length,
 					Method = UpdateMethod.Always,
@@ -437,12 +437,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 				var pkgInfo = new System.IO.FileInfo(pkg);
 				ui.Packages.Add(new PackageInfo()
 				{
-					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
+					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
 					VerificationLevel = config.FileVerificationLevel,
 					FilePath = file.Key,
 					FileSize = new FileInfo(file.Value.FullName).Length,
-					FileHash = Wrapper.ExtensionMethod.GetFileHash(file.Value.FullName),
-					PackageHash = Wrapper.ExtensionMethod.GetFileHash(pkg),
+					FileHash = ExtensionMethod.GetFileHash(file.Value.FullName),
+					PackageHash = ExtensionMethod.GetFileHash(pkg),
 					PackageName = pkgFileName,
 					PackageSize = pkgInfo.Length,
 					Method = config.UpdateMethod,

@@ -106,7 +106,7 @@ namespace FSLib.App.SimpleUpdater
 		{
 			get
 			{
-				return System.IO.Path.Combine(WorkingRoot, "rollback");
+				return Path.Combine(WorkingRoot, "rollback");
 			}
 		}
 
@@ -295,16 +295,16 @@ namespace FSLib.App.SimpleUpdater
 		{
 			try
 			{
-				var list = System.IO.Directory.GetDirectories(path);
+				var list = Directory.GetDirectories(path);
 				foreach (var item in list)
 				{
 					DeleteEmptyDirectories(item, true);
 				}
 
-				if (deleteSelf && System.IO.Directory.GetFileSystemEntries(path).Length == 0)
+				if (deleteSelf && Directory.GetFileSystemEntries(path).Length == 0)
 				{
 					_logger.LogInformation($"正在删除空目录 {path}");
-					System.IO.Directory.Delete(path);
+					Directory.Delete(path);
 				}
 			}
 			catch (Exception ex)
@@ -320,7 +320,7 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		bool DeletePreviousFile(RunworkEventArgs e)
 		{
-			if (this.UpdateInfo.DeleteMethod == DeletePreviousProgramMethod.None) return true;
+			if (UpdateInfo.DeleteMethod == DeletePreviousProgramMethod.None) return true;
 
 			e.PostEvent(OnDeleteFileStart);
 
@@ -328,7 +328,7 @@ namespace FSLib.App.SimpleUpdater
 			var rules = UpdateInfo.GetDeleteFileLimitRuleSet();
 
 			//找到所有文件
-			var allOldFiles = System.IO.Directory.GetFiles(ApplicationRoot, "*.*", System.IO.SearchOption.AllDirectories);
+			var allOldFiles = Directory.GetFiles(ApplicationRoot, "*.*", SearchOption.AllDirectories);
 
 			//备份
 			var index = 0;
@@ -344,17 +344,17 @@ namespace FSLib.App.SimpleUpdater
 					continue;
 				}
 
-				var dPath = System.IO.Path.Combine(bakPath, rPath);
+				var dPath = Path.Combine(bakPath, rPath);
 
 				if ((UpdateInfo.DeleteMethod == DeletePreviousProgramMethod.AllExceptSpecified && rules.FindIndex(s => s.IsMatch(rPath)) == -1)
 						||
 					(UpdateInfo.DeleteMethod == DeletePreviousProgramMethod.NoneButSpecified && rules.FindIndex(s => s.IsMatch(rPath)) != -1)
 					)
 				{
-					e.PostEvent(() => OnDeleteFile(new InstallFileEventArgs(file, dPath, allOldFiles.Length, index)));
-					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dPath));
+					e.PostEvent(() => OnDeleteFile(new InstallFileEventArgs(file, dPath, allOldFiles.Length, index, rPath)));
+					Directory.CreateDirectory(Path.GetDirectoryName(dPath));
 					_logger.LogInformation($"备份并删除文件: {file}  ->  {dPath}");
-					System.IO.File.Copy(file, dPath);
+					File.Copy(file, dPath);
 
 					var tryCount = 0;
 					while (true)
@@ -363,12 +363,12 @@ namespace FSLib.App.SimpleUpdater
 
 						try
 						{
-							System.IO.File.Delete(file);
+							File.Delete(file);
 							break;
 						}
 						catch (Exception ex)
 						{
-							this.Exception = ex;
+							Exception = ex;
 							_logger.LogError($"第[{tryCount}]次删除失败：{ex.Message}", ex);
 						}
 						//如果删除失败，则等待1秒后重试
@@ -406,15 +406,15 @@ namespace FSLib.App.SimpleUpdater
 				{
 					e.ReportProgress(filelist.Length, ++index, file);
 
-					OriginalPath = System.IO.Path.Combine(ApplicationRoot, file);
-					newVersionFile = System.IO.Path.Combine(SourceFolder, file);
-					backupPath = System.IO.Path.Combine(RollbackPath, file);
+					OriginalPath = Path.Combine(ApplicationRoot, file);
+					newVersionFile = Path.Combine(SourceFolder, file);
+					backupPath = Path.Combine(RollbackPath, file);
 
-					e.PostEvent(() => OnInstallFile(new InstallFileEventArgs(newVersionFile, OriginalPath, filelist.Length, index)));
+					e.PostEvent(() => OnInstallFile(new InstallFileEventArgs(newVersionFile, OriginalPath, filelist.Length, index, file)));
 
-					if (System.IO.File.Exists(OriginalPath))
+					if (File.Exists(OriginalPath))
 					{
-						System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(backupPath));
+						Directory.CreateDirectory(Path.GetDirectoryName(backupPath));
 						tryCount = 0;
 
 						while (true)
@@ -451,8 +451,8 @@ namespace FSLib.App.SimpleUpdater
 						try
 						{
 							_logger.LogInformation("正在复制新版本文件: " + newVersionFile + "  ->  " + OriginalPath);
-							System.IO.Directory.CreateDirectory(Path.GetDirectoryName(OriginalPath));
-							System.IO.File.Copy(newVersionFile, OriginalPath);
+							Directory.CreateDirectory(Path.GetDirectoryName(OriginalPath));
+							File.Copy(newVersionFile, OriginalPath);
 							_logger.LogInformation("安装成功");
 							break;
 						}
@@ -473,7 +473,7 @@ namespace FSLib.App.SimpleUpdater
 						try
 						{
 							_logger.LogInformation("正在尝试删除已安装文件: " + newVersionFile);
-							System.IO.File.Delete(newVersionFile);
+							File.Delete(newVersionFile);
 							_logger.LogInformation("删除成功");
 							break;
 						}
@@ -493,7 +493,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 			catch (Exception ex)
 			{
-				this.Exception = new Exception(string.Format(SR.Updater_InstallFileError, OriginalPath, newVersionFile, ex.Message));
+				Exception = new Exception(string.Format(SR.Updater_InstallFileError, OriginalPath, newVersionFile, ex.Message));
 				_logger.LogError("安装文件时发生错误：" + ex.Message, ex);
 				return false;
 			}
@@ -510,10 +510,10 @@ namespace FSLib.App.SimpleUpdater
 		{
 			foreach (var filepath in _installedFile)
 			{
-				var originalFile = System.IO.Path.Combine(ApplicationRoot, filepath);
+				var originalFile = Path.Combine(ApplicationRoot, filepath);
 
-				if (System.IO.File.Exists(originalFile))
-					System.IO.File.Delete(originalFile);
+				if (File.Exists(originalFile))
+					File.Delete(originalFile);
 
 				_logger.LogInformation("删除已安装文件: " + originalFile);
 			}
@@ -532,13 +532,13 @@ namespace FSLib.App.SimpleUpdater
 			{
 				e.ReportProgress(_bakList.Count, ++index, file);
 
-				var newPath = System.IO.Path.Combine(ApplicationRoot, file);
-				var oldPath = System.IO.Path.Combine(rootPath, file);
+				var newPath = Path.Combine(ApplicationRoot, file);
+				var oldPath = Path.Combine(rootPath, file);
 
-				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, _bakList.Count, index));
+				OnRollbackFile(new InstallFileEventArgs(oldPath, newPath, _bakList.Count, index, file));
 
 				_logger.LogInformation("还原原始文件: " + oldPath + "  ->  " + newPath);
-				System.IO.File.Move(oldPath, newPath);
+				File.Move(oldPath, newPath);
 			}
 
 			e.PostEvent(OnRollbackFinished);
@@ -552,7 +552,7 @@ namespace FSLib.App.SimpleUpdater
 		{
 			var source = SourceFolder;
 
-			var files = System.IO.Directory.GetFiles(source, "*.*", System.IO.SearchOption.AllDirectories);
+			var files = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories);
 			for (var i = 0; i < files.Length; i++)
 			{
 				files[i] = files[i].Remove(0, source.Length).Trim(new[] { '\\', '/' });

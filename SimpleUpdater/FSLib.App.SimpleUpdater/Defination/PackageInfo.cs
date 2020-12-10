@@ -9,7 +9,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 	/// <remarks></remarks>
 	[Serializable]
 	[DoNotObfuscate, DoNotObfuscateControlFlow, DoNotObfuscateType, DoNotPrune, DoNotPruneType]
-	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings]	//防止SmartAssembly处理
+	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings] //防止SmartAssembly处理
 	public class PackageInfo
 	{
 		#region 包信息-需要保存的持久化信息
@@ -71,7 +71,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 
 		#endregion
-		
+
 		#region 包本身的公开方法
 
 		/// <summary> 解压包 </summary>
@@ -86,7 +86,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		}
 
 		#endregion
-		
+
 		#region 扩展属性-为了运行时而引入，非固化在升级包中的属性
 
 		/// <summary> 获得或设置处理用的上下文环境 </summary>
@@ -149,6 +149,12 @@ namespace FSLib.App.SimpleUpdater.Defination
 			}
 		}
 
+		/// <summary>
+		/// 获得或本地的Hash值
+		/// </summary>
+		[XmlIgnore]
+		public string LocalHash { get; private set; }
+
 		bool? _hashResult;
 
 		/// <summary> 获得本地的包文件是否有效 </summary>
@@ -161,7 +167,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 			{
 				var path = LocalSavePath;
 				if (!System.IO.File.Exists(path)) return null;
-				return _hashResult ?? (_hashResult = Wrapper.ExtensionMethod.GetFileHash(path) == PackageHash);
+				LocalHash = Wrapper.ExtensionMethod.GetFileHash(path, PackageHash.Length == 32);
+				return _hashResult ?? (_hashResult = LocalHash == PackageHash);
 			}
 		}
 

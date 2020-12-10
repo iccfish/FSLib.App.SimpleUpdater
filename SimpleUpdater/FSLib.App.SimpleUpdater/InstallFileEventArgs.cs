@@ -17,6 +17,11 @@ namespace FSLib.App.SimpleUpdater
 		/// </summary>
 		public string Destination { get; private set; }
 
+		/// <summary>
+		/// 文件包中的名字
+		/// </summary>
+		public string NameInPackage { get; set; }
+
 		/// <summary> 总数 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
@@ -30,9 +35,10 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 创建 <see cref="InstallFileEventArgs" /> 的新实例
 		/// </summary>
-		public InstallFileEventArgs(string source, string destination, int totalCount, int currentCount)
+		public InstallFileEventArgs(string source, string destination, int totalCount, int currentCount, string nameInPackage)
 		{
 			CurrentCount = currentCount;
+			NameInPackage = nameInPackage;
 			TotalCount = totalCount;
 			Source = source;
 			Destination = destination;
