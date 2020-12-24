@@ -1037,9 +1037,13 @@ namespace FSLib.App.SimpleUpdater
 			}
 		}
 
-		void CopyUtilityExecutable()
+		void CopyUtilityExecutable(string targetPath = null)
 		{
 			var targetFiles = new List<KeyValuePair<string, byte[]>>();
+			if (targetPath == null)
+			{
+				targetPath = Context.UpdateTempRoot;
+			}
 
 #if NET20
 			targetFiles.Add(ReadEmbedStream("Utilities_Net20.exe", "FSLib.App.Utilities.exe"));
@@ -1057,7 +1061,7 @@ namespace FSLib.App.SimpleUpdater
 			{
 				try
 				{
-					var target = Path.Combine(Context.UpdateTempRoot, kvp.Key);
+					var target = Path.Combine(targetPath, kvp.Key);
 					if (!File.Exists(target))
 						File.WriteAllBytes(target, ExtensionMethod.Decompress(kvp.Value));
 				}
@@ -1375,10 +1379,11 @@ namespace FSLib.App.SimpleUpdater
 			}
 			_logger.LogInformation("启动外部清理进程。");
 
+			var localpath = Path.Combine(Path.GetTempPath(), "FSLib.App.Utilities.exe");
+			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
+			
 			CopyUtilityExecutable();
 
-			var localpath = Path.Combine(Context.UpdateTempRoot, "FSLib.App.Utilities.exe");
-			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
 			Process.Start(localpath, arg);
 			_hasCleanProcessStarted = true;
 		}
