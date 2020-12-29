@@ -1391,12 +1391,13 @@ namespace FSLib.App.SimpleUpdater
 			}
 			_logger.LogInformation("启动外部清理进程。");
 
-			var localpath = Path.Combine(Path.GetTempPath(), "FSLib.App.Utilities.exe");
+			var utilityPath = Path.GetTempPath();
+			var localPath = Path.Combine(utilityPath, "FSLib.App.Utilities.exe");
 			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
 
-			CopyUtilityExecutable();
+			CopyUtilityExecutable(utilityPath);
 
-			Process.Start(localpath, arg);
+			Process.Start(localPath, arg);
 			_hasCleanProcessStarted = true;
 		}
 
