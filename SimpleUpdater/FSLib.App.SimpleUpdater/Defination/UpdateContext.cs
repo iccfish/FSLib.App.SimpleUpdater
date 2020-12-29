@@ -18,7 +18,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 	public class UpdateContext
 	{
 		private static ILogger _logger = LogManager.Instance.GetLogger<UpdateContext>();
-		
+
 		/// <summary>
 		/// 获得或设置相关联的主窗口。所有的提示界面将会以其为父窗口
 		/// </summary>
@@ -40,14 +40,27 @@ namespace FSLib.App.SimpleUpdater.Defination
 			//如果当前启动路径位于TEMP目录下，则处于临时路径模式
 			var temppath = System.IO.Path.GetTempPath();
 			var assemblyPath = Assembly.GetExecutingAssembly().Location;
+
+			_logger.LogInformation($"Current user temporary path was set to {temppath}");
+			_logger.LogInformation($"Current assembly was located at '{assemblyPath}'");
+#if NET5_0
+			if (string.IsNullOrEmpty(assemblyPath))
+			{
+				assemblyPath = AppContext.BaseDirectory;
+				NeedStandaloneUpdateClientSupport = true;
+				_logger.LogInformation($"Current app context was located at '{assemblyPath}'");
+				_logger.LogInformation($"Unable get location from assembly, probably program released as a single file. A standalone updater client will be required to perform upgrade.");
+			}
+#endif
+
 			if (assemblyPath.IndexOf(temppath, StringComparison.OrdinalIgnoreCase) != -1)
 			{
-				UpdateTempRoot = System.IO.Path.GetDirectoryName(assemblyPath);
+				UpdateTempRoot = File.Exists(assemblyPath) ? Path.GetDirectoryName(assemblyPath) : assemblyPath;
 				IsInUpdateMode = true;
 			}
 			else
 			{
-				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString());
+				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString("N").Substring(0, 8));
 				IsInUpdateMode = false;
 
 				//尝试自动加载升级属性
@@ -553,7 +566,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// 获得或设置是否不经提示便自动更新
 		/// </summary>
@@ -648,5 +661,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 			get => UpdateInfo?.DialogStyle ?? _dialogStyle ?? DialogStyle.Default;
 			set => _dialogStyle = value;
 		}
+
+		/// <summary>
+		/// 获得或设置是否需要独立的更新客户端支持
+		/// </summary>
+		public bool NeedStandaloneUpdateClientSupport { get; private set; }
 	}
 }

@@ -239,6 +239,23 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			}
 		}
 
+		/// <summary>
+		/// 判断序列是否有符合要求的数据
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
+		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
+		/// <returns></returns>
+		public static bool Any<T>(IEnumerable<T> source, Func<T, bool> predicate)
+		{
+			foreach (var item in source)
+			{
+				if (predicate(item)) return true;
+			}
+
+			return false;
+		}
+
 		/// <summary> 计算一个序列中指定属性之和 </summary>
 		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable`1</see> 的参数</param>
 		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func`2</see> 的参数</param>

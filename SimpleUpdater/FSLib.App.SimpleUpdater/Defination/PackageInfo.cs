@@ -5,26 +5,26 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 	using global::SimpleUpdater.Attributes;
 
-	/// <summary> ±íÊ¾µ¥¸öÎÄ¼şĞÅÏ¢ </summary>
+	/// <summary> è¡¨ç¤ºå•ä¸ªæ–‡ä»¶ä¿¡æ¯ </summary>
 	/// <remarks></remarks>
 	[Serializable]
 	[DoNotObfuscate, DoNotObfuscateControlFlow, DoNotObfuscateType, DoNotPrune, DoNotPruneType]
-	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings] //·ÀÖ¹SmartAssembly´¦Àí
+	[DoNotCaptureFields, DoNotCaptureVariables, DoNotEncodeStrings] //é˜²æ­¢SmartAssemblyå¤„ç†
 	public class PackageInfo
 	{
-		#region °üĞÅÏ¢-ĞèÒª±£´æµÄ³Ö¾Ã»¯ĞÅÏ¢
+		#region åŒ…ä¿¡æ¯-éœ€è¦ä¿å­˜çš„æŒä¹…åŒ–ä¿¡æ¯
 
-		/// <summary> ÎÄ¼şÂ·¾¶ </summary>
+		/// <summary> æ–‡ä»¶è·¯å¾„ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public string FilePath { get; set; }
 
-		/// <summary> ÎÄ¼ş´óĞ¡ </summary>
+		/// <summary> æ–‡ä»¶å¤§å° </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public long FileSize { get; set; }
 
-		/// <summary> °æ±¾ </summary>
+		/// <summary> ç‰ˆæœ¬ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public string Version { get; set; }
@@ -34,52 +34,52 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public string PackageHash { get; set; }
 
-		/// <summary> °üÃû </summary>
+		/// <summary> åŒ…å </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public string PackageName { get; set; }
 
-		/// <summary> Ñ¹Ëõ°üÎÄ¼ş´óĞ¡ </summary>
+		/// <summary> å‹ç¼©åŒ…æ–‡ä»¶å¤§å° </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public long PackageSize { get; set; }
 
-		/// <summary> ¸üĞÂÄ£Ê½ </summary>
+		/// <summary> æ›´æ–°æ¨¡å¼ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public UpdateMethod Method { get; set; }
 
-		/// <summary> »ñµÃ»òÉèÖÃµ±Ç°ÎÄ¼şÑéÖ¤µÈ¼¶ </summary>
+		/// <summary> è·å¾—æˆ–è®¾ç½®å½“å‰æ–‡ä»¶éªŒè¯ç­‰çº§ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public FileVerificationLevel VerificationLevel { get; set; }
 
-		/// <summary> »ñµÃ»òÉèÖÃ±¾µØÎÄ¼şµÄ¹şÏ£Öµ </summary>
+		/// <summary> è·å¾—æˆ–è®¾ç½®æœ¬åœ°æ–‡ä»¶çš„å“ˆå¸Œå€¼ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		public string FileHash { get; set; }
 
 		/// <summary>
-		/// »ñµÃ»òÉèÖÃ¹ØÁªµÄÎÄ¼ş
+		/// è·å¾—æˆ–è®¾ç½®å…³è”çš„æ–‡ä»¶
 		/// </summary>
 		public string[] Files { get; set; }
 
 		/// <summary>
-		/// ¹¦ÄÜ±ê¼Ç¡£
+		/// åŠŸèƒ½æ ‡è®°ã€‚
 		/// </summary>
 		public string ComponentId { get; set; }
 
 
 		#endregion
 
-		#region °ü±¾ÉíµÄ¹«¿ª·½·¨
+		#region åŒ…æœ¬èº«çš„å…¬å¼€æ–¹æ³•
 
-		/// <summary> ½âÑ¹°ü </summary>
+		/// <summary> è§£å‹åŒ… </summary>
 		public void Extract()
 		{
 		}
 
-		/// <summary> Ôö¼ÓÊ§°Ü¼ÆÊı </summary>
+		/// <summary> å¢åŠ å¤±è´¥è®¡æ•° </summary>
 		public void IncreaseFailureCounter()
 		{
 			RetryCount = (RetryCount ?? 0) + 1;
@@ -87,40 +87,40 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 		#endregion
 
-		#region À©Õ¹ÊôĞÔ-ÎªÁËÔËĞĞÊ±¶øÒıÈë£¬·Ç¹Ì»¯ÔÚÉı¼¶°üÖĞµÄÊôĞÔ
+		#region æ‰©å±•å±æ€§-ä¸ºäº†è¿è¡Œæ—¶è€Œå¼•å…¥ï¼Œéå›ºåŒ–åœ¨å‡çº§åŒ…ä¸­çš„å±æ€§
 
-		/// <summary> »ñµÃ»òÉèÖÃ´¦ÀíÓÃµÄÉÏÏÂÎÄ»·¾³ </summary>
+		/// <summary> è·å¾—æˆ–è®¾ç½®å¤„ç†ç”¨çš„ä¸Šä¸‹æ–‡ç¯å¢ƒ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[System.Xml.Serialization.XmlIgnore]
 		public UpdateContext Context { get; set; }
 
 
-		/// <summary> »ñµÃµ±Ç°°üÊÇ·ñÕıÔÚÏÂÔØ </summary>
+		/// <summary> è·å¾—å½“å‰åŒ…æ˜¯å¦æ­£åœ¨ä¸‹è½½ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
 		public bool IsDownloading { get; internal set; }
 
-		/// <summary> »ñµÃµ±Ç°°üÊÇ·ñÒÑ¾­ÏÂÔØ </summary>
+		/// <summary> è·å¾—å½“å‰åŒ…æ˜¯å¦å·²ç»ä¸‹è½½ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
 		public bool IsDownloaded { get; internal set; }
 
-		/// <summary> »ñµÃ´¦Àí¹ı³ÌÖĞ×îºó·¢ÉúµÄ´íÎó </summary>
+		/// <summary> è·å¾—å¤„ç†è¿‡ç¨‹ä¸­æœ€åå‘ç”Ÿçš„é”™è¯¯ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
 		public Exception LastError { get; internal set; }
 
-		/// <summary> »ñµÃÖØÊÔ´ÎÊı¼ÆÊı </summary>
+		/// <summary> è·å¾—é‡è¯•æ¬¡æ•°è®¡æ•° </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
 		public int? RetryCount { get; internal set; }
 
-		/// <summary> »ñµÃ±¾µØ±£´æÂ·¾¶ </summary>
+		/// <summary> è·å¾—æœ¬åœ°ä¿å­˜è·¯å¾„ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[System.Xml.Serialization.XmlIgnore]
@@ -128,14 +128,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 		{
 			get
 			{
-				if (Context == null) throw new InvalidOperationException("ÉĞÎ´¸½¼Óµ½ÉÏÏÂÎÄÖĞ");
+				if (Context == null) throw new InvalidOperationException("å°šæœªé™„åŠ åˆ°ä¸Šä¸‹æ–‡ä¸­");
 				return System.IO.Path.Combine(Context.UpdatePackagePath, PackageName);
 			}
 		}
 
 		string _sourceUri;
 
-		/// <summary> »ñµÃÏÂÔØµÄÔ´URL </summary>
+		/// <summary> è·å¾—ä¸‹è½½çš„æºURL </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
@@ -143,21 +143,21 @@ namespace FSLib.App.SimpleUpdater.Defination
 		{
 			get
 			{
-				if (Context == null) throw new InvalidOperationException("ÉĞÎ´¸½¼Óµ½ÉÏÏÂÎÄÖĞ");
+				if (Context == null) throw new InvalidOperationException("å°šæœªé™„åŠ åˆ°ä¸Šä¸‹æ–‡ä¸­");
 
 				return _sourceUri ?? (_sourceUri = Context.GetUpdatePackageFullUrl(PackageName));
 			}
 		}
 
 		/// <summary>
-		/// »ñµÃ»ò±¾µØµÄHashÖµ
+		/// è·å¾—æˆ–æœ¬åœ°çš„Hashå€¼
 		/// </summary>
 		[XmlIgnore]
 		public string LocalHash { get; private set; }
 
 		bool? _hashResult;
 
-		/// <summary> »ñµÃ±¾µØµÄ°üÎÄ¼şÊÇ·ñÓĞĞ§ </summary>
+		/// <summary> è·å¾—æœ¬åœ°çš„åŒ…æ–‡ä»¶æ˜¯å¦æœ‰æ•ˆ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
@@ -172,7 +172,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 			}
 		}
 
-		/// <summary> »ñµÃÒÑÏÂÔØµÄ³¤¶È </summary>
+		/// <summary> è·å¾—å·²ä¸‹è½½çš„é•¿åº¦ </summary>
 		/// <value></value>
 		/// <remarks></remarks>
 		[XmlIgnore]
@@ -180,10 +180,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 		#endregion
 
-		#region ¸¨Öú·½·¨
+		#region è¾…åŠ©æ–¹æ³•
 
 		/// <summary>
-		/// È·¶¨ÊÇ·ñÓĞ´Ë±ê¼ÇÎ»
+		/// ç¡®å®šæ˜¯å¦æœ‰æ­¤æ ‡è®°ä½
 		/// </summary>
 		/// <param name="level"></param>
 		/// <returns></returns>

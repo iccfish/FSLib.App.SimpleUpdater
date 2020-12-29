@@ -6,7 +6,9 @@ namespace FSLib.App.SimpleUpdater.Defination
 	using System.Text.RegularExpressions;
 
 	using Annotations;
+
 	using FSLib.App.SimpleUpdater.Dialogs;
+
 	using global::SimpleUpdater.Attributes;
 
 	using Wrapper;
@@ -33,7 +35,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string AppName
 		{
-			get { return _appName; }
+			get => _appName;
 			set
 			{
 				if (value == _appName)
@@ -48,7 +50,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string AppVersion
 		{
-			get { return _appVersion; }
+			get => _appVersion;
 			set
 			{
 				if (value == _appVersion)
@@ -63,7 +65,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string PublishUrl
 		{
-			get { return _publishUrl; }
+			get => _publishUrl;
 			set
 			{
 				if (value == _publishUrl)
@@ -78,7 +80,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string FileExecuteBefore
 		{
-			get { return _fileExecuteBefore; }
+			get => _fileExecuteBefore;
 			set
 			{
 				if (value == _fileExecuteBefore)
@@ -93,7 +95,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string ExecuteArgumentBefore
 		{
-			get { return _executeArgumentBefore; }
+			get => _executeArgumentBefore;
 			set
 			{
 				if (value == _executeArgumentBefore)
@@ -108,7 +110,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string FileExecuteAfter
 		{
-			get { return _fileExecuteAfter; }
+			get => _fileExecuteAfter;
 			set
 			{
 				if (value == _fileExecuteAfter)
@@ -123,7 +125,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string ExecuteArgumentAfter
 		{
-			get { return _executeArgumentAfter; }
+			get => _executeArgumentAfter;
 			set
 			{
 				if (value == _executeArgumentAfter)
@@ -138,7 +140,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public int ExecuteTimeout
 		{
-			get { return _executeTimeout; }
+			get => _executeTimeout;
 			set
 			{
 				if (value == _executeTimeout)
@@ -190,7 +192,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool TreatErrorAsNotUpdated
 		{
-			get { return _treatErrorAsNotUpdated; }
+			get => _treatErrorAsNotUpdated;
 			set
 			{
 				if (value.Equals(_treatErrorAsNotUpdated)) return;
@@ -204,7 +206,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool PromptUserBeforeAutomaticUpgrade
 		{
-			get { return _promptUserBeforeAutomaticUpgrade; }
+			get => _promptUserBeforeAutomaticUpgrade;
 			set
 			{
 				if (value.Equals(_promptUserBeforeAutomaticUpgrade)) return;
@@ -220,7 +222,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoCloseSucceedWindow
 		{
-			get { return _autoCloseSucceedWindow; }
+			get => _autoCloseSucceedWindow;
 			set
 			{
 				if (value.Equals(_autoCloseSucceedWindow)) return;
@@ -284,10 +286,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string Desc
 		{
-			get
-			{
-				return _desc;
-			}
+			get => _desc;
 			set
 			{
 				_desc = string.Join(Environment.NewLine, value.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
@@ -300,7 +299,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string Package
 		{
-			get { return _package; }
+			get => _package;
 			set
 			{
 				if (value == _package)
@@ -315,7 +314,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string MD5
 		{
-			get { return _md5; }
+			get => _md5;
 			set
 			{
 				if (value == _md5)
@@ -352,7 +351,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string RequiredMinVersion
 		{
-			get { return _requiredMinVersion; }
+			get => _requiredMinVersion;
 			set
 			{
 				if (value == _requiredMinVersion)
@@ -367,7 +366,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public long PackageSize
 		{
-			get { return _packageSize; }
+			get => _packageSize;
 			set
 			{
 				if (value == _packageSize)
@@ -386,7 +385,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public Version UpdaterVersion
 		{
-			get { return _updaterVersion; }
+			get => _updaterVersion;
 			set
 			{
 				if (Equals(value, _updaterVersion))
@@ -401,7 +400,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string PackagePassword
 		{
-			get { return _packagePassword; }
+			get => _packagePassword;
 			set
 			{
 				if (value == _packagePassword)
@@ -420,7 +419,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public Version UpdateManifestVersion
 		{
-			get { return _updateManifestVersion; }
+			get => _updateManifestVersion;
 			set
 			{
 				if (Equals(value, _updateManifestVersion))
@@ -435,7 +434,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public bool ForceUpdate
 		{
-			get { return _forceUpdate; }
+			get => _forceUpdate;
 			set
 			{
 				if (value.Equals(_forceUpdate))
@@ -450,8 +449,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public List<PackageInfo> Packages
 		{
-			get { return _packages ?? (_packages = new List<PackageInfo>()); }
-			set { _packages = value; }
+			get => _packages ?? (_packages = new List<PackageInfo>());
+			set => _packages = value;
 		}
 
 		/// <summary>
@@ -459,7 +458,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool HideBeforeExecuteWindow
 		{
-			get { return _hideBeforeExecuteWindow; }
+			get => _hideBeforeExecuteWindow;
 			set
 			{
 				if (value.Equals(_hideBeforeExecuteWindow))
@@ -474,7 +473,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool HideAfterExecuteWindow
 		{
-			get { return _hideAfterExecuteWindow; }
+			get => _hideAfterExecuteWindow;
 			set
 			{
 				if (value.Equals(_hideAfterExecuteWindow))
@@ -493,7 +492,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string WebUpdateNote
 		{
-			get { return _webUpdateNote; }
+			get => _webUpdateNote;
 			set
 			{
 				if (value == _webUpdateNote)
@@ -508,7 +507,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string RtfUpdateNote
 		{
-			get { return _rtfUpdateNote; }
+			get => _rtfUpdateNote;
 			set
 			{
 				if (value == _rtfUpdateNote)
@@ -527,7 +526,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool MustUpdate
 		{
-			get { return _mustUpdate; }
+			get => _mustUpdate;
 			set
 			{
 				if (value.Equals(_mustUpdate))
@@ -542,7 +541,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoExitCurrentProcess
 		{
-			get { return _autoExitCurrentProcess; }
+			get => _autoExitCurrentProcess;
 			set
 			{
 				if (value.Equals(_autoExitCurrentProcess)) return;
@@ -556,7 +555,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoEndProcessesWithinAppDir
 		{
-			get { return _autoEndProcessesWithinAppDir; }
+			get => _autoEndProcessesWithinAppDir;
 			set
 			{
 				if (value.Equals(_autoEndProcessesWithinAppDir)) return;
@@ -571,7 +570,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoKillProcesses
 		{
-			get { return _autoKillProcesses; }
+			get => _autoKillProcesses;
 			set
 			{
 				if (value.Equals(_autoKillProcesses)) return;
@@ -586,7 +585,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string[] ServerCluster
 		{
-			get { return _serverCluster; }
+			get => _serverCluster;
 			set
 			{
 				if (Equals(value, _serverCluster))
@@ -601,7 +600,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string UpdatePingUrl
 		{
-			get { return _updatePingUrl; }
+			get => _updatePingUrl;
 			set
 			{
 				if (value == _updatePingUrl)
@@ -616,7 +615,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public string PackageUrlTemplate
 		{
-			get { return _packageUrlTemplate; }
+			get => _packageUrlTemplate;
 			set
 			{
 				if (value == _packageUrlTemplate)
@@ -631,7 +630,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool RequreAdminstrorPrivilege
 		{
-			get { return _requreAdminstrorPrivilege; }
+			get => _requreAdminstrorPrivilege;
 			set
 			{
 				if (value.Equals(_requreAdminstrorPrivilege)) return;
@@ -659,6 +658,18 @@ namespace FSLib.App.SimpleUpdater.Defination
 				OnPropertyChanged(nameof(DialogStyle));
 			}
 		}
+
+
+		private PackageInfo _updaterClient;
+		/// <summary>
+		/// 获得或设置升级客户端的版本标记
+		/// </summary>
+		public PackageInfo UpdaterClient
+		{
+			get => _updaterClient;
+			set => _updaterClient = value;
+		}
+
 
 		#region 受保护函数
 

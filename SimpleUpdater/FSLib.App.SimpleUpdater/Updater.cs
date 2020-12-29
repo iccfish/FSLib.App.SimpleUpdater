@@ -445,6 +445,18 @@ namespace FSLib.App.SimpleUpdater
 				}
 			}
 
+			if (PackagesToUpdate.Count > 0 && Context.NeedStandaloneUpdateClientSupport)
+			{
+				if (Context.UpdateInfo.UpdaterClient == null)
+					throw new ApplicationException("In single file release mode, updater client need a standalone client lib to perform upgrade. Please make sure the update packages was built with updated package builder.");
+
+				if (!ExtensionMethod.Any(PackagesToUpdate, s => s.PackageName == Context.UpdateInfo.UpdaterClient.PackageName))
+				{
+					_logger.LogInformation("Adding standalone updater lib to package list.");
+					PackagesToUpdate.Add(Context.UpdateInfo.UpdaterClient);
+				}
+			}
+
 			rt.PostEvent(OnGatheredPackages);
 			_logger.LogInformation("完成确定需要下载的升级包");
 		}
@@ -1381,7 +1393,7 @@ namespace FSLib.App.SimpleUpdater
 
 			var localpath = Path.Combine(Path.GetTempPath(), "FSLib.App.Utilities.exe");
 			var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
-			
+
 			CopyUtilityExecutable();
 
 			Process.Start(localpath, arg);
