@@ -176,7 +176,7 @@ namespace FSLib.App.SimpleUpdater
 			{
 				Context.IsInUpdating = false;
 				Context.Exception = e.Exception;
-				_logger.LogError("检测更新信息失败：" + e.Exception.Message, e.Exception);
+				_logger.LogError("Loading update infomation failed: " + e.Exception.Message, e.Exception);
 				OnError();
 				OnCheckUpdateComplete();
 			};
@@ -223,7 +223,7 @@ namespace FSLib.App.SimpleUpdater
 
 			if (File.Exists(localFile))
 			{
-				_logger.LogInformation("正在读取本地升级信息文件 [" + localFile + "]");
+				_logger.LogInformation("Reading local update information file '" + localFile + "'");
 				Context.UpdateInfoTextContent = File.ReadAllText(localFile, Encoding.UTF8);
 			}
 			else
@@ -248,20 +248,20 @@ namespace FSLib.App.SimpleUpdater
 						}
 						wHandler.Set();
 					};
-					_logger.LogInformation("正在从 " + url + " 下载升级信息");
+					_logger.LogInformation("Downloading update info from '" + url + "'");
 					client.DownloadDataAsync(new Uri(url));
 					//等待下载完成
 					wHandler.WaitOne();
 				}
 				if (ex != null) throw ex;
 
-				_logger.LogInformation("服务器返回数据----->" + (data == null ? "<null>" : data.Length.ToString() + "字节"));
+				_logger.LogInformation("Got data of " + (data == null ? "<null>" : data.Length.ToString() + "bytes"));
 				if (data != null && data.Length > 0x10)
 				{
 					//不是<xml标记，则执行解压缩
 					if (BitConverter.ToInt32(data, 0) != 0x6D783F3C && BitConverter.ToInt32(data, 0) != 0x3CBFBBEF)
 					{
-						_logger.LogInformation("数据非正常数据, 正在执行解压缩");
+						_logger.LogInformation("Trying to decompress data...");
 						data = ExtensionMethod.Decompress(data);
 					}
 					Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
@@ -270,38 +270,38 @@ namespace FSLib.App.SimpleUpdater
 				//是否返回了正确的结果?
 				if (string.IsNullOrEmpty(Context.UpdateInfoTextContent))
 				{
-					throw new ApplicationException("服务器返回了不正确的更新结果");
+					throw new ApplicationException("Unable to read update info.");
 				}
 
 			}
 			e.PostEvent(OnDownloadUpdateInfoFinished);
 			if ((Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent)) == null)
 			{
-				throw new ApplicationException("未能成功加载升级信息");
+				throw new ApplicationException("Update info download failed");
 			}
-			_logger.LogInformation($"服务器版本：{Context.UpdateInfo.AppVersion}");
-			_logger.LogInformation($"当前版本：{Context.CurrentVersion}");
+			_logger.LogInformation($"Server version: {Context.UpdateInfo.AppVersion}");
+			_logger.LogInformation($"Current Version: {Context.CurrentVersion}");
 			//设置必须的属性
 			if (Context.UpdateInfo.MustUpdate)
 			{
 				Context.AutoKillProcesses = true;
-				_logger.LogInformation("已设置自动关闭进程。");
+				_logger.LogInformation("Flag 'AUTO_CLOSE_PROCESS' was set.");
 				Context.AutoEndProcessesWithinAppDir = true;
-				_logger.LogInformation("已设置自动关闭同目录进程。");
+				_logger.LogInformation("Flag 'AUTO_CLOSE_PROCESS_IN_SAME_DIR' was set.");
 				Context.ForceUpdate = true;
-				_logger.LogInformation("已设置强制升级。");
+				_logger.LogInformation("Flag 'FORCE_UPDATE' was set.");
 			}
 
 			//判断升级
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.RequiredMinVersion) && Context.CurrentVersion < new Version(Context.UpdateInfo.RequiredMinVersion))
 			{
 				Context.CurrentVersionTooLow = true;
-				_logger.LogWarning($"当前应用程序版本过低，无法升级。要求最低版本：{Context.UpdateInfo.RequiredMinVersion}，当前版本：{Context.CurrentVersion}。");
+				_logger.LogWarning($"Unable to perform update due to current application version was too low. Minimum version '{Context.UpdateInfo.RequiredMinVersion}' was required, current was '{Context.CurrentVersion}'");
 			}
 			else
 			{
 				Context.HasUpdate = new Version(Context.UpdateInfo.AppVersion) > Context.CurrentVersion;
-				_logger.LogInformation("已找到升级：" + Context.HasUpdate);
+				_logger.LogInformation("Updates found: " + Context.HasUpdate);
 			}
 
 			if (Context.HasUpdate)
@@ -310,31 +310,31 @@ namespace FSLib.App.SimpleUpdater
 				if (PackagesToUpdate == null || PackagesToUpdate.Count == 0)
 				{
 					var pkgList = Context.UpdatePackageListPath;
-					_logger.LogInformation($"外部升级包列表：{pkgList}");
+					_logger.LogInformation($"External package list: {pkgList}");
 
 					if (File.Exists(pkgList))
 					{
-						_logger.LogInformation("外部升级包列表：已加载成功");
+						_logger.LogInformation("External package list: load success.");
 						PackagesToUpdate = XMLSerializeHelper.XmlDeserializeFromString<List<PackageInfo>>(File.ReadAllText(pkgList, Encoding.UTF8));
 						PackagesToUpdate.ForEach(s => s.Context = Context);
 					}
 					else
 					{
-						_logger.LogInformation("外部升级包列表：当前不存在，正在生成升级清单");
+						_logger.LogInformation("External package list: not exist, recreating.");
 						GatheringDownloadPackages(e);
 					}
 
 					var preserveFileList = Context.PreserveFileListPath;
-					_logger.LogInformation($"外部文件保留列表：{preserveFileList}");
+					_logger.LogInformation($"External reserve list: {preserveFileList}");
 					if (File.Exists(preserveFileList))
 					{
-						_logger.LogInformation("外部文件保留列表：已加载成功");
+						_logger.LogInformation("External reserve list: load success.");
 						var list = XMLSerializeHelper.XmlDeserializeFromString<List<string>>(File.ReadAllText(preserveFileList, Encoding.UTF8));
 						list.ForEach(s => FileInstaller.PreservedFiles.Add(s, null));
 					}
 					else
 					{
-						_logger.LogInformation("外部升级包列表：当前不存在，等待重新生成");
+						_logger.LogInformation("External reserve list: not exist, recreating.");
 					}
 				}
 			}
@@ -345,7 +345,7 @@ namespace FSLib.App.SimpleUpdater
 				if (PackagesToUpdate.Count == 0)
 				{
 					Context.HasUpdate = false;
-					_logger.LogWarning("警告：虽然版本出现差别，但是并没有可升级的文件。将会当作无升级对待。");
+					_logger.LogWarning("Warning: updates found, but no package was marked as updatable, so treat as no update.");
 				}
 			}
 		}
@@ -357,13 +357,13 @@ namespace FSLib.App.SimpleUpdater
 		{
 			if (PackagesToUpdate.Count > 0) return;
 
-			_logger.LogInformation("正在确定需要下载的升级包");
+			_logger.LogInformation("Begin create update package list.");
 			rt.PostEvent(OnGatheringPackages);
 
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.Package) && (Context.UpdateInfo.Packages == null || Context.UpdateInfo.Packages.Count == 0))
 			{
 				//必须更新的包
-				_logger.LogInformation("正在添加必须升级的主要安装包");
+				_logger.LogInformation("Adding main package.");
 				PackagesToUpdate.Add(new PackageInfo()
 				{
 					FilePath = "",
@@ -389,14 +389,14 @@ namespace FSLib.App.SimpleUpdater
 
 					if (pkg.Method == UpdateMethod.Always)
 					{
-						_logger.LogInformation("标记为始终更新，添加升级包 【" + pkg.PackageName + "】");
+						_logger.LogInformation("Package '" + pkg.PackageName + "' was added as always update.");
 						PackagesToUpdate.Add(pkg);
 						continue;
 					}
 					//判断组件标记
 					if (!string.IsNullOrEmpty(pkg.ComponentId) && !CheckComponentFlag(pkg.ComponentId))
 					{
-						_logger.LogInformation("组件标记为 " + pkg.ComponentId + "，状态为false，跳过升级包 【" + pkg.PackageName + "】");
+						_logger.LogInformation("Component '" + pkg.ComponentId + "' marked as false, package '" + pkg.PackageName + "' skipped.");
 						continue;
 					}
 
@@ -406,13 +406,13 @@ namespace FSLib.App.SimpleUpdater
 					{
 						if (Utility.HasMethod(pkg.Method, UpdateMethod.SkipIfNotExist))
 						{
-							_logger.LogInformation("本地路径【" + pkg.FilePath + "】不存在，并且指定了不存在则跳过，因此跳过更新");
+							_logger.LogInformation("Local file '" + pkg.FilePath + "' not exist, package '' was skipped due to config as skip if not exist.");
 						}
 						else
 						{
 
 							PackagesToUpdate.Add(pkg);
-							_logger.LogInformation("本地路径【" + pkg.FilePath + "】不存在，添加升级包 【" + pkg.PackageName + "】");
+							_logger.LogInformation("Local file '" + pkg.FilePath + "' not exist, package '" + pkg.PackageName + "' was added.");
 						}
 						continue;
 					}
@@ -420,7 +420,7 @@ namespace FSLib.App.SimpleUpdater
 					if (Utility.HasMethod(pkg.Method, UpdateMethod.SkipIfExists))
 					{
 						AddPackageToPreserveList(pkg);
-						_logger.LogInformation("本地路径【" + pkg.FilePath + "】已经存在，跳过升级包 【" + pkg.PackageName + "】");
+						_logger.LogInformation("Local file '" + pkg.FilePath + "' exists, package '" + pkg.PackageName + "' was skipped.");
 						continue;
 					}
 
@@ -433,14 +433,14 @@ namespace FSLib.App.SimpleUpdater
 
 					if (isNewer)
 					{
-						_logger.LogInformation("服务器版本更新，添加升级包 【" + pkg.PackageName + "】");
+						_logger.LogInformation("Package '" + pkg.PackageName + "' was added due to server version newer.");
 						pkg.Context = Context;
 						PackagesToUpdate.Add(pkg);
 					}
 					else
 					{
 						AddPackageToPreserveList(pkg);
-						_logger.LogInformation("服务器版本更旧或相同，跳过升级包 【" + pkg.PackageName + "】");
+						_logger.LogInformation("Package '" + pkg.PackageName + "' was skipped due to server version was lower or same.");
 					}
 				}
 			}
@@ -458,7 +458,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 
 			rt.PostEvent(OnGatheredPackages);
-			_logger.LogInformation("完成确定需要下载的升级包");
+			_logger.LogInformation("Done create update package list.");
 		}
 
 		/// <summary>
@@ -474,7 +474,7 @@ namespace FSLib.App.SimpleUpdater
 			{
 				if (!reserveDic.ContainsKey(file))
 				{
-					_logger.LogInformation($"添加 {file} 到保持文件列表，因为下载过程中会跳过，所以不可以删除");
+					_logger.LogInformation($"Adding file '{file}' reserve file list due to skipped package download.");
 					reserveDic.Add(file, null);
 				}
 			}
@@ -644,13 +644,13 @@ namespace FSLib.App.SimpleUpdater
 				WindowStyle = hide ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal
 			};
 			SetProcessEnvVar(psi);
-			_logger.LogInformation($"正在执行外部进程，路径：{psi.FileName}，参数：{psi.Arguments}");
+			_logger.LogInformation($"Executing external process, path: {psi.FileName}, arguments:{psi.Arguments}");
 			e.PostEvent(RunExternalProcess, this, new RunExternalProcessEventArgs(psi));
 			var p = Process.Start(psi);
 
 			if (waitingForExit)
 			{
-				_logger.LogInformation("等待外部进程执行完毕");
+				_logger.LogInformation("Waiting for external process exit...");
 				if (Context.UpdateInfo.ExecuteTimeout > 0)
 				{
 					p.WaitForExit(1000 * Context.UpdateInfo.ExecuteTimeout);
@@ -671,7 +671,7 @@ namespace FSLib.App.SimpleUpdater
 					if (!p.HasExited) p.WaitForExit(1000 * Context.UpdateInfo.ExecuteTimeout);
 				}
 			}
-			_logger.LogInformation("外部进程执行完毕");
+			_logger.LogInformation("External process exited.");
 
 			return true;
 		}
@@ -743,7 +743,7 @@ namespace FSLib.App.SimpleUpdater
 		{
 			Directory.CreateDirectory(Context.UpdatePackagePath);
 
-			_logger.LogInformation("开始下载网络更新包");
+			_logger.LogInformation("Begin download package.");
 
 			var workerCount = Math.Max(1, Context.MultipleDownloadCount);
 			var workers = new List<WebClient>(workerCount);
@@ -753,7 +753,7 @@ namespace FSLib.App.SimpleUpdater
 			//download redirect
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.PackageUrlTemplate))
 			{
-				_logger.LogInformation("已经重定向下载包地址到 {0}", Context.UpdateInfo.PackageUrlTemplate);
+				_logger.LogInformation("Redirect download location to {0}", Context.UpdateInfo.PackageUrlTemplate);
 				Context.UpdateDownloadUrl = Context.UpdateInfo.PackageUrlTemplate;
 				Context.UpdateInfoFileName = null;
 				Context.Init();
@@ -772,7 +772,7 @@ namespace FSLib.App.SimpleUpdater
 			}
 
 			//生成下载队列
-			_logger.LogInformation($"正在初始化 {workerCount} 个WebClient");
+			_logger.LogInformation($"Inintializing {workerCount} webClients");
 			for (var i = 0; i < workerCount; i++)
 			{
 				var clnt = Context.CreateWebClient();
@@ -1386,10 +1386,10 @@ namespace FSLib.App.SimpleUpdater
 
 			if (!Directory.Exists(Context.UpdateTempRoot))
 			{
-				_logger.LogInformation("未生成临时目录，不需要清理");
+				_logger.LogInformation("No need to clean due to temporary directory was not created.");
 				return;
 			}
-			_logger.LogInformation("启动外部清理进程。");
+			_logger.LogInformation("Starting external cleanup process.");
 
 			var utilityPath = Path.GetTempPath();
 			var localPath = Path.Combine(utilityPath, "FSLib.App.Utilities.exe");
