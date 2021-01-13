@@ -428,7 +428,7 @@ namespace FSLib.App.SimpleUpdater
 						||
 						(pkg.HasVerifyFlag(FileVerificationLevel.Version) && (string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version)))
 						||
-						(pkg.HasVerifyFlag(FileVerificationLevel.Hash) && ExtensionMethod.GetFileHash(localPath) != pkg.FileHash)
+						(pkg.HasVerifyFlag(FileVerificationLevel.Hash) && ExtensionMethod.GetFileHash(localPath, pkg.IsHashMd5) != pkg.FileHash)
 						;
 
 					if (isNewer)

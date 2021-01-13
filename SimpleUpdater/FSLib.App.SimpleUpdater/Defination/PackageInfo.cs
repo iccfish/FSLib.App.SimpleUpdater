@@ -59,6 +59,12 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public string FileHash { get; set; }
 
+
+		/// <summary>
+		/// 获得当前的Hash方式是否是MD5
+		/// </summary>
+		public bool IsHashMd5 => FileHash.Length == 32;
+
 		/// <summary>
 		/// 获得或设置关联的文件
 		/// </summary>
