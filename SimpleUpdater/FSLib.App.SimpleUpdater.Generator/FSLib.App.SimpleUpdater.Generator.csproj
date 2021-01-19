@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSLib.App.SimpleUpdater.Generator</RootNamespace>
     <AssemblyName>自动更新包生成工具</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>globe_download.ico</ApplicationIcon>
@@ -133,6 +134,12 @@
     <Compile Include="Defination\FileTreeItem.cs" />
     <Compile Include="Defination\ProjectItem.cs" />
     <Compile Include="Defination\ServerNode.cs" />
+    <Compile Include="Dialogs\BuildingPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BuildingPackage.Designer.cs">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\PackageGenerateResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +169,9 @@
       <DependentUpon>SR.resx</DependentUpon>
     </Compile>
     <Compile Include="UpdatePackageBuilder.cs" />
+    <Compile Include="Utils\ProgressableStream.cs" />
+    <Compile Include="ZipBuilder\ZipTask.cs" />
+    <Compile Include="ZipBuilder\ZipTaskState.cs" />
     <EmbeddedResource Include="BuilderInterface\FormBuildUi\MiniBuildUi.resx">
       <DependentUpon>MiniBuildUi.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThemeConfig.resx">
       <DependentUpon>ThemeConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuildingPackage.resx">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuildingPackage.zh-CN.resx">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PackageGenerateResult.resx">
       <DependentUpon>PackageGenerateResult.cs</DependentUpon>
@@ -234,6 +250,7 @@
       <Name>FSLib.App.SimpleUpdater</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

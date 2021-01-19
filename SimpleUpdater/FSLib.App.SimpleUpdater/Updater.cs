@@ -14,6 +14,8 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.Xml.Serialization.Configuration;
+
 	using Defination;
 
 	using Logs;
@@ -445,6 +447,16 @@ namespace FSLib.App.SimpleUpdater
 				}
 			}
 
+			if (!Context.NeedStandaloneUpdateClientSupport && Context.UpdateInfo.UpdaterClient != null && !string.IsNullOrEmpty(Context.UpdateInfo.UpdaterClientVersion))
+			{
+				var currentVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+				if (new Version(Context.UpdateInfo.UpdaterClientVersion) > ExtensionMethod.ConvertVersionInfo(currentVersion))
+				{
+					_logger.LogInformation($"Newer updater client found (server={Context.UpdateInfo.UpdaterClientVersion}, local={currentVersion.FileVersion}). External update process will using newer updater client to execute.");
+					Context.NeedStandaloneUpdateClientSupport = true;
+				}
+			}
+
 			if (PackagesToUpdate.Count > 0 && Context.NeedStandaloneUpdateClientSupport)
 			{
 				if (Context.UpdateInfo.UpdaterClient == null)
@@ -826,8 +838,8 @@ namespace FSLib.App.SimpleUpdater
 						pkg.DownloadedSize = e.BytesReceived;
 						pkg.PackageSize = e.TotalBytesToReceive > 0 ? e.TotalBytesToReceive : pkg.PackageSize;
 						rt.PostEvent(DownloadProgressChanged, this,
-									 new PackageDownloadProgressChangedEventArgs(pkg, pkg.PackageSize,
-																				 pkg.DownloadedSize, e.ProgressPercentage));
+									 new PackageDownloadProgressChangedEventArgs(pkg, pkg.PackageSize, pkg.DownloadedSize, e.ProgressPercentage)
+									);
 					};
 				workers.Add(clnt);
 			}
@@ -992,6 +1004,13 @@ namespace FSLib.App.SimpleUpdater
 				_logger.LogInformation("Done extraction " + pkg.PackageName);
 			}
 
+			//开始解压独立包
+			if (Context.NeedStandaloneUpdateClientSupport)
+			{
+				var pkg = ExtensionMethod.First(PackagesToUpdate, ele => ele.PackageName == Context.UpdateInfo.UpdaterClient.PackageName);
+				fz.ExtractZip(pkg.LocalSavePath, Context.UpdateTempRoot, null);
+			}
+
 			rt.PostEvent(() => OnPackageExtractionEnd(new PackageEventArgs(null)));
 			_logger.LogInformation("Done package extraction.");
 		}
@@ -1100,7 +1119,7 @@ namespace FSLib.App.SimpleUpdater
 
 			//启动外部程序
 			var currentAssembly = Assembly.GetExecutingAssembly();
-			if (CopyAssemblyToUpdateRoot(currentAssembly) == null)
+			if(!Context.NeedStandaloneUpdateClientSupport && CopyAssemblyToUpdateRoot(currentAssembly) == null)
 			{
 				throw new Exception("Unable create updater utilities.");
 			}
@@ -1189,6 +1208,12 @@ namespace FSLib.App.SimpleUpdater
 				return true;
 
 			var location = assembly.Location;
+			if (string.IsNullOrEmpty(location))
+			{
+				_logger.LogError($"Unable locate assembly '{assembly.FullName}'");
+				return null;
+			}
+
 			if (!location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase)) return false;
 
 			var dest = Path.Combine(Context.UpdateTempRoot, Path.GetFileName(location));

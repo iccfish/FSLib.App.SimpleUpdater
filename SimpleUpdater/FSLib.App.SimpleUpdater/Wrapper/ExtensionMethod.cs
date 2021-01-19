@@ -239,6 +239,21 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			}
 		}
 
+		/// <summary> 取序列第一个符合条件的对象 </summary>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
+		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
+		/// <returns></returns>
+		public static T First<T>(IEnumerable<T> source, Func<T, bool> predicate)
+		{
+			foreach (var item in source)
+			{
+				if (predicate(item)) return item;
+			}
+
+			return default(T);
+		}
+
+
 		/// <summary>
 		/// 判断序列是否有符合要求的数据
 		/// </summary>
