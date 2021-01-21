@@ -2,10 +2,10 @@
 {
 	enum ZipTaskState
 	{
-		Queue,
-		FileHashing,
-		PackageBuilding,
-		PackageHashing,
-		Done
+		Queue = 0,
+		FileHashing = 1,
+		PackageBuilding = 2,
+		PackageHashing = 3,
+		Done = 4
 	}
 }

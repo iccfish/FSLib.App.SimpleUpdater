@@ -105,15 +105,19 @@ namespace FSLib.App.SimpleUpdater.Generator.ZipBuilder
 
 		private long _totalLength, _processedLength;
 
-		public int Percentage => _totalLength == 0 ? -1 : (int)Math.Round(_processedLength * 1.0d / _totalLength * 100.0 / 3.0 + 100.0 / 3 * (Step - 1), 2);
+		public int Percentage
+		{
+			get
+			{
+				if (State == ZipTaskState.Done || State == ZipTaskState.Queue || _totalLength <= 0)
+					return -1;
 
-		public int TotalSteps { get; private set; } = 3;
+				var stepCount = _skipFileHashing ? 2 : 3;
+				return (int)Math.Round(_processedLength * 1.0d / _totalLength * 100.0 / stepCount + 100.0 / stepCount * ((int)State - 1 - (_skipFileHashing ? 1 : 0)), 2);
+			}
+		}
 
-
-		/// <summary>
-		/// 当前的步骤, 1-Hashing 2-Compressing 3-Hashing Package
-		/// </summary>
-		public int Step { get; private set; }
+		private bool _skipFileHashing = false;
 
 		/// <summary>
 		/// 
@@ -145,7 +149,7 @@ namespace FSLib.App.SimpleUpdater.Generator.ZipBuilder
 			}
 			else
 			{
-				TotalSteps--;
+				_skipFileHashing = true;
 			}
 
 			State = ZipTaskState.PackageBuilding;
@@ -156,7 +160,7 @@ namespace FSLib.App.SimpleUpdater.Generator.ZipBuilder
 			var data = HashFile(zipFile);
 			PackageLength = data.Value;
 			PackageHash = data.Key;
-			
+
 			OnDone?.Invoke();
 			State = ZipTaskState.Done;
 		}

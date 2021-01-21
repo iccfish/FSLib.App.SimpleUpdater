@@ -14,8 +14,6 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater
 {
-	using System.Xml.Serialization.Configuration;
-
 	using Defination;
 
 	using Logs;

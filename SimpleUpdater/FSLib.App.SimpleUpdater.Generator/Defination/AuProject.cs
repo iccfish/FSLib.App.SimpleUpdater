@@ -583,10 +583,10 @@
 				OnPropertyChanged(nameof(ComponentFlags));
 			}
 		}
-		
+
 		/// <summary>
 		/// 获得或设置是否启用并行打包
 		/// </summary>
-		public bool UseParallelBuilding { get; set; }
+		public bool UseParallelBuilding { get; set; } = true;
 	}
 }
