@@ -39,8 +39,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.label3 = new System.Windows.Forms.Label();
 			this.txtPackagePassword = new System.Windows.Forms.TextBox();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
-			this.chkUseIncreaseUpdate = new System.Windows.Forms.CheckBox();
 			this.chkCreateCompatiblePackage = new System.Windows.Forms.CheckBox();
+			this.chkUseIncreaseUpdate = new System.Windows.Forms.CheckBox();
 			this.chkCompressUpdateInfo = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -55,6 +55,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.chkAutoCloseFailed = new System.Windows.Forms.CheckBox();
 			this.nudTimeoutSucceed = new System.Windows.Forms.NumericUpDown();
 			this.nudTimeoutFailed = new System.Windows.Forms.NumericUpDown();
+			this.chkUseSha1 = new System.Windows.Forms.CheckBox();
+			this.chkParallelBuilding = new System.Windows.Forms.CheckBox();
 			this.gpSetDeleteSyntax.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTimeoutSucceed)).BeginInit();
@@ -160,18 +162,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.tip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.tip.ToolTipTitle = "帮助";
 			// 
-			// chkUseIncreaseUpdate
-			// 
-			this.chkUseIncreaseUpdate.AutoSize = true;
-			this.chkUseIncreaseUpdate.Checked = true;
-			this.chkUseIncreaseUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkUseIncreaseUpdate.Location = new System.Drawing.Point(522, 13);
-			this.chkUseIncreaseUpdate.Name = "chkUseIncreaseUpdate";
-			this.chkUseIncreaseUpdate.Size = new System.Drawing.Size(96, 16);
-			this.chkUseIncreaseUpdate.TabIndex = 9;
-			this.chkUseIncreaseUpdate.Text = "使用增量更新";
-			this.chkUseIncreaseUpdate.UseVisualStyleBackColor = true;
-			// 
 			// chkCreateCompatiblePackage
 			// 
 			this.chkCreateCompatiblePackage.Checked = true;
@@ -185,6 +175,18 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.chkCreateCompatiblePackage.Text = "创建兼容的升级信息包";
 			this.tip.SetToolTip(this.chkCreateCompatiblePackage, "创建兼容的升级信息包。如果不选择此选项且有文件使用增量更新方式发布，在2.0.0.0版本之前（不支持增量更新的自动更新客户端）将无法使用此处的安装包进行更新。");
 			this.chkCreateCompatiblePackage.UseVisualStyleBackColor = true;
+			// 
+			// chkUseIncreaseUpdate
+			// 
+			this.chkUseIncreaseUpdate.AutoSize = true;
+			this.chkUseIncreaseUpdate.Checked = true;
+			this.chkUseIncreaseUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkUseIncreaseUpdate.Location = new System.Drawing.Point(522, 13);
+			this.chkUseIncreaseUpdate.Name = "chkUseIncreaseUpdate";
+			this.chkUseIncreaseUpdate.Size = new System.Drawing.Size(96, 16);
+			this.chkUseIncreaseUpdate.TabIndex = 9;
+			this.chkUseIncreaseUpdate.Text = "使用增量更新";
+			this.chkUseIncreaseUpdate.UseVisualStyleBackColor = true;
 			// 
 			// chkCompressUpdateInfo
 			// 
@@ -300,7 +302,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.chkAutoCloseSucceed.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
 			this.chkAutoCloseSucceed.ForeColor = System.Drawing.Color.DeepPink;
 			this.chkAutoCloseSucceed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.chkAutoCloseSucceed.Location = new System.Drawing.Point(368, 44);
+			this.chkAutoCloseSucceed.Location = new System.Drawing.Point(177, 45);
 			this.chkAutoCloseSucceed.Name = "chkAutoCloseSucceed";
 			this.chkAutoCloseSucceed.Size = new System.Drawing.Size(269, 21);
 			this.chkAutoCloseSucceed.TabIndex = 22;
@@ -312,7 +314,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			this.chkAutoCloseFailed.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
 			this.chkAutoCloseFailed.ForeColor = System.Drawing.Color.DeepPink;
 			this.chkAutoCloseFailed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.chkAutoCloseFailed.Location = new System.Drawing.Point(368, 71);
+			this.chkAutoCloseFailed.Location = new System.Drawing.Point(177, 72);
 			this.chkAutoCloseFailed.Name = "chkAutoCloseFailed";
 			this.chkAutoCloseFailed.Size = new System.Drawing.Size(269, 21);
 			this.chkAutoCloseFailed.TabIndex = 22;
@@ -321,7 +323,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			// 
 			// nudTimeoutSucceed
 			// 
-			this.nudTimeoutSucceed.Location = new System.Drawing.Point(523, 43);
+			this.nudTimeoutSucceed.Location = new System.Drawing.Point(332, 44);
 			this.nudTimeoutSucceed.Maximum = new decimal(new int[] {
             20000,
             0,
@@ -344,7 +346,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			// 
 			// nudTimeoutFailed
 			// 
-			this.nudTimeoutFailed.Location = new System.Drawing.Point(523, 70);
+			this.nudTimeoutFailed.Location = new System.Drawing.Point(332, 71);
 			this.nudTimeoutFailed.Maximum = new decimal(new int[] {
             20000,
             0,
@@ -365,10 +367,32 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
             0,
             0});
 			// 
+			// chkUseSha1
+			// 
+			this.chkUseSha1.AutoSize = true;
+			this.chkUseSha1.Location = new System.Drawing.Point(452, 47);
+			this.chkUseSha1.Name = "chkUseSha1";
+			this.chkUseSha1.Size = new System.Drawing.Size(192, 16);
+			this.chkUseSha1.TabIndex = 24;
+			this.chkUseSha1.Text = "哈希使用SHA1(需要5.0+客户端)";
+			this.chkUseSha1.UseVisualStyleBackColor = true;
+			// 
+			// chkParalleBuilding
+			// 
+			this.chkParallelBuilding.AutoSize = true;
+			this.chkParallelBuilding.Location = new System.Drawing.Point(452, 75);
+			this.chkParallelBuilding.Name = "chkParalleBuilding";
+			this.chkParallelBuilding.Size = new System.Drawing.Size(114, 16);
+			this.chkParallelBuilding.TabIndex = 24;
+			this.chkParallelBuilding.Text = "并行打包 [推荐]";
+			this.chkParallelBuilding.UseVisualStyleBackColor = true;
+			// 
 			// OptionTab
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.chkParallelBuilding);
+			this.Controls.Add(this.chkUseSha1);
 			this.Controls.Add(this.nudTimeoutFailed);
 			this.Controls.Add(this.nudTimeoutSucceed);
 			this.Controls.Add(this.chkAutoCloseFailed);
@@ -426,5 +450,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 		private System.Windows.Forms.CheckBox chkAutoCloseFailed;
 		private System.Windows.Forms.NumericUpDown nudTimeoutSucceed;
 		private System.Windows.Forms.NumericUpDown nudTimeoutFailed;
+		private System.Windows.Forms.CheckBox chkUseSha1;
+		private System.Windows.Forms.CheckBox chkParallelBuilding;
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -280,7 +280,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 			if ((fv & FileVerificationLevel.Hash) == FileVerificationLevel.Hash)
 			{
-				fvd.Add("MD5");
+				fvd.Add("HASH");
 			}
 			if ((fv & FileVerificationLevel.Size) == FileVerificationLevel.Size)
 			{

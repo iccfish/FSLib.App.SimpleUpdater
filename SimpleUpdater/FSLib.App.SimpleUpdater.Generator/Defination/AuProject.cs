@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Generator.Defination
+namespace FSLib.App.SimpleUpdater.Generator.Defination
 {
 	using System;
 	using System.Collections.Generic;
@@ -584,9 +584,20 @@
 			}
 		}
 
+		private bool _useParallelBuilding = true;
+
 		/// <summary>
 		/// 获得或设置是否启用并行打包
 		/// </summary>
-		public bool UseParallelBuilding { get; set; } = true;
+		public bool UseParallelBuilding
+		{
+			get => _useParallelBuilding;
+			set
+			{
+				if (value == _useParallelBuilding) return;
+				_useParallelBuilding = value;
+				OnPropertyChanged(nameof(UseParallelBuilding));
+			}
+		}
 	}
 }
