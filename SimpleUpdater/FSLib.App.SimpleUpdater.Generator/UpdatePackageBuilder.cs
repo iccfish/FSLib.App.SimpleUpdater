@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -346,8 +346,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				var mainPkgId = GetPackageName("main") + "." + AuProject.PackageExtension;
 				var task = new ZipTask(mainPkgId, targetfiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "Full package");
+				task.OnDone = () =>
+				{
+					ui.Package = mainPkgId;
+					ui.PackageSize = task.PackageLength;
+					ui.MD5 = task.PackageHash;
+				};
 				tasks.Add(task);
-				ui.Package = mainPkgId;
 				Result.Add(mainPkgId, task.PackageDescription);
 				e.ReportProgress(0, 0, $"building task: full package ({targetfiles.Count} files)");
 			}
@@ -361,9 +366,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 				if (mainFiles.Count > 0)
 				{
-					var mainPkgId = GetPackageName("alwaysintall") + "." + AuProject.PackageExtension;
+					var pkgId = GetPackageName("alwaysintall") + "." + AuProject.PackageExtension;
 
-					var task = new ZipTask(mainPkgId, mainFiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "Global package");
+					var task = new ZipTask(pkgId, mainFiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "global package");
 					task.OnDone = () =>
 					{
 						ui.Packages.Add(new PackageInfo()
@@ -374,15 +379,14 @@ namespace FSLib.App.SimpleUpdater.Generator
 							FileSize = 0L,
 							FileHash = "",
 							PackageHash = task.PackageHash,
-							PackageName = mainPkgId,
+							PackageName = pkgId,
 							PackageSize = task.PackageLength,
 							Method = UpdateMethod.Always,
 							Files = mainFiles.Select(s => s.Key).ToArray()
 						});
 					};
 					tasks.Add(task);
-					ui.Package = mainPkgId;
-					Result.Add(mainPkgId, task.PackageDescription);
+					Result.Add(pkgId, task.PackageDescription);
 
 				}
 
@@ -412,7 +416,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					var fdi = FileVersionInfo.GetVersionInfo(file.Value.FullName);
 					var pkgFileName = GetPackageName(file.Key) + "." + AuProject.PackageExtension;
 
-					var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [file.Key] = file.Value }, config.UpdateMethod, config.FileVerificationLevel, _auProject, $"delta update package for {file.Key}");
+					var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [file.Key] = file.Value }, config.UpdateMethod, config.FileVerificationLevel, _auProject, $"{file.Key}");
 					var isSimpleUpdateClient = !updaterClientIncluded && Regex.IsMatch(file.Key, @"(^|[\\/]?)SimpleUpdater\.dll$");
 					task.OnDone = () =>
 					{
@@ -477,7 +481,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 
 			AllPackageBuildTasks = tasks;
-			e.ReportProgress(0, 0, $"task generation finished, {tasks.Count} packages need to be built.");
+			e.ReportProgress(0, 0, $"task generation finished, {tasks.Count} packages needs to be built.");
 		}
 
 

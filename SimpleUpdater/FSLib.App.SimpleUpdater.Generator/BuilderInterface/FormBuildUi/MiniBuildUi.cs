@@ -11,6 +11,8 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface.FormBuildUi
 {
 	using Wrapper;
 
+	using ZipBuilder;
+
 	public partial class MiniBuildUi : Form
 	{
 		public MiniBuildUi()
@@ -32,20 +34,26 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface.FormBuildUi
 			pg.Style = ProgressBarStyle.Continuous;
 		}
 
-		public void SetProgress(RunworkEventArgs.ProgressIdentify progress)
+		public void SetProgress(bool indeterminate, int percentage, string description)
 		{
-			if (progress.TaskCount == 0)
+			if (InvokeRequired)
+			{
+				this.Invoke(SetProgress, indeterminate, percentage, description);
+				return;
+			}
+
+			if (indeterminate)
 			{
 				pg.Style = ProgressBarStyle.Marquee;
 			}
 			else
 			{
 				pg.Style = ProgressBarStyle.Continuous;
-				pg.Value = progress.TaskPercentage;
+				pg.Value = percentage;
 			}
 
-			if (!string.IsNullOrEmpty(progress.StateMessage))
-				lblStatus.Text = progress.StateMessage;
+			if (!string.IsNullOrEmpty(description))
+				lblStatus.Text = description;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,7 +84,7 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 
 			_packagingStartTime = DateTime.Now;
 			Console.ForegroundColor = ConsoleColor.Magenta;
-			Console.WriteLine($"building {ZipTasks.Count()} update packages(using paraell building: {Project.UseParallelBuilding.ToString().ToUpper()})...");
+			Console.WriteLine($"building {ZipTasks.Count()} update packages(using parallel building: {Project.UseParallelBuilding.ToString().ToUpper()})...");
 			Console.ForegroundColor = ConsoleColor.Yellow;
 			_timer = new Timer(_ =>
 				{
@@ -116,7 +116,7 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 			_timer.Change(-1, -1);
 			Console.Write("\r");
 			Console.ForegroundColor = ConsoleColor.Magenta;
-			Console.WriteLine($"done building {ZipTasks.Count()} update packages in {(DateTime.Now - _packagingStartTime).TotalSeconds:F3} seconds.".PadRight(Console.WindowWidth - 1, ' '));
+			Console.WriteLine($"{ZipTasks.Count()} packages built in {(DateTime.Now - _packagingStartTime).TotalSeconds:F3} seconds.".PadRight(Console.WindowWidth - 1, ' '));
 			base.OnFilePackingEnd();
 		}
 	}
