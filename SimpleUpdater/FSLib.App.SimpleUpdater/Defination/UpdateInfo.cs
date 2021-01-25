@@ -670,22 +670,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 			set => _updaterClient = value;
 		}
 
-		private string _updaterClientVersion;
 		/// <summary>
-		/// 获得或设置当前升级客户端的版本
+		/// 获得或设置是否强制使用服务器端版本
 		/// </summary>
-		public string UpdaterClientVersion
-		{
-			get => _updaterClientVersion;
-			set
-			{
-				if (value == _updaterClientVersion)
-					return;
-
-				_updaterClientVersion = value;
-				OnPropertyChanged(nameof(UpdaterClientVersion));
-			}
-		}
+		public bool UseServerUpdateClient { get; set; }
 
 		#region 受保护函数
 

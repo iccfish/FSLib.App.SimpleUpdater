@@ -357,10 +357,12 @@ namespace FSLib.App.SimpleUpdater
 		{
 			if (PackagesToUpdate.Count > 0) return;
 
+			var info = Context.UpdateInfo;
+
 			_logger.LogInformation("Begin create update package list.");
 			rt.PostEvent(OnGatheringPackages);
 
-			if (!string.IsNullOrEmpty(Context.UpdateInfo.Package) && (Context.UpdateInfo.Packages == null || Context.UpdateInfo.Packages.Count == 0))
+			if (!string.IsNullOrEmpty(info.Package) && (info.Packages == null || info.Packages.Count == 0))
 			{
 				//必须更新的包
 				_logger.LogInformation("Adding main package.");
@@ -368,22 +370,22 @@ namespace FSLib.App.SimpleUpdater
 				{
 					FilePath = "",
 					FileSize = 0,
-					PackageHash = Context.UpdateInfo.MD5,
+					PackageHash = info.MD5,
 					Method = UpdateMethod.Always,
-					PackageName = Context.UpdateInfo.Package,
-					PackageSize = Context.UpdateInfo.PackageSize,
+					PackageName = info.Package,
+					PackageSize = info.PackageSize,
 					VerificationLevel = FileVerificationLevel.Hash,
 					Version = "0.0.0.0",
 					Context = Context
 				});
 			}
-			if (Context.UpdateInfo.Packages != null)
+			if (info.Packages != null)
 			{
 				//判断增量升级包
 				var index = 0;
-				foreach (var pkg in Context.UpdateInfo.Packages)
+				foreach (var pkg in info.Packages)
 				{
-					rt.ReportProgress(++index, Context.UpdateInfo.Packages.Count);
+					rt.ReportProgress(++index, info.Packages.Count);
 					var localPath = Path.Combine(Context.ApplicationDirectory, pkg.FilePath); //对比本地路径
 					pkg.Context = Context;
 
@@ -445,30 +447,30 @@ namespace FSLib.App.SimpleUpdater
 				}
 			}
 
-			if (!Context.NeedStandaloneUpdateClientSupport && Context.UpdateInfo.UpdaterClient != null && !string.IsNullOrEmpty(Context.UpdateInfo.UpdaterClientVersion))
+			if (!Context.NeedStandaloneUpdateClientSupport && info.UpdaterClient != null && info.UseServerUpdateClient)
 			{
 				var currentVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-				if (new Version(Context.UpdateInfo.UpdaterClientVersion) > ExtensionMethod.ConvertVersionInfo(currentVersion))
+				if (new Version(info.UpdaterClient.Version) != ExtensionMethod.ConvertVersionInfo(currentVersion))
 				{
-					_logger.LogInformation($"Newer updater client found (server={Context.UpdateInfo.UpdaterClientVersion}, local={currentVersion.FileVersion}). External update process will using newer updater client to execute.");
+					_logger.LogInformation($"server updater client not same, useing server version due to update policy (server={info.UpdaterClient.Version}, local={currentVersion.FileVersion}). External update process will using newer updater client to execute.");
 					Context.NeedStandaloneUpdateClientSupport = true;
 				}
 			}
 
 			if (PackagesToUpdate.Count > 0 && Context.NeedStandaloneUpdateClientSupport)
 			{
-				if (Context.UpdateInfo.UpdaterClient == null)
-					throw new ApplicationException("In single file release mode, updater client need a standalone client lib to perform upgrade. Please make sure the update packages was built with updated package builder.");
+				if (info.UpdaterClient == null)
+					throw new ApplicationException("in single file release mode, updater client need a standalone client lib to perform upgrade. Please make sure the update packages was built with an updated package builder.");
 
-				if (!ExtensionMethod.Any(PackagesToUpdate, s => s.PackageName == Context.UpdateInfo.UpdaterClient.PackageName))
+				if (!ExtensionMethod.Any(PackagesToUpdate, s => s.PackageName == info.UpdaterClient.PackageName))
 				{
-					_logger.LogInformation("Adding standalone updater lib to package list.");
-					PackagesToUpdate.Add(Context.UpdateInfo.UpdaterClient);
+					_logger.LogInformation($"adding standalone updater lib to package list ({info.UpdaterClient.PackageName}).");
+					PackagesToUpdate.Add(info.UpdaterClient);
 				}
 			}
 
 			rt.PostEvent(OnGatheredPackages);
-			_logger.LogInformation("Done create update package list.");
+			_logger.LogInformation("done create update package list.");
 		}
 
 		/// <summary>
@@ -484,7 +486,7 @@ namespace FSLib.App.SimpleUpdater
 			{
 				if (!reserveDic.ContainsKey(file))
 				{
-					_logger.LogInformation($"Adding file '{file}' reserve file list due to skipped package download.");
+					_logger.LogInformation($"adding file '{file}' reserve file list due to skipped package download.");
 					reserveDic.Add(file, null);
 				}
 			}
@@ -763,7 +765,7 @@ namespace FSLib.App.SimpleUpdater
 			//download redirect
 			if (!string.IsNullOrEmpty(Context.UpdateInfo.PackageUrlTemplate))
 			{
-				_logger.LogInformation("Redirect download location to {0}", Context.UpdateInfo.PackageUrlTemplate);
+				_logger.LogInformation("redirect download location to {0}", Context.UpdateInfo.PackageUrlTemplate);
 				Context.UpdateDownloadUrl = Context.UpdateInfo.PackageUrlTemplate;
 				Context.UpdateInfoFileName = null;
 				Context.Init();
