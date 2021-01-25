@@ -439,7 +439,7 @@ namespace FSLib.App.SimpleUpdater
 
 								if (tryCount < 20)
 									Thread.Sleep(1000);
-								else throw ex;
+								else throw;
 							}
 						}
 						_bakList.Add(file);
@@ -462,7 +462,7 @@ namespace FSLib.App.SimpleUpdater
 
 							if (tryCount < 10)
 								Thread.Sleep(1000);
-							else throw ex;
+							else throw;
 						}
 					}
 					//尝试删除已安装文件
