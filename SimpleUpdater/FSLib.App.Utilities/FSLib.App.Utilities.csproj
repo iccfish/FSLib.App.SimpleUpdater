@@ -12,6 +12,7 @@
     <AssemblyName>FSLib.App.Utilities</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

@@ -34,7 +34,19 @@ namespace FSLib.App.SimpleUpdater.Defination
 			AutoClosePreviousPopup = true;
 
 			//如果当前启动路径位于TEMP目录下，则处于临时路径模式
-			var temppath = System.IO.Path.GetTempPath();
+			// 已更新2021-05-19：往系统的temp目录下写东西，360太喜欢报毒。所以换用户数据目录下。
+			// stupid 360.
+			var temppath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FishSimpleUpdaterTemp");
+			if (Directory.Exists(temppath))
+			{
+				try
+				{
+					Directory.Delete(temppath, true);
+				}
+				catch (Exception e)
+				{
+				}
+			}
 			var assemblyPath = Assembly.GetExecutingAssembly().Location;
 			if (assemblyPath.IndexOf(temppath, StringComparison.OrdinalIgnoreCase) != -1)
 			{
@@ -374,7 +386,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 		public string UpdateTempRoot
 		{
 			get;
-			private set;
 		}
 
 		string _updateInfoFilePath;
