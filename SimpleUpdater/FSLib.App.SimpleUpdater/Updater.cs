@@ -14,7 +14,11 @@ using FSLib.App.SimpleUpdater.Wrapper;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.Text.RegularExpressions;
+
 	using Defination;
+
+	using ICCEmbedded.SharpZipLib.Zip;
 
 	using Logs;
 
@@ -362,7 +366,7 @@ namespace FSLib.App.SimpleUpdater
 			_logger.LogInformation("Begin create update package list.");
 			rt.PostEvent(OnGatheringPackages);
 
-			if (!string.IsNullOrEmpty(info.Package) && (info.Packages == null || info.Packages.Count == 0))
+			if (!string.IsNullOrEmpty(info.Package) && (info.Packages?.Count ?? 0) == 0)
 			{
 				//必须更新的包
 				_logger.LogInformation("Adding main package.");
@@ -460,7 +464,7 @@ namespace FSLib.App.SimpleUpdater
 			if (PackagesToUpdate.Count > 0 && Context.NeedStandaloneUpdateClientSupport)
 			{
 				if (info.UpdaterClient == null)
-					throw new ApplicationException("in single file release mode, updater client need a standalone client lib to perform upgrade. Please make sure the update packages was built with an updated package builder.");
+					throw new ApplicationException("In single file publish mode, updater client need standalone client package to perform upgrade. Please make sure these update packages were built with updated package builder.");
 
 				if (!ExtensionMethod.Any(PackagesToUpdate, s => s.PackageName == info.UpdaterClient.PackageName))
 				{
@@ -1008,7 +1012,29 @@ namespace FSLib.App.SimpleUpdater
 			if (Context.NeedStandaloneUpdateClientSupport)
 			{
 				var pkg = ExtensionMethod.First(PackagesToUpdate, ele => ele.PackageName == Context.UpdateInfo.UpdaterClient.PackageName);
-				fz.ExtractZip(pkg.LocalSavePath, Context.UpdateTempRoot, null);
+				_logger.LogInformation($"Using package {pkg.PackageName} to extract updater client.");
+				using (var fs = File.OpenRead(pkg.LocalSavePath))
+				using (var zip = new ZipFile(fs))
+				{
+					zip.Password = Context.UpdateInfo.PackagePassword;
+
+					foreach (ZipEntry entry in zip)
+					{
+						_logger.LogInformation($"Found updater client entry in zip file, entry index={entry.ZipFileIndex} entry name={entry.Name} size={entry.Size} compressed size={entry.CompressedSize}");
+						if (Regex.IsMatch(entry.Name, @"(^|\\|\/)SimpleUpdater.dll$", RegexOptions.IgnoreCase))
+						{
+							var buffer = new byte[(int)entry.Size];
+							using (var stream = zip.GetInputStream(entry))
+							{
+								stream.Read(buffer, 0, buffer.Length);
+								File.WriteAllBytes(Path.Combine(Context.UpdateTempRoot, "SimpleUpdater.dll"), buffer);
+							}
+							_logger.LogInformation($"Done extract updater client dll, {buffer.Length} bytes writeen.");
+
+							break;
+						}
+					}
+				}
 			}
 
 			rt.PostEvent(() => OnPackageExtractionEnd(new PackageEventArgs(null)));
@@ -1119,7 +1145,7 @@ namespace FSLib.App.SimpleUpdater
 
 			//启动外部程序
 			var currentAssembly = Assembly.GetExecutingAssembly();
-			if(!Context.NeedStandaloneUpdateClientSupport && CopyAssemblyToUpdateRoot(currentAssembly) == null)
+			if (!Context.NeedStandaloneUpdateClientSupport && CopyAssemblyToUpdateRoot(currentAssembly) == null)
 			{
 				throw new Exception("Unable create updater utilities.");
 			}
@@ -1174,7 +1200,7 @@ namespace FSLib.App.SimpleUpdater
 				UseShellExecute = true
 			};
 			//检测是否要管理员权限
-			if (Environment.OSVersion.Version.Major > 5 && (Context.UpdateInfo.RequreAdminstrorPrivilege || !EnsureAdminPrivilege()))
+			if (Environment.OSVersion.Version.Major > 5 && (Context.UpdateInfo.RequireAdminstrorPrivilege || !EnsureAdminPrivilege()))
 				psi.Verb = "runas";
 
 			OnExternalUpdateStart();

@@ -557,7 +557,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			chkAutoEndAppDirProcesses.AddDataBinding(ui, s => s.Checked, s => s.AutoEndProcessesWithinAppDir);
 			chkStillProptUserInfo.AddDataBinding(ui, s => s.Checked, s => s.PromptUserBeforeAutomaticUpgrade);
 			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
-			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
+			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequireAdminstrorPrivilege);
 			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
 			chkCleanTargetDirectory.AddDataBinding(project, s => s.Checked, s => s.CleanBeforeBuild);
 			chkRandomPackageName.AddDataBinding(project, s => s.Checked, s => s.UseRandomPackageNaming);

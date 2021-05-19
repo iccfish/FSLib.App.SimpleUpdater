@@ -440,7 +440,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 						if (isSimpleUpdateClient)
 						{
 							ui.UpdaterClient = detail;
-							ui.UpdaterClientVersion = detail.Version;
 						}
 					};
 					updaterClientIncluded |= isSimpleUpdateClient;
@@ -475,7 +474,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 					};
 
 					ui.UpdaterClient = detail;
-					ui.UpdaterClientVersion = detail.Version;
 				};
 				Result.Add(pkgFileName, task.PackageDescription);
 			}

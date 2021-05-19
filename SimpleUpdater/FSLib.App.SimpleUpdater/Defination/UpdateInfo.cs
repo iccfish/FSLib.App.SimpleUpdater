@@ -182,7 +182,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		bool _autoEndProcessesWithinAppDir;
 		bool _treatErrorAsNotUpdated;
 		bool _promptUserBeforeAutomaticUpgrade;
-		bool _requreAdminstrorPrivilege;
+		bool _requireAdminstrorPrivilege;
 
 
 		/// <summary>
@@ -628,13 +628,13 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary>
 		/// 强行请求Administrator权限
 		/// </summary>
-		public bool RequreAdminstrorPrivilege
+		public bool RequireAdminstrorPrivilege
 		{
-			get => _requreAdminstrorPrivilege;
+			get => _requireAdminstrorPrivilege;
 			set
 			{
-				if (value.Equals(_requreAdminstrorPrivilege)) return;
-				_requreAdminstrorPrivilege = value;
+				if (value.Equals(_requireAdminstrorPrivilege)) return;
+				_requireAdminstrorPrivilege = value;
 				OnPropertyChanged("RequreAdminstrorPrivilege");
 			}
 		}

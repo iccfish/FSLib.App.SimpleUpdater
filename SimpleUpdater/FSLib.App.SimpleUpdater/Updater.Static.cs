@@ -20,7 +20,15 @@ namespace FSLib.App.SimpleUpdater
 		static Updater()
 		{
 			var ass = System.Reflection.Assembly.GetExecutingAssembly();
-			UpdaterClientVersion = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(ass.Location)).ToString();
+			var location = ass.Location;
+			if (!string.IsNullOrEmpty(location))
+			{
+				UpdaterClientVersion = ExtensionMethod.ConvertVersionInfo(System.Diagnostics.FileVersionInfo.GetVersionInfo(location)).ToString();
+			}
+			else
+			{
+				UpdaterClientVersion = "0.0.0.0";
+			}
 		}
 
 		static Updater _instance;

@@ -181,19 +181,9 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		void InitializeCurrentVersion()
 		{
-			var assembly = Assembly.GetEntryAssembly();
-			if (assembly != null)
-			{
-				CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion);
-				ApplicationDirectory = Path.GetDirectoryName(assembly.Location);
-			}
-			else
-			{
-				var processModule = Process.GetCurrentProcess().MainModule;
-
-				CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
-				ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
-			}
+			var processModule = Process.GetCurrentProcess().MainModule;
+			CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
+			ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
 		}
 
 		/// <summary>

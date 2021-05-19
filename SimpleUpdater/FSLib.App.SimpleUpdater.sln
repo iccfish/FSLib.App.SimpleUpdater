@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "测试项目", "测试项�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateTestHost.NetCore", "UpdateTestHost.NetCore\UpdateTestHost.NetCore.csproj", "{AE2B7007-C4A9-4F7A-BE01-7A66946BFBAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateTestHost.NetCoreSingle", "UpdateTestHost.NetCoreSingle\UpdateTestHost.NetCoreSingle.csproj", "{E9F11030-2CF4-49A0-B9D5-79390F94A6D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{AE2B7007-C4A9-4F7A-BE01-7A66946BFBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2B7007-C4A9-4F7A-BE01-7A66946BFBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2B7007-C4A9-4F7A-BE01-7A66946BFBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F11030-2CF4-49A0-B9D5-79390F94A6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F11030-2CF4-49A0-B9D5-79390F94A6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F11030-2CF4-49A0-B9D5-79390F94A6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F11030-2CF4-49A0-B9D5-79390F94A6D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C80739B1-933B-4D7E-9810-E700770623AA} = {81800374-FAA6-4C5A-B750-A95962CA7AFE}
 		{AE2B7007-C4A9-4F7A-BE01-7A66946BFBAA} = {81800374-FAA6-4C5A-B750-A95962CA7AFE}
+		{E9F11030-2CF4-49A0-B9D5-79390F94A6D9} = {81800374-FAA6-4C5A-B750-A95962CA7AFE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C50100DC-CE22-4CA1-A341-B865C5548B69}
