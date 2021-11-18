@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -8,29 +8,30 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater.Generator
 {
+	using System.Diagnostics;
+	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
+
 	using Defination;
 
 	using SimpleUpdater.Defination;
 
 	using Wrapper;
 
+	using ZipBuilder;
+
 	class UpdatePackageBuilder
 	{
 		/// <summary>
 		/// 获得唯一实例
 		/// </summary>
-		public static UpdatePackageBuilder Instance
-		{
-			get { return _instance ?? new UpdatePackageBuilder(); }
-			private set { _instance = value; }
-		}
+		public static UpdatePackageBuilder Instance => _instance ??= new UpdatePackageBuilder();
 
 		/// <summary>
 		/// 实例构造函数
 		/// </summary>
 		private UpdatePackageBuilder()
 		{
-			Instance = this;
 		}
 
 		#region 公共属性
@@ -39,7 +40,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <summary>
 		/// 获得或设置当前的升级基础信息
 		/// </summary>
-		public UpdateInfo UpdateInfo { get { return AuProject.UpdateInfo; } }
+		public UpdateInfo UpdateInfo => AuProject.UpdateInfo;
 
 		/// <summary>
 		/// 获得已创建的更新项目
@@ -47,14 +48,16 @@ namespace FSLib.App.SimpleUpdater.Generator
 		public UpdateInfo BuiltUpdateInfo { get; private set; }
 
 		/// <summary>
+		/// 获得所有的构建任务信息
+		/// </summary>
+		public IEnumerable<ZipTask> AllPackageBuildTasks { get; private set; }
+
+		/// <summary>
 		/// 获得当前的项目
 		/// </summary>
 		public AuProject AuProject
 		{
-			get
-			{
-				return _auProject ?? (AuProject = new AuProject());
-			}
+			get => _auProject ?? (AuProject = new AuProject());
 			set
 			{
 				if (_auProject != null)
@@ -106,7 +109,33 @@ namespace FSLib.App.SimpleUpdater.Generator
 				handler(this, ea);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		public event EventHandler FilePackagingBegin;
 
+		/// <summary>
+		/// 引发 <see cref="FilePackagingBegin"/> 事件
+		/// </summary>
+
+		protected virtual void OnFilePackagingBegin()
+		{
+			FilePackagingBegin?.Invoke(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public event EventHandler FilePackagingEnd;
+
+		/// <summary>
+		/// 引发 <see cref="FilePackagingEnd"/> 事件
+		/// </summary>
+
+		protected virtual void OnFilePackagingEnd()
+		{
+			FilePackagingEnd?.Invoke(this, EventArgs.Empty);
+		}
 
 		#endregion
 
@@ -135,70 +164,15 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <param name="destFile"></param>
 		public void CompressFile(string path, string destFile)
 		{
-			using (var ms = new System.IO.MemoryStream())
-			using (var zs = new System.IO.Compression.GZipStream(ms, System.IO.Compression.CompressionMode.Compress))
-			{
-				var buffer = System.IO.File.ReadAllBytes(path);
-				zs.Write(buffer, 0, buffer.Length);
-				zs.Close();
-				ms.Close();
+			using var ms = new MemoryStream();
+			using var zs = new System.IO.Compression.GZipStream(ms, System.IO.Compression.CompressionMode.Compress);
 
-				System.IO.File.WriteAllBytes(destFile, ms.ToArray());
-			}
-		}
+			var buffer = File.ReadAllBytes(path);
+			zs.Write(buffer, 0, buffer.Length);
+			zs.Close();
+			ms.Close();
 
-		/// <summary>
-		/// 创建压缩包
-		/// </summary>
-		/// <param name="zipFile"></param>
-		/// <param name="e"></param>
-		public void CreateZip(string title, string zipFile, string pwd, Wrapper.RunworkEventArgs e, KeyValuePair<string, FileInfo>[] files)
-		{
-			using (var fs = new System.IO.FileStream(zipFile, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None))
-			using (var zip = new ICCEmbedded.SharpZipLib.Zip.ZipOutputStream(fs))
-			{
-				zip.Password = pwd;
-				zip.SetLevel(9);
-
-				var entryFactory = new ICCEmbedded.SharpZipLib.Zip.ZipEntryFactory();
-
-				//合并路径
-				var fileGroups = files.GroupBy(s => System.IO.Path.GetDirectoryName(s.Key)).ToDictionary(s => s.Key, s => s.ToArray());
-				var folders = fileGroups.Keys.OrderBy(s => s, StringComparer.OrdinalIgnoreCase).ToArray();
-
-				folders.ForEach(s =>
-				{
-					if (!string.IsNullOrEmpty(s))
-					{
-						var fe = entryFactory.MakeDirectoryEntry(s);
-						fe.IsUnicodeText = true;
-						fe.DateTime = DateTime.Now;
-						zip.PutNextEntry(fe);
-						zip.CloseEntry();
-					}
-
-					foreach (var f in fileGroups[s])
-					{
-						if (e != null)
-							e.ReportProgress(e.Progress.TaskCount, e.Progress.TaskProgress + 1, string.Format(title, f.Key));
-
-						var ent = entryFactory.MakeFileEntry(f.Key);
-						ent.IsUnicodeText = true;
-						ent.DateTime = f.Value.LastWriteTime;
-
-						//复制文件内容。简单起见，这里不返回进度显示。。。
-						using (var sou = f.Value.OpenRead())
-						{
-							ent.Size = sou.Length;
-							zip.PutNextEntry(ent);
-							ICCEmbedded.SharpZipLib.Core.StreamUtils.Copy(sou, zip, new byte[0x400]);
-						}
-						zip.CloseEntry();
-					}
-				});
-				zip.Flush();
-				zip.Close();
-			}
+			File.WriteAllBytes(destFile, ms.ToArray());
 		}
 
 		/// <summary>
@@ -234,7 +208,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				var path = AuProject.ParseFullPath(AuProject.UpdateRtfNotePath);
 				if (File.Exists(path))
-					UpdateInfo.RtfUpdateNote = Convert.ToBase64String(ExtensionMethods.CompressBuffer(System.IO.File.ReadAllBytes(path)));
+					UpdateInfo.RtfUpdateNote = Convert.ToBase64String(ExtensionMethods.CompressBuffer(File.ReadAllBytes(path)));
 			}
 		}
 
@@ -260,7 +234,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// 创建指定包
 		/// </summary>
 		/// <param name="e"></param>
-		public void Build(Wrapper.RunworkEventArgs e)
+		public void Build(RunworkEventArgs e)
 		{
 			e.ReportProgress(0, 0, "正在准备信息...");
 			AutoLoadInformations();
@@ -274,24 +248,38 @@ namespace FSLib.App.SimpleUpdater.Generator
 				ui = ms.XmlDeserializeFromStream<UpdateInfo>();
 			}
 			if (ui == null)
-				throw new ApplicationException("准备升级信息时发生异常");
+				throw new ApplicationException("error occoured while preparing package.");
 
 			if (AuProject.CleanBeforeBuild)
 			{
-				e.ReportProgress(0, 0, "正在清理目录...");
+				e.ReportProgress(0, 0, "cleanup directory...");
 				CleanTargetDirectory();
 			}
 
 			Result = new Dictionary<string, string>();
-			BuildPackages(e, ui);
+			PreparePackageBuildTasks(e, ui);
 
+			//生成压缩包信息
+			OnFilePackagingBegin();
+			if (AuProject.UseParallelBuilding)
+			{
+				Parallel.ForEach(AllPackageBuildTasks, task => task.Build());
+			}
+			else
+			{
+				foreach (var task in AllPackageBuildTasks)
+				{
+					task.Build();
+				}
+			}
+			OnFilePackagingEnd();
 
 			//保存信息文件
 			var xmlPath = GetXmlFilePath(false);
 			ui.XmlSerilizeToFile(xmlPath);
 			if (!AuProject.CompressPackage || AuProject.CreateCompatiblePackage)
 			{
-				Result.Add(Path.GetFileName(xmlPath), "兼容升级模式（或未开启增量更新时）的升级信息文件");
+				Result.Add(Path.GetFileName(xmlPath), "update information without compression.");
 			}
 
 			//压缩？
@@ -299,7 +287,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			{
 				var xmlCompressPath = GetXmlFilePath(true);
 				CompressFile(xmlPath, xmlCompressPath);
-				Result.Add(Path.GetFileName(xmlCompressPath), "已压缩的升级信息文件");
+				Result.Add(Path.GetFileName(xmlCompressPath), "compressed update information file");
 
 				if (!AuProject.CreateCompatiblePackage)
 				{
@@ -314,13 +302,13 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// 创建指定包
 		/// </summary>
 		/// <param name="e"></param>
-		public void BuildPackages(Wrapper.RunworkEventArgs e, UpdateInfo ui)
+		public void PreparePackageBuildTasks(RunworkEventArgs e, UpdateInfo ui)
 		{
 			var targetDir = AuProject.ParseFullPath(AuProject.DestinationDirectory);
 			var appDir = AuProject.ParseFullPath(AuProject.ApplicationDirectory);
 
 			if (!Directory.Exists(appDir))
-				throw new ApplicationException("无效的应用程序目录");
+				throw new ApplicationException("invalid application directory");
 			if (!Directory.Exists(targetDir))
 			{
 				try
@@ -329,11 +317,11 @@ namespace FSLib.App.SimpleUpdater.Generator
 				}
 				catch (Exception ex)
 				{
-					throw new ApplicationException("无法创建目标目录", ex);
+					throw new ApplicationException("unable to create destination director.", ex);
 				}
 			}
 
-			e.ReportProgress(0, 0, "正在扫描文件列表...");
+			e.ReportProgress(0, 0, "scanning files...");
 			FileInfo[] allfiles;
 
 			try
@@ -342,120 +330,162 @@ namespace FSLib.App.SimpleUpdater.Generator
 			}
 			catch (Exception ex)
 			{
-				throw new ApplicationException("无法扫描来源目录", ex);
+				throw new ApplicationException("unable to scan source directory.", ex);
 			}
 
 			//生成映射，排除忽略列表
-			e.ReportProgress(0, 0, "正在准备文件列表...");
+			e.ReportProgress(0, 0, "preparing file list...");
 			var projectItems = AuProject.Files.ToDictionary(s => s.Path, StringComparer.OrdinalIgnoreCase);
-			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s))
-				.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore))
-				.ToArray();
+			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore)).ToDictionary(s => s.Key, s => s.Value);
+
+			//任务
+			var tasks = new List<ZipTask>();
 
 			//古典版的安装包？
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
 			{
 				var mainPkgId = GetPackageName("main") + "." + AuProject.PackageExtension;
-				var file = System.IO.Path.Combine(targetDir, mainPkgId);
-				Result.Add(mainPkgId, "兼容升级模式（或未开启增量更新时）的升级包文件");
-				e.Progress.TaskCount = targetfiles.Length;
-				CreateZip("正在生成兼容版升级包，正在压缩 {0}", file, ui.PackagePassword, e, targetfiles);
-
-				var fileInfo = new System.IO.FileInfo(file);
-				ui.PackageSize = fileInfo.Length;
-				e.ReportProgress(0, 0, "正在计算包文件Hash...");
-				ui.MD5 = Wrapper.ExtensionMethod.GetFileHash(file);
-				ui.Package = mainPkgId;
-			}
-			if (!AuProject.EnableIncreaseUpdate) return;
-
-			//生成主文件包
-			e.ReportProgress(targetfiles.Length, 0, "");
-			ui.Packages = new List<PackageInfo>();
-			var mainFiles = targetfiles
-				.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod == UpdateMethod.Always) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod == UpdateMethod.Always))
-				.ToArray();
-			if (mainFiles.Length > 0)
-			{
-				var mainPkgId = GetPackageName("alwaysintall") + "." + AuProject.PackageExtension;
-				var pkgName = Path.Combine(targetDir, mainPkgId);
-				e.Progress.TaskCount = mainFiles.Length;
-				CreateZip("正在生成全局升级包，正在压缩 {0}", pkgName, ui.PackagePassword, e, mainFiles);
-				Result.Add(mainPkgId, "全局升级包，包含必须更新的文件");
-
-
-				var fileInfo = new System.IO.FileInfo(pkgName);
-				ui.Packages.Add(new PackageInfo()
+				var task = new ZipTask(mainPkgId, targetfiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "Full package");
+				task.OnDone = () =>
 				{
-					Version = "0.0.0.0",
-					VerificationLevel = FileVerificationLevel.None,
-					FilePath = "",
-					FileSize = 0L,
-					FileHash = "",
-					PackageHash = Wrapper.ExtensionMethod.GetFileHash(pkgName),
-					PackageName = mainPkgId,
-					PackageSize = fileInfo.Length,
-					Method = UpdateMethod.Always,
-					Files = mainFiles.Select(s => s.Key).ToArray()
-				});
+					ui.Package = mainPkgId;
+					ui.PackageSize = task.PackageLength;
+					ui.MD5 = task.PackageHash;
+				};
+				tasks.Add(task);
+				Result.Add(mainPkgId, task.PackageDescription);
+				e.ReportProgress(0, 0, $"building task: full package ({targetfiles.Count} files)");
 			}
 
-			//针对单个文件生成包
-			e.Progress.TaskCount = targetfiles.Length;
-			e.Progress.TaskProgress = 0;
-			foreach (var file in targetfiles)
+			var updaterClientIncluded = false;
+			if (AuProject.EnableIncreaseUpdate)
 			{
-				ProjectItem config;
-				if (!projectItems.ContainsKey(file.Key))
+				ui.Packages = new List<PackageInfo>();
+
+				var mainFiles = targetfiles.Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod == UpdateMethod.Always) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod == UpdateMethod.Always)).ToDictionary(s => s.Key, s => s.Value);
+
+				if (mainFiles.Count > 0)
 				{
-					if (AuProject.DefaultUpdateMethod == UpdateMethod.Always || AuProject.DefaultUpdateMethod == UpdateMethod.Ignore)
-						continue;
-					config = new ProjectItem()
+					var pkgId = GetPackageName("alwaysintall") + "." + AuProject.PackageExtension;
+
+					var task = new ZipTask(pkgId, mainFiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "global package");
+					task.OnDone = () =>
 					{
-						UpdateMethod = AuProject.DefaultUpdateMethod,
-						FileVerificationLevel = AuProject.DefaultFileVerificationLevel
+						ui.Packages.Add(new PackageInfo()
+						{
+							Version = "0.0.0.0",
+							VerificationLevel = FileVerificationLevel.None,
+							FilePath = "",
+							FileSize = 0L,
+							FileHash = "",
+							PackageHash = task.PackageHash,
+							PackageName = pkgId,
+							PackageSize = task.PackageLength,
+							Method = UpdateMethod.Always,
+							Files = mainFiles.Select(s => s.Key).ToArray()
+						});
 					};
-				}
-				else
-				{
-					config = projectItems[file.Key];
-					//fix always pack issue
-					if (config.UpdateMethod == UpdateMethod.Always)
-						continue;
+					tasks.Add(task);
+					Result.Add(pkgId, task.PackageDescription);
+
 				}
 
-				//file info
-				var fdi = System.Diagnostics.FileVersionInfo.GetVersionInfo(file.Value.FullName);
-				//var pkgFileName = file.Key.Replace("\\", "_").Replace(".", "_") + ".zip";
-				var pkgFileName = GetPackageName(file.Key) + "." + AuProject.PackageExtension;
-
-				var pkg = Path.Combine(targetDir, pkgFileName);
-				e.ReportProgress(e.Progress.TaskCount, ++e.Progress.TaskProgress, "正在生成增量包 " + file.Key + ", 正在压缩....");
-				CreateZip(null, pkg, ui.PackagePassword, null, new[] { file });
-				Result.Add(pkgFileName, "文件【" + file.Key + "】的增量升级包");
-
-				var pkgInfo = new System.IO.FileInfo(pkg);
-				ui.Packages.Add(new PackageInfo()
+				//针对单个文件生成包
+				foreach (var file in targetfiles)
 				{
-					Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : Wrapper.ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
-					VerificationLevel = config.FileVerificationLevel,
-					FilePath = file.Key,
-					FileSize = new FileInfo(file.Value.FullName).Length,
-					FileHash = Wrapper.ExtensionMethod.GetFileHash(file.Value.FullName),
-					PackageHash = Wrapper.ExtensionMethod.GetFileHash(pkg),
-					PackageName = pkgFileName,
-					PackageSize = pkgInfo.Length,
-					Method = config.UpdateMethod,
-					Files = new[] { file.Key },
-					ComponentId = config.Flag
-				});
+					ProjectItem config;
+					if (!projectItems.ContainsKey(file.Key))
+					{
+						if (AuProject.DefaultUpdateMethod == UpdateMethod.Always || AuProject.DefaultUpdateMethod == UpdateMethod.Ignore)
+							continue;
+						config = new ProjectItem()
+						{
+							UpdateMethod = AuProject.DefaultUpdateMethod,
+							FileVerificationLevel = AuProject.DefaultFileVerificationLevel
+						};
+					}
+					else
+					{
+						config = projectItems[file.Key];
+						//fix always pack issue
+						if (config.UpdateMethod == UpdateMethod.Always)
+							continue;
+					}
+
+					//file info
+					var fdi = FileVersionInfo.GetVersionInfo(file.Value.FullName);
+					var pkgFileName = GetPackageName(file.Key) + "." + AuProject.PackageExtension;
+
+					var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [file.Key] = file.Value }, config.UpdateMethod, config.FileVerificationLevel, _auProject, $"{file.Key}");
+					var isSimpleUpdateClient = !updaterClientIncluded && Regex.IsMatch(file.Key, @"(^|[\\/]?)SimpleUpdater\.dll$");
+					task.OnDone = () =>
+					{
+						var detail = new PackageInfo()
+						{
+							Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
+							VerificationLevel = config.FileVerificationLevel,
+							FilePath = file.Key,
+							FileSize = file.Value.Length,
+							FileHash = task.FileHash,
+							PackageHash = task.PackageHash,
+							PackageName = pkgFileName,
+							PackageSize = task.PackageLength,
+							Method = config.UpdateMethod,
+							Files = new[] { file.Key },
+							ComponentId = config.Flag
+						};
+						ui.Packages.Add(detail);
+
+						//检测是否是自动更新的
+						if (isSimpleUpdateClient)
+						{
+							ui.UpdaterClient = detail;
+						}
+					};
+					updaterClientIncluded |= isSimpleUpdateClient;
+					tasks.Add(task);
+					Result.Add(pkgFileName, task.PackageDescription);
+				}
 			}
+
+			if (!updaterClientIncluded)
+			{
+				var updaterClient = typeof(Updater).Assembly.Location;
+				var version = ExtensionMethod.ConvertVersionInfo(FileVersionInfo.GetVersionInfo(updaterClient));
+				var pkgFileName = GetPackageName(Path.GetFileName(updaterClient)) + "." + AuProject.PackageExtension;
+				var fileInfo = new FileInfo(updaterClient);
+
+				var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [Path.GetFileName(updaterClient)] = fileInfo }, UpdateMethod.VersionCompare, FileVerificationLevel.Hash | FileVerificationLevel.Size | FileVerificationLevel.Version, _auProject, "Asset package required for updater client.");
+				task.OnDone = () =>
+				{
+					var detail = new PackageInfo()
+					{
+						Version = version.ToString(),
+						VerificationLevel = task.VerificationLevel,
+						FilePath = task.Files.First().Key,
+						FileSize = task.FileLength,
+						FileHash = task.FileHash,
+						PackageHash = task.PackageHash,
+						PackageName = pkgFileName,
+						PackageSize = task.PackageLength,
+						Method = task.UpdateMethod,
+						Files = new[] { task.Files.First().Key },
+						ComponentId = null
+					};
+
+					ui.UpdaterClient = detail;
+				};
+				Result.Add(pkgFileName, task.PackageDescription);
+			}
+
+			AllPackageBuildTasks = tasks;
+			e.ReportProgress(0, 0, $"task generation finished, {tasks.Count} packages needs to be built.");
 		}
 
 
-		static MD5 _md5 = MD5.Create();
+		static SHA1 _sha1 = SHA1.Create();
 		static UpdatePackageBuilder _instance;
-		Dictionary<string, string> _nameCache = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+		Dictionary<string, string> _nameCache = new(StringComparer.OrdinalIgnoreCase);
 
 		string GetPackageName(string path)
 		{
@@ -469,7 +499,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 				return name;
 			}
 
-			return BitConverter.ToString(_md5.ComputeHash(System.Text.Encoding.Unicode.GetBytes(path.ToLower()))).Replace("-", "").ToUpper();
+			return BitConverter.ToString(_sha1.ComputeHash(Encoding.Unicode.GetBytes(path.ToLower()))).Replace("-", "").ToUpper();
 		}
 	}
 }

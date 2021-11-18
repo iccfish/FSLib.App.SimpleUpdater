@@ -9,9 +9,10 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSLib.App.SimpleUpdater.Generator</RootNamespace>
-    <AssemblyName>自动更新包生成工具</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>UpdateProjectBuilder</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>globe_download.ico</ApplicationIcon>
@@ -25,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisLogFile>bin\debug\自动更新包生成工具.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisLogFile>bin\debug\UpdateProjectBuilder.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
@@ -35,7 +36,7 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
-    <DocumentationFile>bin\debug\自动更新包生成工具.XML</DocumentationFile>
+    <DocumentationFile>bin\debug\UpdateProjectBuilder.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
@@ -45,7 +46,7 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisLogFile>bin\release\自动更新包生成工具.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisLogFile>bin\release\UpdateProjectBuilder.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
@@ -133,6 +134,12 @@
     <Compile Include="Defination\FileTreeItem.cs" />
     <Compile Include="Defination\ProjectItem.cs" />
     <Compile Include="Defination\ServerNode.cs" />
+    <Compile Include="Dialogs\BuildingPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BuildingPackage.Designer.cs">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\PackageGenerateResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +169,9 @@
       <DependentUpon>SR.resx</DependentUpon>
     </Compile>
     <Compile Include="UpdatePackageBuilder.cs" />
+    <Compile Include="Utils\ProgressableStream.cs" />
+    <Compile Include="ZipBuilder\ZipTask.cs" />
+    <Compile Include="ZipBuilder\ZipTaskState.cs" />
     <EmbeddedResource Include="BuilderInterface\FormBuildUi\MiniBuildUi.resx">
       <DependentUpon>MiniBuildUi.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThemeConfig.resx">
       <DependentUpon>ThemeConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuildingPackage.resx">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuildingPackage.zh-CN.resx">
+      <DependentUpon>BuildingPackage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PackageGenerateResult.resx">
       <DependentUpon>PackageGenerateResult.cs</DependentUpon>
@@ -233,6 +249,11 @@
       <Project>{21a701d7-063b-48e9-ae2f-5586a954b830}</Project>
       <Name>FSLib.App.SimpleUpdater</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="extension.fishlee.net">
+      <Version>1.6.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

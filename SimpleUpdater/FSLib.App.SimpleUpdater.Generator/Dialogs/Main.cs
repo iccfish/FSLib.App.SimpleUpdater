@@ -1,6 +1,7 @@
 namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 {
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -8,6 +9,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 	using Defination;
 
 	using SimpleUpdater.Defination;
+
+	using ZipBuilder;
 
 	public partial class Main : Form
 	{
@@ -385,10 +388,49 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 				Information("出现错误：" + e.Exception.ToString());
 			};
 			bgw.DoWork += CreatePackage;
-			this.FormClosing += (s, e) =>
+			FormClosing += (s, e) =>
 			{
 				e.Cancel = !this.btnCreate.Enabled;
 			};
+
+			var builder = UpdatePackageBuilder.Instance;
+			var random = new Random();
+			ZipTask[] tasks = null;
+			var timer = new Timer()
+			{
+				Interval = 200
+			};
+
+			void UpdatePackStatus()
+			{
+				var runningTasks = new List<ZipTask>();
+				tasks.Where(s => s.State != ZipTaskState.Done && s.State != ZipTaskState.Queue).ForEach(s => runningTasks.Add(s));
+
+				var running = runningTasks.Count;
+				var done = tasks.Count(s => s.State == ZipTaskState.Done);
+				var showIndex = random.Next(running);
+				var task = running == 0 ? null : runningTasks[showIndex];
+
+				var str = task == null ? $"[parallel:{builder.AuProject.UseParallelBuilding}/{done}/{tasks.Length}] waiting..." : $"[{done}/{tasks.Length}] {running} running -> {task.State.ToString().ToLower()}/{(task.Percentage == -1 ? "" : task.Percentage)}% @ {task.PackageDescription}";
+				var totalCount = tasks.Length * 100;
+				var percentage = done * 100 + runningTasks.Sum(x => x.Percentage);
+
+				pbProgress.Style = ProgressBarStyle.Continuous;
+				pbProgress.Value = (int)Math.Round(percentage * 1.0 / totalCount * 100);
+				lblStatus.Text = str;
+			}
+
+			timer.Tick += (_, _) => UpdatePackStatus();
+			builder.FilePackagingBegin += (_, _) =>
+			{
+				this.Invoke(() =>
+				{
+					tasks = builder.AllPackageBuildTasks.ToArray();
+					UpdatePackStatus();
+					timer.Start();
+				});
+			};
+			builder.FilePackagingEnd += (_, _) => timer.Stop();
 		}
 
 		//创建信息的具体操作函数
@@ -515,7 +557,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			chkAutoEndAppDirProcesses.AddDataBinding(ui, s => s.Checked, s => s.AutoEndProcessesWithinAppDir);
 			chkStillProptUserInfo.AddDataBinding(ui, s => s.Checked, s => s.PromptUserBeforeAutomaticUpgrade);
 			chkOptError.AddDataBinding(ui, s => s.Checked, s => s.TreatErrorAsNotUpdated);
-			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequreAdminstrorPrivilege);
+			chkOptRequireAdminPrivilege.AddDataBinding(ui, s => s.Checked, s => s.RequireAdminstrorPrivilege);
 			txtPackageExtension.AddDataBinding(project, s => s.Text, s => s.PackageExtension);
 			chkCleanTargetDirectory.AddDataBinding(project, s => s.Checked, s => s.CleanBeforeBuild);
 			chkRandomPackageName.AddDataBinding(project, s => s.Checked, s => s.UseRandomPackageNaming);

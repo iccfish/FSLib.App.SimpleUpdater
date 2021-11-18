@@ -84,12 +84,12 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 				};
 				u.FileInstaller.DeleteFile += (s, e) =>
 				{
-					StepDesc = e.Source;
+					StepDesc = e.NameInPackage;
 					SetProgress(e.TotalCount > 0 ? Math.Min((int)(e.CurrentCount * 1.0 / e.TotalCount * 100), 100) : 0, 100);
 				};
 				u.FileInstaller.InstallFile += (s, e) =>
 				{
-					StepDesc = e.Source;
+					StepDesc = e.NameInPackage;
 					SetProgress(e.CurrentCount, e.TotalCount);
 				};
 				u.RunExternalProcess += (s, e) =>

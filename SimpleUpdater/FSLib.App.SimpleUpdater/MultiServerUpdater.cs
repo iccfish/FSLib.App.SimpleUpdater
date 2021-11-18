@@ -8,12 +8,15 @@ using FSLib.App.SimpleUpdater.Defination;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using Logs;
+
 	/// <summary>
 	/// 支持多服务器升级的自动升级类
 	/// </summary>
 	class MultiServerUpdater : Updater
 	{
 		int _serverIndex = 0;
+		private static ILogger _logger = LogManager.Instance.GetLogger<MultiServerUpdater>();
 
 		/// <summary>
 		/// 获得当前使用的备用服务器列表
@@ -71,12 +74,12 @@ namespace FSLib.App.SimpleUpdater
 		{
 			if (PeekNextServer())
 			{
-				Trace.TraceWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
+				_logger.LogWarning("尝试更新时出现服务器错误。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
 				base.BeginCheckUpdateInProcess();
 			}
 			else
 			{
-				Trace.TraceWarning("尝试更新时出现服务器错误，且服务器已遍历完成。");
+				_logger.LogWarning("尝试更新时出现服务器错误，且服务器已遍历完成。");
 				base.OnError();
 			}
 		}
@@ -91,11 +94,11 @@ namespace FSLib.App.SimpleUpdater
 			{
 				if (PeekNextServer())
 				{
-					Trace.TraceWarning("没有找到更新，且服务器已遍历完成。");
+					_logger.LogWarning("没有找到更新，且服务器已遍历完成。");
 				}
 				else
 				{
-					Trace.TraceWarning("没有找到更新。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
+					_logger.LogWarning("没有找到更新。正尝试自动切换至其它的服务器节点。已切换至 " + Context.UpdateDownloadUrl);
 					base.BeginCheckUpdateInProcess();
 				}
 			}

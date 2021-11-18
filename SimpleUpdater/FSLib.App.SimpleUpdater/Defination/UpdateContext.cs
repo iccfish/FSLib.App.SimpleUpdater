@@ -11,10 +11,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 	using FSLib.App.SimpleUpdater.Dialogs;
 
+	using Logs;
+
 	/// <summary> 表示当前更新的上下文环境 </summary>
 	/// <remarks></remarks>
 	public class UpdateContext
 	{
+		private static ILogger _logger = LogManager.Instance.GetLogger<UpdateContext>();
+
 		/// <summary>
 		/// 获得或设置相关联的主窗口。所有的提示界面将会以其为父窗口
 		/// </summary>
@@ -48,14 +52,27 @@ namespace FSLib.App.SimpleUpdater.Defination
 				}
 			}
 			var assemblyPath = Assembly.GetExecutingAssembly().Location;
+
+			_logger.LogInformation($"Current user temporary path was set to {temppath}");
+			_logger.LogInformation($"Current assembly was located at '{assemblyPath}'");
+#if NET5_0
+			if (string.IsNullOrEmpty(assemblyPath))
+			{
+				assemblyPath = AppContext.BaseDirectory;
+				NeedStandaloneUpdateClientSupport = true;
+				_logger.LogInformation($"Current app context was located at '{assemblyPath}'");
+				_logger.LogInformation($"Unable get location from assembly, probably program released as a single file. A standalone updater client will be required to perform upgrade.");
+			}
+#endif
+
 			if (assemblyPath.IndexOf(temppath, StringComparison.OrdinalIgnoreCase) != -1)
 			{
-				UpdateTempRoot = System.IO.Path.GetDirectoryName(assemblyPath);
+				UpdateTempRoot = File.Exists(assemblyPath) ? Path.GetDirectoryName(assemblyPath) : assemblyPath;
 				IsInUpdateMode = true;
 			}
 			else
 			{
-				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString());
+				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString("N").Substring(0, 8));
 				IsInUpdateMode = false;
 
 				//尝试自动加载升级属性
@@ -176,19 +193,9 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		void InitializeCurrentVersion()
 		{
-			var assembly = Assembly.GetEntryAssembly();
-			if (assembly != null)
-			{
-				CurrentVersion = new Version(FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion);
-				ApplicationDirectory = Path.GetDirectoryName(assembly.Location);
-			}
-			else
-			{
-				var processModule = Process.GetCurrentProcess().MainModule;
-
-				CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
-				ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
-			}
+			var processModule = Process.GetCurrentProcess().MainModule;
+			CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
+			ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
 		}
 
 		/// <summary>
@@ -197,20 +204,20 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <returns></returns>
 		static Assembly TryGetCallingAssembly()
 		{
-			Trace.TraceInformation("Tring get entry assembly from stack trace.");
+			_logger.LogInformation("Tring get entry assembly from stack trace.");
 			try
 			{
 				var st = new StackTrace();
 				var frame = st.GetFrame(st.FrameCount - 1);
 
 				var assembly = frame.GetMethod().DeclaringType.Assembly;
-				Trace.TraceInformation("Got entry assembly from stack trace. Assembly full name=" + assembly.FullName);
+				_logger.LogInformation("Got entry assembly from stack trace. Assembly full name=" + assembly.FullName);
 
 				return assembly;
 			}
 			catch (Exception ex)
 			{
-				Trace.TraceError("unable to get entry assembly from stacktrace. error = " + ex.ToString());
+				_logger.LogError("unable to get entry assembly from stacktrace. error = " + ex.Message, ex);
 				return null;
 			}
 		}
@@ -220,8 +227,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool PromptUserBeforeAutomaticUpgrade
 		{
-			get { return _promptUserBeforeAutomaticUpgrade || (UpdateInfo != null && UpdateInfo.PromptUserBeforeAutomaticUpgrade); }
-			set { _promptUserBeforeAutomaticUpgrade = value; }
+			get => _promptUserBeforeAutomaticUpgrade || (UpdateInfo != null && UpdateInfo.PromptUserBeforeAutomaticUpgrade);
+			set => _promptUserBeforeAutomaticUpgrade = value;
 		}
 
 		/// <summary> 获得或设置是否正在更新模式中 </summary>
@@ -240,8 +247,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoEndProcessesWithinAppDir
 		{
-			get { return _autoEndProcessesWithinAppDir || (UpdateInfo != null && UpdateInfo.AutoEndProcessesWithinAppDir); }
-			set { _autoEndProcessesWithinAppDir = value; }
+			get => _autoEndProcessesWithinAppDir || (UpdateInfo != null && UpdateInfo.AutoEndProcessesWithinAppDir);
+			set => _autoEndProcessesWithinAppDir = value;
 		}
 
 		/// <summary>
@@ -272,7 +279,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 				return _updateDownloadUrl;
 			}
-			set { _updateDownloadUrl = value; }
+			set => _updateDownloadUrl = value;
 		}
 
 		/// <summary> 获得或设置XML信息文件名 </summary>
@@ -289,7 +296,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 
 				return _updateInfoFileName;
 			}
-			set { _updateInfoFileName = value; }
+			set => _updateInfoFileName = value;
 		}
 
 		/// <summary> 获得或设置当前的更新支持信息 </summary>
@@ -297,10 +304,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public object UpdateAttribute
 		{
-			get
-			{
-				return _updateAttribute;
-			}
+			get => _updateAttribute;
 			set
 			{
 				if (value != null && (!(value is UpdateableAttribute) && !(value is Updatable2Attribute)))
@@ -318,7 +322,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <exception cref="T:System.ArgumentException">当设置的值是null或空字符串时抛出此异常</exception>
 		public string ApplicationDirectory
 		{
-			get { return _applicationDirectory; }
+			get => _applicationDirectory;
 			set
 			{
 				if (string.IsNullOrEmpty(value)) throw new ArgumentException("ApplicationDirectory can not be null or empty.");
@@ -365,7 +369,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得或设置最后的版本 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public Version LatestVersion { get { return UpdateInfo == null ? null : new Version(UpdateInfo.AppVersion); } }
+		public Version LatestVersion => UpdateInfo == null ? null : new Version(UpdateInfo.AppVersion);
 
 		/// <summary> 获得或设置是否启用内置的提示对话框 </summary>
 		/// <value></value>
@@ -400,10 +404,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前更新信息文件保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateInfoFilePath
-		{
-			get { return _updateInfoFilePath ?? (_updateInfoFilePath = System.IO.Path.Combine(UpdateTempRoot, "update.xml")); }
-		}
+		public string UpdateInfoFilePath => _updateInfoFilePath ?? (_updateInfoFilePath = System.IO.Path.Combine(UpdateTempRoot, "update.xml"));
 
 
 		string _updatePackageListPath;
@@ -411,20 +412,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前要下载的包文件信息保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdatePackageListPath
-		{
-			get { return _updatePackageListPath ?? (_updatePackageListPath = System.IO.Path.Combine(UpdateTempRoot, "packages.xml")); }
-		}
+		public string UpdatePackageListPath => _updatePackageListPath ?? (_updatePackageListPath = System.IO.Path.Combine(UpdateTempRoot, "packages.xml"));
 
 		string _preserveFileListPath;
 
 		/// <summary> 获得当前要保留的文件信息保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string PreserveFileListPath
-		{
-			get { return _preserveFileListPath ?? (_preserveFileListPath = System.IO.Path.Combine(UpdateTempRoot, "reservefile.xml")); }
-		}
+		public string PreserveFileListPath => _preserveFileListPath ?? (_preserveFileListPath = System.IO.Path.Combine(UpdateTempRoot, "reservefile.xml"));
 
 
 		string _updatePackagePath;
@@ -432,20 +427,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前下载的包文件目录 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdatePackagePath
-		{
-			get { return _updatePackagePath ?? (_updatePackagePath = System.IO.Path.Combine(UpdateTempRoot, "packages")); }
-		}
+		public string UpdatePackagePath => _updatePackagePath ?? (_updatePackagePath = System.IO.Path.Combine(UpdateTempRoot, "packages"));
 
 		string _updateNewFilePath;
 
 		/// <summary> 获得当前下载解包后的新文件路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateNewFilePath
-		{
-			get { return _updateNewFilePath ?? (_updateNewFilePath = System.IO.Path.Combine(UpdateTempRoot, "files")); }
-		}
+		public string UpdateNewFilePath => _updateNewFilePath ?? (_updateNewFilePath = System.IO.Path.Combine(UpdateTempRoot, "files"));
 
 		string _updateRollbackPath;
 		private object _updateAttribute;
@@ -457,21 +446,12 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前更新过程中备份文件的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateRollbackPath
-		{
-			get { return _updateRollbackPath ?? (_updateRollbackPath = System.IO.Path.Combine(UpdateTempRoot, "backup")); }
-		}
+		public string UpdateRollbackPath => _updateRollbackPath ?? (_updateRollbackPath = System.IO.Path.Combine(UpdateTempRoot, "backup"));
 
 		/// <summary>
 		/// 获得一个值，表示当前的自动升级信息是否已经下载完全
 		/// </summary>
-		public bool IsUpdateInfoDownloaded
-		{
-			get
-			{
-				return !string.IsNullOrEmpty(UpdateInfoTextContent) || System.IO.File.Exists(UpdateInfoFilePath);
-			}
-		}
+		public bool IsUpdateInfoDownloaded => !string.IsNullOrEmpty(UpdateInfoTextContent) || System.IO.File.Exists(UpdateInfoFilePath);
 
 		/// <summary> 获得或设置服务器用户名密码标记 </summary>
 		/// <value></value>
@@ -543,55 +523,20 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <remarks></remarks>
 		public string LogFile
 		{
-			get { return _logFile; }
+			get => _logFile;
 			set
 			{
 				if (string.Compare(_logFile, value, true) == 0) return;
 
 				_logFile = value;
-				if (_logger != null)
-				{
-					_logger.Close();
-					Trace.Listeners.Remove(_logger);
-				}
 
+				var lm = LogManager.Instance;
+				lm.RemoveAllLogTargets();
 				if (!string.IsNullOrEmpty(_logFile))
 				{
-					if (!System.IO.Path.IsPathRooted(_logFile)) _logFile = Environment.ExpandEnvironmentVariables("%TEMP%\\" + _logFile);
-
-					if (System.IO.File.Exists(_logFile)) System.IO.File.Delete(_logFile);
-					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(_logFile));
-
-					_logger = new TextWriterTraceListener(_logFile);
-					_logger.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
-					Trace.Listeners.Add(_logger);
-				}
-			}
-		}
-
-		ConsoleTraceListener _consoleTraceListener;
-
-		/// <summary>
-		/// 切换是否启用控制台日志
-		/// </summary>
-		/// <param name="enable"></param>
-		public void EnableConsoleLogger(bool enable)
-		{
-			if (enable)
-			{
-				if (_consoleTraceListener == null)
-				{
-					_consoleTraceListener = new ConsoleTraceListener(true);
-					_consoleTraceListener.TraceOutputOptions = System.Diagnostics.TraceOptions.DateTime;
-					Trace.Listeners.Add(_consoleTraceListener);
-				}
-			}
-			else
-			{
-				if (_consoleTraceListener != null)
-				{
-					Trace.Listeners.Remove(_consoleTraceListener);
-					_consoleTraceListener = null;
+					if (!Path.IsPathRooted(_logFile)) _logFile = Environment.ExpandEnvironmentVariables("%TEMP%\\" + _logFile);
+					Directory.CreateDirectory(Path.GetDirectoryName(_logFile));
+					lm.AddLogTarget(new FileLogTarget(_logFile));
 				}
 			}
 		}
@@ -601,8 +546,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool ForceUpdate
 		{
-			get { return _forceUpdate || (UpdateInfo != null && UpdateInfo.ForceUpdate); }
-			set { _forceUpdate = value; }
+			get => _forceUpdate || (UpdateInfo != null && UpdateInfo.ForceUpdate);
+			set => _forceUpdate = value;
 		}
 
 		/// <summary>
@@ -610,8 +555,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool MustUpdate
 		{
-			get { return _mustUpdate || (UpdateInfo != null && UpdateInfo.MustUpdate); }
-			set { _mustUpdate = value; }
+			get => _mustUpdate || (UpdateInfo != null && UpdateInfo.MustUpdate);
+			set => _mustUpdate = value;
 		}
 
 		/// <summary>
@@ -619,8 +564,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoKillProcesses
 		{
-			get { return _autoKillProcesses || (UpdateInfo != null && UpdateInfo.AutoKillProcesses); }
-			set { _autoKillProcesses = value; }
+			get => _autoKillProcesses || (UpdateInfo != null && UpdateInfo.AutoKillProcesses);
+			set => _autoKillProcesses = value;
 		}
 
 		/// <summary>
@@ -628,8 +573,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool AutoExitCurrentProcess
 		{
-			get { return _autoExitCurrentProcess || (UpdateInfo != null && UpdateInfo.AutoExitCurrentProcess); }
-			set { _autoExitCurrentProcess = value; }
+			get => _autoExitCurrentProcess || (UpdateInfo != null && UpdateInfo.AutoExitCurrentProcess);
+			set => _autoExitCurrentProcess = value;
 		}
 
 
@@ -638,7 +583,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		public bool HiddenUI
 		{
-			get { return _hiddenUI; }
+			get => _hiddenUI;
 			set
 			{
 				_hiddenUI = value;
@@ -650,7 +595,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 			}
 		}
 
-		TextWriterTraceListener _logger;
 		private string _applicationDirectory;
 		bool _hiddenUI;
 		bool _forceUpdate;
@@ -691,5 +635,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 			get => UpdateInfo?.DialogStyle ?? _dialogStyle ?? DialogStyle.Default;
 			set => _dialogStyle = value;
 		}
+
+		/// <summary>
+		/// 获得或设置是否需要独立的更新客户端支持
+		/// </summary>
+		public bool NeedStandaloneUpdateClientSupport { get; internal set; }
 	}
 }

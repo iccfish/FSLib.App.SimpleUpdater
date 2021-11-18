@@ -67,6 +67,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.label23 = new System.Windows.Forms.Label();
 			this.txtCompFlag = new System.Windows.Forms.TextBox();
 			this.txtPackageExtension = new System.Windows.Forms.TextBox();
+			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
+			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
 			this.label24 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.tpDesc = new System.Windows.Forms.TabPage();
@@ -86,6 +88,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.txtPing = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.tpOption1 = new System.Windows.Forms.TabPage();
+			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
 			this.tpOption2 = new System.Windows.Forms.TabPage();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
@@ -103,21 +106,18 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.chkOptAutoKillProcess = new System.Windows.Forms.CheckBox();
 			this.chkOptMustUpdate = new System.Windows.Forms.CheckBox();
 			this.tpFile = new System.Windows.Forms.TabPage();
+			this.fileConfig = new FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration();
 			this.tpTheme = new System.Windows.Forms.TabPage();
+			this.themeConfig1 = new FSLib.App.SimpleUpdater.Generator.Controls.ThemeConfig();
 			this.tpCmd = new System.Windows.Forms.TabPage();
+			this.argumentGenerator1 = new FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator();
 			this.tpAbout = new System.Windows.Forms.TabPage();
+			this.aboutPanel1 = new FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel();
 			this.illist = new System.Windows.Forms.ImageList(this.components);
 			this.fbd = new System.Windows.Forms.FolderBrowserDialog();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.btnSaveProject = new System.Windows.Forms.Button();
 			this.btnOpenProject = new System.Windows.Forms.Button();
-			this.fileAfterExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
-			this.filePreExecute = new FSLib.App.SimpleUpdater.Generator.Controls.FileComboBox();
-			this.options = new FSLib.App.SimpleUpdater.Generator.Controls.OptionTab();
-			this.fileConfig = new FSLib.App.SimpleUpdater.Generator.Controls.FileConfiguration();
-			this.themeConfig1 = new FSLib.App.SimpleUpdater.Generator.Controls.ThemeConfig();
-			this.argumentGenerator1 = new FSLib.App.SimpleUpdater.Generator.Controls.ArgumentGenerator();
-			this.aboutPanel1 = new FSLib.App.SimpleUpdater.Generator.Controls.AboutPanel();
 			((System.ComponentModel.ISupportInitialize)(this.epp)).BeginInit();
 			this.tcMain.SuspendLayout();
 			this.tpInfo.SuspendLayout();
@@ -376,6 +376,33 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			resources.ApplyResources(this.txtPackageExtension, "txtPackageExtension");
 			this.txtPackageExtension.Name = "txtPackageExtension";
 			// 
+			// fileAfterExecute
+			// 
+			this.fileAfterExecute.AllowDrop = true;
+			this.fileAfterExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.fileAfterExecute.FileTypeFilter = "cmd,exe,bat,com";
+			resources.ApplyResources(this.fileAfterExecute, "fileAfterExecute");
+			this.fileAfterExecute.Name = "fileAfterExecute";
+			this.fileAfterExecute.PreferFileName = null;
+			this.fileAfterExecute.RootPath = null;
+			this.fileAfterExecute.SelectedFileName = "";
+			this.fileAfterExecute.ShowEmptyEntry = true;
+			this.tip.SetToolTip(this.fileAfterExecute, resources.GetString("fileAfterExecute.ToolTip"));
+			// 
+			// filePreExecute
+			// 
+			this.filePreExecute.AllowDrop = true;
+			this.filePreExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.filePreExecute.FileTypeFilter = "cmd,exe,bat,com";
+			this.filePreExecute.FormattingEnabled = true;
+			resources.ApplyResources(this.filePreExecute, "filePreExecute");
+			this.filePreExecute.Name = "filePreExecute";
+			this.filePreExecute.PreferFileName = null;
+			this.filePreExecute.RootPath = null;
+			this.filePreExecute.SelectedFileName = "";
+			this.filePreExecute.ShowEmptyEntry = true;
+			this.tip.SetToolTip(this.filePreExecute, resources.GetString("filePreExecute.ToolTip"));
+			// 
 			// label24
 			// 
 			resources.ApplyResources(this.label24, "label24");
@@ -497,6 +524,11 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.tpOption1.Name = "tpOption1";
 			this.tpOption1.UseVisualStyleBackColor = true;
 			// 
+			// options
+			// 
+			resources.ApplyResources(this.options, "options");
+			this.options.Name = "options";
+			// 
 			// tpOption2
 			// 
 			this.tpOption2.Controls.Add(this.label18);
@@ -616,12 +648,23 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.tpFile.Name = "tpFile";
 			this.tpFile.UseVisualStyleBackColor = true;
 			// 
+			// fileConfig
+			// 
+			resources.ApplyResources(this.fileConfig, "fileConfig");
+			this.fileConfig.Name = "fileConfig";
+			this.fileConfig.NewVersionFolder = null;
+			// 
 			// tpTheme
 			// 
 			this.tpTheme.Controls.Add(this.themeConfig1);
 			resources.ApplyResources(this.tpTheme, "tpTheme");
 			this.tpTheme.Name = "tpTheme";
 			this.tpTheme.UseVisualStyleBackColor = true;
+			// 
+			// themeConfig1
+			// 
+			resources.ApplyResources(this.themeConfig1, "themeConfig1");
+			this.themeConfig1.Name = "themeConfig1";
 			// 
 			// tpCmd
 			// 
@@ -630,12 +673,22 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.tpCmd.Name = "tpCmd";
 			this.tpCmd.UseVisualStyleBackColor = true;
 			// 
+			// argumentGenerator1
+			// 
+			resources.ApplyResources(this.argumentGenerator1, "argumentGenerator1");
+			this.argumentGenerator1.Name = "argumentGenerator1";
+			// 
 			// tpAbout
 			// 
 			this.tpAbout.Controls.Add(this.aboutPanel1);
 			resources.ApplyResources(this.tpAbout, "tpAbout");
 			this.tpAbout.Name = "tpAbout";
 			this.tpAbout.UseVisualStyleBackColor = true;
+			// 
+			// aboutPanel1
+			// 
+			resources.ApplyResources(this.aboutPanel1, "aboutPanel1");
+			this.aboutPanel1.Name = "aboutPanel1";
 			// 
 			// illist
 			// 
@@ -673,59 +726,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.btnOpenProject.UseVisualStyleBackColor = true;
 			this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
 			// 
-			// fileAfterExecute
-			// 
-			this.fileAfterExecute.AllowDrop = true;
-			this.fileAfterExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.fileAfterExecute.FileTypeFilter = "cmd,exe,bat,com";
-			resources.ApplyResources(this.fileAfterExecute, "fileAfterExecute");
-			this.fileAfterExecute.Name = "fileAfterExecute";
-			this.fileAfterExecute.PreferFileName = null;
-			this.fileAfterExecute.RootPath = null;
-			this.fileAfterExecute.SelectedFileName = "";
-			this.fileAfterExecute.ShowEmptyEntry = true;
-			this.tip.SetToolTip(this.fileAfterExecute, resources.GetString("fileAfterExecute.ToolTip"));
-			// 
-			// filePreExecute
-			// 
-			this.filePreExecute.AllowDrop = true;
-			this.filePreExecute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.filePreExecute.FileTypeFilter = "cmd,exe,bat,com";
-			this.filePreExecute.FormattingEnabled = true;
-			resources.ApplyResources(this.filePreExecute, "filePreExecute");
-			this.filePreExecute.Name = "filePreExecute";
-			this.filePreExecute.PreferFileName = null;
-			this.filePreExecute.RootPath = null;
-			this.filePreExecute.SelectedFileName = "";
-			this.filePreExecute.ShowEmptyEntry = true;
-			this.tip.SetToolTip(this.filePreExecute, resources.GetString("filePreExecute.ToolTip"));
-			// 
-			// options
-			// 
-			resources.ApplyResources(this.options, "options");
-			this.options.Name = "options";
-			// 
-			// fileConfig
-			// 
-			resources.ApplyResources(this.fileConfig, "fileConfig");
-			this.fileConfig.Name = "fileConfig";
-			this.fileConfig.NewVersionFolder = null;
-			// 
-			// themeConfig1
-			// 
-			resources.ApplyResources(this.themeConfig1, "themeConfig1");
-			this.themeConfig1.Name = "themeConfig1";
-			// 
-			// argumentGenerator1
-			// 
-			resources.ApplyResources(this.argumentGenerator1, "argumentGenerator1");
-			this.argumentGenerator1.Name = "argumentGenerator1";
-			// 
-			// aboutPanel1
-			// 
-			resources.ApplyResources(this.aboutPanel1, "aboutPanel1");
-			this.aboutPanel1.Name = "aboutPanel1";
-			// 
 			// Main
 			// 
 			resources.ApplyResources(this, "$this");
@@ -757,7 +757,6 @@ namespace FSLib.App.SimpleUpdater.Generator.Dialogs
 			this.tpCmd.ResumeLayout(false);
 			this.tpAbout.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

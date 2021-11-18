@@ -24,7 +24,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// </summary>
 		/// <param name="url"></param>
 		/// <param name="infoFileName"></param>
-		public UpdateServerInfo(string url, string infoFileName = "update_c.xml")
+		public UpdateServerInfo(string url, string infoFileName = null)
 		{
 			Url = url;
 			InfoFileName = infoFileName;

@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater.Generator.Defination
+namespace FSLib.App.SimpleUpdater.Generator.Defination
 {
 	using System;
 	using System.Collections.Generic;
@@ -59,13 +59,13 @@
 		/// </summary>
 		public UpdateInfo UpdateInfo
 		{
-			get { return _updateInfo ?? (UpdateInfo = new UpdateInfo()); }
+			get => _updateInfo ?? (UpdateInfo = new UpdateInfo());
 			set
 			{
 				if (Equals(value, _updateInfo))
 					return;
 				_updateInfo = value;
-				OnPropertyChanged("UpdateInfo");
+				OnPropertyChanged(nameof(UpdateInfo));
 			}
 		}
 
@@ -74,13 +74,13 @@
 		/// </summary>
 		public FileVerificationLevel DefaultFileVerificationLevel
 		{
-			get { return _defaultFileVerificationLevel; }
+			get => _defaultFileVerificationLevel;
 			set
 			{
 				if (value == _defaultFileVerificationLevel)
 					return;
 				_defaultFileVerificationLevel = value;
-				OnPropertyChanged("DefaultFileVerificationLevel");
+				OnPropertyChanged(nameof(DefaultFileVerificationLevel));
 			}
 		}
 
@@ -89,13 +89,13 @@
 		/// </summary>
 		public FSLib.App.SimpleUpdater.Defination.UpdateMethod DefaultUpdateMethod
 		{
-			get { return _defaultUpdateMethod; }
+			get => _defaultUpdateMethod;
 			set
 			{
 				if (value == _defaultUpdateMethod)
 					return;
 				_defaultUpdateMethod = value;
-				OnPropertyChanged("DefaultUpdateMethod");
+				OnPropertyChanged(nameof(DefaultUpdateMethod));
 			}
 		}
 
@@ -104,8 +104,8 @@
 		/// </summary>
 		public List<ProjectItem> Files
 		{
-			get { return _files ?? (_files = new List<ProjectItem>()); }
-			set { _files = value; }
+			get { return _files ??= new List<ProjectItem>(); }
+			set => _files = value;
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@
 		[XmlIgnore]
 		public string ProjectFilePath
 		{
-			get { return _pojectFilePath; }
+			get => _pojectFilePath;
 			private set
 			{
 				_pojectFilePath = value;
@@ -190,13 +190,13 @@
 		/// </summary>
 		public string ApplicationDirectory
 		{
-			get { return _applicationDirectory; }
+			get => _applicationDirectory;
 			set
 			{
 				if (value == _applicationDirectory)
 					return;
 				_applicationDirectory = value;
-				OnPropertyChanged("ApplicationDirectory");
+				OnPropertyChanged(nameof(ApplicationDirectory));
 			}
 		}
 
@@ -205,13 +205,13 @@
 		/// </summary>
 		public string DestinationDirectory
 		{
-			get { return _destinationDirectory; }
+			get => _destinationDirectory;
 			set
 			{
 				if (value == _destinationDirectory)
 					return;
 				_destinationDirectory = value;
-				OnPropertyChanged("DestinationDirectory");
+				OnPropertyChanged(nameof(DestinationDirectory));
 			}
 		}
 
@@ -220,13 +220,13 @@
 		/// </summary>
 		public string PublishUri
 		{
-			get { return _publishUri; }
+			get => _publishUri;
 			set
 			{
 				if (value == _publishUri)
 					return;
 				_publishUri = value;
-				OnPropertyChanged("PublishUri");
+				OnPropertyChanged(nameof(PublishUri));
 			}
 		}
 
@@ -235,13 +235,13 @@
 		/// </summary>
 		public string PublishUserName
 		{
-			get { return _publishUserName; }
+			get => _publishUserName;
 			set
 			{
 				if (value == _publishUserName)
 					return;
 				_publishUserName = value;
-				OnPropertyChanged("PublishUserName");
+				OnPropertyChanged(nameof(PublishUserName));
 			}
 		}
 
@@ -250,13 +250,13 @@
 		/// </summary>
 		public string PublishPassword
 		{
-			get { return _publishPassword; }
+			get => _publishPassword;
 			set
 			{
 				if (value == _publishPassword)
 					return;
 				_publishPassword = value;
-				OnPropertyChanged("PublishPassword");
+				OnPropertyChanged(nameof(PublishPassword));
 			}
 		}
 
@@ -267,13 +267,13 @@
 		/// </summary>
 		public string UpdateRtfNotePath
 		{
-			get { return _updateRtfNotePath; }
+			get => _updateRtfNotePath;
 			set
 			{
 				if (value == _updateRtfNotePath)
 					return;
 				_updateRtfNotePath = value;
-				OnPropertyChanged("UpdateRtfNotePath");
+				OnPropertyChanged(nameof(UpdateRtfNotePath));
 			}
 		}
 
@@ -282,13 +282,13 @@
 		/// </summary>
 		public bool CreateCompatiblePackage
 		{
-			get { return _createCompatiblePackage; }
+			get => _createCompatiblePackage;
 			set
 			{
 				if (value.Equals(_createCompatiblePackage))
 					return;
 				_createCompatiblePackage = value;
-				OnPropertyChanged("CreateCompatiblePackage");
+				OnPropertyChanged(nameof(CreateCompatiblePackage));
 			}
 		}
 
@@ -297,13 +297,13 @@
 		/// </summary>
 		public bool CompressPackage
 		{
-			get { return _compressPackage; }
+			get => _compressPackage;
 			set
 			{
 				if (value.Equals(_compressPackage))
 					return;
 				_compressPackage = value;
-				OnPropertyChanged("CompressPackage");
+				OnPropertyChanged(nameof(CompressPackage));
 			}
 		}
 
@@ -312,13 +312,13 @@
 		/// </summary>
 		public bool EnableIncreaseUpdate
 		{
-			get { return _enableIncreaseUpdate; }
+			get => _enableIncreaseUpdate;
 			set
 			{
 				if (value.Equals(_enableIncreaseUpdate))
 					return;
 				_enableIncreaseUpdate = value;
-				OnPropertyChanged("EnableIncreaseUpdate");
+				OnPropertyChanged(nameof(EnableIncreaseUpdate));
 			}
 		}
 
@@ -327,13 +327,13 @@
 		/// </summary>
 		public string VersionUpdateSrc
 		{
-			get { return _versionUpdateSrc; }
+			get => _versionUpdateSrc;
 			set
 			{
 				if (value == _versionUpdateSrc)
 					return;
 				_versionUpdateSrc = value;
-				OnPropertyChanged("VersionUpdateSrc");
+				OnPropertyChanged(nameof(VersionUpdateSrc));
 			}
 		}
 
@@ -342,13 +342,13 @@
 		/// </summary>
 		public string UpdateContentSrc
 		{
-			get { return _updateContentSrc; }
+			get => _updateContentSrc;
 			set
 			{
 				if (value == _updateContentSrc)
 					return;
 				_updateContentSrc = value;
-				OnPropertyChanged("UpdateContentSrc");
+				OnPropertyChanged(nameof(UpdateContentSrc));
 			}
 		}
 
@@ -368,7 +368,23 @@
 				if (value == _packageExtension)
 					return;
 				_packageExtension = value;
-				OnPropertyChanged("PackageExtension");
+				OnPropertyChanged(nameof(PackageExtension));
+			}
+		}
+
+		private bool _usingSha1;
+
+		/// <summary>
+		/// 获得或设置是否使用SHA1作为Hash的生成方式
+		/// </summary>
+		public bool UsingSha1
+		{
+			get => _usingSha1;
+			set
+			{
+				if (value == _usingSha1) return;
+				_usingSha1 = value;
+				OnPropertyChanged(nameof(UsingSha1));
 			}
 		}
 
@@ -522,12 +538,12 @@
 		/// </summary>
 		public bool UseRandomPackageNaming
 		{
-			get { return _useRandomPackageNaming; }
+			get => _useRandomPackageNaming;
 			set
 			{
 				if (value == _useRandomPackageNaming) return;
 				_useRandomPackageNaming = value;
-				OnPropertyChanged("UseRandomPackageNaming");
+				OnPropertyChanged(nameof(UseRandomPackageNaming));
 			}
 		}
 
@@ -538,12 +554,12 @@
 		/// </summary>
 		public bool CleanBeforeBuild
 		{
-			get { return _cleanBeforeBuild; }
+			get => _cleanBeforeBuild;
 			set
 			{
 				if (value == _cleanBeforeBuild) return;
 				_cleanBeforeBuild = value;
-				OnPropertyChanged("CleanBeforeBuild");
+				OnPropertyChanged(nameof(CleanBeforeBuild));
 			}
 		}
 
@@ -559,12 +575,28 @@
 		/// </summary>
 		public string ComponentFlags
 		{
-			get { return _componentFlags ?? ""; }
+			get => _componentFlags ?? "";
 			set
 			{
 				if (value == _componentFlags) return;
 				_componentFlags = value;
-				OnPropertyChanged("ComponentFlags");
+				OnPropertyChanged(nameof(ComponentFlags));
+			}
+		}
+
+		private bool _useParallelBuilding = true;
+
+		/// <summary>
+		/// 获得或设置是否启用并行打包
+		/// </summary>
+		public bool UseParallelBuilding
+		{
+			get => _useParallelBuilding;
+			set
+			{
+				if (value == _useParallelBuilding) return;
+				_useParallelBuilding = value;
+				OnPropertyChanged(nameof(UseParallelBuilding));
 			}
 		}
 	}

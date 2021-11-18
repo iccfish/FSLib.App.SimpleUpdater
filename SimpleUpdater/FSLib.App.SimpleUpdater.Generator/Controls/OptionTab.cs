@@ -103,6 +103,9 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			requiredMinVersion.DataBindings.Clear();
 			chkAutoCloseSucceed.DataBindings.Clear();
 			chkAutoCloseFailed.DataBindings.Clear();
+			chkParallelBuilding.DataBindings.Clear();
+			chkUseSha1.DataBindings.Clear();
+
 			_project = null;
 		}
 
@@ -121,6 +124,8 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			chkCreateCompatiblePackage.AddDataBinding(project, s => s.Checked, s => s.CreateCompatiblePackage);
 			chkAutoCloseSucceed.AddDataBinding(ui, s => s.Checked, s => s.AutoCloseSucceedWindow);
 			chkAutoCloseFailed.AddDataBinding(ui, s => s.Checked, s => s.AutoCloseFailedDialog);
+			chkParallelBuilding.AddDataBinding(_project, s => s.Checked, s => s.UseParallelBuilding);
+			chkUseSha1.AddDataBinding(_project, s => s.Checked, auProject => auProject.UsingSha1);
 			nudTimeoutFailed.Value = ui.AutoCloseFailedTimeout;
 			nudTimeoutSucceed.Value = ui.AutoCloseSucceedTimeout;
 
@@ -151,7 +156,7 @@ namespace FSLib.App.SimpleUpdater.Generator.Controls
 			rbIgnore.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.Ignore);
 			chkSkipIfNotExist.Checked = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.SkipIfNotExist);
 
-			lblCheckTypeDesc.Text = Utility.HasMethod(project.DefaultUpdateMethod ,UpdateMethod.VersionCompare) ? project.DefaultFileVerificationLevel.ToDisplayString() : "点击选项时选择比较类型";
+			lblCheckTypeDesc.Text = Utility.HasMethod(project.DefaultUpdateMethod, UpdateMethod.VersionCompare) ? project.DefaultFileVerificationLevel.ToDisplayString() : "点击选项时选择比较类型";
 		}
 
 	}

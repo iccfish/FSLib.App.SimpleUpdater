@@ -74,6 +74,14 @@
 		</Compile>
 		<Compile Include="HiddenUiUpdateProxy.cs" />
 		<Compile Include="InstallFileEventArgs.cs" />
+		<Compile Include="Logs\FileLogTarget.cs" />
+		<Compile Include="Logs\ILogger.cs" />
+		<Compile Include="Logs\ILogTarget.cs" />
+		<Compile Include="Logs\LogEntry.cs" />
+		<Compile Include="Logs\Logger.cs" />
+		<Compile Include="Logs\LogLevel.cs" />
+		<Compile Include="Logs\LogManager.cs" />
+		<Compile Include="Logs\LogTarget.cs" />
 		<Compile Include="MultiServerUpdater.cs" />
 		<Compile Include="PackageEventArgs.cs" />
 		<Compile Include="PackageDownloadException.cs" />
@@ -319,6 +327,19 @@
 		<None Include="Resources\cou_16_warning.png" />
 		<None Include="Resources\cou_32_refresh.png" />
 		<None Include="updater.ico" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net45'">
+		<EmbeddedResource Include="Utilities\Utilities_Net40.exe.gz" />
+		<EmbeddedResource Include="Utilities\app.config.gz" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net20'">
+		<EmbeddedResource Include="Utilities\app.config.gz" />
+		<EmbeddedResource Include="Utilities\Utilities_Net20.exe.gz" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+	<EmbeddedResource Include="Utilities\FSLib.App.Utilities.dll.gz" />
+		<EmbeddedResource Include="Utilities\FSLib.App.Utilities.exe.gz" />
+		<EmbeddedResource Include="Utilities\FSLib.App.Utilities.runtimeconfig.json.gz" />
 	</ItemGroup>
 	<PropertyGroup>
 		<SignAssembly>true</SignAssembly>

@@ -9,11 +9,15 @@ using System.IO;
 
 namespace FSLib.App.SimpleUpdater.Wrapper
 {
+	using Logs;
+
 	/// <summary>
 	/// XML序列化支持类
 	/// </summary>
-	public static class XMLSerializeHelper
+	public class XMLSerializeHelper
 	{
+		private static ILogger _logger = LogManager.Instance.GetLogger<XMLSerializeHelper>();
+		
 		/// <summary>
 		/// 序列化对象为文本
 		/// </summary>
@@ -32,7 +36,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 				}
 				catch (Exception ex)
 				{
-					Trace.TraceInformation("执行反序列化时发生错误 ----> \r\n" + ex.ToString());
+					_logger.LogInformation("执行反序列化时发生错误 ----> \r\n" + ex.ToString());
 					return default(T);
 				}
 			}

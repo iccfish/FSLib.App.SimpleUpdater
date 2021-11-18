@@ -8,8 +8,13 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.UpdateControl
 {
+	using Logs;
+
 	public partial class UpdateError : FSLib.App.SimpleUpdater.UpdateControl.ControlBase
 	{
+		private static ILogger _logger = LogManager.Instance.GetLogger<UpdateError>();
+		
+		
 		public UpdateError()
 		{
 			InitializeComponent();
@@ -36,7 +41,7 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 
 
 			StepDesc = Updater.Instance.Context.Exception.Message;
-			System.Diagnostics.Trace.TraceWarning(Updater.Instance.Context.Exception.ToString());
+			_logger.LogWarning(Updater.Instance.Context.Exception.ToString());
 
 #if DEBUG
 			System.Windows.Forms.MessageBox.Show(Updater.Instance.Context.Exception.ToString());

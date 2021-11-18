@@ -6,6 +6,8 @@ using System.Threading;
 
 namespace FSLib.App.SimpleUpdater.Wrapper
 {
+	using System.Security.Cryptography;
+
 #if NET20
 	public delegate TR Func<TR>();
 	public delegate TR Func<TS, TR>(TS ele);
@@ -13,7 +15,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 	public delegate void Action<T1, T2, T3>(T1 t1, T2 t2, T3 t3);
 #endif
 
-	public static class ExtensionMethod
+	static class ExtensionMethod
 	{
 		/// <summary>
 		/// 为字符串设定默认值
@@ -155,7 +157,7 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			}
 		}
 
-		/// <summary> 将指定的序列转换为强类型的List独享 </summary>
+		/// <summary> 将指定的序列转换为强类型的List对象 </summary>
 		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable`1</see> 的参数</param>
 		/// <returns></returns>
 		public static List<T> ToList<T>(IEnumerable<T> source)
@@ -165,8 +167,14 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			{
 				list.Add(item);
 			}
+
 			return list;
 		}
+
+		/// <summary> 将指定的序列转换为强类型的List对象 </summary>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable`1</see> 的参数</param>
+		/// <returns></returns>
+		public static T[] ToArray<T>(IEnumerable<T> source) => ToList(source).ToArray();
 
 		/// <summary>
 		/// 解压缩一个字节流
@@ -197,11 +205,12 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 
 		/// <summary> 获得指定文件的Hash值 </summary>
 		/// <param name="filePath" type="string">文件路径</param>
+		/// <param name="isMd5">是否是md5</param>
 		/// <returns></returns>
-		public static string GetFileHash(string filePath)
+		public static string GetFileHash(string filePath, bool isMd5 = false)
 		{
-			var cpter = System.Security.Cryptography.MD5.Create();
-			return BitConverter.ToString(cpter.ComputeHash(System.IO.File.ReadAllBytes(filePath))).Replace("-", "").ToUpper();
+			var hasher = isMd5 ? (HashAlgorithm)MD5.Create() : SHA1.Create();
+			return BitConverter.ToString(hasher.ComputeHash(System.IO.File.ReadAllBytes(filePath))).Replace("-", "").ToUpper();
 		}
 
 		/// <summary> 计算一个序列中符合指定要求的元素的个数 </summary>
@@ -230,16 +239,36 @@ namespace FSLib.App.SimpleUpdater.Wrapper
 			}
 		}
 
-		/// <summary> 对序列进行转换 </summary>
+		/// <summary> 取序列第一个符合条件的对象 </summary>
 		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
 		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
 		/// <returns></returns>
-		public static IEnumerable<R> Where<T, R>(IEnumerable<T> source, Func<T, R> predicate)
+		public static T First<T>(IEnumerable<T> source, Func<T, bool> predicate)
 		{
 			foreach (var item in source)
 			{
-				yield return predicate(item);
+				if (predicate(item)) return item;
 			}
+
+			return default(T);
+		}
+
+
+		/// <summary>
+		/// 判断序列是否有符合要求的数据
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source" type="System.Collections.Generic.IEnumerable`1">类型为 <see>System.Collections.Generic.IEnumerable{T}</see> 的参数</param>
+		/// <param name="predicate" type="FSLib.App.SimpleUpdater.Wrapper.Func`2">类型为 <see>FSLib.App.SimpleUpdater.Wrapper.Func{T,bool}</see> 的参数</param>
+		/// <returns></returns>
+		public static bool Any<T>(IEnumerable<T> source, Func<T, bool> predicate)
+		{
+			foreach (var item in source)
+			{
+				if (predicate(item)) return true;
+			}
+
+			return false;
 		}
 
 		/// <summary> 计算一个序列中指定属性之和 </summary>

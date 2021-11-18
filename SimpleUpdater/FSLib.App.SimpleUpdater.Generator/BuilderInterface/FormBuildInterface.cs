@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,10 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 	using SimpleUpdater.Defination;
 
 	using Wrapper;
+
+	using ZipBuilder;
+
+	using Timer = System.Threading.Timer;
 
 	class FormBuildInterface : BuilderInterfaceBase
 	{
@@ -55,7 +59,7 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 		{
 			base.UpdateProgress(progress);
 
-			_form.SetProgress(progress);
+			_form.SetProgress(progress.TaskCount <= 0, progress.TaskPercentage, progress.StateMessage);
 		}
 
 		/// <summary>
@@ -66,5 +70,46 @@ namespace FSLib.App.SimpleUpdater.Generator.BuilderInterface
 			base.OnWorkerShutdown();
 			_form.Close();
 		}
+
+
+		private System.Threading.Timer _timer;
+
+
+		/// <inheritdoc />
+		protected override void OnFilePackingBegin()
+		{
+			var tasks = ZipTasks.ToArray();
+			var random = new Random();
+
+			_timer = new Timer(_ =>
+				{
+					var runningTasks = new List<ZipTask>();
+					tasks.Where(s => s.State != ZipTaskState.Done && s.State != ZipTaskState.Queue).ForEach(s => runningTasks.Add(s));
+
+					var running = runningTasks.Count;
+					var done = tasks.Count(s => s.State == ZipTaskState.Done);
+					var showIndex = random.Next(running);
+					var task = running == 0 ? null : runningTasks[showIndex];
+
+					var str = task == null ? $"[parallel:{Project.UseParallelBuilding}/{done}/{tasks.Length}] waiting..." : $"[{done}/{tasks.Length}] {running} running -> {task.State.ToString().ToLower()}/{(task.Percentage == -1 ? "" : task.Percentage)}% @ {task.PackageDescription}";
+					var totalCount = tasks.Length * 100;
+					var percentage = done * 100 + runningTasks.Sum(x => x.Percentage);
+
+					_form.SetProgress(false, (int)Math.Round(percentage * 1.0 / totalCount * 100), str);
+				},
+				null,
+				0,
+				200);
+
+			base.OnFilePackingBegin();
+		}
+
+		/// <inheritdoc />
+		protected override void OnFilePackingEnd()
+		{
+			_timer.Change(-1, -1);
+			base.OnFilePackingEnd();
+		}
+
 	}
 }

@@ -30,7 +30,7 @@ namespace FSLib.App.SimpleUpdater
 		{
 			Context.EnableEmbedDialog = enableEmbedDialog;
 
-			Trace.TraceInformation($"{nameof(CheckUpdateSync)} Start with threadid={Thread.CurrentThread.ManagedThreadId}");
+			_logger.LogInformation($"{nameof(CheckUpdateSync)} Start with threadid={Thread.CurrentThread.ManagedThreadId}");
 
 			var evt = new ManualResetEvent(false);
 			EventHandler eh = null;
@@ -54,7 +54,7 @@ namespace FSLib.App.SimpleUpdater
 			ThreadPool.QueueUserWorkItem(_ => BeginCheckUpdateInProcess());
 			evt.WaitOne();
 
-			Trace.TraceInformation($"{nameof(CheckUpdateSync)} End with threadid={Thread.CurrentThread.ManagedThreadId}");
+			_logger.LogInformation($"{nameof(CheckUpdateSync)} End with threadid={Thread.CurrentThread.ManagedThreadId}");
 
 			return result;
 		}

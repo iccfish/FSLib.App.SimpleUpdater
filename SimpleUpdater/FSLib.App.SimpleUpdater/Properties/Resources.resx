@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -135,23 +135,5 @@
   </data>
   <data name="AUTOMATIC UPDATES_16x16-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AUTOMATIC UPDATES_16x16-32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="app_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\app.config.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FSLib_App_Utilities_dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\fslib.app.utilities.dll.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FSLib_App_Utilities_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\fslib.app.utilities.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FSLib_App_Utilities_runtimeconfig_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\fslib.app.utilities.runtimeconfig.json.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Utilities_Net20_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\utilities_net20.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Utilities_Net40_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\utilities\utilities_net40.exe.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
