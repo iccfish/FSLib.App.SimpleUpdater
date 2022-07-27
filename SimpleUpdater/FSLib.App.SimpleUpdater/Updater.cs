@@ -1,26 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Reflection;
-using System.Windows.Forms;
-using System.Diagnostics;
-using FSLib.App.SimpleUpdater.Annotations;
 using FSLib.App.SimpleUpdater.Dialogs;
 using FSLib.App.SimpleUpdater.Wrapper;
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 
 namespace FSLib.App.SimpleUpdater
 {
-	using System.Text.RegularExpressions;
-
 	using Defination;
 
 	using ICCEmbedded.SharpZipLib.Zip;
 
 	using Logs;
+
+	using System.Text.RegularExpressions;
 
 	/// <summary>
 	/// 自动更新操作类
@@ -35,6 +35,7 @@ namespace FSLib.App.SimpleUpdater
 		private static ILogger _logger = LogManager.Instance.GetLogger<Updater>();
 
 		#region 构造函数
+
 
 		/// <summary>
 		/// 手动创建更新类，并指定当前版本和应用程序目录

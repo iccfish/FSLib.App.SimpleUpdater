@@ -83,6 +83,7 @@
 		<Compile Include="Logs\LogManager.cs" />
 		<Compile Include="Logs\LogTarget.cs" />
 		<Compile Include="MultiServerUpdater.cs" />
+		<Compile Include="NetUtility.cs" />
 		<Compile Include="PackageEventArgs.cs" />
 		<Compile Include="PackageDownloadException.cs" />
 		<Compile Include="PackageDownloadProgressChangedEventArgs.cs" />
