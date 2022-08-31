@@ -645,5 +645,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// 获得或设置是否需要独立的更新客户端支持
 		/// </summary>
 		public bool NeedStandaloneUpdateClientSupport { get; internal set; }
+
+		/// <summary>
+		/// 获得或设置标记位，指定在复制引用程序集时是否忽略位置检测
+		/// </summary>
+		public bool CopyAssemblyIgnoreLocationTest { get; set; }
 	}
 }
