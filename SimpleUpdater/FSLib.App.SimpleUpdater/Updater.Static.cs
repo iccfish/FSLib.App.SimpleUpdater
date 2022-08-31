@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FSLib.App.SimpleUpdater
 {
-	using System.Threading;
-	using System.Windows.Forms;
-
 	using Annotations;
 
 	using FSLib.App.SimpleUpdater.Defination;
 	using FSLib.App.SimpleUpdater.Dialogs;
 	using FSLib.App.SimpleUpdater.Wrapper;
+
+	using System.Threading;
+	using System.Windows.Forms;
 
 	partial class Updater
 	{
@@ -29,6 +27,8 @@ namespace FSLib.App.SimpleUpdater
 			{
 				UpdaterClientVersion = "0.0.0.0";
 			}
+
+			NetUtility.EnableCompatibility();
 		}
 
 		static Updater _instance;

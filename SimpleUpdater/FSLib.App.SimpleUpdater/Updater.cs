@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Reflection;
 using System.Windows.Forms;
-using System.Diagnostics;
-using FSLib.App.SimpleUpdater.Annotations;
+
 using FSLib.App.SimpleUpdater.Dialogs;
 using FSLib.App.SimpleUpdater.Wrapper;
 
@@ -35,6 +35,7 @@ namespace FSLib.App.SimpleUpdater
 		private static ILogger _logger = LogManager.Instance.GetLogger<Updater>();
 
 		#region 构造函数
+
 
 		/// <summary>
 		/// 手动创建更新类，并指定当前版本和应用程序目录
@@ -1145,7 +1146,7 @@ namespace FSLib.App.SimpleUpdater
 
 			//启动外部程序
 			var currentAssembly = Assembly.GetExecutingAssembly();
-			if (!Context.NeedStandaloneUpdateClientSupport && CopyAssemblyToUpdateRoot(currentAssembly) == null)
+			if (!Context.NeedStandaloneUpdateClientSupport && CopyAssemblyToUpdateRoot(currentAssembly, true) == null)
 			{
 				throw new Exception("Unable create updater utilities.");
 			}
@@ -1173,7 +1174,7 @@ namespace FSLib.App.SimpleUpdater
 			if (Context.HiddenUI) sb.Append("/noui ");
 			if (_mainFormType != null)
 			{
-				CopyAssemblyToUpdateRoot(_mainFormType.Assembly);
+				CopyAssemblyToUpdateRoot(_mainFormType.Assembly, true);
 				sb.Append("/ui \"" + _mainFormType.AssemblyQualifiedName + "\" ");
 
 				if (!(_usingAssemblies ?? (_usingAssemblies = new List<Assembly>())).Contains(_mainFormType.Assembly))
@@ -1228,8 +1229,11 @@ namespace FSLib.App.SimpleUpdater
 		/// 复制指定程序集到目录
 		/// </summary>
 		/// <param name="assembly"></param>
-		bool? CopyAssemblyToUpdateRoot(Assembly assembly)
+		/// <param name="ignoreLocation">是否忽略位置检测强制复制</param>
+		bool? CopyAssemblyToUpdateRoot(Assembly assembly, bool? ignoreLocation = null)
 		{
+			ignoreLocation = ignoreLocation ?? Context.CopyAssemblyIgnoreLocationTest;
+
 			if (_assemblies.ContainsKey(assembly))
 				return true;
 
@@ -1240,7 +1244,11 @@ namespace FSLib.App.SimpleUpdater
 				return null;
 			}
 
-			if (!location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase)) return false;
+			if (ignoreLocation == false && !location.StartsWith(Context.ApplicationDirectory, StringComparison.OrdinalIgnoreCase))
+			{
+				_logger.LogInformation($"Assembly '{assembly.FullName}' skipped copy due to location was not in application directory.");
+				return false;
+			}
 
 			var dest = Path.Combine(Context.UpdateTempRoot, Path.GetFileName(location));
 			_logger.LogInformation(string.Format("Copying assembly {0} to {1}", location, dest));

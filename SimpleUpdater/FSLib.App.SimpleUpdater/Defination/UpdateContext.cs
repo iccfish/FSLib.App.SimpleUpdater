@@ -9,7 +9,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 	using System.Reflection;
 	using System.Windows.Forms;
 
-	using FSLib.App.SimpleUpdater.Dialogs;
+	using Dialogs;
 
 	using Logs;
 
@@ -41,16 +41,6 @@ namespace FSLib.App.SimpleUpdater.Defination
 			// 已更新2021-05-19：往系统的temp目录下写东西，360太喜欢报毒。所以换用户数据目录下。
 			// stupid 360.
 			var temppath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FishSimpleUpdaterTemp");
-			if (Directory.Exists(temppath))
-			{
-				try
-				{
-					Directory.Delete(temppath, true);
-				}
-				catch (Exception e)
-				{
-				}
-			}
 			var assemblyPath = Assembly.GetExecutingAssembly().Location;
 
 			_logger.LogInformation($"Current user temporary path was set to {temppath}");
@@ -61,7 +51,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 				assemblyPath = AppContext.BaseDirectory;
 				NeedStandaloneUpdateClientSupport = true;
 				_logger.LogInformation($"Current app context was located at '{assemblyPath}'");
-				_logger.LogInformation($"Unable get location from assembly, probably program released as a single file. A standalone updater client will be required to perform upgrade.");
+				_logger.LogInformation("Unable get location from assembly, probably program released as a single file. A standalone updater client will be required to perform upgrade.");
 			}
 #endif
 
@@ -72,7 +62,18 @@ namespace FSLib.App.SimpleUpdater.Defination
 			}
 			else
 			{
-				UpdateTempRoot = System.IO.Path.Combine(temppath, Guid.NewGuid().ToString("N").Substring(0, 8));
+				if (Directory.Exists(temppath))
+				{
+					try
+					{
+						Directory.Delete(temppath, true);
+					}
+					catch (Exception e)
+					{
+					}
+				}
+
+				UpdateTempRoot = Path.Combine(temppath, Guid.NewGuid().ToString("N").Substring(0, 8));
 				IsInUpdateMode = false;
 
 				//尝试自动加载升级属性
@@ -194,8 +195,12 @@ namespace FSLib.App.SimpleUpdater.Defination
 		void InitializeCurrentVersion()
 		{
 			var processModule = Process.GetCurrentProcess().MainModule;
+			if (processModule == null)
+			{
+				throw new InvalidOperationException("Can not get the main module of current process.");
+			}
 			CurrentVersion = new Version(processModule.FileVersionInfo.FileVersion);
-			ApplicationDirectory = System.IO.Path.GetDirectoryName(processModule.FileName);
+			ApplicationDirectory = Path.GetDirectoryName(processModule.FileName);
 		}
 
 		/// <summary>
@@ -327,7 +332,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 			{
 				if (string.IsNullOrEmpty(value)) throw new ArgumentException("ApplicationDirectory can not be null or empty.");
 
-				_applicationDirectory = System.IO.Path.IsPathRooted(value) ? value : System.IO.Path.Combine(_applicationDirectory, value);
+				_applicationDirectory = Path.IsPathRooted(value) ? value : Path.Combine(_applicationDirectory, value);
 			}
 		}
 
@@ -404,7 +409,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前更新信息文件保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateInfoFilePath => _updateInfoFilePath ?? (_updateInfoFilePath = System.IO.Path.Combine(UpdateTempRoot, "update.xml"));
+		public string UpdateInfoFilePath => _updateInfoFilePath ?? (_updateInfoFilePath = Path.Combine(UpdateTempRoot, "update.xml"));
 
 
 		string _updatePackageListPath;
@@ -412,14 +417,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前要下载的包文件信息保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdatePackageListPath => _updatePackageListPath ?? (_updatePackageListPath = System.IO.Path.Combine(UpdateTempRoot, "packages.xml"));
+		public string UpdatePackageListPath => _updatePackageListPath ?? (_updatePackageListPath = Path.Combine(UpdateTempRoot, "packages.xml"));
 
 		string _preserveFileListPath;
 
 		/// <summary> 获得当前要保留的文件信息保存的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string PreserveFileListPath => _preserveFileListPath ?? (_preserveFileListPath = System.IO.Path.Combine(UpdateTempRoot, "reservefile.xml"));
+		public string PreserveFileListPath => _preserveFileListPath ?? (_preserveFileListPath = Path.Combine(UpdateTempRoot, "reservefile.xml"));
 
 
 		string _updatePackagePath;
@@ -427,14 +432,14 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前下载的包文件目录 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdatePackagePath => _updatePackagePath ?? (_updatePackagePath = System.IO.Path.Combine(UpdateTempRoot, "packages"));
+		public string UpdatePackagePath => _updatePackagePath ?? (_updatePackagePath = Path.Combine(UpdateTempRoot, "packages"));
 
 		string _updateNewFilePath;
 
 		/// <summary> 获得当前下载解包后的新文件路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateNewFilePath => _updateNewFilePath ?? (_updateNewFilePath = System.IO.Path.Combine(UpdateTempRoot, "files"));
+		public string UpdateNewFilePath => _updateNewFilePath ?? (_updateNewFilePath = Path.Combine(UpdateTempRoot, "files"));
 
 		string _updateRollbackPath;
 		private object _updateAttribute;
@@ -446,17 +451,17 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// <summary> 获得当前更新过程中备份文件的路径 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public string UpdateRollbackPath => _updateRollbackPath ?? (_updateRollbackPath = System.IO.Path.Combine(UpdateTempRoot, "backup"));
+		public string UpdateRollbackPath => _updateRollbackPath ?? (_updateRollbackPath = Path.Combine(UpdateTempRoot, "backup"));
 
 		/// <summary>
 		/// 获得一个值，表示当前的自动升级信息是否已经下载完全
 		/// </summary>
-		public bool IsUpdateInfoDownloaded => !string.IsNullOrEmpty(UpdateInfoTextContent) || System.IO.File.Exists(UpdateInfoFilePath);
+		public bool IsUpdateInfoDownloaded => !string.IsNullOrEmpty(UpdateInfoTextContent) || File.Exists(UpdateInfoFilePath);
 
 		/// <summary> 获得或设置服务器用户名密码标记 </summary>
 		/// <value></value>
 		/// <remarks></remarks>
-		public System.Net.NetworkCredential NetworkCredential { get; set; }
+		public NetworkCredential NetworkCredential { get; set; }
 
 		/// <summary> 获得或设置用于下载的代理服务器地址 </summary>
 		/// <value></value>
@@ -640,5 +645,10 @@ namespace FSLib.App.SimpleUpdater.Defination
 		/// 获得或设置是否需要独立的更新客户端支持
 		/// </summary>
 		public bool NeedStandaloneUpdateClientSupport { get; internal set; }
+
+		/// <summary>
+		/// 获得或设置标记位，指定在复制引用程序集时是否忽略位置检测
+		/// </summary>
+		public bool CopyAssemblyIgnoreLocationTest { get; set; }
 	}
 }
