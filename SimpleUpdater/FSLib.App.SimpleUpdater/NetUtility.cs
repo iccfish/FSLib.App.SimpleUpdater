@@ -7,14 +7,19 @@
 
     internal class NetUtility
     {
-        static HashSet<string> _ignoreDomainCert = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        static Dictionary<string, bool> _ignoreDomainCert = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         static NetUtility()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) =>
             {
                 var request = (HttpWebRequest)sender;
-                if (_ignoreDomainCert.Contains(request.Host))
+#if NET20
+                var host = request.Address.Host;
+#else
+                var host = request.Host;
+#endif
+                if (_ignoreDomainCert.ContainsKey(host))
                 {
                     return true;
                 }
@@ -28,11 +33,11 @@
             if (Environment.OSVersion.Version.Major > 5)
             {
 #if NET20 || NET35 || NET40
-            ServicePointManager.SecurityProtocol =
-                SecurityProtocolType.Ssl3
-                | SecurityProtocolType.Tls
-                | (SecurityProtocolType)3072 //TLS 1.2
-                | (SecurityProtocolType)768; //TLS 1.1;
+                ServicePointManager.SecurityProtocol =
+                    SecurityProtocolType.Ssl3
+                    | SecurityProtocolType.Tls
+                    | (SecurityProtocolType)3072 //TLS 1.2
+                    | (SecurityProtocolType)768; //TLS 1.1;
 #endif
             }
         }
@@ -42,8 +47,8 @@
         internal static void AddIgnoreDomainCertForUrl(Uri uri)
         {
             var host = uri.Host;
-            if (!_ignoreDomainCert.Contains(host))
-                _ignoreDomainCert.Add(host);
+            if (!_ignoreDomainCert.ContainsKey(host))
+                _ignoreDomainCert.Add(host, true);
         }
     }
 }
