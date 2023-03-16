@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.Dialogs
 {
+	using Defination;
+
 	public partial class SelfUpdate : Form
 	{
 		public SelfUpdate()
@@ -18,9 +20,9 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		private void SelfUpdate_Load(object sender, EventArgs e)
 		{
 			var updater = Updater.Instance;
-			updater.NoUpdatesFound += new EventHandler(updater_NoUpdatesFound);
-			updater.Error += new EventHandler(updater_Error);
-			updater.Context.ApplicationDirectory = Environment.CurrentDirectory;
+			updater.NoUpdatesFound               += new EventHandler(updater_NoUpdatesFound);
+			updater.UpdateError                  += updater_Error;
+			updater.Context.ApplicationDirectory =  Environment.CurrentDirectory;
 
 //#if DEBUG
 //			Updater.CheckUpdateSimple("http://localhost:2099/update.xml");
@@ -30,7 +32,7 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 //#endif
 		}
 
-		void updater_Error(object sender, EventArgs e)
+		void updater_Error(object sender, RouteEventArgs e)
 		{
 			if (MessageBox.Show("检查更新失败：" + Updater.Instance.Context.Exception.Message + "，您希望前往主页查看更新吗？", "更新失败", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == System.Windows.Forms.DialogResult.Yes)
 			{

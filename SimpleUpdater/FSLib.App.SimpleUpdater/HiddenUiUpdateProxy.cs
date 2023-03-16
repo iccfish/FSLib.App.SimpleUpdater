@@ -15,10 +15,10 @@ namespace FSLib.App.SimpleUpdater
 			var waitHandler = new System.Threading.ManualResetEvent(false);
 
 
-			u.NoUpdatesFound += (s, e) => waitHandler.Set();
-			u.Error += (s, e) => waitHandler.Set();
+			u.NoUpdatesFound        += (s, e) => waitHandler.Set();
+			u.UpdateError           += (s, e) => waitHandler.Set();
 			u.ExternalUpdateStarted += (s, e) => waitHandler.Set();
-			u.UpdateCancelled += (s, e) => waitHandler.Set();
+			u.UpdateCancelled       += (s, e) => waitHandler.Set();
 
 			Updater.CheckUpdateSimple();
 

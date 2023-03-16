@@ -72,7 +72,7 @@ namespace FSLib.App.SimpleUpdater.Defination
 #if NET5_0
             if (string.IsNullOrEmpty(assemblyPath))
             {
-                assemblyPath                      = AppContext.BaseDirectory;
+                assemblyPath = AppContext.BaseDirectory;
                 NeedStandaloneUpdateClientSupport = true;
                 _logger.LogInformation($"Current app context was located at '{assemblyPath}'");
                 _logger.LogInformation("Unable get location from assembly, probably program released as a single file. A standalone updater client will be required to perform upgrade.");
@@ -656,5 +656,25 @@ namespace FSLib.App.SimpleUpdater.Defination
             client.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
             client.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
         }
+
+        private UpdateCheckState  _checkState;
+        public event EventHandler CheckStateChanged;
+
+        /// <summary>
+        /// 获得当前更新的状态
+        /// </summary>
+        public UpdateCheckState CheckState
+        {
+            get => _checkState;
+            internal set
+            {
+                if (_checkState == value) return;
+
+                _checkState = value;
+                OnCheckStateChanged();
+            }
+        }
+
+        protected virtual void OnCheckStateChanged() { CheckStateChanged?.Invoke(this, EventArgs.Empty); }
     }
 }

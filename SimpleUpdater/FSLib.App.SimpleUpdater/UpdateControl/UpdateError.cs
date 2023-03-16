@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace FSLib.App.SimpleUpdater.UpdateControl
 {
+	using Defination;
+
 	using Logs;
 
 	public partial class UpdateError : FSLib.App.SimpleUpdater.UpdateControl.ControlBase
@@ -21,11 +23,11 @@ namespace FSLib.App.SimpleUpdater.UpdateControl
 
 			if (Program.IsRunning)
 			{
-				Updater.Instance.Error += Instance_Error;
+				Updater.Instance.UpdateError += Instance_Error;
 			}
 		}
 
-		void Instance_Error(object sender, EventArgs e)
+		void Instance_Error(object sender, RouteEventArgs e)
 		{
 			HideControls();
 			this.Visible = true;

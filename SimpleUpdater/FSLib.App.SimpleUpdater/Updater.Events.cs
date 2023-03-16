@@ -4,13 +4,14 @@ using System.Text;
 
 namespace FSLib.App.SimpleUpdater
 {
+	using System.Windows.Forms;
+
 	using FSLib.App.SimpleUpdater.Defination;
 	using FSLib.App.SimpleUpdater.Wrapper;
 
 	partial class Updater
 	{
 		#region 事件区域
-
 
 		/// <summary> 操作进度发生变更 </summary>
 		/// <remarks></remarks>
@@ -115,44 +116,45 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 更新中发生错误
 		/// </summary>
+		[Obsolete("Please use 'UpdateError' instead.")]
 		public event EventHandler Error;
+
+		/// <summary>
+		/// 更新发生错误
+		/// </summary>
+		public event EventHandler<RouteEventArgs> UpdateError;
 
 		/// <summary>
 		/// 引发 <see cref="Error" /> 事件
 		/// </summary>
 		protected virtual void OnError()
 		{
+			Context.CheckState = UpdateCheckState.Error;
 			CleanTemp();
-			var handler = Error;
-			if (handler != null)
-				handler(this, EventArgs.Empty);
+			Error?.Invoke(this, EventArgs.Empty);
+
+			var e = new RouteEventArgs();
+			UpdateError?.Invoke(this, e);
+			if (e.StopExecute)
+				return;
+
+			if (Context.EnableEmbedDialog)
+			{
+				if (Context.Exception is VersionTooLowException)
+				{
+					ShowUiForm(new Dialogs.MinmumVersionRequired());
+				}
+				else
+				{
+					MessageBox.Show(string.Format(SR.Updater_UnableToCheckUpdate, Context.Exception?.Message ?? "未知错误"), SR.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+			}
 
 			if (!Context.IsInUpdateMode && Context.MustUpdate && Context.TreatErrorAsNotUpdated)
 				TerminateProcess(this);
 		}
 
-
-		/// <summary>
-		/// 不满足最低版本要求
-		/// </summary>
-		public event EventHandler MinmumVersionRequired;
-
-		/// <summary>
-		/// 引发 <see cref="MinmumVersionRequired" /> 事件
-		/// </summary>
-		protected virtual void OnMinmumVersionRequired()
-		{
-			if (MinmumVersionRequired == null)
-				return;
-
-			MinmumVersionRequired(this, EventArgs.Empty);
-
-			if (Context.MustUpdate && Context.TreatErrorAsNotUpdated)
-				TerminateProcess(this);
-		}
 		#endregion
-
-
 
 
 		#region 检查更新部分
@@ -208,18 +210,28 @@ namespace FSLib.App.SimpleUpdater
 		/// <summary>
 		/// 发现了更新
 		/// </summary>
+		[Obsolete("Please use 'UpdatesAvailable' instead.")]
 		public event EventHandler UpdatesFound;
+
+		/// <summary>
+		/// 发现有更新
+		/// </summary>
+		public event EventHandler<RouteEventArgs> UpdatesAvailable;
 
 		/// <summary>
 		/// 引发 <see cref="UpdatesFound"/> 事件
 		/// </summary>
 		protected virtual void OnUpdatesFound()
 		{
-			if (UpdatesFound == null)
+			UpdatesFound?.Invoke(this, EventArgs.Empty);
+
+			var e = new RouteEventArgs();
+			UpdatesAvailable?.Invoke(this, e);
+
+			if (e.StopExecute)
 				return;
 
-			UpdatesFound(this, EventArgs.Empty);
-			EnsureUpdateStarted();
+			InternalProcessUpdatesFound();
 		}
 
 		/// <summary>
@@ -279,6 +291,7 @@ namespace FSLib.App.SimpleUpdater
 			var handler = GatheredPackages;
 			if (handler != null) handler(this, EventArgs.Empty);
 		}
+
 		#endregion
 
 
@@ -298,6 +311,7 @@ namespace FSLib.App.SimpleUpdater
 			if (handler != null)
 				handler(this, ea);
 		}
+
 		#endregion
 
 		#region 包下载事件
@@ -391,6 +405,7 @@ namespace FSLib.App.SimpleUpdater
 			if (handler != null)
 				handler(this, ea);
 		}
+
 		#endregion
 
 
@@ -471,9 +486,8 @@ namespace FSLib.App.SimpleUpdater
 			if (handler != null)
 				handler(this, EventArgs.Empty);
 		}
+
 		#endregion
-
-
 
 
 		#region 更新流程-解压缩更新包
@@ -507,7 +521,7 @@ namespace FSLib.App.SimpleUpdater
 			if (handler != null)
 				handler(this, ea);
 		}
-		#endregion
 
+		#endregion
 	}
 }

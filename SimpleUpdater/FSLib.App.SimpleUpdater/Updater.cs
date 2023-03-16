@@ -124,10 +124,8 @@ namespace FSLib.App.SimpleUpdater
         /// </summary>
         protected Updater()
         {
-            Context               =  new UpdateContext();
-            PackagesToUpdate      =  new List<PackageInfo>();
-            UpdatesFound          += Instance_UpdatesFound;
-            MinmumVersionRequired += Instance_MinmumVersionRequired;
+            Context          = new UpdateContext();
+            PackagesToUpdate = new List<PackageInfo>();
             if (_instance == null) _instance = this;
 
             //初始化工作参数
@@ -179,6 +177,7 @@ namespace FSLib.App.SimpleUpdater
         public virtual bool BeginCheckUpdateInProcess()
         {
             var url = Context.UpdateInfoFileUrl;
+            Context.CheckState = UpdateCheckState.Checking;
 
             if (string.IsNullOrEmpty(url)) throw new InvalidOperationException(SR.Updater_AssemblyNotMarkedAsUpdateable);
             if (Context.IsInUpdating) return false;
@@ -204,16 +203,17 @@ namespace FSLib.App.SimpleUpdater
 
                 if (Context.CurrentVersionTooLow)
                 {
-                    OnMinmumVersionRequired();
-                    Context.Exception = new VersionTooLowException(Context.CurrentVersion, new Version(Context.UpdateInfo.RequiredMinVersion));
+                    Context.Exception  = new VersionTooLowException(Context.CurrentVersion, new Version(Context.UpdateInfo.RequiredMinVersion));
                     OnError();
                 }
                 else if (!Context.HasUpdate)
                 {
+                    Context.CheckState = UpdateCheckState.NoUpdate;
                     OnNoUpdatesFound();
                 }
                 else
                 {
+                    Context.CheckState = UpdateCheckState.UpdatesAvailable;
                     OnUpdatesFound();
                 }
 
@@ -379,18 +379,19 @@ namespace FSLib.App.SimpleUpdater
             {
                 //必须更新的包
                 _logger.LogInformation("Adding main package.");
-                PackagesToUpdate.Add(new PackageInfo()
-                {
-                    FilePath          = "",
-                    FileSize          = 0,
-                    PackageHash       = info.MD5,
-                    Method            = UpdateMethod.Always,
-                    PackageName       = info.Package,
-                    PackageSize       = info.PackageSize,
-                    VerificationLevel = FileVerificationLevel.Hash,
-                    Version           = "0.0.0.0",
-                    Context           = Context
-                });
+                PackagesToUpdate.Add(
+                    new PackageInfo()
+                    {
+                        FilePath          = "",
+                        FileSize          = 0,
+                        PackageHash       = info.MD5,
+                        Method            = UpdateMethod.Always,
+                        PackageName       = info.Package,
+                        PackageSize       = info.PackageSize,
+                        VerificationLevel = FileVerificationLevel.Hash,
+                        Version           = "0.0.0.0",
+                        Context           = Context
+                    });
             }
 
             if (info.Packages != null)
@@ -841,7 +842,8 @@ namespace FSLib.App.SimpleUpdater
                     var pkg = e.UserState as PackageInfo;
                     pkg.DownloadedSize = e.BytesReceived;
                     pkg.PackageSize    = e.TotalBytesToReceive > 0 ? e.TotalBytesToReceive : pkg.PackageSize;
-                    rt.PostEvent(DownloadProgressChanged,
+                    rt.PostEvent(
+                        DownloadProgressChanged,
                         this,
                         new PackageDownloadProgressChangedEventArgs(pkg, pkg.PackageSize, pkg.DownloadedSize, e.ProgressPercentage)
                     );
@@ -1105,7 +1107,7 @@ namespace FSLib.App.SimpleUpdater
 
 #if NET20
             targetFiles.Add(ReadEmbedStream("Utilities_Net20.exe", "FSLib.App.Utilities.exe"));
-            targetFiles.Add(ReadEmbedStream("app.config", "FSLib.App.Utilities.exe.config"));
+            targetFiles.Add(ReadEmbedStream("app.config",          "FSLib.App.Utilities.exe.config"));
 #elif NET40 || NET45
             targetFiles.Add(ReadEmbedStream("Utilities_Net40.exe", "FSLib.App.Utilities.exe"));
             targetFiles.Add(ReadEmbedStream("app.config", "FSLib.App.Utilities.exe.config"));
@@ -1139,7 +1141,7 @@ namespace FSLib.App.SimpleUpdater
             Directory.CreateDirectory(Path.GetDirectoryName(updateinfoFile));
             File.WriteAllText(updateinfoFile, Context.UpdateInfoTextContent, Encoding.UTF8);
             //写入包列表
-            XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate, Context.UpdatePackageListPath);
+            XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate,                                          Context.UpdatePackageListPath);
             XMLSerializeHelper.XmlSerilizeToFile(ExtensionMethod.ToList(FileInstaller.PreservedFiles.Keys), Context.PreserveFileListPath);
 
             //启动外部程序
@@ -1157,11 +1159,11 @@ namespace FSLib.App.SimpleUpdater
             //启动
             var sb = new StringBuilder(0x400);
             sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
-            sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.LogFile ?? ""));
-            sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
-            sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
-            sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);
-            sb.AppendFormat("/proxy \"{0}\" ", Context.ProxyAddress ?? "");
+            sb.AppendFormat("/log \"{0}\" ",             Utility.SafeQuotePathInCommandLine(Context.LogFile ?? ""));
+            sb.AppendFormat("/ad \"{0}\" ",              Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
+            sb.AppendFormat("/url \"{0}\" ",             Context.UpdateDownloadUrl);
+            sb.AppendFormat("/infofile \"{0}\" ",        Context.UpdateInfoFileName);
+            sb.AppendFormat("/proxy \"{0}\" ",           Context.ProxyAddress ?? "");
             if (Context.NetworkCredential != null)
                 sb.AppendFormat("/cred \"{0}\" ", string.Format("{0}:{1}", Context.NetworkCredential.UserName, Context.NetworkCredential.Password));
             if (Context.AutoKillProcesses) sb.Append("/autokill ");

@@ -228,45 +228,44 @@ namespace FSLib.App.SimpleUpdater
 			return Instance.BeginCheckUpdateInProcess();
 		}
 
-		//要求最低版本
-		static void Instance_MinmumVersionRequired(object sender, EventArgs e)
-		{
-			var updater = sender as Updater;
-			if (!updater.Context.EnableEmbedDialog) return;
-
-			ShowUiForm(new Dialogs.MinmumVersionRequired());
-		}
-
 		//找到更新，启动更新
-		static void Instance_UpdatesFound(object sender, EventArgs e)
+		void InternalProcessUpdatesFound()
 		{
-			var updater = sender as Updater;
-
-			if (updater.Context.MustUpdate)
+			if (Context.MustUpdate)
 			{
-				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
-					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipForce,
-												updater.Context.UpdateInfo.AppName,
-												updater.Context.CurrentVersion,
-												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				updater.StartExternalUpdater();
+				if (Context.PromptUserBeforeAutomaticUpgrade)
+					MessageBox.Show(
+						string.Format(
+							SR.Updater_AutomaticUpgradeTipForce,
+							Context.UpdateInfo.AppName,
+							Context.CurrentVersion,
+							Context.UpdateInfo.AppVersion),
+						SR.Message,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Information);
+				StartExternalUpdater();
 			}
-			else if (updater.Context.ForceUpdate)
+			else if (Context.ForceUpdate)
 			{
-				if (updater.Context.PromptUserBeforeAutomaticUpgrade)
-					MessageBox.Show(string.Format(SR.Updater_AutomaticUpgradeTipNotForce,
-												updater.Context.UpdateInfo.AppName,
-												updater.Context.CurrentVersion,
-												updater.Context.UpdateInfo.AppVersion), SR.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				updater.StartExternalUpdater();
+				if (Context.PromptUserBeforeAutomaticUpgrade)
+					MessageBox.Show(
+						string.Format(
+							SR.Updater_AutomaticUpgradeTipNotForce,
+							Context.UpdateInfo.AppName,
+							Context.CurrentVersion,
+							Context.UpdateInfo.AppVersion),
+						SR.Message,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Information);
+				StartExternalUpdater();
 			}
 			else
 			{
-				if (!updater.Context.EnableEmbedDialog) return;
+				if (!Context.EnableEmbedDialog) return;
 
 				ShowUiForm(new UpdateFound());
 			}
-			updater.EnsureUpdateStarted();
+			EnsureUpdateStarted();
 		}
 
 		/// <summary>

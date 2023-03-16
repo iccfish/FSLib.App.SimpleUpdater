@@ -30,16 +30,16 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 
 			//挂钩事件
 			var instance = UpdaterInstance;
-			instance.UpdateCancelled += (s, e) => OnUpdateCancelled();
-			instance.QueryCloseApplication += (s, e) => OnRequestCloseApplication(e);
-			instance.GatheringPackages += (s, e) => OnGatheringPackages();
-			instance.GatheredPackages += (s, e) => OnGatheredPackages();
-			instance.DownloadUpdateInfo += (s, e) => OnDownloadUpdateInfo();
+			instance.UpdateCancelled            += (s, e) => OnUpdateCancelled();
+			instance.QueryCloseApplication      += (s, e) => OnRequestCloseApplication(e);
+			instance.GatheringPackages          += (s, e) => OnGatheringPackages();
+			instance.GatheredPackages           += (s, e) => OnGatheredPackages();
+			instance.DownloadUpdateInfo         += (s, e) => OnDownloadUpdateInfo();
 			instance.DownloadUpdateInfoFinished += (s, e) => OnDownloadUpdateInfoFinished();
-			instance.Error += (s, e) => OnError(UpdaterInstance.Context.Exception);
-			instance.NoUpdatesFound += (s, e) => OnNoUpdateFound();
-			instance.UpdateFinished += (s, e) => OnUpdateFinished();
-			instance.OperationProgressChanged += (s, e) => OnOperationProgressChanged(e);
+			instance.UpdateError                += (s, e) => OnError(UpdaterInstance.Context.Exception);
+			instance.NoUpdatesFound             += (s, e) => OnNoUpdateFound();
+			instance.UpdateFinished             += (s, e) => OnUpdateFinished();
+			instance.OperationProgressChanged   += (s, e) => OnOperationProgressChanged(e);
 			//下载和更新安装相关的事件
 			instance.PackageDownload += (s, e) => OnPackageDownload(e);
 			instance.PackageHashMismatch += (s, e) => OnPackageDownloadMismatch(e);
@@ -65,9 +65,6 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 			instance.ExternalUpdateStart += (s, e) => OnExternalUpdaterStart();
 			instance.ExternalUpdateStarted += (s, e) => OnExternalUpdaterStarted();
 			instance.RunExternalProcess += (s, e) => OnExecuteExternalProcess(e);
-
-			//misc
-			instance.MinmumVersionRequired += (s, e) => OnMiniumalVersionRequired();
 		}
 
 		private void AbstractUpdateBase_Load(object sender, EventArgs e)
@@ -400,11 +397,6 @@ namespace FSLib.App.SimpleUpdater.Dialogs
 		protected virtual void OnExternalUpdaterStarted()
 		{
 		}
-
-		/// <summary>
-		/// 要求最低版本
-		/// </summary>
-		protected virtual void OnMiniumalVersionRequired() { }
 
 
 		/// <summary>
