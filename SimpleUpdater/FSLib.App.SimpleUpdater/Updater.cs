@@ -182,6 +182,13 @@ namespace FSLib.App.SimpleUpdater
             if (string.IsNullOrEmpty(url)) throw new InvalidOperationException(SR.Updater_AssemblyNotMarkedAsUpdateable);
             if (Context.IsInUpdating) return false;
 
+            // 自动开启日志记录
+            if (string.IsNullOrEmpty(Context.LogFile) && Context.AutoStartLog)
+            {
+                _logger.LogInformation("Logfile not specified and auto start log enabled. create log automatically.");
+                Context.LogFile = DateTime.Now.ToString("'SimpleUpdater-'yyyyMMdd-HHmmss'.log'");
+            }
+
             var bgw = new BackgroundWorker()
             {
                 WorkerSupportReportProgress = true
@@ -239,12 +246,13 @@ namespace FSLib.App.SimpleUpdater
 
             Context.Init();
 
-            var localFile = Context.UpdateInfoFilePath;
+            var    localFile     = Context.UpdateInfoFilePath;
+            string updateContent = null;
 
             if (File.Exists(localFile))
             {
                 _logger.LogInformation("Reading local update information file '" + localFile + "'");
-                Context.UpdateInfoTextContent = File.ReadAllText(localFile, Encoding.UTF8);
+                updateContent = File.ReadAllText(localFile, Encoding.UTF8);
             }
             else
             {
@@ -287,15 +295,15 @@ namespace FSLib.App.SimpleUpdater
                         data = ExtensionMethod.Decompress(data);
                     }
 
-                    Context.UpdateInfoTextContent = Encoding.UTF8.GetString(data);
+                    updateContent = Encoding.UTF8.GetString(data);
                 }
 
                 //是否返回了正确的结果?
-                if (string.IsNullOrEmpty(Context.UpdateInfoTextContent)) throw new ApplicationException("Unable to read update info.");
+                if (string.IsNullOrEmpty(updateContent)) throw new ApplicationException("Unable to read update info.");
             }
 
+            if ((Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(updateContent)) == null) throw new ApplicationException("Update info download failed");
             e.PostEvent(OnDownloadUpdateInfoFinished);
-            if ((Context.UpdateInfo = XMLSerializeHelper.XmlDeserializeFromString<UpdateInfo>(Context.UpdateInfoTextContent)) == null) throw new ApplicationException("Update info download failed");
 
             _logger.LogInformation($"Server version: {Context.UpdateInfo.AppVersion}");
             _logger.LogInformation($"Current Version: {Context.CurrentVersion}");
@@ -1139,7 +1147,7 @@ namespace FSLib.App.SimpleUpdater
             //写入更新文件
             var updateinfoFile = Context.UpdateInfoFilePath;
             Directory.CreateDirectory(Path.GetDirectoryName(updateinfoFile));
-            File.WriteAllText(updateinfoFile, Context.UpdateInfoTextContent, Encoding.UTF8);
+            XMLSerializeHelper.XmlSerilizeToFile(Context.UpdateInfo, updateinfoFile);
             //写入包列表
             XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate,                                          Context.UpdatePackageListPath);
             XMLSerializeHelper.XmlSerilizeToFile(ExtensionMethod.ToList(FileInstaller.PreservedFiles.Keys), Context.PreserveFileListPath);

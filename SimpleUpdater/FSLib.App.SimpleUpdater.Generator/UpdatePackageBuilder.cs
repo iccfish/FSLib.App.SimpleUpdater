@@ -36,7 +36,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 
 		#region 公共属性
 
-
 		/// <summary>
 		/// 获得或设置当前的升级基础信息
 		/// </summary>
@@ -69,6 +68,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 					OnProjectLoaded(new PackageEventArgs(_auProject));
 			}
 		}
+
 		#endregion
 
 		#region 事件区域
@@ -98,6 +98,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// 项目已卸载
 		/// </summary>
 		public event EventHandler<PackageEventArgs> ProjectClosed;
+
 		/// <summary>
 		/// 引发 <see cref="ProjectClosed" /> 事件
 		/// </summary>
@@ -117,7 +118,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <summary>
 		/// 引发 <see cref="FilePackagingBegin"/> 事件
 		/// </summary>
-
 		protected virtual void OnFilePackagingBegin()
 		{
 			FilePackagingBegin?.Invoke(this, EventArgs.Empty);
@@ -131,7 +131,6 @@ namespace FSLib.App.SimpleUpdater.Generator
 		/// <summary>
 		/// 引发 <see cref="FilePackagingEnd"/> 事件
 		/// </summary>
-
 		protected virtual void OnFilePackagingEnd()
 		{
 			FilePackagingEnd?.Invoke(this, EventArgs.Empty);
@@ -305,7 +304,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 		public void PreparePackageBuildTasks(RunworkEventArgs e, UpdateInfo ui)
 		{
 			var targetDir = AuProject.ParseFullPath(AuProject.DestinationDirectory);
-			var appDir = AuProject.ParseFullPath(AuProject.ApplicationDirectory);
+			var appDir    = AuProject.ParseFullPath(AuProject.ApplicationDirectory);
 
 			if (!Directory.Exists(appDir))
 				throw new ApplicationException("invalid application directory");
@@ -336,7 +335,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 			//生成映射，排除忽略列表
 			e.ReportProgress(0, 0, "preparing file list...");
 			var projectItems = AuProject.Files.ToDictionary(s => s.Path, StringComparer.OrdinalIgnoreCase);
-			var targetfiles = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore)).ToDictionary(s => s.Key, s => s.Value);
+			var targetfiles  = allfiles.Select(s => new KeyValuePair<string, FileInfo>(s.FullName.Remove(0, appDir.Length).Trim(Path.DirectorySeparatorChar), s)).Where(s => (!projectItems.ContainsKey(s.Key) && AuProject.DefaultUpdateMethod != UpdateMethod.Ignore) || (projectItems.ContainsKey(s.Key) && projectItems[s.Key].UpdateMethod != UpdateMethod.Ignore)).ToDictionary(s => s.Key, s => s.Value);
 
 			//任务
 			var tasks = new List<ZipTask>();
@@ -345,12 +344,12 @@ namespace FSLib.App.SimpleUpdater.Generator
 			if (!AuProject.EnableIncreaseUpdate || AuProject.CreateCompatiblePackage)
 			{
 				var mainPkgId = GetPackageName("main") + "." + AuProject.PackageExtension;
-				var task = new ZipTask(mainPkgId, targetfiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "Full package");
+				var task      = new ZipTask(mainPkgId, targetfiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "Full package");
 				task.OnDone = () =>
 				{
-					ui.Package = mainPkgId;
+					ui.Package     = mainPkgId;
 					ui.PackageSize = task.PackageLength;
-					ui.MD5 = task.PackageHash;
+					ui.MD5         = task.PackageHash;
 				};
 				tasks.Add(task);
 				Result.Add(mainPkgId, task.PackageDescription);
@@ -371,23 +370,23 @@ namespace FSLib.App.SimpleUpdater.Generator
 					var task = new ZipTask(pkgId, mainFiles, UpdateMethod.Always, FileVerificationLevel.None, _auProject, "global package");
 					task.OnDone = () =>
 					{
-						ui.Packages.Add(new PackageInfo()
-						{
-							Version = "0.0.0.0",
-							VerificationLevel = FileVerificationLevel.None,
-							FilePath = "",
-							FileSize = 0L,
-							FileHash = "",
-							PackageHash = task.PackageHash,
-							PackageName = pkgId,
-							PackageSize = task.PackageLength,
-							Method = UpdateMethod.Always,
-							Files = mainFiles.Select(s => s.Key).ToArray()
-						});
+						ui.Packages.Add(
+							new PackageInfo()
+							{
+								Version           = "0.0.0.0",
+								VerificationLevel = FileVerificationLevel.None,
+								FilePath          = "",
+								FileSize          = 0L,
+								FileHash          = "",
+								PackageHash       = task.PackageHash,
+								PackageName       = pkgId,
+								PackageSize       = task.PackageLength,
+								Method            = UpdateMethod.Always,
+								Files             = mainFiles.Select(s => s.Key).ToArray()
+							});
 					};
 					tasks.Add(task);
 					Result.Add(pkgId, task.PackageDescription);
-
 				}
 
 				//针对单个文件生成包
@@ -400,7 +399,7 @@ namespace FSLib.App.SimpleUpdater.Generator
 							continue;
 						config = new ProjectItem()
 						{
-							UpdateMethod = AuProject.DefaultUpdateMethod,
+							UpdateMethod          = AuProject.DefaultUpdateMethod,
 							FileVerificationLevel = AuProject.DefaultFileVerificationLevel
 						};
 					}
@@ -413,26 +412,26 @@ namespace FSLib.App.SimpleUpdater.Generator
 					}
 
 					//file info
-					var fdi = FileVersionInfo.GetVersionInfo(file.Value.FullName);
+					var fdi         = FileVersionInfo.GetVersionInfo(file.Value.FullName);
 					var pkgFileName = GetPackageName(file.Key) + "." + AuProject.PackageExtension;
 
-					var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [file.Key] = file.Value }, config.UpdateMethod, config.FileVerificationLevel, _auProject, $"{file.Key}");
+					var task                 = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [file.Key] = file.Value }, config.UpdateMethod, config.FileVerificationLevel, _auProject, $"{file.Key}");
 					var isSimpleUpdateClient = !updaterClientIncluded && Regex.IsMatch(file.Key, @"(^|[\\/]?)SimpleUpdater\.dll$");
 					task.OnDone = () =>
 					{
 						var detail = new PackageInfo()
 						{
-							Version = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
+							Version           = string.IsNullOrEmpty(fdi.FileVersion) ? "0.0.0.0" : ExtensionMethod.ConvertVersionInfo(fdi).ToString(),
 							VerificationLevel = config.FileVerificationLevel,
-							FilePath = file.Key,
-							FileSize = file.Value.Length,
-							FileHash = task.FileHash,
-							PackageHash = task.PackageHash,
-							PackageName = pkgFileName,
-							PackageSize = task.PackageLength,
-							Method = config.UpdateMethod,
-							Files = new[] { file.Key },
-							ComponentId = config.Flag
+							FilePath          = file.Key,
+							FileSize          = file.Value.Length,
+							FileHash          = task.FileHash,
+							PackageHash       = task.PackageHash,
+							PackageName       = pkgFileName,
+							PackageSize       = task.PackageLength,
+							Method            = config.UpdateMethod,
+							Files             = new[] { file.Key },
+							ComponentId       = config.Flag
 						};
 						ui.Packages.Add(detail);
 
@@ -451,26 +450,26 @@ namespace FSLib.App.SimpleUpdater.Generator
 			if (!updaterClientIncluded)
 			{
 				var updaterClient = typeof(Updater).Assembly.Location;
-				var version = ExtensionMethod.ConvertVersionInfo(FileVersionInfo.GetVersionInfo(updaterClient));
-				var pkgFileName = GetPackageName(Path.GetFileName(updaterClient)) + "." + AuProject.PackageExtension;
-				var fileInfo = new FileInfo(updaterClient);
+				var version       = ExtensionMethod.ConvertVersionInfo(FileVersionInfo.GetVersionInfo(updaterClient));
+				var pkgFileName   = GetPackageName(Path.GetFileName(updaterClient)) + "." + AuProject.PackageExtension;
+				var fileInfo      = new FileInfo(updaterClient);
 
 				var task = new ZipTask(pkgFileName, new Dictionary<string, FileInfo>() { [Path.GetFileName(updaterClient)] = fileInfo }, UpdateMethod.VersionCompare, FileVerificationLevel.Hash | FileVerificationLevel.Size | FileVerificationLevel.Version, _auProject, "Asset package required for updater client.");
 				task.OnDone = () =>
 				{
 					var detail = new PackageInfo()
 					{
-						Version = version.ToString(),
+						Version           = version.ToString(),
 						VerificationLevel = task.VerificationLevel,
-						FilePath = task.Files.First().Key,
-						FileSize = task.FileLength,
-						FileHash = task.FileHash,
-						PackageHash = task.PackageHash,
-						PackageName = pkgFileName,
-						PackageSize = task.PackageLength,
-						Method = task.UpdateMethod,
-						Files = new[] { task.Files.First().Key },
-						ComponentId = null
+						FilePath          = task.Files.First().Key,
+						FileSize          = task.FileLength,
+						FileHash          = task.FileHash,
+						PackageHash       = task.PackageHash,
+						PackageName       = pkgFileName,
+						PackageSize       = task.PackageLength,
+						Method            = task.UpdateMethod,
+						Files             = new[] { task.Files.First().Key },
+						ComponentId       = null
 					};
 
 					ui.UpdaterClient = detail;
@@ -483,9 +482,9 @@ namespace FSLib.App.SimpleUpdater.Generator
 		}
 
 
-		static SHA1 _sha1 = SHA1.Create();
+		static SHA1                 _sha1 = SHA1.Create();
 		static UpdatePackageBuilder _instance;
-		Dictionary<string, string> _nameCache = new(StringComparer.OrdinalIgnoreCase);
+		Dictionary<string, string>  _nameCache = new(StringComparer.OrdinalIgnoreCase);
 
 		string GetPackageName(string path)
 		{

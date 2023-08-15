@@ -32,10 +32,6 @@ namespace UpdateTestHost.NetCoreSingle
 			{
 				MessageBox.Show(updater.Context.Exception.Message);
 			};
-			updater.MinmumVersionRequired += (sender, args) =>
-			{
-				MessageBox.Show(updater.Context.Exception?.Message);
-			};
 
 			updater.BeginCheckUpdateInProcess();
 			

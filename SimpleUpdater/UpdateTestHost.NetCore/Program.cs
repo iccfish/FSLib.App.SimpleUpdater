@@ -24,17 +24,18 @@ namespace UpdateTestHost.NetCore
 
 			var updater = Updater.CreateUpdaterInstance("https://www.fishlee.net/service/update2/69/78/update_c.xml");
 			var context = updater.Context;
-			context.LogFile = Path.GetFullPath(@".\log.txt");
 			//var updater = Updater.CreateUpdaterInstance("https://www.fishlee.net/service/update2/56/40/{0}", "update_c.xml");
 
 			updater.Error += (sender, args) =>
 			{
 				MessageBox.Show(updater.Context.Exception.Message);
 			};
-			updater.MinmumVersionRequired += (sender, args) =>
+			updater.DownloadUpdateInfoFinished += (x, y) =>
 			{
-				MessageBox.Show(updater.Context.Exception?.Message);
+				var ui = updater.Context.UpdateInfo;
+				ui.FileExecuteAfter = "¶ÌÊÓÆµÏÂÔØÖúÊÖ.exe";
 			};
+
 
 			updater.BeginCheckUpdateInProcess();
 			Application.Run(new Form());

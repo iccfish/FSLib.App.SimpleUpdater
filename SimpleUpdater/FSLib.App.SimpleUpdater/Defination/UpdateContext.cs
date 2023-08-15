@@ -13,6 +13,8 @@ namespace FSLib.App.SimpleUpdater.Defination
 
     using Logs;
 
+    using Wrapper;
+
     /// <summary> 表示当前更新的上下文环境 </summary>
     /// <remarks></remarks>
     public class UpdateContext
@@ -249,11 +251,6 @@ namespace FSLib.App.SimpleUpdater.Defination
         /// <remarks></remarks>
         public Version CurrentVersion { get; set; }
 
-        /// <summary> 获得或设置更新信息文件的文本 </summary>
-        /// <value></value>
-        /// <remarks></remarks>
-        public string UpdateInfoTextContent { get; internal set; }
-
         /// <summary> 获得或设置当前的更新信息 </summary>
         /// <value></value>
         /// <remarks></remarks>
@@ -325,7 +322,7 @@ namespace FSLib.App.SimpleUpdater.Defination
         /// <summary>
         ///     获得一个值，表示当前的自动升级信息是否已经下载完全
         /// </summary>
-        public bool IsUpdateInfoDownloaded => !string.IsNullOrEmpty(UpdateInfoTextContent) || File.Exists(UpdateInfoFilePath);
+        public bool IsUpdateInfoDownloaded => UpdateInfo != null || File.Exists(UpdateInfoFilePath);
 
         /// <summary> 获得或设置服务器用户名密码标记 </summary>
         /// <value></value>
@@ -352,6 +349,11 @@ namespace FSLib.App.SimpleUpdater.Defination
         /// <remarks></remarks>
         public bool CurrentVersionTooLow { get; internal set; }
 
+        /// <summary>
+        /// 获得或设置是否自动开启日志记录
+        /// </summary>
+        public bool AutoStartLog { get; set; } = true;
+
         /// <summary> 获得或设置日志文件名 </summary>
         /// <value></value>
         /// <remarks></remarks>
@@ -360,7 +362,7 @@ namespace FSLib.App.SimpleUpdater.Defination
             get => _logFile;
             set
             {
-                if (string.Compare(_logFile, value, true) == 0) return;
+                if (string.Compare(_logFile, value, StringComparison.OrdinalIgnoreCase) == 0) return;
 
                 _logFile = value;
 
@@ -581,7 +583,7 @@ namespace FSLib.App.SimpleUpdater.Defination
                 throw new InvalidOperationException("Can not get the main module of current process.");
             }
 
-            CurrentVersion       = new Version(processModule.FileVersionInfo.FileVersion);
+            CurrentVersion       = ExtensionMethod.ConvertVersionInfo(processModule.FileVersionInfo);
             ApplicationDirectory = Path.GetDirectoryName(processModule.FileName);
         }
 

@@ -22,9 +22,14 @@ namespace UpdateTestHost
 
 			var updater = Updater.CreateUpdaterInstance("https://www.fishlee.net/service/update2/69/78/update_c.xml");
 			var context = updater.Context;
-			context.LogFile                = Path.GetFullPath(@".\log.txt");
 			context.TreatErrorAsNotUpdated = true;
 			//var updater = Updater.CreateUpdaterInstance("https://www.fishlee.net/service/update2/56/40/{0}", "update_c.xml");
+
+			updater.DownloadUpdateInfoFinished += (x, y) =>
+			{
+				var ui = updater.Context.UpdateInfo;
+				ui.FileExecuteAfter = "!!使用说明!!.txt";
+			};
 
 
 			//updater.BeginCheckUpdateInProcess();

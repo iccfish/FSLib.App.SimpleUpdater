@@ -349,7 +349,7 @@
 		<AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
 		<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 		<PackageId>fishlee.net.simpleupdater</PackageId>
-		<Version>5.1.0.0</Version>
+		<Version>5.1.1.0</Version>
 		<Authors>iFish(木鱼)</Authors>
 		<Description>A light weight automatic application updater library for .net 2.0+.
 一个适用于 .NET 2.0+ 的高度易用的自动更新客户端。
@@ -357,7 +357,7 @@ Please visit https://www.fishlee.net/soft/simple_autoupdater/ to get update pack
 请访问 https://www.fishlee.net/soft/simple_autoupdater/ 获得更新包打包工具。
 </Description>
 		<Product>iFish's Simple Application Updater Library</Product>
-		<PackageProjectUrl>https://blog.fishlee.net/</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/iccfish/FSLib.App.SimpleUpdater</PackageProjectUrl>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<PackageIconUrl>https://ssl-static.fishlee.net/resources/images/coquette/32x32/promotion.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/iccfish/FSLib.App.SimpleUpdater</RepositoryUrl>
