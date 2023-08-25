@@ -11,4 +11,3 @@ echo 正在更新Config文件……
 sed -i -r "s/newVersion=\"[0-9\.]+\"/newVersion=\"$version\"/" FSLib.App.SimpleUpdater/content/App.config.install.xdt
 
 echo 更新完成！
-read
