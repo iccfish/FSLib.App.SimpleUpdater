@@ -29,7 +29,7 @@ namespace FSLib.App.SimpleUpdater.Logs
 				ThreadPool.QueueUserWorkItem(_ => WriteEntries(), null);
 		}
 
-		private int _isWritingEntries;
+		private volatile int _isWritingEntries;
 
 		void WriteEntries()
 		{
