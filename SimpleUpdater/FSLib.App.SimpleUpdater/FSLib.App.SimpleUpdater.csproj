@@ -349,7 +349,7 @@
 		<AssemblyOriginatorKeyFile>ifish.snk</AssemblyOriginatorKeyFile>
 		<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 		<PackageId>fishlee.net.simpleupdater</PackageId>
-		<Version>5.1.2.0</Version>
+		<Version>5.1.3.0</Version>
 		<Authors>iFish(木鱼)</Authors>
 		<Description>A light weight automatic application updater library for .net 2.0+.
 一个适用于 .NET 2.0+ 的高度易用的自动更新客户端。

@@ -1,4 +1,4 @@
-﻿namespace FSLib.App.SimpleUpdater
+namespace FSLib.App.SimpleUpdater
 {
     using System;
     using System.Collections.Generic;
@@ -33,14 +33,28 @@
             if (Environment.OSVersion.Version.Major > 5)
             {
 #if NET20 || NET35 || NET40 || NET45
-                ServicePointManager.SecurityProtocol =
-                    SecurityProtocolType.Ssl3
-                    | SecurityProtocolType.Tls
-                    | (SecurityProtocolType)3072 //TLS 1.2
-                    | (SecurityProtocolType)768; //TLS 1.1;
+                TrySetSecurityProtocol(SecurityProtocolType.Ssl3);
+                TrySetSecurityProtocol(SecurityProtocolType.Tls);
+                TrySetSecurityProtocol((SecurityProtocolType)0x3000); //TLS 1.3
+                TrySetSecurityProtocol((SecurityProtocolType)3072);   //TLS 1.2
+                TrySetSecurityProtocol((SecurityProtocolType)768);    //TLS 1.1;
 #endif
             }
         }
+#if NET20 || NET35 || NET40 || NET45
+        static void TrySetSecurityProtocol(SecurityProtocolType protocol)
+        {
+            try
+            {
+                ServicePointManager.SecurityProtocol |= protocol;
+            }
+            catch (Exception)
+            {
+                // just ignore
+            }
+        }
+
+#endif
 
         internal static void AddIgnoreDomainCertForUrl(string url) => AddIgnoreDomainCertForUrl(url);
 
