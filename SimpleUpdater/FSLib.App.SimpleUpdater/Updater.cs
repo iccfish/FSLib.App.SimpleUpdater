@@ -75,7 +75,7 @@ namespace FSLib.App.SimpleUpdater
                         var value = args[index++];
                         if (!string.IsNullOrEmpty(value))
                         {
-                            var info                                                                          = value.Split(':');
+                            var info = value.Split(':');
                             if (info.Length == 2 && !string.IsNullOrEmpty(info[0])) Context.NetworkCredential = new NetworkCredential(info[0], info[1]);
                         }
 
@@ -124,7 +124,7 @@ namespace FSLib.App.SimpleUpdater
         /// </summary>
         protected Updater()
         {
-            Context          = new UpdateContext();
+            Context = new UpdateContext();
             PackagesToUpdate = new List<PackageInfo>();
             if (_instance == null) _instance = this;
 
@@ -197,7 +197,7 @@ namespace FSLib.App.SimpleUpdater
             bgw.WorkFailed += (s, e) =>
             {
                 Context.IsInUpdating = false;
-                Context.Exception    = e.Exception;
+                Context.Exception = e.Exception;
                 _logger.LogError("Loading update infomation failed: " + e.Exception.Message, e.Exception);
                 OnError();
                 OnCheckUpdateComplete();
@@ -210,7 +210,7 @@ namespace FSLib.App.SimpleUpdater
 
                 if (Context.CurrentVersionTooLow)
                 {
-                    Context.Exception  = new VersionTooLowException(Context.CurrentVersion, new Version(Context.UpdateInfo.RequiredMinVersion));
+                    Context.Exception = new VersionTooLowException(Context.CurrentVersion, new Version(Context.UpdateInfo.RequiredMinVersion));
                     OnError();
                 }
                 else if (!Context.HasUpdate)
@@ -227,7 +227,7 @@ namespace FSLib.App.SimpleUpdater
                 OnCheckUpdateComplete();
             };
             bgw.WorkerProgressChanged += (s, e) => OnOperationProgressChanged(e);
-            Context.IsInUpdating      =  true;
+            Context.IsInUpdating = true;
             bgw.RunWorkASync();
             //启动外部清理进程。
             CleanTemp();
@@ -246,7 +246,7 @@ namespace FSLib.App.SimpleUpdater
 
             Context.Init();
 
-            var    localFile     = Context.UpdateInfoFilePath;
+            var localFile = Context.UpdateInfoFilePath;
             string updateContent = null;
 
             if (File.Exists(localFile))
@@ -257,9 +257,9 @@ namespace FSLib.App.SimpleUpdater
             else
             {
                 //下载信息时不直接下载到文件中.这样不会导致始终创建文件夹
-                Exception ex   = null;
-                byte[]    data = null;
-                var       url  = Context.UpdateInfoFileUrl;
+                Exception ex = null;
+                byte[] data = null;
+                var url = Context.UpdateInfoFileUrl;
 
                 var client = Context.CreateWebClient();
                 client.DownloadProgressChanged += (x, y) => e.ReportProgress((int)y.TotalBytesToReceive, (int)y.BytesReceived);
@@ -390,15 +390,15 @@ namespace FSLib.App.SimpleUpdater
                 PackagesToUpdate.Add(
                     new PackageInfo()
                     {
-                        FilePath          = "",
-                        FileSize          = 0,
-                        PackageHash       = info.MD5,
-                        Method            = UpdateMethod.Always,
-                        PackageName       = info.Package,
-                        PackageSize       = info.PackageSize,
+                        FilePath = "",
+                        FileSize = 0,
+                        PackageHash = info.MD5,
+                        Method = UpdateMethod.Always,
+                        PackageName = info.Package,
+                        PackageSize = info.PackageSize,
                         VerificationLevel = FileVerificationLevel.Hash,
-                        Version           = "0.0.0.0",
-                        Context           = Context
+                        Version = "0.0.0.0",
+                        Context = Context
                     });
             }
 
@@ -452,8 +452,8 @@ namespace FSLib.App.SimpleUpdater
                     }
 
                     var isNewer = (pkg.HasVerifyFlag(FileVerificationLevel.Size) && new FileInfo(localPath).Length != pkg.FileSize)
-                        || (pkg.HasVerifyFlag(FileVerificationLevel.Version)     && (string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version)))
-                        || (pkg.HasVerifyFlag(FileVerificationLevel.Hash)        && ExtensionMethod.GetFileHash(localPath, pkg.IsHashMd5) != pkg.FileHash);
+                        || (pkg.HasVerifyFlag(FileVerificationLevel.Version) && (string.IsNullOrEmpty(pkg.Version) || ExtensionMethod.CompareVersion(localPath, pkg.Version)))
+                        || (pkg.HasVerifyFlag(FileVerificationLevel.Hash) && ExtensionMethod.GetFileHash(localPath, pkg.IsHashMd5) != pkg.FileHash);
 
                     if (isNewer)
                     {
@@ -617,15 +617,15 @@ namespace FSLib.App.SimpleUpdater
         /// <param name="psi" type="System.Diagnostics.ProcessStartInfo">类型为 <see>System.Diagnostics.ProcessStartInfo</see> 的参数</param>
         private void SetProcessEnvVar(ProcessStartInfo psi)
         {
-            var fileName  = psi.FileName;
+            var fileName = psi.FileName;
             var extension = Path.GetExtension(fileName).ToLower();
 
             if (extension == ".bat" || extension == ".cmd")
             {
                 //命令行模式，为了能使用环境变量，替换命令行
-                psi.FileName  = "cmd.exe";
+                psi.FileName = "cmd.exe";
                 psi.Arguments = "/c \"" + fileName + "\" " + psi.Arguments;
-                extension     = ".exe";
+                extension = ".exe";
             }
 
             if (extension != ".exe" && extension != ".com") return;
@@ -769,15 +769,15 @@ namespace FSLib.App.SimpleUpdater
             _logger.LogInformation("Begin download package.");
 
             var workerCount = Math.Max(1, Context.MultipleDownloadCount);
-            var workers     = new List<WebClient>(workerCount);
-            var evt         = new AutoResetEvent(false);
-            var hasError    = false;
+            var workers = new List<WebClient>(workerCount);
+            var evt = new AutoResetEvent(false);
+            var hasError = false;
 
             //download redirect
             if (!string.IsNullOrEmpty(Context.UpdateInfo.PackageUrlTemplate))
             {
                 _logger.LogInformation("redirect download location to {0}", Context.UpdateInfo.PackageUrlTemplate);
-                Context.UpdateDownloadUrl  = Context.UpdateInfo.PackageUrlTemplate;
+                Context.UpdateDownloadUrl = Context.UpdateInfo.PackageUrlTemplate;
                 Context.UpdateInfoFileName = null;
                 Context.Init();
             }
@@ -836,7 +836,7 @@ namespace FSLib.App.SimpleUpdater
 
                     //包下载完成事件
                     pkg.IsDownloading = false;
-                    pkg.IsDownloaded  = pkg.LastError == null;
+                    pkg.IsDownloaded = pkg.LastError == null;
                     rt.PostEvent(PackageDownloadFinished, this, new PackageEventArgs(e.UserState as PackageInfo));
 
                     lock (PackagesToUpdate)
@@ -849,7 +849,7 @@ namespace FSLib.App.SimpleUpdater
                 {
                     var pkg = e.UserState as PackageInfo;
                     pkg.DownloadedSize = e.BytesReceived;
-                    pkg.PackageSize    = e.TotalBytesToReceive > 0 ? e.TotalBytesToReceive : pkg.PackageSize;
+                    pkg.PackageSize = e.TotalBytesToReceive > 0 ? e.TotalBytesToReceive : pkg.PackageSize;
                     rt.PostEvent(
                         DownloadProgressChanged,
                         this,
@@ -927,12 +927,12 @@ namespace FSLib.App.SimpleUpdater
         internal void BeginUpdate()
         {
             var bgw = new BackgroundWorker() { WorkerSupportReportProgress = true };
-            bgw.DoWork                += UpdateInternal;
+            bgw.DoWork += UpdateInternal;
             bgw.WorkerProgressChanged += (s, e) => OnOperationProgressChanged(e);
             bgw.WorkFailed += (s, e) =>
             {
                 Context.IsInUpdating = false;
-                Context.Exception    = e.Exception;
+                Context.Exception = e.Exception;
                 _logger.LogError("Update abored due to error:" + e.Exception.Message, e.Exception);
                 OnError();
             };
@@ -978,10 +978,10 @@ namespace FSLib.App.SimpleUpdater
 
             //安装文件
             e.PostEvent(OnInstallUpdates);
-            FileInstaller.UpdateInfo      = Context.UpdateInfo;
+            FileInstaller.UpdateInfo = Context.UpdateInfo;
             FileInstaller.ApplicationRoot = Context.ApplicationDirectory;
-            FileInstaller.WorkingRoot     = Context.UpdateTempRoot;
-            FileInstaller.SourceFolder    = Context.UpdateNewFilePath;
+            FileInstaller.WorkingRoot = Context.UpdateTempRoot;
+            FileInstaller.SourceFolder = Context.UpdateNewFilePath;
             if (!FileInstaller.Install(e)) throw FileInstaller.Exception;
 
             //运行安装后进程
@@ -1003,9 +1003,9 @@ namespace FSLib.App.SimpleUpdater
 
             var count = PackagesToUpdate.Count;
             var index = 0;
-            var fze   = new FastZipEvents();
+            var fze = new FastZipEvents();
             fze.ProcessFile += (s, e) => rt.ReportProgress(count, index, string.Format(SR.Updater_ExtractingFile, e.Name));
-            var fz                                                                     = new FastZip(fze);
+            var fz = new FastZip(fze);
             if (!string.IsNullOrEmpty(Context.UpdateInfo.PackagePassword)) fz.Password = Context.UpdateInfo.PackagePassword;
 
             foreach (var pkg in PackagesToUpdate)
@@ -1095,11 +1095,12 @@ namespace FSLib.App.SimpleUpdater
             fileName = fileName ?? name;
             using (var stream = typeof(Updater).Assembly.GetManifestResourceStream($"FSLib.App.SimpleUpdater.Utilities.{name}.gz"))
             {
+                using var gzout = new System.IO.Compression.GZipStream(stream, System.IO.Compression.CompressionMode.Decompress);
                 using (var ms = new MemoryStream())
                 {
-                    var buf   = new byte[0x400];
+                    var buf = new byte[0x400];
                     var count = 0;
-                    while ((count = stream.Read(buf, 0, buf.Length)) > 0)
+                    while ((count = gzout.Read(buf, 0, buf.Length)) > 0)
                         ms.Write(buf, 0, count);
                     ms.Flush();
 
@@ -1110,7 +1111,7 @@ namespace FSLib.App.SimpleUpdater
 
         private void CopyUtilityExecutable(string targetPath = null)
         {
-            var targetFiles                    = new List<KeyValuePair<string, byte[]>>();
+            var targetFiles = new List<KeyValuePair<string, byte[]>>();
             if (targetPath == null) targetPath = Context.UpdateTempRoot;
 
 #if NET20
@@ -1119,10 +1120,15 @@ namespace FSLib.App.SimpleUpdater
 #elif NET40 || NET45
             targetFiles.Add(ReadEmbedStream("Utilities_Net40.exe", "FSLib.App.Utilities.exe"));
             targetFiles.Add(ReadEmbedStream("app.config", "FSLib.App.Utilities.exe.config"));
-#elif NET5_0
+#elif NET5_0_OR_GREATER
             targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.dll"));
             targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.exe"));
-            targetFiles.Add(ReadEmbedStream("FSLib.App.Utilities.runtimeconfig.json"));
+
+            //patch runtime config file
+            var rtConfig = ReadEmbedStream("FSLib.App.Utilities.runtimeconfig.json");
+            var ver = Regex.Match(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription, @"(?<=\s)\d+\.\d+").Value;
+            var buffer = Encoding.UTF8.GetBytes(Encoding.UTF8.GetString(rtConfig.Value).Replace("5.0", ver));
+            targetFiles.Add(new(rtConfig.Key, buffer));
 #endif
 
             foreach (var kvp in targetFiles)
@@ -1130,7 +1136,7 @@ namespace FSLib.App.SimpleUpdater
                 {
                     var target = Path.Combine(targetPath, kvp.Key);
                     if (!File.Exists(target))
-                        File.WriteAllBytes(target, ExtensionMethod.Decompress(kvp.Value));
+                        File.WriteAllBytes(target, kvp.Value);
                 }
                 catch (Exception e)
                 {
@@ -1149,7 +1155,7 @@ namespace FSLib.App.SimpleUpdater
             Directory.CreateDirectory(Path.GetDirectoryName(updateinfoFile));
             XMLSerializeHelper.XmlSerilizeToFile(Context.UpdateInfo, updateinfoFile);
             //写入包列表
-            XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate,                                          Context.UpdatePackageListPath);
+            XMLSerializeHelper.XmlSerilizeToFile(PackagesToUpdate, Context.UpdatePackageListPath);
             XMLSerializeHelper.XmlSerilizeToFile(ExtensionMethod.ToList(FileInstaller.PreservedFiles.Keys), Context.PreserveFileListPath);
 
             //启动外部程序
@@ -1167,11 +1173,11 @@ namespace FSLib.App.SimpleUpdater
             //启动
             var sb = new StringBuilder(0x400);
             sb.AppendFormat("/startupdate /cv \"{0}\" ", Context.CurrentVersion.ToString());
-            sb.AppendFormat("/log \"{0}\" ",             Utility.SafeQuotePathInCommandLine(Context.LogFile ?? ""));
-            sb.AppendFormat("/ad \"{0}\" ",              Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
-            sb.AppendFormat("/url \"{0}\" ",             Context.UpdateDownloadUrl);
-            sb.AppendFormat("/infofile \"{0}\" ",        Context.UpdateInfoFileName);
-            sb.AppendFormat("/proxy \"{0}\" ",           Context.ProxyAddress ?? "");
+            sb.AppendFormat("/log \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.LogFile ?? ""));
+            sb.AppendFormat("/ad \"{0}\" ", Utility.SafeQuotePathInCommandLine(Context.ApplicationDirectory));
+            sb.AppendFormat("/url \"{0}\" ", Context.UpdateDownloadUrl);
+            sb.AppendFormat("/infofile \"{0}\" ", Context.UpdateInfoFileName);
+            sb.AppendFormat("/proxy \"{0}\" ", Context.ProxyAddress ?? "");
             if (Context.NetworkCredential != null)
                 sb.AppendFormat("/cred \"{0}\" ", string.Format("{0}:{1}", Context.NetworkCredential.UserName, Context.NetworkCredential.Password));
             if (Context.AutoKillProcesses) sb.Append("/autokill ");
@@ -1290,7 +1296,7 @@ namespace FSLib.App.SimpleUpdater
         /// <returns></returns>
         private bool EnsureAdminPrivilege()
         {
-            var root     = Context.ApplicationDirectory;
+            var root = Context.ApplicationDirectory;
             var tempfile = Path.Combine(root, DateTime.Now.Ticks + ".tmp");
             _logger.LogInformation("Checking if current process can write to application directory directly without admin privilege.");
             try
@@ -1315,7 +1321,7 @@ namespace FSLib.App.SimpleUpdater
         /// <returns></returns>
         private List<string> FetchProcessList(string[] ownerProcess)
         {
-            var list          = new List<string>();
+            var list = new List<string>();
             var mainProcessID = Process.GetCurrentProcess().Id;
             list.Add("*" + mainProcessID);
             list.AddRange(ExtensionMethod.Select(Context.ExternalProcessID, s => "*" + s));
@@ -1383,7 +1389,7 @@ namespace FSLib.App.SimpleUpdater
 
                 try
                 {
-                    var path     = Path.Combine(Context.UpdateTempRoot, assFile);
+                    var path = Path.Combine(Context.UpdateTempRoot, assFile);
                     var assembly = Assembly.LoadFile(path);
 
                     _logger.LogInformation("assembly loaded. checking for interface notify.");
@@ -1408,7 +1414,7 @@ namespace FSLib.App.SimpleUpdater
         }
 
         private List<Assembly> _usingAssemblies;
-        private Type           _mainFormType;
+        private Type _mainFormType;
 
         /// <summary>
         ///     引用指定的程序集
@@ -1450,8 +1456,8 @@ namespace FSLib.App.SimpleUpdater
             _logger.LogInformation("Starting external cleanup process.");
 
             var utilityPath = Path.GetTempPath();
-            var localPath   = Path.Combine(utilityPath, "FSLib.App.Utilities.exe");
-            var arg         = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
+            var localPath = Path.Combine(utilityPath, "FSLib.App.Utilities.exe");
+            var arg = "deletetmp \"" + Process.GetCurrentProcess().Id + "\" \"" + Utility.SafeQuotePathInCommandLine(Context.UpdateTempRoot) + "\"";
 
             CopyUtilityExecutable(utilityPath);
 
